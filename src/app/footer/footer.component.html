@@ -1,9 +1,9 @@
 <nav class="Bottomnav">
     <ul style="display: inline-flex">
-      <li id="home"><button [routerLink]="'/home'" mat-button routerLinkActive="select" ><mat-icon>home</mat-icon><br><span>Home</span></button></li>
-      <li id="sports" ><button [routerLink]="'/inplaylist'" routerLinkActive="select" mat-button><mat-icon>play_circle_outline</mat-icon><br><span>In-Play</span></button></li>
-      <li id="multiMarket" ><button [routerLink]="'/sportslist'" routerLinkActive="select" mat-button><mat-icon>gamepad</mat-icon><br><span>Sports</span></button></li>
-      <li id="inplay" ><button [routerLink]="'/agentlist'" routerLinkActive="select"  mat-button><mat-icon>account_tree</mat-icon><br><span>Favourites</span></button></li>
-      <li id="account"><button [routerLink]="'/reportlist'" routerLinkActive="select" mat-button><mat-icon>table_chart</mat-icon><br><span>Account</span></button></li>
+      <li id="home"><button [routerLink]="'/home'" mat-button routerLinkActive="select" ><mat-icon class="nav-item">home</mat-icon><br><span class="nav-item">Home</span></button></li>
+      <li id="inplay" ><button [routerLink]="'/inplay'" routerLinkActive="select" mat-button><mat-icon>play_circle_outline</mat-icon><br><span>In-Play</span></button></li>
+      <li id="sportslist" ><button [routerLink]="'/sports'" routerLinkActive="select" mat-button><mat-icon>gamepad</mat-icon><br><span>Sports</span></button></li>
+      <li id="favourite" ><button [routerLink]="'/favourites'" routerLinkActive="select"  mat-button><mat-icon>favorite</mat-icon><br><span>Favourites</span></button></li>
+      <li id="account"><button [routerLink]="'/account'" routerLinkActive="select" mat-button><mat-icon>more_vert</mat-icon><br><span>Account</span></button></li>
     </ul>
 </nav>

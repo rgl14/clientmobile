@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'clientmobile';
+  mode = new FormControl('push');
+  innerWidth: number;
+  ngOnInit() {
+    this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth)
+  }
 }

@@ -1,11 +1,13 @@
 nav .select {
-    color:red !important;
+    color:black !important;
+    font-weight: 600;
   }
   nav {
     position: fixed;
     bottom: 0;
     width: 100%;
     background-color:#fff;  
+        box-shadow: 0px -4px 3px rgba(227, 233, 232, 0.75);
     /* color: grey; */
     z-index: 10;
     border-top: 1px solid #c2c0c0
@@ -22,8 +24,8 @@ nav .select {
     width: 20vw;
     /* height: 13.33333vw; */
     padding: 0;
-    height: 53px;
-    /* color: #110f0fcf; */
+    height: 55px;
+    color: #706a6acf;
     /* font-size: 3.2vw; */
     line-height: 2;
     /* padding: 1.86667vw 2.66667vw 0; */
@@ -39,3 +41,11 @@ nav .select {
     text-overflow: ellipsis;
     /* white-space: nowrap; */
   }
+
+nav mat-icon span{
+    transition:1s;
+}
+nav button.select{
+  padding-bottom: 8px;
+}
+
