@@ -1,0 +1,41 @@
+nav .select {
+    color:red !important;
+  }
+  nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color:#fff;  
+    /* color: grey; */
+    z-index: 10;
+    border-top: 1px solid #c2c0c0
+  }
+  
+  nav ul{
+    margin:0;
+    padding: 0;
+  }
+  ul li{
+    list-style: none !important;
+  }
+  nav .mat-button {
+    width: 20vw;
+    /* height: 13.33333vw; */
+    padding: 0;
+    height: 53px;
+    /* color: #110f0fcf; */
+    /* font-size: 3.2vw; */
+    line-height: 2;
+    /* padding: 1.86667vw 2.66667vw 0; */
+  }
+  nav mat-icon{
+    height:12px !important;
+  }
+  nav .mat-button{
+    box-sizing: border-box;
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
+  }
