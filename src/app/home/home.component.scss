@@ -1,3 +1,135 @@
-.tab-icon {
-    margin-right: 8px;
+// .card {
+//     padding:4px 10px;
+//     margin-bottom:5px;
+//   }
+//   .mat-card-avatar{
+//       height: 15px;
+//       width: 15px;
+//   }
+  
+//   .mat-card-header .mat-card-title {
+//     font-size: 13px;
+// }
+// .mat-card-header-text {
+//     margin: 0px 15px;
+// }
+// .mat-icon{
+//     line-height: 2;
+// }
+// .mat-card-subtitle{
+//     margin-bottom: 0px;
+//     color: #508d0e;
+//     font-weight: 600;
+// }
+//   .header-image-cricket {
+//     background-image: url('/assets/img/cricket.png');
+//   }
+//   .header-image-soccer {
+//     background-image: url('/assets/img/soccer.png');
+//   }
+//   .header-image-tennis {
+//     background-image: url('/assets/img/tennis.jpg');
+//   }
+.felxSteps .flex-row--title {
+  margin: 30px 0;
+}
+h3.flex-row--title {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+}
+.flex-row.flex-row--gutterless {
+  margin-left: 0;
+}
+
+.felxSteps__inner {
+  background-color: #222;
+}
+.felxSteps__inner__item:nth-child(odd) {
+  background-color: #292929;
+}
+.flex-row--gutterless .col {
+  padding-left: 0;
+}
+.felxSteps h4 {
+  font-size: 24px;
+}
+.felxSteps__inner__item p {
+  font-size: 16px;
+}
+p, li, dt, dd, th, td {
+  line-height: 1.5;
+  // font-size: 14px;
+  // font-size: 1.4rem;
+}
+h1, h2, h3, h4, h5, h6 {
+  background: transparent;
+  border: 0;
+  // font-size: 100%;
+  // font-weight: 700;
+  line-height: 1;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+.felxSteps__inner__item a span {
+  color: #00a826;
+  font-size: 60px;
+  font-weight: 100;
+  padding: 0 3px;
+  position: relative;
+  top: 5px;
+}
+.flex-row--gutterless .col {
+  padding-left: 0;
+}
+
+@media only screen and (max-width: 767px){
+  .col--xs-12 {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+
+.col {
+  box-sizing: border-box;
+  flex-basis: 0;
+  // padding-left: 10px;
+  max-width: 100%;
+  flex-grow: 1;
+}
+.felxSteps__inner__item a {
+  color: #fff;
+  display: inline-block;
+  min-height: 97px;
+  margin: 0 5%;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.felxSteps__inner__item h3, .felxSteps__inner__item div {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.felxSteps__inner__item h3 {
+  font-size: 38px;
+  position: relative;
+}
+h1, h2, h3, h4, h5, h6, strong {
+  font-family: "interface-n7","interface",sans-serif;
+  font-weight: 700;
+}
+
+.felxSteps__inner__item div {
+  padding-top: 10px;
+}
+p{
+  background: transparent;
+  border: 0;
+  font-weight: 300;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
 }

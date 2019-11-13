@@ -1,40 +1,55 @@
-<mat-nav-list  class="bottom-sheet-nav-list">
-    <mat-list-item [routerLink]="'/betting'">
-      <i matListIcon class="fa fa-thumbs-up"></i>
-      <h3 matLine>Betting</h3>
-    </mat-list-item>
-    <mat-list-item [routerLink]="'/fancy'">
-      <i matListIcon class="fa fa-thumbs-up"></i>
-      <h3 matLine>Fancy</h3>
-    </mat-list-item>
-    <mat-list-item [routerLink]="'/bookmaker'">
-      <i matListIcon class="fa fa-thumbs-up"></i>
-      <h3 matLine>Book Maker</h3>
-    </mat-list-item>
-</mat-nav-list>
-
-<mat-nav-list  class="bottom-sheet-nav-list">
-    <mat-list-item [routerLink]="'/betting'">
-      <i matListIcon class="fa fa-thumbs-up"></i>
-      <h3 matLine>Betting</h3>
-    </mat-list-item>
-    <mat-list-item [routerLink]="'/fancy'">
-      <i matListIcon class="fa fa-thumbs-up"></i>
-      <h3 matLine>Fancy</h3>
-    </mat-list-item>
-</mat-nav-list>
-
-<mat-nav-list  class="bottom-sheet-nav-list">
-    <mat-list-item [routerLink]="'/betting'">
-      <i matListIcon class="fa fa-thumbs-up"></i>
-      <h3 matLine>Betting</h3>
-    </mat-list-item>
-    <mat-list-item [routerLink]="'/fancy'">
-      <i matListIcon class="fa fa-thumbs-up"></i>
-      <h3 matLine>Fancy</h3>
-    </mat-list-item>
-    <mat-list-item [routerLink]="'/bookmaker'">
-      <i matListIcon class="fa fa-thumbs-up"></i>
-      <h3 matLine>Book Maker</h3>
-    </mat-list-item>
-</mat-nav-list>
+<div class="content-wrapper"> 
+    <div class="account-overview">
+        <p class="login-name ">ashishcl</p>
+        <div class="menu-item">
+            <p class="label"> 	<i matListIcon class="fa fa-university"></i>&nbsp;
+                <span>Balance Information</span>
+            </p>
+            <div class="content">
+                <div class="group">
+                    <div>Available Credit:</div> <span><strong class="profit">12,772.20</strong></span>
+                </div>
+                <div class="group">
+                    <div>Credit Limit:</div> <span class="profit">30,100.00</span>
+                </div>
+                <div class="group">
+                    <div>Winnings:</div> <span class="loss">-17,327.80</span>
+                </div>
+                <div class="group">
+                    <div>Net Exposure:</div> <span class="loss">-4000.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-nav-list class="mat-list-items">
+        <mat-list-item [routerLink]="'/mybets'"> <i matListIcon class="fa fa-thumbs-up"></i>
+            <h3 matLine>My Bets</h3>
+        </mat-list-item>
+    </mat-nav-list>
+    <mat-nav-list class="mat-list-items">
+        <mat-list-item [routerLink]="'/activitylog'"> <i matListIcon class="fa fa-info-circle"></i>
+            <h3 matLine>Activity Log</h3>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="'/changepassword'"><i matListIcon class="fa fa-eye"></i>
+            <h3 matLine>Market Result</h3>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="'/changepassword'"><i matListIcon class="fa fa-pencil"></i>
+            <h3 matLine>Edit Stakes Button</h3>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="'/changepassword'"> <i matListIcon class="fa fa-lock"></i>
+            <h3 matLine>Change Password</h3>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="'/changepassword'"> <i matListIcon class="fa fa-file-text"></i>
+            <h3 matLine>Rules & Regulations</h3>
+        </mat-list-item>
+    </mat-nav-list>
+    <mat-nav-list class="mat-list-items">
+        <mat-list-item> <i matListIcon class="fa fa-sign-out"></i>
+            <h3 matLine>Logout</h3>
+        </mat-list-item>
+    </mat-nav-list>
+</div>

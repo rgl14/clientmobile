@@ -1,5 +1,5 @@
 .bg-header{
-    background: #009270
+    background: #00b489
 }
 .icon {
     padding: 0 5px;
@@ -22,4 +22,17 @@
     border: 1px solid #555;
     margin: 20px;
     padding: 10px;
+  }
+
+  .user-button{
+    background: #099573;
+    // height: 50px;
+    line-height: 2;
+  }
+  .user-button-div{
+      display: inline-grid;
+      font-size: 12px;
+  }
+  .user-button-icon{
+      margin-top: 5px;
   }

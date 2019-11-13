@@ -1,3 +1,483 @@
-.tab-icon {
-    margin-right: 8px;
+.ion-content {
+    left: 0;
+    top: 0;
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+    // contain: layout size style;
+}
+.scroll-content{
+    padding: 16px;
+}
+.content-md {
+    // color: #fff;
+    /* background-color: #fff; */
+}
+.event-page {
+    // position: absolute;
+}
+.margin60 {
+    margin-top: 60px;
+}
+.fixed-content {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+}
+ .page-title {
+    margin-top: 14px;
+    /* font-size: 18px; */
+}
+
+.bar-button-strong-wp,.page-title {
+    font-weight: 700;
+}
+.home-page .in-play {
+    color: #2aa033;
+    margin-top: 4px;
+    margin-bottom: 7px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.home-page .page-title {
+    font-size: 18px!important;
+}
+a {
+    background-color: transparent;
+}
+a {
+    text-decoration: none;
+}
+
+.home-page .open-bets-link {
+    position: absolute;
+    top: 25px;
+    right: 11px;
+    font-size: 12px;
+    color: #fff;
+    border-bottom: 1px solid #fff;
+}
+.ion-page .list-md.distinct {
+    margin-left: -11px;
+    margin-right: -11px;
+}
+
+.list-md {
+    /* margin: -1px 0 16px; */
+    margin-bottom: 10px;
+    margin: 5px;
+}
+.ion-list {
+    /* margin: 0; */
+    padding: 0;
+    display: block;
+    list-style-type: none;
+}
+.ion-page .list-md.distinct .item-block{
+    margin-bottom: 2px;
+    // padding-left: 11px;
+    // padding-right: 11px;
+    color: #000;
+}
+.ion-page .list-md.distinct .item-block{
+    background: #fff!important;
+}
+.ion-page .list-md>.item-block:first-child {
+    border-top: 0;
+    margin-top: 3px;
+}
+
+.ion-page .list-md .item-block {
+    border-bottom: 0;
+    /* margin-bottom: 2px; */
+}
+.ion-page .content-md, .ion-page .item-md {
+    /* background: 0 0; */
+}
+.item-md {
+    /* padding-left: 16px; */
+    /* padding-right: 0; */
+    // font-size: 1.6rem;
+    font-weight: 400;
+    /* color: #fff; */
+    /* -webkit-box-shadow: none; */
+    box-shadow: none;
+    /* -webkit-transition: background-color .3s cubic-bezier(.4,0,.2,1); */
+    transition: background-color .3s cubic-bezier(.4,0,.2,1);
+}
+.item-md p {
+    margin: 0 0 2px;
+    overflow: inherit;
+    // font-size: 1.4rem;
+    line-height: normal;
+    // color: #666;
+    color: #CCCC46;
+    font-size: 12px;
+}
+.item-md, .list-ios ion-item-sliding {
+    /* background-color: #fff; */
+}
+.item-md, .item-wp {
+    position: relative;
+}
+.item-block {
+    margin: 0;
+    padding: 0;
+    text-align: initial;
+    display: flex;
+    overflow: hidden;
+    /* -webkit-box-align: center; */
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    width: 100%;
+    // min-height: 4.4rem;
+    min-height: 3.4rem;
+    border: 0;
+    /* font-weight: 400; */
+    line-height: normal;
+    /* color: inherit; */
+}
+.item-block, .row {
+    /* display: -webkit-box; */
+    display: -ms-flexbox;
+}
+.fab, .item-md, .item-wp {
+    text-transform: none;
+}
+.button, .item {
+    contain: content;
+}
+.item-block, [ion-button] {
+    text-decoration: none;
+}
+.list-md>.item-block:last-child .item-inner{
+    border-bottom: 0;
+}
+.list-md.distinct .item-inner {
+    padding-right: 0;
+}
+.item-inner {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -ms-flex-direction: inherit;
+    flex-direction: inherit;
+    -webkit-box-align: inherit;
+    -ms-flex-align: inherit;
+    align-items: inherit;
+    -ms-flex-item-align: stretch;
+    min-height: inherit;
+    border: 0;
+}
+.input-wrapper, .item-inner {
+    /* display: -webkit-box; */
+    display: -ms-flexbox;
+    overflow: hidden;
+    align-self: stretch;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+}
+.input-wrapper {
+    display: flex;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -ms-flex-direction: inherit;
+    flex-direction: inherit;
+    -webkit-box-align: inherit;
+    -ms-flex-align: inherit;
+    align-items: inherit;
+    -ms-flex-item-align: stretch;
+    text-overflow: ellipsis;
+}
+
+.input-wrapper, .item-inner {
+    /* display: -webkit-box; */
+    display: -ms-flexbox;
+    overflow: hidden;
+    align-self: stretch;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+}
+.list-md>.item-block:last-child .ion-label, .list-md>.item-wrapper:last-child .item-inner, .list-md>.item-wrapper:last-child ion-label {
+    border-bottom: 0;
+}
+
+.label-md {
+    margin: 13px 8px 13px 0;
+}
+.ion-label {
+    margin: 0;
+    display: block;
+    overflow: hidden;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 7px;
+    font-weight: 500;
+    // font-size: inherit;
+}
+.ion-label a{
+    color: #fff;
+}
+.bar-button, .picker-opt, .toolbar-title, .truncate, .ion-label {
+    text-overflow: ellipsis;
+}
+.button, .fab, .ion-label {
+    white-space: nowrap;
+}
+.in-play-icon{
+    color: #2aa033;
+}
+.home-page .popular-event {
+    /* display: -webkit-box; */
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 6px;
+}
+.home-page .popular-event .event-details {
+    display: block;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.home-page .popular-event .event-details, .home-page .runner-details .title, .pnl-breakdown-page .wrapper .info .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.home-page .popular-event .event-details>i {
+    // position: absolute;
+    // margin: 0 5px 3px 0;
+    vertical-align: middle;
+    margin: 0 5px 0px 0;
+}
+
+.apl-icon-sport-cricket, .menu-slide .menu-lvl-1 .apl-icon-sport-cricket {
+    color: #ce8c45;
+}
+[class*=apl-icon-] {
+    display: inline-block;
+    font: normal normal normal 14px/1 Apollo;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.home-page .list-body {
+    margin-bottom: 0!important;
+    margin-left: 13px!important;
+}
+
+.market-list-item .list-body {
+    /* margin-bottom: 24px; */
+}
+.ion-page .list-body.distinct .item-block, .ion-page .list-body.distinct .list-item, .ion-page .list-body.distinct item-block, .ion-page .list-md.distinct .item-block, .ion-page .list-md.distinct .list-item, .ion-page .list-md.distinct item-block {
+    margin-bottom: 2px;
+    // padding-left: 11px;
+    // padding-right: 11px;
+    color: #fff;
+}
+.ion-page .list-md.distinct .item-block{
+    background-color:#222222 !important;
+}
+.market-list-item .list-body .list-item {
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    /* color: #000; */
+    padding: 1px 2px 1px 11px!important;
+    margin: 0!important;
+}
+.market-list-item .heading, .market-list-item .list-body .list-item {
+    /* display: -webkit-box; */
+    display: -ms-flexbox;
+}
+
+.market.list-item {
+    min-height: 41px;
+}
+.market .runner-details {
+    position: relative;
+    width: calc(100% - 136px);
+}
+.home-page .runner-details .title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.home-page .runner-details .title {
+    font-weight: 400!important;
+    font-size: 14px;
+}
+.market .runner-details .title {
+    /* font-weight: 700; */
+    /* font-size: 14px; */
+    position: relative;
+}
+.market .odds-container {
+    /* display: -webkit-box; */
+    display: -ms-flexbox;
+    display: flex;
+    position: relative;
+}
+.bet-button {
+    width: 66px;
+    height: 41px;
+    margin: 0 0 0 2px;
+}
+.bet-button>div.back {
+    background: #a7d8fd;
+}
+.bet-button>div.lay{
+    background: #f9c9d4;
+}
+
+.bet-button>div {
+    // width: 100%;
+    // height: 100%;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+    padding: 6px 8px;
+}
+.bet-button>div .price {
+    font-weight: 700;
+    padding-bottom: 1px;
+}
+.balance .balance, .bet-button .market-volume{
+    font-size: 10px;
+}
+
+//betslip css
+
+body .ion-page .bet-form {
+    overflow: hidden;
+    /* display: block; */
+    margin-top: -2px;
+    z-index: 1;
+}
+body .ion-page .bet-form .bet-form.back {
+    border: 1px solid #a7d8fd;
+    border-bottom-width: 7px;
+}
+body .ion-page  .bet-form{
+    padding: 0 9px 8px;
+    margin-bottom: 8px;
+    background: #fff;
+}
+form, input, optgroup, select{
+
+}
+body .ion-page .bet-form .inputs{
+    display: flex;
+    margin-top: 10px;
+}
+body .ion-page  .bet-form .inputs .input-group.odds-stepper-group{
+        /* display: -webkit-box; */
+        display: -ms-flexbox;
+        display: flex;
+        /* -webkit-box-orient: vertical; */
+        /* -webkit-box-direction: normal; */
+        -ms-flex-direction: column;
+        flex-direction: column;
+        /* -webkit-box-flex: 1; */
+        -ms-flex: 1;
+        flex: 1;
+        margin: 0 4px 0 0;
+        padding: 0;
+    
+}
+body .ion-page  .bet-form .inputs .input-group.odds-stepper-group .label-md{
+    position: static;
+    width: 100%;
+}
+body .ion-page .bet-form .inputs .input-group label.label-md{
+    color:#000;
+    text-transform: uppercase;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+}
+body .ion-page  .bet-form .inputs .input-group.odds-stepper-group {
+    /* display:-webkit-box; */
+    display: -ms-flexbox;
+    display: flex;
+    /* -webkit-box-orient:vertical; */
+    /* -webkit-box-direction:normal; */
+    -ms-flex-direction: column;
+    flex-direction: column;
+    /* -webkit-box-flex:1; */
+    -ms-flex: 1;
+    flex: 1;
+    margin: 0 4px 0 0;
+    padding: 0;
+}
+
+body .ion-page  .bet-form .inputs .input-group.odds-stepper-group .label-md {
+    position: static;
+    width: 100%
+}
+body .ion-page  .bet-form .inputs .odds-stepper-group+.input-group-stake {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+body .ion-page .bet-form .odds-stepper .label-md {
+    position: relative;
+    top: -2px
+}
+.odds-stepper.item-block.input-group {
+    background: 0 0!important
+}
+.odds-stepper .stepper-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.odds-stepper .stepper-input .minus,.odds-stepper .stepper-input .plus {
+    background-color: #131a35;
+    color: #fff;
+    position: inherit;
+    margin: 5px 0 0;
+    height: 35px;
+    width: 35px;
+    z-index: 10
+}
+
+.odds-stepper .stepper-input .minus>span,.odds-stepper .stepper-input .plus>span {
+    font-size: 20px;
+    font-weight: 700
+}
+
+.odds-stepper .stepper-input .minus.button-md.activated,.odds-stepper .stepper-input .plus.button-md.activated {
+    -webkit-box-shadow: none;
+    box-shadow: none
+}
+
+.odds-stepper .stepper-input .minus {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+.odds-stepper .stepper-input .plus {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0
+}
+
+.odds-stepper .stepper-input input.text-input.text-input-md {
+    border-radius: 0
 }

@@ -6,6 +6,7 @@ import { InplayComponent } from './inplay/inplay.component';
 import { AccountComponent } from './account/account.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { SportsComponent } from './sports/sports.component';
+import { MybetsComponent } from './mybets/mybets.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'inplay',component:InplayComponent},
   {path:'favourites',component:FavouritesComponent},
   {path:'account',component:AccountComponent},
+  {path:'mybets',component:MybetsComponent},
 ];
 
 @NgModule({
@@ -30,4 +32,5 @@ export const componentrouting=[
                               AccountComponent,
                               FavouritesComponent,
                               SportsComponent,
+                              MybetsComponent
                             ]

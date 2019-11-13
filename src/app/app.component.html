@@ -26,10 +26,16 @@
         </mat-sidenav>
         <mat-sidenav-content>
                     <mat-toolbar class="bg-header">
-                        <mat-toolbar-row >
+                        <mat-toolbar-row [class.mat-elevation-z8]="true" >
                             <span></span>
                             <span class="spacer"></span>
-                            <mat-icon class="icon" (click)="sidenav.toggle()">settings</mat-icon>
+                            <!-- <mat-icon class="icon" (click)="sidenav.toggle()">settings</mat-icon> -->
+                            <button class="icon user-button" mat-button>
+                              <div class="user-button-div">
+                                <i class="fa fa-user user-button-icon"></i>
+                                <span class="balance ng-binding">12,772.20</span>
+                              </div>
+                            </button>
                         </mat-toolbar-row>
                     </mat-toolbar>
                     <router-outlet></router-outlet>

@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { Materialmodule } from './materialmodule';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FooterComponent } from './footer/footer.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    Materialmodule
+    Materialmodule,
+    AgGridModule.withComponents([]),
   ],
   providers: [],
   bootstrap: [AppComponent]
