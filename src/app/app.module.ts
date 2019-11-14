@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AgGridModule } from 'ag-grid-angular';
 
+
 @NgModule({
   declarations: [
     AppComponent,

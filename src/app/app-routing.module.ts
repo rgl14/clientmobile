@@ -4,9 +4,13 @@ import { HomeComponent } from './home/home.component';
 import { FullmarketComponent } from './fullmarket/fullmarket.component';
 import { InplayComponent } from './inplay/inplay.component';
 import { AccountComponent } from './account/account.component';
-import { FavouritesComponent } from './favourites/favourites.component';
 import { SportsComponent } from './sports/sports.component';
 import { MybetsComponent } from './mybets/mybets.component';
+import { MarketresultComponent } from './marketresult/marketresult.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { RulesComponent } from './rules/rules.component';
+import { ReportsComponent } from './reports/reports.component';
+import { ActivityComponent } from './activity/activity.component';
 
 
 const routes: Routes = [
@@ -15,9 +19,13 @@ const routes: Routes = [
   {path:'fullmarket',component:FullmarketComponent},
   {path:'sports',component:SportsComponent},
   {path:'inplay',component:InplayComponent},
-  {path:'favourites',component:FavouritesComponent},
   {path:'account',component:AccountComponent},
   {path:'mybets',component:MybetsComponent},
+  {path:'marketresult',component:MarketresultComponent},
+  {path:'changepass',component:ChangepasswordComponent},
+  {path:'rules',component:RulesComponent},
+  {path:'reports',component:ReportsComponent},
+  {path:'activity',component:ActivityComponent},
 ];
 
 @NgModule({
@@ -30,7 +38,11 @@ export const componentrouting=[
                               FullmarketComponent,
                               InplayComponent,
                               AccountComponent,
-                              FavouritesComponent,
                               SportsComponent,
-                              MybetsComponent
+                              MybetsComponent,
+                              MarketresultComponent,
+                              ChangepasswordComponent,
+                              RulesComponent,
+                              ReportsComponent,
+                              ActivityComponent
                             ]

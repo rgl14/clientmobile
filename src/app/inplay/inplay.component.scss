@@ -116,6 +116,9 @@ a {
     color: #CCCC46;
     font-size: 12px;
 }
+.date-info{
+    margin-left:25px;
+}
 .item-md, .list-ios ion-item-sliding {
     /* background-color: #fff; */
 }
@@ -339,10 +342,12 @@ a {
     margin: 0 0 0 2px;
 }
 .bet-button>div.back {
-    background: #a7d8fd;
+    // background: #a7d8fd;
+    background: #fff;
 }
 .bet-button>div.lay{
-    background: #f9c9d4;
+    // background: #f9c9d4;
+    background: #fff;
 }
 
 .bet-button>div {
