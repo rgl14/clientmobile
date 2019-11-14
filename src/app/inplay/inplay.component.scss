@@ -108,7 +108,7 @@ a {
     transition: background-color .3s cubic-bezier(.4,0,.2,1);
 }
 .item-md p {
-    margin: 0 0 2px;
+    // margin: 0 0 2px;
     overflow: inherit;
     // font-size: 1.4rem;
     line-height: normal;
@@ -117,7 +117,7 @@ a {
     font-size: 12px;
 }
 .date-info{
-    margin-left:25px;
+    margin: 0px 0px 0px 25px;
 }
 .item-md, .list-ios ion-item-sliding {
     /* background-color: #fff; */
