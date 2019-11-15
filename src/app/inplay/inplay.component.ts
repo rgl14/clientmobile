@@ -1,4 +1,4 @@
-import { Component, OnInit,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-inplay',
@@ -6,7 +6,6 @@ import { Component, OnInit,Output, EventEmitter } from '@angular/core';
   styleUrls: ['./inplay.component.scss']
 })
 export class InplayComponent implements OnInit {
-  @Output() someEvent = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit() {

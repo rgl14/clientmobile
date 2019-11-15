@@ -1,3 +1,4 @@
+//design for score board like sky
 .game-wrap {
     background-color: #172832;
     color: #fff;
@@ -60,9 +61,7 @@ p {
 table {
     border-collapse: collapse !important;
 }
-.game-team .pin-off {
-    // background-image: url(data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" heigh…215l1.206 5.07c.134.372.446.644.937.816.09.057.18.086.27.086z"/></g></svg>);
-}
+
 .pin-on, .pin-off {
     /* width: 6.66667vw; */
     /* height: 6.66667vw; */
@@ -180,7 +179,7 @@ a {
     background-size: contain;
 }
 
-
+//Design for matchodds bar//////////////////////////////////////////////////////////////////////////////////
 .bets-wrap {
     position: relative;
     // background-color: #fff;
@@ -200,7 +199,7 @@ a {
     padding: 0;
     margin-right: 1.86667vw;
 }
-.bets-selections-head .a-depth{
+.bets-selections-head .a-depth,.input-num a,.keyboard-wrap .btn-delete{
     font-size: 0;
     // text-indent: -99999px;
 }
@@ -246,7 +245,7 @@ dd {
     justify-content: center;
     align-items: flex-end;
 }
-.bets-selections dt,.bets-selections-head dd,.bets-selections .suspend,.bets-selections a {
+.bets-selections dt,.bets-selections-head dd,.bets-selections .suspend,.bets-selections a,.keyboard-wrap a {
     box-sizing: border-box;
 }
 .bets-selections-head dd,.bets-selections dt,.bets-selections a{
@@ -298,7 +297,7 @@ dd {
     font-weight: 400;
     font-size: 2.93333vw;
 }
-.bets-selections dt ul {
+.bets-selections dt ul,.btn-list,.coin-list,.keyboard-wrap ul {
     display: flex;
 }
 .bets-selections dt li {
@@ -340,14 +339,214 @@ dd {
 }
 .lay-1.select {
     background-color: #f4496d;
-    color: #fff;
+    color: #fff !important;
     box-shadow: inset 0 2px 5px rgba(0,0,0,.5);
 }
 .back-1 {
     background-color: #72BBEF;
 }
+.typed{
+    background-color: #72BBEF;
+}
 .back-1.select {
     background-color: #1a8ee1;
-    color: #fff;
+    color: #fff !important;
     box-shadow: inset 0 2px 5px rgba(0,0,0,.5);
+}
+
+
+//betslip css from here//////////////////////////////////////////////////////////////////////////////////////////////
+
+.bet_slip-wrap {
+    border-bottom: 1px solid #7E97A7;
+    padding-top: 2.66667vw;
+    background: #1f2122;
+}
+.message-wrap {
+    color: #1E1E1E;
+}
+
+.bet_slip-wrap .message-wrap {
+    position: relative;
+    margin: -2.66667vw 0 3.73333vw;
+    border-top-width: 0;
+    z-index: auto;
+}
+.message-wrap {
+    /* position: absolute; */
+    left: 0;
+    width: 100%;
+    background-color: #F8E71C;
+    border: .26667vw solid #9B9011;
+    border-width: .26667vw 0 .26667vw 0;
+    box-shadow: 0 0.8vw 1.06667vw 0 rgba(0,0,0,.5);
+    /* margin-top: 12vw; */
+    /* z-index: 10; */
+}
+.btn-list {
+    padding: 0 1.86667vw 1.86667vw;
+}
+.input-num {
+    font-size: 4vw;
+    line-height: 10.13333vw;
+    font-weight: 700;
+    // background: #fff;
+    border: 1px solid #aaa;
+    box-shadow: inset 0 0.53333vw 0 0 rgba(0,0,0,.1);
+    border-radius: 1.6vw;
+    cursor: text;
+    overflow: hidden;
+}
+.input-num,.input-num a{
+    box-sizing: border-box;
+}
+.input-num,.input-num a,.input-num span,.keyboard-wrap,.keyboard-wrap .btn-delete{
+    display: flex;
+}
+.input-num,.coin-list a,.keyboard-wrap a,.btn,.btn-send{
+    text-align: center;
+}
+.input-num a {
+    width: 12vw;
+    height: 10.66667vw;
+    background-image: linear-gradient(-180deg,#FFFFFF 0%,#EEEEEE 89%);
+    justify-content: center;
+    align-items: center;
+}
+.input-num a:before {
+    content: '';
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.icon-minus {
+    border-radius: 1.6vw 0 0 1.6vw;
+    border-right: 1px solid #aaa;
+}
+.icon-minus:before {
+    width: 4.53333vw;
+    height: 1.06667vw;
+    background-image: url(/assets/img/icon-minus.svg);
+}
+.icon-plus {
+    border-radius: 0 1.6vw 1.6vw 0;
+    border-left: 1px solid #aaa;
+}
+.icon-plus:before {
+    width: 4.53333vw;
+    height: 4.8vw;
+    background-image: url(/assets/img/icon-plus.svg);
+}
+input:focus, .input-num .typeing {
+    color: #1E1E1E;
+    background-color: #FFF0CA;
+    box-shadow: inset 0 0.26667vw 1.33333vw rgba(161,128,45,.6);
+    border-color: #BE7809;
+}
+.input-num span {
+    position: relative;
+    flex: 1;
+    /* color: #7E97A7; */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.input-num .typeing:after {
+    content: '';
+    width: .66667vw;
+    height: 5.33333vw;
+    background-color: #1F72AC;
+    animation: typeing 1s infinite;
+}
+@keyframes typeing {
+    0% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+.coin-list {
+    margin-bottom: 1.86667vw;
+    // background-image: linear-gradient(-180deg,#32617F 20%,#1F4258 91%);
+    background-image: linear-gradient(-180deg, #131313 20%, #113547 91%);
+}
+.coin-list li {
+    flex: 1;
+    border-right: 1px solid rgba(255,255,255,.15);
+}
+.coin-list li,.keyboard-wrap ul li,.btn-list li{
+    list-style: none;
+}
+.coin-list a {
+    color: #fff;
+    line-height: 2.46;
+    // background-image: linear-gradient(-180deg,#32617F 20%,#1F4258 91%);
+    background-image: linear-gradient(-180deg, #131313 20%, #113547 91%);
+}
+.coin-list a,.keyboard-wrap a,.keyboard-wrap .btn-delete:before,.btn,.btn-send{
+    display: block;
+}
+.keyboard-wrap {
+    border-top: 1px solid #aaa;
+    margin-bottom: 1.86667vw;
+}
+.keyboard-wrap ul {
+    flex: 1;
+    flex-wrap: wrap;
+}
+.keyboard-wrap li {
+    flex: 1 1 16.66667%;
+}
+.keyboard-wrap a {
+    font-size: 4vw;
+    // color: #1E1E1E;
+    line-height: 10.4vw;
+    // background-color: #fff;
+    background-image: linear-gradient(-180deg, #131313 20%, #113547 91%);
+    // border: 1px solid #aaa;
+    border: 1px solid #113547;
+    border-width: 0 0 1px 1px;
+}
+.keyboard-wrap .btn-delete {
+    flex: 0 1 14.66667vw;
+    justify-content: center;
+    align-items: center;
+}
+.keyboard-wrap .btn-delete:before {
+    content: '';
+    width: 4.8vw;
+    height: 3.2vw;
+    background: url(/assets/img/button_cancel.ico) no-repeat;
+    background-size: contain;
+}
+.btn-list li:last-of-type {
+    margin-right: 0;
+}
+.btn-list li {
+    flex: 1 1 47.2vw;
+    margin-right: 1.86667vw;
+    overflow: hidden;
+}
+.btn, .btn-send, .form-select {
+    // background-image: linear-gradient(-180deg,#FFFFFF 0%,#EEEEEE 89%);
+    // border: 1px solid #aaa;
+    border-radius: 1.6vw;
+    font-size: 4vw;
+    font-weight: 700;
+    line-height: 2.6;
+    color: #1E1E1E;
+    padding: 0;
+}
+.btn{
+    background-image: linear-gradient(-180deg,#E93522 0%,#BE2414 100%);
+}
+.btn-send.disable, .disable.login {
+    background-image: linear-gradient(-180deg,#B4B4B4 0%,#A1A1A1 100%);
+    border-color: #aaa;
+    color: #E6DFCD;
 }

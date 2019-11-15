@@ -22,7 +22,7 @@
                                 <li style="display: flex;"  class=" ">Day 1</li>
                             </ul>
                         </th>
-                        <td id="inningsBox1"  class="team-scores " style="">
+                        <td id="inningsBox1"  class="team-scores ">
                         <h4  class="in-play">
                             67/3&nbsp;<span class="">(28.3)</span>
                         </h4>
@@ -48,13 +48,13 @@
                 </div>
                 <a class="bet-limit"  style="display: none;"></a>
                 <dl class="bets-selections-head">
-            <dt>
-            <a class="a-depth" (click)="openMarketDepth(getMarketData)" id="marketDepthBtn"><img height="20px" width="20px" src="assets/img/kchart.ico">Markets Depth</a>
-            <p>
-            <span>Matched</span>
-            <strong id="totalMatched" class=""> 20,949,171</strong>
-            </p>
-            </dt>
+                    <dt>
+                    <a class="a-depth" (click)="openMarketDepth(getMarketData)" id="marketDepthBtn"><img height="20px" width="20px" src="assets/img/kchart.ico">Markets Depth</a>
+                    <p>
+                    <span>Matched</span>
+                    <strong id="totalMatched" class=""> 20,949,171</strong>
+                    </p>
+                    </dt>
                     <dd class="mode-land"></dd>
                     <dd class="mode-land"></dd>
                     <dd>Back</dd>
@@ -89,7 +89,7 @@
             <a class="back-2 " >1.01<span class="">500,000+</span></a>
                     </dd>
                     <dd>
-            <a class="back-1 " >1.02<span class="">500,000+</span></a>
+            <a class="back-1 select" >1.02<span class="">500,000+</span></a>
                     </dd>
                     <dd>
             <a class="lay-1 " >1.03<span class=""> 500,000+</span></a>
@@ -101,6 +101,68 @@
             <a class="lay-3 " >1.05<span class=""> 107,610</span></a>
                     </dd>
                 </dl>
+                <div id="betBoard_11193_India"  class="bet_slip-wrap" style="display: block;">
+                    <div class="message-wrap" style="display: none;">
+                       <div class="message">
+                          <h4>The Minimun stake is $25.00</h4>
+                          <p>
+                             Your stake has been updated accordingly.
+                          </p>
+                       </div>
+                       <a class="close" href="#">Close</a>
+                    </div>
+                    <ul class="btn-list">
+                       <li>
+                          <div class="input-num input-odds">
+                             <a (click)="oddsDown(placeMarketData)" class="icon-minus"></a>
+                             <span id="odds"  (click)="typingSign('odds',placeMarketData)" class=" typed">1.02</span>
+                             <a (click)="oddsUp(placeMarketData)" class="icon-plus"></a>
+                          </div>
+                       </li>
+                       <li>
+                          <div class="input-num input-stake">
+                             <a (click)="stakeDown(placeMarketData)" class="icon-minus"></a>
+                             <span  (click)="typingSign('stake',placeMarketData)" class=" typeing"></span>
+                             <a (click)="stakeUp(placeMarketData)" class="icon-plus"></a>
+                          </div>
+                       </li>
+                    </ul>
+                    <ul class="coin-list">
+                       <li><a data-stake="1000" (click)="stakeChange(settingsData.betStake.stake1,placeMarketData)" class=""> 1000</a></li>
+                       <li><a data-stake="2000" (click)="stakeChange(settingsData.betStake.stake2,placeMarketData)" class=""> 2000</a></li>
+                       <li><a data-stake="3000" (click)="stakeChange(settingsData.betStake.stake3,placeMarketData)" class=""> 3000</a></li>
+                       <li><a data-stake="5000" (click)="stakeChange(settingsData.betStake.stake4,placeMarketData)" class=""> 5000</a></li>
+                       <li><a data-stake="10000" (click)="stakeChange(settingsData.betStake.stake5,placeMarketData)" class=""> 10000</a></li>
+                       <li><a data-stake="20000" (click)="stakeChange(settingsData.betStake.stake6,placeMarketData)" class=""> 20000</a></li>
+                    </ul>
+                    <div class="keyboard-wrap">
+                       <ul class="btn-tel">
+                          <li><a (click)="buttonInput('1',placeMarketData)">1</a></li>
+                          <li><a (click)="buttonInput('2',placeMarketData)">2</a></li>
+                          <li><a (click)="buttonInput('3',placeMarketData)">3</a></li>
+                          <li><a (click)="buttonInput('4',placeMarketData)">4</a></li>
+                          <li><a (click)="buttonInput('5',placeMarketData)">5</a></li>
+                          <li><a (click)="buttonInput('6',placeMarketData)">6</a></li>
+                          <li><a (click)="buttonInput('7',placeMarketData)">7</a></li>
+                          <li><a (click)="buttonInput('8',placeMarketData)">8</a></li>
+                          <li><a (click)="buttonInput('9',placeMarketData)">9</a></li>
+                          <li><a (click)="buttonInput('0',placeMarketData)">0</a></li>
+                          <li><a (click)="buttonInput('00',placeMarketData)">00</a></li>
+                          <li><a (click)="buttonInput('.',placeMarketData)">.</a></li>
+                       </ul>
+                       <a (click)="buttonDelete(placeMarketData)" class="btn-delete"></a>
+                    </div>
+                    <ul class="btn-list">
+                       <li>
+                          <a (click)="cancelBetslip()" class="btn">Cancel
+                          </a>
+                       </li>
+                       <li>
+                          <a (click)="placeMarketData.stake=='' || placeMarketData.odds==''?'':confirmBetPop(placeMarketData)" class="btn-send disable" >Place Bet
+                          </a>
+                       </li>
+                    </ul>
+                 </div>
                 <dl id="selection_11193_Bangladesh" class="bets-selections ">
             <dt>
             <h4 class="">Bangladesh</h4>

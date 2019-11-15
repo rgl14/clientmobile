@@ -19,28 +19,11 @@
                         <p class="noMatchFoundtitle">Loading...</p>
         
                     </div> -->
-              <a data-ng-href="#/openbets"> <span class="open-bets-link" (someEvent)="sidenav.toggle()">Open Bets (0)</span>
+              <a > <span class="open-bets-link" (someEvent)="sidenav.toggle()">Open Bets (0)</span>
               </a>
               <div class="distinct ion-list market-list list list-md">
                 <!-- <ion-item class="market-list-item item item-block item-md" data-ng-repeat="inplay in inplayData track by $index"> -->
-                <div class="market-list-item item ion-item item-block item-md">
-                  <div class="item-inner">
-                    <div class="input-wrapper">
-                      <div class="label ion-label label-md">
-                        <a class="" [routerLink]="'/fullmarket'">
-                          <div class="popular-event">
-                            <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i>
-                              <span class="label ">Maden v Raya Roumane</span>
-                            </div>
-                            <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="button-effect"></div>
-                </div>
+                
                 <div class="market-list-item item ion-item item-block item-md">
                   <div class="item-inner">
                     <div class="input-wrapper">
@@ -122,7 +105,7 @@
                                   </div>
                                 </div>
                                 <div class="input-buttons">
-                                  <button type="button" class="disable-hover button button-md button-default button-default-md button-small button-small-md button-md-cta-action"> <span class="button-inner">+{{stake}}</span>
+                                  <button type="button" class="disable-hover button button-md button-default button-default-md button-small button-small-md button-md-cta-action"> <span class="button-inner"></span>
                                     <div class="button-effect"></div>
                                   </button>
                                 </div>
@@ -173,7 +156,7 @@
                               </div>
                             </div>
                             <div class="closebetslip" id="betForm2-1-0-1" style="display: none;">
-                              <form class="bet-form" data-ng-class="backlay_status=='back'?'back':'lay'" style="transform: translateY(0px);">
+                              <form class="bet-form" style="transform: translateY(0px);">
                                 <div class="inputs">
                                   <div class="item-block odds-stepper input-group odds-stepper-group">
                                     <label class="label-md">Odds</label>
@@ -264,7 +247,7 @@
                               </div>
                             </div>
                             <div class="closebetslip " id="betForm-12-13-2" style="display: none;">
-                              <form class="bet-form" data-ng-class="backlay_status=='back'?'back':'lay'" style="transform: translateY(0px);">
+                              <form class="bet-form" style="transform: translateY(0px);">
                                 <div class="inputs">
                                   <div class="item-block input-group odds-stepper odds-stepper-group">
                                     <label class="label-md">Odds</label>
@@ -404,6 +387,24 @@
                   </div>
                   <div class="button-effect"></div>
                 </div>
+                <div class="market-list-item item ion-item item-block item-md">
+                  <div class="item-inner">
+                    <div class="input-wrapper">
+                      <div class="label ion-label label-md">
+                        <a class="" [routerLink]="'/fullmarket'">
+                          <div class="popular-event">
+                            <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i>
+                              <span class="label ">Maden v Raya Roumane</span>
+                            </div>
+                            <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button-effect"></div>
+                </div>
               </div>
             </section>
           </div>
@@ -430,7 +431,7 @@
                         <p class="noMatchFoundtitle">Loading...</p>
         
                     </div> -->
-              <a data-ng-href="#/openbets"> <span class="open-bets-link" (click)="sidenav.toggle()">Open Bets (0)</span>
+              <a > <span class="open-bets-link">Open Bets (0)</span>
               </a>
               <div class="distinct ion-list market-list list list-md">
                 <div class="market-list-item ion-item item item-block item-md">
@@ -516,7 +517,7 @@
                         <p class="noMatchFoundtitle">Loading...</p>
         
                     </div> -->
-              <a data-ng-href="#/openbets"> <span class="open-bets-link">Open Bets (0)</span>
+              <a > <span class="open-bets-link">Open Bets (0)</span>
               </a>
               <div class="distinct ion-list market-list list list-md">
                 <div class="market-list-item ion-item item item-block item-md">
