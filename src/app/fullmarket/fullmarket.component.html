@@ -46,10 +46,10 @@
                         <dd>0 / 0</dd>
                     </dl>
                 </div>
-                <a class="bet-limit" onclick="javascript:$j('#minMaxBox').fadeIn().css('display', 'flex');" style="display: none;"></a>
+                <a class="bet-limit"  style="display: none;"></a>
                 <dl class="bets-selections-head">
             <dt>
-            <a class="a-depth" data-ng-click="openMarketDepth(getMarketData)" id="marketDepthBtn"><img height="20px" width="20px" src="assets/img/kchart.ico">Markets Depth</a>
+            <a class="a-depth" (click)="openMarketDepth(getMarketData)" id="marketDepthBtn"><img height="20px" width="20px" src="assets/img/kchart.ico">Markets Depth</a>
             <p>
             <span>Matched</span>
             <strong id="totalMatched" class=""> 20,949,171</strong>
@@ -83,22 +83,22 @@
                         <p>Non Runner</p>
                     </dd>
                     <dd class="mode-land">
-            <a class="back-3 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.back3==null || runner.back3=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Back',runner.back3,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">1.03<span class="">500,000</span></a>
+            <a class="back-3 " >1.03<span class="">500,000</span></a>
                     </dd>
                     <dd class="mode-land">
-            <a class="back-2 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.back2==null || runner.back2=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Back',runner.back2,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">1.01<span class="">500,000+</span></a>
+            <a class="back-2 " >1.01<span class="">500,000+</span></a>
                     </dd>
                     <dd>
-            <a class="back-1 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.back1==null || runner.back1=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Back',runner.back1,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">1.02<span class="">500,000+</span></a>
+            <a class="back-1 " >1.02<span class="">500,000+</span></a>
                     </dd>
                     <dd>
-            <a class="lay-1 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.lay1==null || runner.lay1=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Lay',runner.lay1,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">1.03<span class=""> 500,000+</span></a>
+            <a class="lay-1 " >1.03<span class=""> 500,000+</span></a>
                     </dd>
                     <dd class="mode-land">
-            <a class="lay-2 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.lay2==null || runner.lay2=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Lay',runner.lay2,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">1.04<span class=""> 500,000+</span></a>
+            <a class="lay-2 " >1.04<span class=""> 500,000+</span></a>
                     </dd>
                     <dd class="mode-land">
-            <a class="lay-3 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.lay3==null || runner.lay3=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Lay',runner.lay3,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">1.05<span class=""> 107,610</span></a>
+            <a class="lay-3 " >1.05<span class=""> 107,610</span></a>
                     </dd>
                 </dl>
                 <dl id="selection_11193_Bangladesh" class="bets-selections ">
@@ -122,25 +122,25 @@
                         <p>Non Runner</p>
                     </dd>
                     <dd class="mode-land">
-            <a class="back-3 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.back3==null || runner.back3=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Back',runner.back3,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">200<span class="">230</span></a>
+            <a class="back-3 " >200<span class="">230</span></a>
                     </dd>
                     <dd class="mode-land">
-            <a class="back-2 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.back2==null || runner.back2=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Back',runner.back2,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">210<span class="">170</span></a>
+            <a class="back-2 " >210<span class="">170</span></a>
                     </dd>
                     <dd>
-            <a class="back-1 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.back1==null || runner.back1=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Back',runner.back1,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">220<span class="">120</span></a>
+            <a class="back-1 " >220<span class="">120</span></a>
                     </dd>
                     <dd>
-            <a class="lay-1 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.lay1==null || runner.lay1=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Lay',runner.lay1,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">230<span class=""> 550</span></a>
+            <a class="lay-1 " >230<span class=""> 550</span></a>
                     </dd>
                     <dd class="mode-land">
-            <a class="lay-2 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.lay2==null || runner.lay2=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Lay',runner.lay2,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">240<span class=""> 100</span></a>
+            <a class="lay-2 " >240<span class=""> 100</span></a>
                     </dd>
                     <dd class="mode-land">
-            <a class="lay-3 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.lay3==null || runner.lay3=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Lay',runner.lay3,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">250<span class=""> 1,170</span></a>
+            <a class="lay-3 " >250<span class=""> 1,170</span></a>
                     </dd>
                 </dl>
-                <dl id="selection_11193_The_Draw" data-ng-repeat-start="runner in getMarketData.runnerData track by runner.runnerName" class="bets-selections ">
+                <dl id="selection_11193_The_Draw"  class="bets-selections ">
             <dt>
             <h4 class="">The Draw</h4>
             <ul>
@@ -161,22 +161,22 @@
                         <p>Non Runner</p>
                     </dd>
                     <dd class="mode-land">
-            <a class="back-3 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.back3==null || runner.back3=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Back',runner.back3,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">44<span class="">1,450</span></a>
+            <a class="back-3 " >44<span class="">1,450</span></a>
                     </dd>
                     <dd class="mode-land">
-            <a class="back-2 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.back2==null || runner.back2=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Back',runner.back2,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">46<span class="">2,240</span></a>
+            <a class="back-2 " >46<span class="">2,240</span></a>
                     </dd>
                     <dd>
-            <a class="back-1 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.back1==null || runner.back1=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Back',runner.back1,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">48<span class="">630</span></a>
+            <a class="back-1 " >48<span class="">630</span></a>
                     </dd>
                     <dd>
-            <a class="lay-1 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.lay1==null || runner.lay1=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Lay',runner.lay1,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">55<span class=""> 900</span></a>
+            <a class="lay-1 " >55<span class=""> 900</span></a>
                     </dd>
                     <dd class="mode-land">
-            <a class="lay-2 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.lay2==null || runner.lay2=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Lay',runner.lay2,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">60<span class=""> 920</span></a>
+            <a class="lay-2 " >60<span class=""> 920</span></a>
                     </dd>
                     <dd class="mode-land">
-            <a class="lay-3 " data-ng-click="getMarketData.matchStatus!='OPEN' || runner.lay3==null || runner.lay3=='' || checkDateTime(getMarketData.matchDate,curTime)?'':openMarketBetslip($event,'Lay',runner.lay3,runner.runnerName,sportId,mtBfId,matchId,marketId,bfId)">65<span class=""> 1,270</span></a>
+            <a class="lay-3 " >65<span class=""> 1,270</span></a>
                     </dd>
                 </dl>
                 <div class="no-data" style="display: none;">
