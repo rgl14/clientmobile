@@ -179,12 +179,62 @@ a {
     background-size: contain;
 }
 
+
+//Design for market Navigation
+.market-type {
+    position: relative;
+    height: 9.6vw;
+    background-color: #284050;
+    padding: 1.86667vw;
+    overflow: hidden;
+}
+.market-type ul {
+    position: absolute;
+    white-space: nowrap;
+    padding-right: 0.53333vw;
+}
+.market-type ul{
+    display: flex;
+}
+.market-type ul li{
+    list-style: none;
+}
+
+.market-type li {
+    margin-right: 1.33333vw;
+}
+.skyexchange .market-type a {
+    background-color: #222;
+}
+
+.market-type .select a {
+    background-color: #00b489;
+    border-color: rgba(51,51,51,0.3);
+}
+.market-type a {
+    color: #fff;
+    line-height: 9.06667vw;
+    font-size:13px;
+    font-weight: bold;
+    background: #172832;
+    border: 1px solid #172832;
+    border-radius: 4.8vw;
+    padding: 0 2.4vw;
+    box-sizing: border-box;
+    display: block;
+}
+
+
+
 //Design for matchodds bar//////////////////////////////////////////////////////////////////////////////////
 .bets-wrap {
     position: relative;
     // background-color: #fff;
     // border-bottom: 1px solid #7E97A7;
     margin-bottom: 2.66667vw;
+}
+.fancy{
+    border-top: 1.06667vw solid #00b489;
 }
 .bets-selections-head {
     height: 9.33333vw;
@@ -199,20 +249,21 @@ a {
     padding: 0;
     margin-right: 1.86667vw;
 }
-.bets-selections-head .a-depth,.input-num a,.keyboard-wrap .btn-delete{
+.bets-selections-head .a-depth,.input-num a,.keyboard-wrap .btn-delete,.fancy_bet-head .in-play pre,.btn-head_rules,.close{
     font-size: 0;
     // text-indent: -99999px;
 }
 .bets-selections, .bets-selections-head, .trade, .trade-2 {
     position: relative;
-    min-height: 11.2vw;
+    // min-height: 11.2vw;
+    min-height: 9.2vw;
     border-bottom: 1px solid #36393b;
 }
 .bets-selections-head{
     display: flex;
 }
 .bets-selections-head dt {
-    font-size: 2.93333vw;
+    // font-size: 2.93333vw;
     padding: 1.86667vw 1.86667vw .8vw;
     align-items: flex-end;
 }
@@ -263,11 +314,7 @@ dd {
 .bets-selections dd, .bets-selections-head dd, .trade dd, .trade-2 dd {
     border-right: 1px solid #36393b;
 }
-.bets-selections-head dt {
-    font-size: 2.93333vw;
-    padding: 1.86667vw 1.86667vw .8vw;
-    align-items: flex-end;
-}
+
 .bets-selections span, .bets-selections-head span, .trade span, .trade-2 span {
     font-weight: 400;
     font-size: 2.93333vw;
@@ -400,7 +447,7 @@ dd {
 .input-num,.input-num a{
     box-sizing: border-box;
 }
-.input-num,.input-num a,.input-num span,.keyboard-wrap,.keyboard-wrap .btn-delete{
+.input-num,.input-num a,.input-num span,.keyboard-wrap,.keyboard-wrap .btn-delete,.fancy_bet-head,.fancy_bet-head h4,.fancy_bet-head .in-play span,.btn-head_rules,.fancy-bet>h4,.close{
     display: flex;
 }
 .input-num,.coin-list a,.keyboard-wrap a,.btn,.btn-send{
@@ -488,7 +535,7 @@ input:focus, .input-num .typeing {
     // background-image: linear-gradient(-180deg,#32617F 20%,#1F4258 91%);
     background-image: linear-gradient(-180deg, #131313 20%, #113547 91%);
 }
-.coin-list a,.keyboard-wrap a,.keyboard-wrap .btn-delete:before,.btn,.btn-send{
+.coin-list a,.keyboard-wrap a,.keyboard-wrap .btn-delete:before,.btn,.btn-send,.btn-head_rules:before,.btn-fancy_info:before{
     display: block;
 }
 .keyboard-wrap {
@@ -549,4 +596,214 @@ input:focus, .input-num .typeing {
     background-image: linear-gradient(-180deg,#B4B4B4 0%,#A1A1A1 100%);
     border-color: #aaa;
     color: #E6DFCD;
+}
+
+//fancy container css
+.fancy_bet-head {
+    border-bottom-color: #087989;
+}
+.fancy_bet-head {
+    position: relative;
+    line-height: 8vw;
+    border-bottom: 1.06667vw solid #E4550F;
+    margin-top: 5.33333vw;
+}
+.bets-wrap.multi:last-of-type {
+    margin-bottom: 2.66667vw;
+}
+.fancy_bet-head h4{
+    height: 8vw;
+    color: #fff;
+    font-size: 3.73333vw;
+    margin-right: 2.66667vw;
+    z-index: 1;
+}
+.fancy_bet-head .in-play span {
+    align-items: center;
+}
+.fancy_bet-head .in-play pre, .sportsbook_bet-head .in-play pre {
+    width: 4.8vw;
+    height: 4.8vw;
+    background-image: linear-gradient(-180deg, #91D527 0%, #60BA1E 79%);
+    border-radius: 1.06667vw;
+    margin-right: 1.6vw;
+    justify-content: center;
+    align-items: center;
+}
+.fancy_bet-head .pin-on, .fancy_bet-head .pin-off {
+    position: relative;
+    width: 10.66667vw;
+    height: 8vw;
+    margin-right: 0;
+    // background: url(data:image/svg+xml,<svg viewBox="0 0 40 30" preserveAspectRatio="xMinYMax" …://www.w3.org/2000/svg"><path d="M0 0h32l8 30H0z" fill="%23182832"/></svg>),linear-gradient(-180deg, #0A92A5 0%, #087989 82%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: left, right;
+    background-size: cover, cover;
+}
+.fancy_bet-head .pin-off:before {
+    // background: url(data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="25" heigh…215l1.206 5.07c.134.372.446.644.937.816.09.057.18.086.27.086z"/></g></svg>) no-repeat center;
+    background-size: cover;
+}
+.fancy_bet-head .btn-head_rules {
+    // background-image: url(/images/mobile/main/bg-fanctbet_rules.svg);
+}
+
+.btn-head_rules {
+    width: 10.93333vw;
+    height: 100%;
+    background-size: 101% 101%;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+    vertical-align: bottom;
+}
+.btn-head_rules:before {
+    content: '';
+    width: 4vw;
+    height: 4vw;
+    // background-image: url(data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="15" heigh…2.686A7.343 7.343 0 0 1 7.5 0zm-.74 11.268V6.761h1.48v4.507H6.76z"/></svg>);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.fancy-bet>h4, .tc-wrap .fancy-bet>h5 {
+    position: relative;
+    height: 8.53333vw;
+    // background-color: #3B5160;
+    background-image: linear-gradient(-180deg, #2E4B5E 0%, #243A48 82%);
+    color: #fff;
+    font-size: 3.46667vw;
+    line-height: 8.53333vw;
+    padding: 0 0 0 1.86667vw;
+    align-items: center;
+    justify-content: space-between;
+}
+.fancy-bet>h4 span, .tc-wrap .fancy-bet>h5 span {
+    flex: 1;
+}
+.fancy-bet>h4 span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.fancy-bet .btn-fancy_info {
+    flex-basis: 8vw;
+}
+
+.mode-land .btn-fancy_info, .fancy-bet .btn-fancy_info {
+    width: 8vw;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    line-height: inherit;
+    align-items: center;
+    justify-content: center;
+}
+.fancy-bet .btn-fancy_info:before{
+    content: '';
+    // background: url(data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="15" heigh…2.686A7.343 7.343 0 0 1 7.5 0zm-.74 11.268V6.761h1.48v4.507H6.76z"/></svg>) no-repeat;
+    background-size: contain;
+    width: 4vw;
+    height: 4vw;
+    float: none;
+    margin: 0;
+}
+.fancy-bet .fancy_info-popup {
+    color: #1E1E1E;
+    font-weight: normal;
+}
+.fancy_info-popup {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 1.86667vw;
+    background-color: #fff;
+    border-radius: 1.06667vw;
+    align-items: flex-start;
+    z-index: 9;
+}
+.fancy_info-popup {
+    box-shadow: 0 6px 10px rgba(0,0,0,0.7);
+}
+.fancy_info-popup dl dl {
+    padding: 0 1.86667vw 1.86667vw;
+}
+.fancy_info-popup dt dt {
+    height: 3.2vw;
+    color: #577C94;
+    font-size: 2.66667vw;
+    line-height: 3.2vw;
+    padding: 0.8vw 0 1.06667vw;
+}
+.fancy_info-popup dd:last-of-type dd:last-of-type {
+    padding-bottom: 0;
+}
+.fancy_info-popup dd dd {
+    line-height: 3.73333vw;
+    /* padding-bottom: 1.33333vw; */
+}
+.fancy_info-popup dl:last-of-type dl:last-of-type {
+    border-right: 0.26667vw solid #E0E6E6;
+}
+
+.fancy_info-popup dl dl {
+    padding: 0 1.86667vw 1.86667vw;
+}
+.fancy_info-popup .close .close {
+    width: 6.66667vw;
+    height: 6.66667vw;
+}
+
+.close {
+    justify-content: center;
+    align-items: center;
+}
+.fancy_info-popup.show{
+    display: flex !important;
+}
+.suspend-fancy {
+    position: absolute;
+    right: 0;
+    /* width: 37.33333vw; */
+    height: 100%;
+}
+
+.suspend-fancy, .suspend-spb {
+    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 0.26667vw 1.06667vw rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+.bets-selections .suspend-fancy {
+    width: 37.33333vw;
+}
+.suspend-fancy p {
+    opacity: 0.8;
+}
+.btn-book {
+    background: #FFCC51;
+    border: 0.26667vw solid #CF9A47;
+    border-radius: 1.33333vw;
+    font-size: 3.2vw;
+}
+.line_market-selection {
+    position: relative;
+}
+.line_market-selection .btn-book {
+    position: absolute;
+    top: 1.6vw;
+    right: 1.33333vw;
+    width: 10.66667vw;
+    font-weight: normal;
+}
+
+.bets-selections a, .trade p, .trade-2 p {
+    width: 100%;
+    font-weight: bold;
+    color: #1E1E1E;
+    padding: 1.6vw;
+    flex-direction: column;
+    justify-content: center;
 }

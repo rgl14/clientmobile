@@ -38,6 +38,19 @@
                 </tbody>
             </table>
         </div>
+        <div id="naviMarket" class="market-type ps ps--theme_default" >
+            <ul id="naviMarketList">
+               <li id="naviMarketTemaplate" style="display: none;"><a href="#"></a></li>
+               <li id="naviMarket_1_165079280" style="display: list-item;" class="select"><a href="">Match Odds</a></li>
+               <li id="naviMarket_1_165079566" style="display: list-item;"><a href="">Tied Match</a></li>
+            </ul>
+            <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;">
+               <div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+            </div>
+            <div class="ps__scrollbar-y-rail" style="top: 0px; right: 0px;">
+               <div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+            </div>
+         </div>
         <div id="marketBetsWrap" class="bets-wrap ">
                 <div class="limit_info-popup" style="display: none;">
             <a class="close" onclick="javascript:$j('#minMaxBox').fadeOut();">Close</a>
@@ -89,7 +102,7 @@
             <a class="back-2 " >1.01<span class="">500,000+</span></a>
                     </dd>
                     <dd>
-            <a class="back-1 select" >1.02<span class="">500,000+</span></a>
+            <a class="back-1" >1.02<span class="">500,000+</span></a>
                     </dd>
                     <dd>
             <a class="lay-1 " >1.03<span class=""> 500,000+</span></a>
@@ -101,7 +114,7 @@
             <a class="lay-3 " >1.05<span class=""> 107,610</span></a>
                     </dd>
                 </dl>
-                <div id="betBoard_11193_India"  class="bet_slip-wrap" style="display: block;">
+                <div id="betBoard_11193_India"  class="bet_slip-wrap" style="display: none;">
                     <div class="message-wrap" style="display: none;">
                        <div class="message">
                           <h4>The Minimun stake is $25.00</h4>
@@ -245,5 +258,160 @@
                     <h3>This race has ended</h3>
                     <p></p>
                 </div>
+        </div>
+        <div id="fancyBetTable_29119662"  class="">
+            <!-- <div id="fancyBetHead" class="fancy_bet-head" >
+               <h4 class="in-play">
+                  <a  title="Add to Multi Markets" (click)="isMultiAdded(getMarketData.matchBfId)?addMultiMarket(getMarketData.matchBfId):removeMultiMarket(getMarketData.matchBfId)" class="pin-off">Pin to Muilti Markets</a>
+                  <span>
+                     <pre>in-play</pre>
+                     Fancy Bet
+                  </span>
+                  <a class="btn-fancybet_rules" (click)="showOverlayInfo('fancyBetRulesWrap')">Rules</a>
+               </h4>
+            </div> -->
+            <div id="fancyBetWrap" class="bets-wrap multi fancy" >
+               <dl id="marketHead" class="bets-selections-head">
+                  <dt id="fancyBetNoBet" style="display: none;"></dt>
+                  <dt>Fancy Bet</dt>
+                  <dd>No</dd>
+                  <dd>Yes</dd>
+                  <dd class="mode-land"></dd>
+               </dl>
+               <div class="fancy-bet ">
+                  <h4>
+                     <span id="marketName" >M Rahim run 2</span>
+                     <a href="#" id="open-fancy_info" class="btn-fancy_info"></a>
+                     <div id="fancy_popup2" class="fancy_info-popup">
+                        <dl>
+                            <dt>Min / Max</dt>
+                            <dd id="minMax"> 2.00 /  2,500.00</dd>
+                        </dl>
+                         <dl>
+                            <dt id="rebateName" style="display: none;">Rebate</dt>
+                            <dd id="rebate" style="display: none;"></dd>
+                        </dl>
+                        <a href="#" id="close-fancy_info" class="close">Close</a>
+                    </div>
+                  </h4>
+                  <dl id="fancyBetMarket_123247" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
+                     <dt class="line_market-selection">
+                        <ul>
+                           <li id="beforeFancyExpo_123247" style="display: flex;"><span></span></li>
+                           <li id="afterFancyExpo_123247" style="display: -webkit-inline-box;"><span></span></li>
+                        </ul>
+                        <a id="fancyBetBookBtn_123247" class="btn-book" (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book</a>
+                     </dt>
+                     <dd>
+                        <a class="lay-1 " (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,bfId)">43<span class="">105</span></a>
+                     </dd>
+                     <dd>
+                        <a class="back-1 " (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,bfId)">43<span class="">85</span></a>
+                     </dd>
+                     <dd class="mode-land">
+                        <a (click)="openCloseFancyInfo(fancy)" class="btn-fancy_info">fancybet info</a>
+                        <div id="fancy_popup_123247" class="fancy_info-popup" data-ng-style="{'display':(fancyInfo==undefined)?'':(fancy.id==fancyInfo.id)?'flex':'none'}">
+                           <dl>
+                              <dt>Min / Max</dt>
+                              <dd id="minMax" class=""> 500.00 / 100,000.00</dd>
+                           </dl>
+                           <a id="close-fancy_info__123247" (click)="openCloseFancyInfo()" class="close">Close</a>
+                        </div>
+                     </dd>
+                  </dl>
+               </div>
+               <div class="fancy-bet ">
+                  <h4>
+                     <span id="marketName" class="">Fall of 6th wkt BAN 2</span>
+                  </h4>
+                  <dl id="fancyBetMarket_123254" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
+                     <dt class="line_market-selection">
+                        <ul>
+                           <li id="beforeFancyExpo_123254" style="display: flex;"><span></span></li>
+                           <li id="afterFancyExpo_123254" style="display: -webkit-inline-box;"><span></span></li>
+                        </ul>
+                        <a id="fancyBetBookBtn_123254" class="btn-book" (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book</a>
+                     </dt>
+                     <dd>
+                        <a class="lay-1 " (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,bfId)">127<span class="">110</span></a>
+                     </dd>
+                     <dd>
+                        <a class="back-1 " (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,bfId)">127<span class="">90</span></a>
+                     </dd>
+                     <dd id="suspend" class="suspend-fancy" style="display: flex;"><p id="info">Ball Running</p></dd>
+                     <dd class="mode-land">
+                        <a (click)="openCloseFancyInfo(fancy)" class="btn-fancy_info"></a>
+                        <div id="fancy_popup_123254" class="fancy_info-popup">
+                           <dl>
+                              <dt>Min / Max</dt>
+                              <dd id="minMax" class=""> 500.00 / 100,000.00</dd>
+                           </dl>
+                           <a id="close-fancy_info__123254" (click)="openCloseFancyInfo()" class="close">Close</a>
+                        </div>
+                     </dd>
+                  </dl>
+               </div>
+               <div class="fancy-bet ">
+                  <h4>
+                     <span id="marketName" class="">L Das run 2</span>
+                  </h4>
+                  <dl id="fancyBetMarket_123255" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
+                     <dt class="line_market-selection">
+                        <ul>
+                           <li id="beforeFancyExpo_123255" style="display: flex;"><span></span></li>
+                           <li id="afterFancyExpo_123255" style="display: -webkit-inline-box;"><span></span></li>
+                        </ul>
+                        <a id="fancyBetBookBtn_123255" class="btn-book" (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book</a>
+                     </dt>
+                     <dd>
+                        <a class="lay-1 " (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,bfId)">39<span >110</span></a>
+                     </dd>
+                     <dd>
+                        <a class="back-1 " (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,bfId)">39<span >90</span></a>
+                     </dd>
+                     <dd class="mode-land">
+                        <a (click)="openCloseFancyInfo(fancy)" class="btn-fancy_info"></a>
+                        <div id="fancy_popup_123255" class="fancy_info-popup" >
+                           <dl>
+                              <dt>Min / Max</dt>
+                              <dd id="minMax" class=""> 500.00 / 100,000.00</dd>
+                           </dl>
+                           <a id="close-fancy_info__123255" (click)="openCloseFancyInfo()" class="close">Close</a>
+                        </div>
+                     </dd>
+                  </dl>
+               </div>
+               <div class="fancy-bet ">
+                  <h4>
+                     <span id="marketName" class="">35 over run BAN 2</span>
+                  </h4>
+                  <dl id="fancyBetMarket_123257" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
+                     <dt class="line_market-selection">
+                        <ul>
+                           <li id="beforeFancyExpo_123257" style="display: flex;"><span></span></li>
+                           <li id="afterFancyExpo_123257" style="display: -webkit-inline-box;"><span></span></li>
+                        </ul>
+                        <a id="fancyBetBookBtn_123257" class="btn-book" (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book</a>
+                     </dt>
+                     <dd>
+                        <a class="lay-1 " (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,bfId)">115<span >115</span></a>
+                     </dd>
+                     <dd>
+                        <a class="back-1 " (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,bfId)">115<span >85</span></a>
+                     </dd>
+                     <dd class="mode-land">
+                        <a (click)="openCloseFancyInfo(fancy)" class="btn-fancy_info"></a>
+                        <div id="fancy_popup_123257" class="fancy_info-popup" >
+                           
+                           <dl>
+                              <dt>Min / Max</dt>
+                              <dd id="minMax" class=""> 500.00 / 100,000.00</dd>
+                           </dl>
+                           <a id="close-fancy_info__123257" (click)="openCloseFancyInfo()" class="close">Close</a>
+                        </div>
+                     </dd>
+                  </dl>
+               </div>
             </div>
+         </div>
     </div>
