@@ -82,6 +82,9 @@ button:focus {
 }
 
 //mat list css for listing elements
+.mat-list-base {
+    padding-top: 0px !important;
+}
 .mat-list-items{
     background: #222222;
     margin: 5px 0px;
@@ -124,3 +127,60 @@ button:focus {
 .account-overview .menu-item .content .group span {
     float: right;
 }
+
+//reports table and datepicker css
+.reports-datepicker{
+    display: flex;
+}
+.date-icon{
+    position: absolute;
+    right: 15px;
+    color: #00b489;
+    margin-top: 5px;
+}
+::ng-deep .mat-form-field {
+    .mat-input-element {
+        color:#fff;
+    }
+    .mat-form-field-label {
+        color:#fff;
+    }
+    .mat-form-field-underline {
+        background-color:#fff;
+    }
+    .mat-form-field-ripple {
+        background-color:#fff;
+    }
+    .mat-form-field-required-marker {
+        color:#fff;
+    }
+}
+
+::ng-deep .mat-form-field.mat-focused {
+    .mat-form-field-label {
+        color:#00b489;
+    }
+    .mat-form-field-ripple {
+        background-color:#00b489;
+    }
+    .mat-form-field-required-marker {
+        color:#00b489;
+    }
+    .mat-input-element {
+        color:#00b489;
+    }
+}
+.select-page-size{
+    width:75px;
+    float: right;
+  }
+.back {
+    color: #1F72AC!important;
+}
+.lay {
+    color: #E33A5E!important;
+}
+.reports-table{
+    padding: 10px;
+}
+

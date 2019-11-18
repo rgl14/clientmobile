@@ -9,6 +9,10 @@ import { Materialmodule } from './materialmodule';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CustomcellrendrerComponent } from './customcellrendrer/customcellrendrer.component';
+
+
 
 
 @NgModule({
@@ -17,6 +21,8 @@ import { AgGridModule } from 'ag-grid-angular';
     componentrouting,
     HeaderComponent,
     FooterComponent,
+    CustomcellrendrerComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -26,8 +32,10 @@ import { AgGridModule } from 'ag-grid-angular';
     ReactiveFormsModule,
     Materialmodule,
     AgGridModule.withComponents([]),
+    BsDatepickerModule.forRoot()
   ],
   providers: [],
+  entryComponents:[CustomcellrendrerComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

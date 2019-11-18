@@ -3,11 +3,11 @@ import { GridOptions } from 'ag-grid-community';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
 
 @Component({
-  selector: 'app-marketresult',
-  templateUrl: './marketresult.component.html',
-  styleUrls: ['./marketresult.component.scss']
+  selector: 'app-transactions',
+  templateUrl: './transactions.component.html',
+  styleUrls: ['./transactions.component.scss']
 })
-export class MarketresultComponent implements OnInit {
+export class TransactionsComponent implements OnInit {
 
   gridOptions: GridOptions;
   columnDefs:any
@@ -24,17 +24,19 @@ export class MarketresultComponent implements OnInit {
     this.gridOptions = <GridOptions>{};
     this.headerHeight = 35;
     this.gridOptions.columnDefs = [
-      {headerName: 'Event Name', field: 'eventName', sortable: true, width: 300,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Market Name', field: 'marketName', sortable: true, width: 150},
-      {headerName: 'Settled Time', field: 'settledTime', sortable: true, width: 150},
-      {headerName: 'Winner', field: 'winner', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return 'profit'}},
+      {headerName: 'Date', field: 'date', width: 150,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Description', field: 'description', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
+      {headerName: 'Type', field: 'type', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
+      {headerName: 'Credit', field: 'cr', sortable: true, width: 100,cellClass: function(params) { return  'profit'}},
+      {headerName: 'Debit', field: 'dr', sortable: true, width: 100,cellClass: function(params) {  return  'loss'}},
+      {headerName: 'Balance', field: 'balance', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
     ]; 
 
     this.gridOptions.rowData = [
-      {"eventName":"Tennis > Bonadio v Gabashvili","marketName":"Match Odds","settledTime":"2019-11-18 20:30:00","winner":"Deccan Gladiators"},
-      {"eventName":"Cricket > Deccan Gladiators v Karnataka Tuskers","marketName":"Match Odds","settledTime":"2019-11-18 17:00:00","winner":"Deccan Gladiators"}
-   ];
-   
+      {"balance":"11089.00","cr":"10000.00","date":"11-16-2019 5:27:33 PM","description":"Deposit chips by demodl","dr":"-","refId":26114,"type":"D|W Point"},
+      {"balance":"11089.00","cr":"10000.00","date":"11-16-2019 5:27:33 PM","description":"Deposit chips by demodl","dr":"-","refId":26114,"type":"D|W Point"},
+    ]
+
     this.gridOptions.paginationPageSize=10;
     this.defaultColDef = {
       sortable: true,

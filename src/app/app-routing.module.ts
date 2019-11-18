@@ -11,6 +11,9 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
 import { RulesComponent } from './rules/rules.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ActivityComponent } from './activity/activity.component';
+import { AccountstatementComponent } from './accountstatement/accountstatement.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { ProfitlossComponent } from './profitloss/profitloss.component';
 
 
 const routes: Routes = [
@@ -26,6 +29,9 @@ const routes: Routes = [
   {path:'rules',component:RulesComponent},
   {path:'reports',component:ReportsComponent},
   {path:'activity',component:ActivityComponent},
+  {path:'accountstat',component:AccountstatementComponent},
+  {path:'profitloss',component:ProfitlossComponent},
+  {path:'transactions',component:TransactionsComponent},
 ];
 
 @NgModule({
@@ -44,5 +50,9 @@ export const componentrouting=[
                               ChangepasswordComponent,
                               RulesComponent,
                               ReportsComponent,
-                              ActivityComponent
+                              ActivityComponent,
+                              AccountstatementComponent,
+                              TransactionsComponent,
+                              ProfitlossComponent,
+
                             ]
