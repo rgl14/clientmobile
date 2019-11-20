@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CarouselModule } from 'ngx-bootstrap';
 import { CustomcellrendrerComponent } from './customcellrendrer/customcellrendrer.component';
 
 
@@ -32,7 +33,8 @@ import { CustomcellrendrerComponent } from './customcellrendrer/customcellrendre
     ReactiveFormsModule,
     Materialmodule,
     AgGridModule.withComponents([]),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    CarouselModule
   ],
   providers: [],
   entryComponents:[CustomcellrendrerComponent],

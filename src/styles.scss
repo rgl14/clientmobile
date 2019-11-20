@@ -9,6 +9,9 @@ html,body { margin: 0;height: 100%; font-family: Roboto, "Helvetica Neue", sans-
     background: #000;
     color: #fff;
 }
+.hidden-nav{
+    display: none;
+}
 //Content Holder Div css
 .content-wrapper{
     margin-top: 2px;
@@ -25,12 +28,48 @@ html,body { margin: 0;height: 100%; font-family: Roboto, "Helvetica Neue", sans-
 .loss{
     color:red;
 }
+.submit{
+    background-color: #00b489;
+    color: #fff;
+    font-weight: 600;
+}
+.button-bottom{
+    text-align: center;
+}
+.button-bottom button{
+    margin-left: 5px;
+    width: 100px;
+}
+/*Notification css*/
+snack-bar-container.success{
+    background-color: #5cb55c;
+    color: #fff;
+  }
+  snack-bar-container.error{
+    background-color: #b90e0e;
+    color: #fff;
+  }
+  snack-bar-container.warning{
+    background-color: #c4aa1c;
+    color: #fff;
+  }
+  snack-bar-container.notification simple-snack-bar{
+    font-size: 18px !important;
+    font-weight:bold;
+  }
 //button focus border css
 button:focus {
     // outline: 1px dotted;
     outline: 0px auto -webkit-focus-ring-color;
 }
 
+//toggle button css
+.mat-slide-toggle-bar {
+    background-color: rgba(78, 240, 214, 0.56) !important;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+    background-color: #00b489;
+}
 //tab css material
 @media (max-width: 599px){
     .mat-tab-label{
@@ -184,3 +223,131 @@ button:focus {
     padding: 10px;
 }
 
+
+//highlight odds css
+
+.back-1.spark {
+    animation: sparkBack 0.6s ease
+}
+
+@keyframes sparkBack {
+    0% {
+        background-color: #72BBEF;
+        color: #1E1E1E
+    }
+
+    50% {
+        background-color: #F8E71C;
+        color: #fff
+    }
+
+    100% {
+        background-color: #72BBEF;
+        color: #1E1E1E
+    }
+}
+
+.back-2.spark {
+    animation: sparkBack_2 0.6s ease
+}
+
+@keyframes sparkBack_2 {
+    0% {
+        background-color: #B7D5EB;
+        color: #1E1E1E
+    }
+
+    50% {
+        background-color: #F8E71C;
+        color: #fff
+    }
+
+    100% {
+        background-color: #B7D5EB;
+        color: #1E1E1E
+    }
+}
+
+.back-3.spark {
+    animation: sparkBack_3 0.6s ease
+}
+
+@keyframes sparkBack_3 {
+    0% {
+        background-color: #D7E8F4;
+        color: #1E1E1E
+    }
+
+    50% {
+        background-color: #F8E71C;
+        color: #fff
+    }
+
+    100% {
+        background-color: #D7E8F4;
+        color: #1E1E1E
+    }
+}
+
+.lay-1.spark {
+    animation: sparkLay 0.6s ease
+}
+
+@keyframes sparkLay {
+    0% {
+        background-color: #FAA9BA;
+        color: #1E1E1E
+    }
+
+    50% {
+        background-color: #26F1F8;
+        color: #fff
+    }
+
+    100% {
+        background-color: #FAA9BA;
+        color: #1E1E1E
+    }
+}
+
+.lay-2.spark {
+    animation: sparkLay_2 0.6s ease
+}
+
+@keyframes sparkLay_2 {
+    0% {
+        background-color: #EFD3D9;
+        color: #1E1E1E
+    }
+
+    50% {
+        background-color: #26F1F8;
+        color: #fff
+    }
+
+    100% {
+        background-color: #EFD3D9;
+        color: #1E1E1E
+    }
+}
+
+.lay-3.spark {
+    animation: sparkLay_3 0.6s ease
+}
+
+@keyframes sparkLay_3 {
+    0% {
+        background-color: #F6E6EA;
+        color: #1E1E1E
+    }
+
+    50% {
+        background-color: #26F1F8;
+        color: #fff
+    }
+
+    100% {
+        background-color: #F6E6EA;
+        color: #1E1E1E
+    }
+}

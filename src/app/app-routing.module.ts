@@ -14,6 +14,8 @@ import { ActivityComponent } from './activity/activity.component';
 import { AccountstatementComponent } from './accountstatement/accountstatement.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { ProfitlossComponent } from './profitloss/profitloss.component';
+import { EditstakeComponent } from './editstake/editstake.component';
+
 
 
 const routes: Routes = [
@@ -25,13 +27,14 @@ const routes: Routes = [
   {path:'account',component:AccountComponent},
   {path:'mybets',component:MybetsComponent},
   {path:'marketresult',component:MarketresultComponent},
-  {path:'changepass',component:ChangepasswordComponent},
+  {path:'changepassword',component:ChangepasswordComponent},
   {path:'rules',component:RulesComponent},
   {path:'reports',component:ReportsComponent},
   {path:'activity',component:ActivityComponent},
   {path:'accountstat',component:AccountstatementComponent},
   {path:'profitloss',component:ProfitlossComponent},
   {path:'transactions',component:TransactionsComponent},
+  {path:'editstake',component:EditstakeComponent},
 ];
 
 @NgModule({
@@ -54,5 +57,5 @@ export const componentrouting=[
                               AccountstatementComponent,
                               TransactionsComponent,
                               ProfitlossComponent,
-
+                              EditstakeComponent
                             ]

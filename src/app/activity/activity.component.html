@@ -3,17 +3,7 @@
            <span class="_2NnB6">Activity Log</span>
         </div>
         <div class="inner-content">
-           <div class="reports-datepicker">
-              <input type="text"
-                 placeholder="Select Date Here..."
-                 class="form-control"
-                 [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default',isAnimated: true }"
-                 bsDaterangepicker
-                 readonly>  
-              <div class="date-icon">
-                 <i class="fa fa-calendar"></i>
-              </div>
-           </div>
+          
            <div class="reports-table">
               <mat-form-field class="search-form-field" floatLabel="never">
                  <input matInput  id="filter-text-box" placeholder="Search" autocomplete="off" (keyup)="onFilterTextBoxChanged()" >

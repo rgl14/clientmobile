@@ -1,9 +1,38 @@
 <nav class="Bottomnav">
     <ul style="display: inline-flex">
-      <li id="home"><button [routerLink]="'/home'" mat-button routerLinkActive="select" ><mat-icon class="nav-item">home</mat-icon><br><span class="nav-item">Home</span></button></li>
-      <li id="inplay" ><button [routerLink]="'/inplay'" routerLinkActive="select" mat-button><mat-icon>play_circle_outline</mat-icon><br><span>Matches</span></button></li>
-      <li id="sportslist" ><button [routerLink]="'/sports'" routerLinkActive="select" mat-button><mat-icon>gamepad</mat-icon><br><span>Games</span></button></li>
-      <li id="favourite" ><button [routerLink]="'/reports'" routerLinkActive="select"  mat-button><mat-icon>list_alt</mat-icon><br><span>Report</span></button></li>
-      <li id="account"><button [routerLink]="'/account'" routerLinkActive="select" mat-button><mat-icon>more_vert</mat-icon><br><span>Account</span></button></li>
+      <li id="home">
+        <div routerLinkActive="select">
+            <button [routerLink]="'/home'" mat-button ><mat-icon class="nav-item">home</mat-icon><br><span class="nav-item">Home</span></button>
+            <a class="hidden-nav" [routerLink]="'/ '" ></a>
+        </div>
+      </li>
+      <li id="inplay" >
+        <div routerLinkActive="select">
+          <button [routerLink]="'/inplay'"  mat-button><mat-icon>play_circle_outline</mat-icon><br><span>Matches</span></button>
+          <a class="hidden-nav" [routerLink]="'/fullmarket'" ></a>
+        </div>
+        </li>
+      
+      <li id="sportslist" >
+          <div routerLinkActive="select">
+            <button [routerLink]="'/sports'" mat-button><mat-icon>gamepad</mat-icon><br><span>Games</span></button>
+          <!-- <a class="hidden-nav" [routerLink]="'/fullmarket'" ></a> -->
+          </div>
+      </li>
+      <li id="favourite" >
+          <div routerLinkActive="select">
+              <button [routerLink]="'/reports'" mat-button><mat-icon>list_alt</mat-icon><br><span>Report</span></button>
+              <a class="hidden-nav" [routerLink]="'/transactions'" ></a>
+              <a class="hidden-nav" [routerLink]="'/profitloss'" ></a>
+          </div>
+      </li>
+      <li id="account">
+          <div routerLinkActive="select">
+            <button [routerLink]="'/account'" mat-button><mat-icon>more_vert</mat-icon><br><span>Account</span></button>
+            <a class="hidden-nav" [routerLink]="'/editstake'" ></a>
+            <a class="hidden-nav" [routerLink]="'/rules'" ></a>
+            <a class="hidden-nav" [routerLink]="'/changepassword'" ></a>
+          </div>
+      </li>
     </ul>
 </nav>
