@@ -1,5 +1,6 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import 'https://fonts.googleapis.com/css?family=Roboto:200,400,700&display=swap';
 @import "~ag-grid-community/dist/styles/ag-grid.css";
 @import "~ag-grid-community/dist/styles/ag-theme-balham.css";
 /* You can add global styles to this file, and also import other style files */
@@ -137,7 +138,7 @@ button:focus {
 }
 .account-overview .login-name {
     margin: 0 10px;
-    padding: 24px 0 19px;
+    padding: 15px 0 19px;
     font-weight: 700;
     border-bottom: 2px solid #00b489;
     text-align: center;

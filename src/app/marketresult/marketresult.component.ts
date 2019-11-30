@@ -1,6 +1,7 @@
 import { Component,OnInit,HostListener,ViewChild } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
+import { CommonService } from 'src/services/common.service';
 
 @Component({
   selector: 'app-marketresult',
@@ -19,27 +20,29 @@ export class MarketresultComponent implements OnInit {
   gridApi: any;
   gridColumnApi: any;
   defaultColDef: { sortable: boolean; resizable: boolean; };
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
 
-  constructor() { 
+  constructor(private commonservice:CommonService) { 
     this.gridOptions = <GridOptions>{};
     this.headerHeight = 35;
     this.gridOptions.columnDefs = [
       {headerName: 'Event Name', field: 'eventName', sortable: true, width: 300,cellStyle: {'font-weight':'bolder'}},
       {headerName: 'Market Name', field: 'marketName', sortable: true, width: 150},
       {headerName: 'Settled Time', field: 'settledTime', sortable: true, width: 150},
-      {headerName: 'Winner', field: 'winner', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return 'profit'}},
-    ]; 
-
-    this.gridOptions.rowData = [
-      {"eventName":"Tennis > Bonadio v Gabashvili","marketName":"Match Odds","settledTime":"2019-11-18 20:30:00","winner":"Deccan Gladiators"},
-      {"eventName":"Cricket > Deccan Gladiators v Karnataka Tuskers","marketName":"Match Odds","settledTime":"2019-11-18 17:00:00","winner":"Deccan Gladiators"}
-   ];
+      {headerName: 'Winner', field: 'winner', sortable: true, width: 150,valueGetter: function(params) {if(params.data.winner==""){ return "--" }else{return params.data.winner}},cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return 'profit'}},
+    ];
    
     this.gridOptions.paginationPageSize=10;
     this.defaultColDef = {
       sortable: true,
       resizable: true
     };
+    this.overlayLoadingTemplate =
+      '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+      "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
     };
@@ -55,6 +58,10 @@ export class MarketresultComponent implements OnInit {
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+    this.commonservice.marketresult().subscribe(resp =>{
+      this.rowData=resp.data;
+    })
   }
     // @ViewChild(BsDaterangepickerDirective, { static: false }) datepicker: BsDaterangepickerDirective;
     // @HostListener('window:scroll')

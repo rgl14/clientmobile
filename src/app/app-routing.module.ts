@@ -15,11 +15,14 @@ import { AccountstatementComponent } from './accountstatement/accountstatement.c
 import { TransactionsComponent } from './transactions/transactions.component';
 import { ProfitlossComponent } from './profitloss/profitloss.component';
 import { EditstakeComponent } from './editstake/editstake.component';
+import { LoginComponent } from './login/login/login.component';
+import { AuthGuard } from './auth.guard';
+import { MainComponent } from './main/main.component';
 
 
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
+  {path:'',component:MainComponent},
   {path:'home',component:HomeComponent},
   {path:'fullmarket',component:FullmarketComponent},
   {path:'sports',component:SportsComponent},
@@ -57,5 +60,7 @@ export const componentrouting=[
                               AccountstatementComponent,
                               TransactionsComponent,
                               ProfitlossComponent,
-                              EditstakeComponent
+                              EditstakeComponent,
+                              LoginComponent,
+                              MainComponent
                             ]

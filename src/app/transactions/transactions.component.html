@@ -4,10 +4,10 @@
         </div>
         <div class="inner-content">
            <div class="reports-datepicker">
-              <input type="text"
+              <input type="text"  (bsValueChange)="transactstat($event)"
                  placeholder="Select Date Here..."
                  class="form-control"
-                 [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default',isAnimated: true }"
+                 [bsConfig]="{ rangeInputFormat: 'DD-MM-YYYY', containerClass: 'theme-default',isAnimated: true }"
                  bsDaterangepicker
                  readonly>  
               <div class="date-icon">
@@ -34,6 +34,9 @@
               [gridOptions]="gridOptions"
               [headerHeight]="headerHeight"
               [defaultColDef]="defaultColDef"
+              [rowData]="rowData" 
+              [overlayLoadingTemplate]="overlayLoadingTemplate"
+              [overlayNoRowsTemplate]="overlayNoRowsTemplate"
               [animateRows]="true"
               [pagination]="true"
               (gridReady)="onGridReady($event)"

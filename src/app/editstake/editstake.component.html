@@ -6,31 +6,31 @@
         <div id="coinList" class="side-content">
             <h3>Stake</h3>
             <dl class="setting-block">
-            <dt>Default stake<input type="number" id="userCoin" (model)="settingsData.defaultStake" data-role="none" class="ng-pristine ng-untouched ng-valid ng-empty"></dt>
+            <dt>Default stake<input type="number" id="userCoin" [(ngModel)]="defaultstake" data-role="none" class="ng-pristine ng-untouched ng-valid ng-empty"></dt>
             </dl>
-            <dl id="stakeSet" class="setting-block stake-setting" data-ng-style="{'display':(editSaveStake)?'flex':'none'}" style="display: flex;">
+            <dl id="stakeSet" class="setting-block stake-setting" [ngStyle]="{'display':(isedit)?'flex':'none'}" >
             <dt>Quick Stakes</dt>
-            <dd><a id="coin_1" class="btn">1000</a></dd>
-            <dd><a id="coin_2" class="btn">2000</a></dd>
-            <dd><a id="coin_3" class="btn">3000</a></dd>
-            <dd><a id="coin_4" class="btn">5000</a></dd>
-            <dd><a id="coin_5" class="btn">10000</a></dd>
-            <dd><a id="coin_6" class="btn">20000</a></dd>
-            <dd><a id="coin_7" class="btn">50000</a></dd>
-            <dd><a id="coin_8" class="btn">100000</a></dd>
+            <dd><a id="coin_1" class="btn">{{stake1}}</a></dd>
+            <dd><a id="coin_2" class="btn">{{stake2}}</a></dd>
+            <dd><a id="coin_3" class="btn">{{stake3}}</a></dd>
+            <dd><a id="coin_4" class="btn">{{stake4}}</a></dd>
+            <dd><a id="coin_5" class="btn">{{stake5}}</a></dd>
+            <dd><a id="coin_6" class="btn">{{stake6}}</a></dd>
+            <dd><a id="coin_7" class="btn">{{stake7}}</a></dd>
+            <dd><a id="coin_8" class="btn">{{stake8}}</a></dd>
             <dd class="col-stake_edit"><a id="edit" class="btn-edit" (click)="editStake()">Edit Stakes</a></dd>
             <!-- <button mat-raised-button class="submit" (click)="editStake()" type="submit">Edit Stake</button> -->
             </dl>
-            <dl id="editCustomizeStakeList" class="setting-block stake-setting" style="display: none;" data-ng-style="{'display':(!editSaveStake)?'flex':'none'}">
+            <dl id="editCustomizeStakeList" class="setting-block stake-setting"  [ngStyle]="{'display':(!isedit)?'flex':'none'}">
             <dt>Quick Stakes</dt>
-            <dd><input id="stakeEdit_1" (model)="settingsData.betStake.stake1" type="number"></dd>
-            <dd><input id="stakeEdit_2" (model)="settingsData.betStake.stake2" type="number"></dd>
-            <dd><input id="stakeEdit_3" (model)="settingsData.betStake.stake3" type="number"></dd>
-            <dd><input id="stakeEdit_4" (model)="settingsData.betStake.stake4" type="number"></dd>
-            <dd><input id="stakeEdit_5" (model)="settingsData.betStake.stake5" type="number"></dd>
-            <dd><input id="stakeEdit_6" (model)="settingsData.betStake.stake6" type="number"></dd>
-            <dd><input id="stakeEdit_7" (model)="settingsData.betStake.stake7" type="number"></dd>
-            <dd><input id="stakeEdit_8" (model)="settingsData.betStake.stake8" type="number"></dd>
+            <dd><input id="stakeEdit_1" [(ngModel)]="stake1" type="number"></dd>
+            <dd><input id="stakeEdit_2" [(ngModel)]="stake2" type="number"></dd>
+            <dd><input id="stakeEdit_3" [(ngModel)]="stake3" type="number"></dd>
+            <dd><input id="stakeEdit_4" [(ngModel)]="stake4" type="number"></dd>
+            <dd><input id="stakeEdit_5" [(ngModel)]="stake5" type="number"></dd>
+            <dd><input id="stakeEdit_6" [(ngModel)]="stake6" type="number"></dd>
+            <dd><input id="stakeEdit_7" [(ngModel)]="stake7" type="number"></dd>
+            <dd><input id="stakeEdit_8" [(ngModel)]="stake8" type="number"></dd>
             <dd class="col-stake_edit"><a id="ok" class="btn-send" (click)="saveStake()">Save Stakes</a></dd>
             <!-- <button mat-raised-button class="submit" (click)="saveStake()" type="submit">Save Stake</button> -->
             </dl>
@@ -38,12 +38,13 @@
             <dl class="setting-block toggle-btn">
             <dt style="flex: 1;">Highlight when odds change</dt>
             <!-- <dd><a class="switch_on"  (click)="toggleSwitch()" id="enableSparkCheck"><input type="hidden" id="sparkValue" value="1" autocomplete="off"><span></span></a></dd> -->
-            <dd><mat-slide-toggle (click)="toggleSwitch()" [color]="warn"
+            <dd><mat-slide-toggle (change)="onChange($event)"
+                [(ngModel)]="isChecked" [color]="warn"
                 [checked]=false></mat-slide-toggle></dd>
 
             </dl>
             <div class="button-bottom">
-                <button mat-raised-button color="warn" (click)="closeOverlayInfo('settingDiv');getSettings();" type="submit">Cancel</button>
+                <button mat-raised-button color="warn" [routerLink]="'/account'"  type="submit">Cancel</button>
                 <button mat-raised-button class="submit" (click)="saveSetting()" type="submit">Save</button>
             </div>
             </div>

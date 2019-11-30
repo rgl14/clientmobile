@@ -2,6 +2,7 @@ import { Component,OnInit,HostListener,ViewChild } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
 import { CustomcellrendrerComponent } from '../customcellrendrer/customcellrendrer.component';
+import { CommonService } from 'src/services/common.service';
 
 @Component({
   selector: 'app-profitloss',
@@ -20,8 +21,15 @@ export class ProfitlossComponent implements OnInit {
   gridApi: any;
   gridColumnApi: any;
   defaultColDef: { sortable: boolean; resizable: boolean; };
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
+  date: Date;
+  todate: string;
+  fromdate: string;
+  selectfromdate: string;
+  selecttodate: string;
 
-  constructor() { 
+  constructor(private commonservice:CommonService) { 
     this.gridOptions = <GridOptions>{};
     this.headerHeight = 35;
     this.gridOptions.columnDefs = [
@@ -29,12 +37,14 @@ export class ProfitlossComponent implements OnInit {
       {headerName: 'Start Date', field: 'startDate', sortable: true, width: 150},
       {headerName: 'Settle Date', field: 'settleDate', sortable: true, width: 150},
       {headerName: 'Profit/loss', field: 'pnl', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
-    ]; 
+    ];
 
-    this.gridOptions.rowData = [
-      {"bets":{"backTotal":"-100","comm":"0","data":[{"betId":0,"odds":"2.16","placed":"11-17-2019 1:33:44 PM","pnl":"-100.00","score":null,"selection":"Durban Heat","stake":"100","type":"BACK"}],"layTotal":"0","mktTotal":"-100.00","netMktTotal":"-100","totalStakes":null},"market":"Cricket > Durban Heat v Cape Town Blitz > Match Odds","pnl":-100.00,"settleDate":"11-17-2019 5:15:54 PM","startDate":"11-17-2019 1:30:00 PM"},
-      {"bets":{"backTotal":"-100","comm":"0","data":[{"betId":0,"odds":"2.16","placed":"11-16-2019 5:21:08 PM","pnl":"-100.00","score":null,"selection":"Bangla Tigers","stake":"100","type":"BACK"}],"layTotal":"0","mktTotal":"-100.00","netMktTotal":"-100","totalStakes":null},"market":"Cricket > Bangla Tigers v Deccan Gladiators > Match Odds","pnl":-100.00,"settleDate":"11-16-2019 6:48:50 PM","startDate":"11-16-2019 5:00:00 PM"}
-   ]
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+
+    
     this.gridOptions.paginationPageSize=10;
     this.defaultColDef = {
       sortable: true,
@@ -55,6 +65,40 @@ export class ProfitlossComponent implements OnInit {
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+    var days = 1;
+        var date = new Date();
+        var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+        this.date = last
+        this.fromdate = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + (this.date.getDate()) + " 00:00:00";
+        this.todate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " 23:59:00";
+        let pnldates={
+          "fromdate":this.fromdate,
+          "todate":this.todate
+        }
+    this.commonservice.marketprofitloss(pnldates).subscribe(resp =>{
+      this.rowData=resp.data;
+    })
+  }
+  profitandloss(value){
+    this.selectfromdate=this.convertfrom(value[0]);
+    this.selecttodate=this.convertto(value[1]);
+    console.log(this.selectfromdate,this.selecttodate);
+     let pnldates={
+       "fromdate":this.selectfromdate,
+       "todate":this.selecttodate
+     }
+     this.commonservice.marketprofitloss(pnldates).subscribe(resp =>{
+       this.rowData=resp.data;
+     })
+  }
+  convertfrom(str) {
+    var date = new Date(str);
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate()) + " 00:00:00"
+  }
+  convertto(str) {
+    var date = new Date(str);
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate()) + " 23:59:00"
   }
     // @ViewChild(BsDaterangepickerDirective, { static: false }) datepicker: BsDaterangepickerDirective;
     // @HostListener('window:scroll')

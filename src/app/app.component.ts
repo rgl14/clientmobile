@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {FormControl} from "@angular/forms";
+import { CookieService } from 'ngx-cookie-service';
+import { CommonService } from 'src/services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,21 @@ import {FormControl} from "@angular/forms";
 })
 export class AppComponent {
   title = 'clientmobile';
-  mode = new FormControl('push');
   innerWidth: number;
+  isLoggedin: boolean;
+  sherry: string;
+  availBal: string;
+  cash: string;
+  credit: string;
+  exposure: string;
+  fundsdata: any;
+
+  constructor(private cookie:CookieService,private commonservice:CommonService) { }
+
   ngOnInit() {
-    this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth)
+    this.isLoggedin=this.cookie.check('charlie');
+  }
+  checkloggedin(event:any){
+    this.isLoggedin=this.cookie.check('charlie');
   }
 }

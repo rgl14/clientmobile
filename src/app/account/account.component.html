@@ -1,22 +1,22 @@
 <div class="content-wrapper"> 
     <div class="account-overview">
-        <p class="login-name ">ashishcl</p>
+        <p class="login-name ">{{state.uName}}</p>
         <div class="menu-item">
             <p class="label"> 	<i matListIcon class="fa fa-university"></i>&nbsp;
                 <span>Balance Information</span>
             </p>
             <div class="content">
                 <div class="group">
-                    <div>Available Credit:</div> <span><strong class="profit">12,772.20</strong></span>
+                    <div>Available Credit:</div> <span><strong [ngClass]="(availBal >= 0)?'text-success':'text-danger'" >{{availBal | number : '1.2-2'}}</strong></span>
                 </div>
                 <div class="group">
-                    <div>Credit Limit:</div> <span class="profit">30,100.00</span>
+                    <div>Credit Limit:</div> <span [ngClass]="(credit >= 0)?'text-success':'text-danger'" >{{credit | number : '1.2-2'}}</span>
                 </div>
                 <div class="group">
-                    <div>Winnings:</div> <span class="loss">-17,327.80</span>
+                    <div>Winnings:</div> <span [ngClass]="(cash >= 0)?'text-success':'text-danger'">{{cash | number : '1.2-2'}}</span>
                 </div>
                 <div class="group">
-                    <div>Net Exposure:</div> <span class="loss">-4000.00</span>
+                    <div>Net Exposure:</div> <span [ngClass]="(exposure >= 0)?'text-success':'text-danger'" >{{exposure | number : '1.2-2'}}</span>
                 </div>
             </div>
         </div>
@@ -24,10 +24,6 @@
     <mat-nav-list class="mat-list-items">
         <mat-list-item [routerLink]="'/mybets'"> <i matListIcon class="fa fa-thumbs-up"></i>
             <h3 matLine>My Bets</h3>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item [routerLink]="'/accountstat'"><i matListIcon class="fa fa-file-text"></i>
-            <h3 matLine>Account Statement</h3>
         </mat-list-item>
     </mat-nav-list>
     <mat-nav-list class="mat-list-items">
@@ -52,7 +48,7 @@
         </mat-list-item>
     </mat-nav-list>
     <mat-nav-list class="mat-list-items">
-        <mat-list-item> <i matListIcon class="fa fa-sign-out"></i>
+        <mat-list-item (click)="Logout()"> <i matListIcon class="fa fa-sign-out"></i>
             <h3 matLine>Logout</h3>
         </mat-list-item>
     </mat-nav-list>

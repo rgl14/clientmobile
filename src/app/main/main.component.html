@@ -1,0 +1,44 @@
+<mat-sidenav-container  class="example-container">
+        <mat-sidenav #sidenav [mode]="Over" >
+          <!-- <p>
+            <mat-radio-group class="example-radio-group" [formControl]="mode">
+              <label>Mode:</label>
+              <mat-radio-button value="over">Over</mat-radio-button>
+              <mat-radio-button value="side">Side</mat-radio-button>
+              <mat-radio-button value="push">Push</mat-radio-button>
+            </mat-radio-group>
+          </p> -->
+          <div [ngStyle]="{ 'width': innerWidth + 'px' }">
+            <mat-toolbar class="bg-header">
+              <mat-toolbar-row >
+                  <span></span>
+                  <span class="spacer"></span>
+                  <mat-icon class="icon" (click)="sidenav.toggle()">cancel</mat-icon>
+              </mat-toolbar-row>
+          </mat-toolbar>
+                <!-- <mat-radio-group class="example-radio-group" [formControl]="mode">
+                        <label>Mode:</label>
+                        <mat-radio-button value="over">Over</mat-radio-button>
+                        <mat-radio-button value="side">Side</mat-radio-button>
+                        <mat-radio-button value="push">Push</mat-radio-button>
+                </mat-radio-group> -->
+          </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+                    <mat-toolbar class="bg-header">
+                        <mat-toolbar-row [class.mat-elevation-z8]="true" >
+                            <span></span>
+                            <span class="spacer"></span>
+                            <!-- <mat-icon class="icon" (click)="sidenav.toggle()">settings</mat-icon> -->
+                            <button class="icon user-button" (click)="sidenav.toggle()" mat-button>
+                              <div class="user-button-div">
+                                <i class="fa fa-user user-button-icon"></i>
+                                <span class="balance ng-binding" *ngIf="availBal">{{availBal | number : '1.2-2'}}</span>
+                              </div>
+                            </button>
+                        </mat-toolbar-row>
+                    </mat-toolbar>
+                    <router-outlet></router-outlet>
+                    <app-footer></app-footer>
+        </mat-sidenav-content>
+</mat-sidenav-container>

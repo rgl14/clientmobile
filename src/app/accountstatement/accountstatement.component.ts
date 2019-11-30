@@ -1,6 +1,8 @@
 import { Component,OnInit,HostListener,ViewChild } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
+import { CommonService } from 'src/services/common.service';
+import { DateInput } from 'ngx-bootstrap/chronos/test/chain';
 
 @Component({
   selector: 'app-accountstatement',
@@ -19,8 +21,16 @@ export class AccountstatementComponent implements OnInit {
   gridApi: any;
   gridColumnApi: any;
   defaultColDef: { sortable: boolean; resizable: boolean; };
+  overlayNoRowsTemplate: string;
+  overlayLoadingTemplate: string;
+  date: Date;
+  fromdate: string;
+  todate: string;
+  selectfromdate: any;
+  selecttodate: any;
 
-  constructor() { 
+  constructor(private commonservice:CommonService) { 
+
     this.gridOptions = <GridOptions>{};
     this.headerHeight = 35;
     this.gridOptions.columnDefs = [
@@ -29,20 +39,26 @@ export class AccountstatementComponent implements OnInit {
       {headerName: 'Type', field: 'type', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
       {headerName: 'Credit', field: 'cr', sortable: true, width: 100,cellClass: function(params) { return  'profit'}},
       {headerName: 'Debit', field: 'dr', sortable: true, width: 100,cellClass: function(params) {  return  'loss'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+      {headerName: 'Balance', field: 'balance', sortable: true, width: 100,valueFormatter: currencyFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
     ]; 
+    function currencyFormatter(params){
+      // var value=parseInt(params.value.balance).toFixed(2);
+      // console.log(value)
+      return params.value.balance
+    }
 
-    this.gridOptions.rowData = [
-        {"balance":"11089.00","cr":"10000.00","date":"11-16-2019 5:27:33 PM","description":"Deposit chips by demodl","dr":"-","refId":26114,"type":"D|W Point"},
-        {"balance":"11089.00","cr":"10000.00","date":"11-16-2019 5:27:33 PM","description":"Deposit chips by demodl","dr":"-","refId":26114,"type":"D|W Point"},
-        {"balance":"1089.00","cr":"-","date":"10-3-2019 9:02:35 PM","description":"Kabaddi-Pro Kabaddi League-Telugu Titans v Puneri Paltan-BOOK MAKING(Result: Puneri Paltan)","dr":"-125.00","refId":105962,"type":"P|L Market"},
-        {"balance":"1089.00","cr":"-","date":"10-3-2019 9:02:35 PM","description":"Kabaddi-Pro Kabaddi League-Telugu Titans v Puneri Paltan-BOOK MAKING(Result: Puneri Paltan)","dr":"-125.00","refId":105962,"type":"P|L Market"},
-      ];
     this.gridOptions.paginationPageSize=10;
     this.defaultColDef = {
       sortable: true,
       resizable: true
     };
+
+    this.overlayLoadingTemplate =
+    '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+  
+
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
     };
@@ -58,7 +74,46 @@ export class AccountstatementComponent implements OnInit {
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+        var days = 1;
+        var date = new Date();
+        var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+        this.date = last
+        this.fromdate = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + (this.date.getDate()) + " 00:00:00";
+        this.todate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " 23:59:00";
+        let accountstatdates={
+          "fromdate":this.fromdate,
+          "todate":this.todate
+        }
+    this.commonservice.accountstatement(accountstatdates).subscribe(resp =>{
+      this.rowData=resp.data;
+    })
   }
+
+  accountstat(value){
+   this.selectfromdate=this.convertfrom(value[0]);
+   this.selecttodate=this.convertto(value[1]);
+   console.log(this.selectfromdate,this.selecttodate);
+    let accountstatdates={
+      "fromdate":this.selectfromdate,
+      "todate":this.selecttodate
+    }
+    this.commonservice.accountstatement(accountstatdates).subscribe(resp =>{
+      this.rowData=resp.data;
+    })
+  }
+  convertfrom(str) {
+    var date = new Date(str);
+    //   mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+    //   day = ("0" + date.getDate()).slice(-2);
+    // return [date.getFullYear(), mnth, day].join("-");
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate()) + " 00:00:00"
+  }
+  convertto(str) {
+    var date = new Date(str);
+    return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate()) + " 23:59:00"
+  }
+  
     // @ViewChild(BsDaterangepickerDirective, { static: false }) datepicker: BsDaterangepickerDirective;
     // @HostListener('window:scroll')
     // onScrollEvent() {
@@ -66,6 +121,7 @@ export class AccountstatementComponent implements OnInit {
     // }
 
   ngOnInit() {
+    
   }
 
 }

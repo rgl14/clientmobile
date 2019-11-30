@@ -1,6 +1,7 @@
 import { Component,OnInit,HostListener,ViewChild } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
+import { CommonService } from 'src/services/common.service';
 
 @Component({
   selector: 'app-activity',
@@ -19,29 +20,31 @@ export class ActivityComponent implements OnInit {
   gridApi: any;
   gridColumnApi: any;
   defaultColDef: { sortable: boolean; resizable: boolean; };
+  overlayLoadingTemplate: string;
+  overlayNoRowsTemplate: string;
 
-  constructor() { 
+  constructor(private commonservice:CommonService) { 
     this.gridOptions = <GridOptions>{};
     this.headerHeight = 35;
     this.gridOptions.columnDefs = [
-      {headerName: 'Login Date Time', field: 'loginDatetime', width: 75,lockPosition:true,suppressNavigable:true},
+      {headerName: 'Login Date Time', field: 'loginDatetime', width: 150,lockPosition:true,suppressNavigable:true},
       {headerName: 'Login Status', field: 'loginStatus', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
       {headerName: 'Ip Address', field: 'ipaddress', sortable: true, width: 150},
-      {headerName: 'ISP', field: 'isp', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
-      {headerName: 'City State Country', field: 'cityStateCountry', sortable: true, width: 150}
+      {headerName: 'ISP', field: 'isp', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},valueGetter: function(params) {if(params.data.isp==null){ return "--" }}},
+      {headerName: 'City State Country', field: 'cityStateCountry', sortable: true, width: 150,valueGetter: function(params) {if(params.data.cityStateCountry==null){ return "--" }}}
     ]; 
-
-    this.gridOptions.rowData = [
-      {"cityStateCountry":null,"ipaddress":"162.158.227.48","isp":null,"loginDatetime":"2019-06-29 16:32:26","loginStatus":"Login Successful"},
-      {"cityStateCountry":null,"ipaddress":"162.158.227.48","isp":null,"loginDatetime":"2019-06-29 16:45:42","loginStatus":"Login Successful"},
-      {"cityStateCountry":null,"ipaddress":"162.158.227.46","isp":null,"loginDatetime":"2019-06-29 16:45:57","loginStatus":"Login Successful"}
-   ]
    
     this.gridOptions.paginationPageSize=10;
     this.defaultColDef = {
       sortable: true,
       resizable: true
     };
+
+    this.overlayLoadingTemplate =
+      '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
+    this.overlayNoRowsTemplate =
+      "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">This is a custom 'no rows' overlay</span>";
+
     this.gridOptions.paginationNumberFormatter = function(params) {
       return "[" + params.value.toLocaleString() + "]";
     };
@@ -57,6 +60,10 @@ export class ActivityComponent implements OnInit {
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.gridApi.showLoadingOverlay();
+    this.commonservice.activitylog().subscribe(resp =>{
+      this.rowData=resp.data;
+    })
   }
     // @ViewChild(BsDaterangepickerDirective, { static: false }) datepicker: BsDaterangepickerDirective;
     // @HostListener('window:scroll')

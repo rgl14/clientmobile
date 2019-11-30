@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/services/common.service';
 
 @Component({
   selector: 'app-rules',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./rules.component.scss']
 })
 export class RulesComponent implements OnInit {
+  terms: any;
+  rules: any;
 
-  constructor() { }
+  constructor(private commonservice:CommonService) { }
 
   ngOnInit() {
+    this.commonservice.termsnconditions().subscribe(resp=>{
+      console.log(resp)
+      this.rules=resp.rules;
+      this.terms=resp.terms;
+    })
   }
 
 }

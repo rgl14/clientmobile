@@ -1,0 +1,157 @@
+@import 'https://fonts.googleapis.com/css?family=Staatliches&display=swap';
+$primary: #0a4949;
+$accent: yellow;
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), 
+         local('MaterialIcons-Regular'), 
+         url(https://fonts.gstatic.com/s/materialicons/v21/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
+}
+  
+// pattern mixin
+@mixin pattern($bg-primary,$bg-secondary) {
+    background:
+      repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 1em,
+      rgba($bg-secondary,0.4) 0,
+      rgba($bg-secondary,0.1) 2em,
+      transparent 0,
+      transparent 1em,
+      rgba($bg-secondary,0.3) 0,
+      rgba($bg-secondary,0.2) 4em,
+      transparent 0,
+      transparent 1em,
+      rgba($bg-primary,0.6) 0,
+      rgba($bg-primary,0.2) 2em
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 1em,
+      rgba($bg-secondary,0.4) 0,
+      rgba($bg-secondary,0.1) 2em,
+      transparent 0,
+      transparent 1em,
+      rgba($bg-secondary,0.3) 0,
+      rgba($bg-secondary,0.2) 4em,
+      transparent 0,
+      transparent 1em,
+      rgba($bg-primary,0.4) 0,
+      rgba($bg-primary,0.1) 2em
+    ), #FFF;
+    background-blend-mode: multiply;
+  }
+.material-icons {
+    font-family: 'Material Icons';
+}
+.input-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    color: yellow;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+#loginBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    // background: linear-gradient(to bottom, #020023 0%, #03a9f4 0%);
+    background: #126b5f;
+
+    // @include pattern(#0a4949, #7FD7F5);
+}
+
+#loginRoot {
+    min-height: 470px;
+    min-width: 310px;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #0c0018ed, #002fd5);
+    // background: #b10c00;
+    background: #006e6e;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0px 6px 15px 5px rgba(0, 0, 0, 0.31), 0 6px 20px -5px rgba(0, 0, 0, 0.31);
+}
+
+#formRoot {
+    width: 70%;
+    z-index: 10;
+}
+.logo {
+    font-family: 'Staatliches', cursive;
+    height: 100px;
+    h1 {
+        font-size: 60px;
+        color: yellow;
+        text-shadow: 6px 8px 6px rgba(0, 0, 0, 0.41);
+        text-transform: uppercase;
+    }
+
+}
+span.subtitle {
+    font-size: 12px;
+    font-style: oblique;
+    vertical-align: text-bottom;
+    margin-left: -50px;
+} 
+.custom-control-label {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+.btn {
+    &.raised {
+        box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.23), 0 3px 3px -3px rgba(0, 0, 0, 0.16);
+    }
+}
+.wave {
+    border-radius: 53% 46%;
+    height: 1150px;
+    width: 1220px;
+    position: absolute;
+    zoom: 2;
+    top: 96%;
+    box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.41);
+}
+
+.wave-1 {
+    background: rgba(159, 165, 240, 0.75);
+    animation: wave 25s infinite linear;
+}
+
+.wave-2 {
+    background: rgba(139, 146, 195, 0.76);
+    animation: wave 23s infinite linear;
+}
+
+.wave-3 {
+    background: rgba(166, 183, 255, 0.75);
+    animation: wave 19s infinite linear;
+}
+  @keyframes wave {
+    from { transform: rotate(0deg);}
+    from { transform: rotate(360deg);}
+  }
+    
