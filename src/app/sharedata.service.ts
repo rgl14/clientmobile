@@ -14,6 +14,9 @@ export class SharedataService {
   userdatasource:Observable<any>;
   private userData:BehaviorSubject<any>;
 
+  HomesignalrDataSource:Observable<any>;
+  private ClientSignalr:BehaviorSubject<any>;
+
   constructor() { 
     this.Funds = <BehaviorSubject<any>>new BehaviorSubject(null);
     this.fundSource = this.Funds.asObservable();
@@ -23,6 +26,9 @@ export class SharedataService {
 
     this.userData=<BehaviorSubject<any>>new BehaviorSubject(null);
     this.userdatasource=this.userData.asObservable();
+
+    this.ClientSignalr=<BehaviorSubject<any>> new BehaviorSubject(null);
+    this.HomesignalrDataSource=this.ClientSignalr.asObservable();
   }
 
   sharefundsdata(data: any) {
@@ -34,7 +40,9 @@ export class SharedataService {
   shareuserData(data:any){
     this.userData.next(data)
   }
-
+  sharehomesignalrData(data:any){
+    this.ClientSignalr.next(data);
+  }
 
   
 }

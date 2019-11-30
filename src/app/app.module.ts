@@ -19,11 +19,12 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthGuard } from './auth.guard';
 import { HttpCacheService } from 'src/services/cache.service';
 import { AuthinterceptorService } from './authinterceptor.service';
-import { MainComponent } from './main/main.component';
 import { SharedataService } from './sharedata.service';
 import { MarketsService } from './markets.service';
 import { FancyService } from './fancy.service';
 import { SignalrService } from './signalr.service';
+import { DataFormatService } from './data-format.service';
+import { PlaceBetsService } from './place-bets.service';
 
 
 
@@ -36,8 +37,6 @@ import { SignalrService } from './signalr.service';
     HeaderComponent,
     FooterComponent,
     CustomcellrendrerComponent,
-    
-    
   ],
   imports: [
     BrowserModule,
@@ -53,7 +52,7 @@ import { SignalrService } from './signalr.service';
     FontAwesomeModule,
     FlexLayoutModule,
   ],
-  providers: [AuthGuard,CommonService,CookieService,SharedataService,HttpCacheService,MarketsService,FancyService,SignalrService,
+  providers: [AuthGuard,CommonService,CookieService,SharedataService,HttpCacheService,MarketsService,FancyService,SignalrService,DataFormatService,PlaceBetsService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:AuthinterceptorService,

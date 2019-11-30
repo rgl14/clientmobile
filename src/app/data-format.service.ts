@@ -79,6 +79,89 @@ export class DataFormatService {
     this.currentUserDescription.next(data);
   }
 
+  homeSignalrFormat = function(sportsData) {
+    var sportDataFormat = {}
+    _.forEach(sportsData, function(item, index) {
+        var tourDataFormat = {}
+        _.forEach(item.tournaments, function(item2, index2) {
+            var matchesDataFormat = {}
+            _.forEach(item2.matches, function(item3, index3) {
+                var marketsDataFormat = {}
+                _.forEach(item3.markets, function(item4, index4) {
+                    marketsDataFormat[item4.id] = item4;
+                })
+                matchesDataFormat[item3.id] = item3;
+            })
+            tourDataFormat[item2.bfId] = {
+                'bfId': item2.bfId,
+                'id': item2.id,
+                'name': item2.name,
+                'matches': matchesDataFormat
+            }
+        })
+        sportDataFormat[item.bfId] = {
+            'bfId': item.bfId,
+            'id': item.id,
+            'name': item.name,
+            'tournaments': tourDataFormat
+        }
+    })
+    return sportDataFormat;
+}
+
+inplaylistwise = function(sportdata, inplaytype) {
+  var inplaydata = [];
+  // $scope.multimarket = JSON.parse(localStorage.getItem("Multimarkets"));
+  _.forEach(sportdata, function(item, index) {
+      // var data = {}
+      // var highlightdata = []
+      _.forEach(item.tournaments, function(item1, index1) {
+          _.forEach(item1.matches, function(item2, index2) {
+              _.forEach(item2.markets, function(item3, index3) {
+                  if (item3.name == "Match Odds") {
+                      item3.runnerData['bfId'] = item3.bfId;
+                      item3.runnerData['inPlay'] = item2.inPlay;
+                      item3.runnerData['isBettingAllow'] = item3.isBettingAllow;
+                      item3.runnerData['isMulti'] = item3.isMulti;
+                      item3.runnerData['marketId'] = item3.id;
+                      item3.runnerData['matchDate'] = item2.startDate;
+                      item3.runnerData['matchId'] = item2.id;
+                      item3.runnerData['matchName'] = item2.name;
+                      item3.runnerData['sportName'] = item.name;
+                      item3.runnerData['status'] = item2.status;
+                      item3.runnerData['mtBfId'] = item2.bfId;
+                      item3.runnerData['TourbfId'] = item1.bfId;
+                      item3.runnerData['Tourname'] = item1.name;
+                      item3.runnerData['SportbfId'] = item.bfId;
+                      item3.runnerData['hasFancy'] = item2.hasFancy;
+                      // _.forEach($scope.multimarket, function(item4) {
+                      //     if (item3.id == item4) {
+                      //         item3.runnerData['isMulti'] = 1;
+                      //     }
+                      // })
+                      if (item2.inPlay == 1 && inplaytype == 0) {
+                        inplaydata.push(item3.runnerData);
+                      }
+                      if (item2.inPlay == 0 && inplaytype == 1) {
+                        inplaydata.push(item3.runnerData);
+                      }  
+                      // else if (item2.inPlay != 1 && inplaytype == 1 && $rootScope.getDateTime(item2.startDate, $rootScope.curTime, 1) == 0 && inplaytype == 1) {
+                      //     highlightdata.push(item3.runnerData);
+                      // } else if (item2.inPlay != 1 && inplaytype == 2 && $rootScope.getDateTime(item2.startDate, $rootScope.curTime, 1) == 1 && inplaytype == 2) {
+                      //     highlightdata.push(item3.runnerData);
+                      // }
+                  }
+              })
+          })
+      })
+      // data["name"] = item.name;
+      // data["inplayData"] = highlightdata;
+      // data["id"] = 0;
+      // inplaydata.push(data);
+  })
+  return inplaydata
+}
+
   NavigationFormat(sportsData) {
     var sportDataFormat = {};
     sportsData.forEach(function (item, index) {
