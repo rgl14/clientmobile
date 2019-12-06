@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable,throwError } from 'rxjs';
 import { HttpClient,HttpHeaders,HttpErrorResponse } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { catchError, retry } from 'rxjs/operators'
+import _ from "lodash";
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +68,37 @@ export class CommonService {
 
   getuserdata() :  Observable<any>{
     return this.httpclient.get(this.apiurl+"/Data/GetUserData")
+  }
+
+  gethubaddress(id) : Observable <any>{
+    return this.httpclient.get(this.apiurl+"/Data/HubAddress?id="+id)
+  }
+
+  getexposurebook(id) : Observable <any>{
+    return this.httpclient.get(this.apiurl+"/Bets/ExposureBook?mktid="+id)
+  }
+
+  getfancyexposurebook(matchId,fancyId) : Observable <any>{
+    return this.httpclient.get(this.apiurl+"/Bets/GetFancyExposure?mtid="+matchId+"&fid="+fancyId)
+  }
+
+  getfancybook(matchId,fancyId) : Observable <any>{
+    return this.httpclient.get(this.apiurl+"/Bets/GetFancyBook?mtid="+matchId+"&fid="+fancyId)
+  }
+
+  getBMexposurebook(marketId,bookId) : Observable <any>{
+    return this.httpclient.get(this.apiurl+'Bets/BMExposureBook?mktid='+marketId+'&bid='+bookId)
+  }
+
+  PlaceMOBet(data): Observable<any> {
+    return this.httpclient.post(`${this.apiurl}/Bets/PlaceMOBet3`, data);
+  }
+
+  PlaceFancyBet(data): Observable<any> {
+    return this.httpclient.post(`${this.apiurl}/Bets/PlaceFancyBet2`, data);
+  }
+  PlaceBMBet(data): Observable<any> {
+    return this.httpclient.post(`${this.apiurl}/Bets/PlaceBMBet2`, data);
   }
 
   termsnconditions() : Observable<any> {

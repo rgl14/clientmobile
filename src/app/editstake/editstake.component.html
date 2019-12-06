@@ -10,14 +10,14 @@
             </dl>
             <dl id="stakeSet" class="setting-block stake-setting" [ngStyle]="{'display':(isedit)?'flex':'none'}" >
             <dt>Quick Stakes</dt>
-            <dd><a id="coin_1" class="btn">{{stake1}}</a></dd>
-            <dd><a id="coin_2" class="btn">{{stake2}}</a></dd>
-            <dd><a id="coin_3" class="btn">{{stake3}}</a></dd>
-            <dd><a id="coin_4" class="btn">{{stake4}}</a></dd>
-            <dd><a id="coin_5" class="btn">{{stake5}}</a></dd>
-            <dd><a id="coin_6" class="btn">{{stake6}}</a></dd>
-            <dd><a id="coin_7" class="btn">{{stake7}}</a></dd>
-            <dd><a id="coin_8" class="btn">{{stake8}}</a></dd>
+            <dd><a id="coin_1" class="btn">{{stake?.stake1}}</a></dd>
+            <dd><a id="coin_2" class="btn">{{stake?.stake2}}</a></dd>
+            <dd><a id="coin_3" class="btn">{{stake?.stake3}}</a></dd>
+            <dd><a id="coin_4" class="btn">{{stake?.stake4}}</a></dd>
+            <dd><a id="coin_5" class="btn">{{stake?.stake5}}</a></dd>
+            <dd><a id="coin_6" class="btn">{{stake?.stake6}}</a></dd>
+            <dd><a id="coin_7" class="btn">{{stake?.stake7}}</a></dd>
+            <dd><a id="coin_8" class="btn">{{stake?.stake8}}</a></dd>
             <dd class="col-stake_edit"><a id="edit" class="btn-edit" (click)="editStake()">Edit Stakes</a></dd>
             <!-- <button mat-raised-button class="submit" (click)="editStake()" type="submit">Edit Stake</button> -->
             </dl>

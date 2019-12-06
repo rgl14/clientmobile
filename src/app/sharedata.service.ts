@@ -44,5 +44,4 @@ export class SharedataService {
     this.ClientSignalr.next(data);
   }
 
-  
 }

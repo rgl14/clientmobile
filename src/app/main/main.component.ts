@@ -19,7 +19,6 @@ export class MainComponent implements OnInit {
   credit: any;
   exposure: any;
   userdata: any;
-  state: any;
   constructor(private cookie:CookieService,private commonservice:CommonService,private sharedata:SharedataService,private signalrconnect:SignalrService) { }
 
   ngOnInit() {
@@ -40,6 +39,7 @@ export class MainComponent implements OnInit {
       this.credit= data.data.credit;
       this.exposure= data.data.exposure;
     })
+    
   }
 
 }

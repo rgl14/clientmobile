@@ -25,6 +25,11 @@ import { FancyService } from './fancy.service';
 import { SignalrService } from './signalr.service';
 import { DataFormatService } from './data-format.service';
 import { PlaceBetsService } from './place-bets.service';
+import { SortByDatePipe } from './oderBypipe';
+import { ReplacePipe } from './main/replacepipe';
+import { RemoveSpacePipe } from './Directives/removespace';
+import { DeviceDetectorModule } from 'ngx-device-detector';
+import { ScoreboardService } from './scoreboard.service';
 
 
 
@@ -37,6 +42,9 @@ import { PlaceBetsService } from './place-bets.service';
     HeaderComponent,
     FooterComponent,
     CustomcellrendrerComponent,
+    SortByDatePipe,
+    ReplacePipe,
+    RemoveSpacePipe
   ],
   imports: [
     BrowserModule,
@@ -48,11 +56,12 @@ import { PlaceBetsService } from './place-bets.service';
     Materialmodule,
     AgGridModule.withComponents([]),
     BsDatepickerModule.forRoot(),
+    DeviceDetectorModule.forRoot(),
     CarouselModule,
     FontAwesomeModule,
     FlexLayoutModule,
   ],
-  providers: [AuthGuard,CommonService,CookieService,SharedataService,HttpCacheService,MarketsService,FancyService,SignalrService,DataFormatService,PlaceBetsService,
+  providers: [AuthGuard,CommonService,CookieService,SharedataService,HttpCacheService,MarketsService,FancyService,SignalrService,DataFormatService,PlaceBetsService,ScoreboardService,
     {
       provide:HTTP_INTERCEPTORS,
       useClass:AuthinterceptorService,

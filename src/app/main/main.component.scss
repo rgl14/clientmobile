@@ -8,6 +8,26 @@
 .spacer {
     flex: 1 1 auto;
 }
+.logo {
+    font-family: 'Staatliches', cursive;
+    // height: 100px;
+    h1 {    
+        font-size: 35px;
+        margin-top: 10px;
+        color: yellow;
+        text-shadow: 6px 8px 6px rgba(0, 0, 0, 0.41);
+        text-transform: uppercase;
+    }
+
+}
+span.subtitle {
+    font-size: 12px;
+    font-style: oblique;
+    // vertical-align: text-bottom;
+    vertical-align: sub;
+    // margin-left: -50px;
+    margin-left: -15px;
+} 
 
 .example-container {
     position: absolute;

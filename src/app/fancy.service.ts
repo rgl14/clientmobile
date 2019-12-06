@@ -24,7 +24,7 @@ export class FancyService {
     this.fancySource = this.currentFancy.asObservable();
   }
 
-  connectFancy(fancyHubAddress, fancy) {
+  connectFancy(fancyHubAddress, matchid) {
     // console.log(this.fancyHubConn);
     this.fancyHubAddress = fancyHubAddress;
     // this.fancyHubAddress="http://167.86.74.159:6111";
@@ -36,9 +36,9 @@ export class FancyService {
       this.fancyConnection.start().done((fancyHubConns) => {
         this.fancyHubConn = fancyHubConns;
         console.log("Fancy Hub Connection Established = " + fancyHubConns.state);
-        _.forEach(fancy, (item) => {
-          this.fancyProxy.invoke('SubscribeFancy', item);
-        });
+        // _.forEach(fancy, (item) => {
+          this.fancyProxy.invoke('SubscribeFancy', matchid);
+        // });
       }).fail((fancyHubErr) => {
         console.log("Could not connect Fancy Hub = " + fancyHubErr.state)
       })
@@ -50,9 +50,9 @@ export class FancyService {
         this.fancyConnection.start().done((fancyHubConns) => {
           this.fancyHubConn = fancyHubConns;
           console.log("Fancy Hub Reconnection Established = " + fancyHubConns.state);
-          _.forEach(fancy, (item) => {
-            this.fancyProxy.invoke('SubscribeFancy', item);
-          });
+          // _.forEach(fancy, (item) => {
+            this.fancyProxy.invoke('SubscribeFancy', matchid);
+          // });
         }).fail((fancyHubErr) => {
           console.log("Could not Reconnect Fancy Hub = " + fancyHubErr.state)
         })

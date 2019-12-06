@@ -24,7 +24,7 @@ import { MainComponent } from './main/main.component';
 const routes: Routes = [
   {path:'',component:MainComponent},
   {path:'home',component:HomeComponent},
-  {path:'fullmarket',component:FullmarketComponent},
+  {path:'fullmarket/:SportbfId/:TourbfId/:matchId/:marketId/:mtBfId/:bfId',component:FullmarketComponent},
   {path:'sports',component:SportsComponent},
   {path:'inplay',component:InplayComponent},
   {path:'account',component:AccountComponent},

@@ -21,14 +21,14 @@
                     </div> -->
               <a > <span class="open-bets-link" (someEvent)="sidenav.toggle()">Open Bets (0)</span>
               </a>
-              <div class="distinct ion-list market-list list list-md">
+              <div class="distinct ion-list market-list list list-md" *ngIf="inplayData.length!=0">
                 <!-- <ion-item class="market-list-item item item-block item-md" data-ng-repeat="inplay in inplayData track by $index"> -->
-                <div *ngFor="let inplay of inplayData">
+                <div *ngFor="let inplay of inplayData | sortByDate:'matchDate';trackBy:identify">
                   <div  class="market-list-item item ion-item item-block item-md" *ngIf="inplay.SportbfId==='4'">
                     <div class="item-inner">
                       <div class="input-wrapper">
                         <div class="label ion-label label-md">
-                          <a [routerLink]="'/fullmarket'">
+                          <a [routerLink]="['/fullmarket',inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId]">
                             <div class="popular-event">
                               <div class="event-details">
                                 <i class="apl-icon-sport-cricket"><img height="20px" width="20px" src="assets/img/cricket.png"></i>
@@ -353,12 +353,12 @@
                     <div class="button-effect"></div>
                   </div>
                 </div>
-                <div *ngFor="let inplay of inplayData">
+                <div *ngFor="let inplay of inplayData | sortByDate:'matchDate';trackBy:identify">
                     <div *ngIf="inplay.SportbfId==='1'"  class="market-list-item item ion-item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" [routerLink]="'/fullmarket'">
+                              <a class="" [routerLink]="['/fullmarket',inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId]">
                                 <div class="popular-event">
                                   <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i>
                                     <span class="label ">{{inplay.matchName}}</span>
@@ -373,12 +373,12 @@
                         <div class="button-effect"></div>
                     </div>
                 </div>
-                <div *ngFor="let inplay of inplayData">
+                <div *ngFor="let inplay of inplayData | sortByDate:'matchDate';trackBy:identify">
                     <div *ngIf="inplay.SportbfId==='2'" class="market-list-item item ion-item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" [routerLink]="'/fullmarket'">
+                              <a class="" [routerLink]="['/fullmarket',inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId]">
                                 <div class="popular-event">
                                   <div class="event-details"> <i><i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i></i> 
                                     <span class="label ">{{inplay.matchName}}</span>
@@ -393,6 +393,9 @@
                         <div class="button-effect"></div>
                       </div>
                 </div>
+              </div>
+              <div class="distinct ion-list market-list list list-md" *ngIf="inplayData.length==0">
+                <h5>No Inplay Events...</h5>
               </div>
             </section>
           </div>
@@ -421,13 +424,13 @@
                     </div> -->
               <a > <span class="open-bets-link">Open Bets (0)</span>
               </a>
-              <div class="distinct ion-list market-list list list-md">
-                <div *ngFor="let upcoming of upcomingEvents">
+              <div class="distinct ion-list market-list list list-md" *ngIf="upcomingEvents.length!=0">
+                <div *ngFor="let upcoming of upcomingEvents | sortByDate:'matchDate';trackBy:identify">
                     <div *ngIf="upcoming.SportbfId==='4'" class="market-list-item ion-item item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" [routerLink]="'/fullmarket'">
+                              <a class="" [routerLink]="['/fullmarket',upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId]">
                                 <div class="popular-event">
                                   <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/cricket.png"></i>
                                     <span class="label ">{{upcoming.matchName}}</span>
@@ -444,12 +447,12 @@
                         <div class="button-effect"></div>
                     </div>
                 </div>
-                <div *ngFor="let upcoming of upcomingEvents">
+                <div *ngFor="let upcoming of upcomingEvents | sortByDate:'matchDate';trackBy:identify">
                     <div *ngIf="upcoming.SportbfId==='1'" class="market-list-item ion-item item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" [routerLink]="'/fullmarket'">
+                              <a class="" [routerLink]="['/fullmarket',upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId]">
                                 <div class="popular-event">
                                   <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i>
                                     <span class="label ">{{upcoming.matchName}}</span>
@@ -466,12 +469,12 @@
                         <div class="button-effect"></div>
                     </div>
                 </div>
-                <div  *ngFor="let upcoming of upcomingEvents">
+                <div  *ngFor="let upcoming of upcomingEvents | sortByDate:'matchDate';trackBy:identify">
                     <div *ngIf="upcoming.SportbfId==='2'" class="market-list-item ion-item item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" [routerLink]="'/fullmarket'">
+                              <a class="" [routerLink]="['/fullmarket',upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId]">
                                 <div class="popular-event">
                                   <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i>
                                     <span class="label ">{{upcoming.matchName}}</span>
@@ -488,6 +491,9 @@
                         <div class="button-effect"></div>
                     </div>
                 </div>
+              </div>
+              <div class="distinct ion-list market-list list list-md" *ngIf="upcomingEvents.length==0">
+                <h5>No Upcoming Events</h5>
               </div>
             </section>
           </div>

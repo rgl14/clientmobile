@@ -20,10 +20,12 @@ export class EditstakeComponent implements OnInit {
   defaultstake: number;
   isChecked:boolean;
   isOddsHighlights: any;
+  stake: any;
   constructor(private commonservice:CommonService,public notification :NotificationService) { }
 
   ngOnInit() {
     this.commonservice.getsetting().subscribe(resp=>{
+      this.stake=resp.betStake;
       this.stake1=resp.betStake.stake1
       this.stake2=resp.betStake.stake2
       this.stake3=resp.betStake.stake3
