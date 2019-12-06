@@ -910,3 +910,10 @@ input:focus, .input-num .typeing {
     justify-content: center;
     align-items: center;
 }
+.to-win:before {
+    background-image: url(/assets/img/icon-to_win.svg);
+}
+
+.to-lose:before {
+    background-image: url(/assets/img/icon-to_lose.svg);
+}

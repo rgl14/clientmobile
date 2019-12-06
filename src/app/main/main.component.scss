@@ -8,6 +8,12 @@
 .spacer {
     flex: 1 1 auto;
 }
+.ticker-wrap {
+    position: absolute;
+    width: 100vw;
+    top: 14.66667vw;
+    z-index: 9;
+}
 .logo {
     font-family: 'Staatliches', cursive;
     // height: 100px;

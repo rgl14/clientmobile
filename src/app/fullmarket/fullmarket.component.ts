@@ -143,20 +143,22 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       }
       this.scorecardresponse(this.matchId,this.homeFancyData)
     })
-    this.common.getexposurebook(this.mktId).subscribe(resp=>{
-      _.forEach(resp.data, (item, index) => {
-        var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
-	                $('#MktExp_' + this.mktId + '_' + runnerName).removeClass('win');
-	                $('#MktExp_' + this.mktId + '_' + runnerName).removeClass('lose');
-	                if (item.Value >= 0) {
-	                    $('#MktExp_'+ this.mktId+'_'+runnerName).text(item.Value).addClass('win');
-	                } else if (item.Value <= 0) {
-	                    $('#MktExp_'+ this.mktId+'_'+runnerName).text('('+item.Value+')').addClass('lose');
-                  }
-                 
+    _.forEach(this.homeMarkets, (item, index) => {
+      this.common.getexposurebook(item.id).subscribe(resp=>{
+        _.forEach(resp.data, (item, index) => {
+          var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
+                    $('#withoutBetMktExp_' + this.mktId + '_' + runnerName).removeClass('win');
+                    $('#withoutBetMktExp_' + this.mktId + '_' + runnerName).removeClass('lose');
+                    if (item.Value >= 0) {
+                        $('#withoutBetMktExp_'+ this.mktId+'_'+runnerName).text(item.Value).addClass('win');
+                    } else if (item.Value <= 0) {
+                        $('#withoutBetMktExp_'+ this.mktId+'_'+runnerName).text('('+item.Value+')').addClass('lose');
+                    }
+                   
+        })
+        // Mktdata["oldPnl"] = resp.data;
+        localStorage.setItem('MktExpo_' + this.mktId, JSON.stringify(resp.data));
       })
-      // Mktdata["oldPnl"] = resp.data;
-      localStorage.setItem('MktExpo_' + this.mktId, JSON.stringify(resp.data));
     })
     this.common.getsetting().subscribe(resp=>{
       // console.log(resp)
@@ -276,6 +278,35 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     setTimeout(() => {
       changeClass.removeClass("spark");
     }, 300);
+  }
+  getPnlValue(runner, Pnl) {
+    // console.log(runner,Pnl)
+    let pnl = "";
+    if (Pnl) {
+      _.forEach(Pnl, (value, index) => {
+        if (runner.runnerName == value.Key) {
+          pnl = value.Value;
+        }
+      });
+    }
+    return pnl;
+  }
+
+  getPnlClass(runner, Pnl) {
+    let pnlClass = "";
+    if (Pnl) {
+      _.forEach(Pnl, (value, index) => {
+        if (runner.runnerName == value.Key) {
+          if (value.Value >= 0) {
+            pnlClass = "win";
+          }
+          if (value.Value < 0) {
+            pnlClass = "lose";
+          }
+        }
+      });
+    }
+    return pnlClass;
   }
 
   FancysignalrData(){
@@ -406,6 +437,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     //   // this.oneClickPlaceMOBet(oneClickMOData);
     //   return false;
     // } else {
+      console.log(event,backLay,odds,runnerName,sportId,mtbfId,matchId,marketId,bfId)
       this.placeMarketData = {
         backlay: backLay,
         marketId: marketId,
@@ -502,7 +534,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       if (data.status == "Success") {
         $("#loading").css("display", "none");
         this.notification.success(data.result);
-        this.getexposureafterplacebet();
+        this.getexposureafterplacebet(MOData.marketId);
         this.cancelBetslip();
         this.placeMarketData = {};
       } else {
@@ -547,16 +579,16 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     });
   }
 
-  getexposureafterplacebet(){
-    this.common.getexposurebook(this.mktId).subscribe(resp=>{
+  getexposureafterplacebet(mktid){
+    this.common.getexposurebook(mktid).subscribe(resp=>{
       _.forEach(resp.data, (item, index) => {
         var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
-	                $('#MktExp_' + this.mktId + '_' + runnerName).removeClass('win');
-	                $('#MktExp_' + this.mktId + '_' + runnerName).removeClass('lose');
+	                $('#withoutBetMktExp_' + mktid + '_' + runnerName).removeClass('win');
+	                $('#withoutBetMktExp_' + mktid + '_' + runnerName).removeClass('lose');
 	                if (item.Value >= 0) {
-	                    $('#MktExp_'+ this.mktId+'_'+runnerName).text(item.Value).addClass('win');
+	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text(item.Value).addClass('win');
 	                } else if (item.Value <= 0) {
-	                    $('#MktExp_'+ this.mktId+'_'+runnerName).text('('+item.Value+')').addClass('lose');
+	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text('('+item.Value+')').addClass('lose');
                   }
       })
     })
