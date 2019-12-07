@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { CommonService } from 'src/services/common.service';
 import { SharedataService } from '../sharedata.service';
 import { SignalrService } from '../signalr.service';
+import { interval } from 'rxjs';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -19,9 +20,12 @@ export class MainComponent implements OnInit {
   credit: any;
   exposure: any;
   userdata: any;
+  Over:any;
+  
   constructor(private cookie:CookieService,private commonservice:CommonService,private sharedata:SharedataService,private signalrconnect:SignalrService) { }
 
   ngOnInit() {
+    const secondsCounter = interval(5000);
     this.innerWidth = window.innerWidth;
     this.commonservice.userdescription().subscribe(data =>{
       this.userdata=data.data;
@@ -33,13 +37,21 @@ export class MainComponent implements OnInit {
     })
     this.commonservice.funds().subscribe(data=>{
       this.sharedata.sharefundsdata(data);
-      this.fundsdata=data;
-      this.availBal=data.data.availBal;
-      this.cash= data.data.cash;
-      this.credit= data.data.credit;
-      this.exposure= data.data.exposure;
     })
-    
+    this.sharedata.fundSource.subscribe(data=>{
+      if(data!=null){
+        this.fundsdata=data;
+        this.availBal=data.data.availBal;
+        this.cash= data.data.cash;
+        this.credit= data.data.credit;
+        this.exposure= data.data.exposure;
+      }
+    })
+    secondsCounter.subscribe(n =>this.Intervalfundapi());
   }
-
+  Intervalfundapi(){
+    this.commonservice.funds().subscribe(data=>{
+      this.sharedata.sharefundsdata(data);
+    })
+  }
 }

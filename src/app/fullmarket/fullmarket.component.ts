@@ -71,6 +71,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   mktBfId: string;
   showtv: boolean;
   baseUrl: any;
+  fancyName:any;
 
   constructor(private route:ActivatedRoute,private common :CommonService,private dataformat:DataFormatService,private marketodds:MarketsService,private fancymarket :FancyService,private renderer:Renderer,private deviceInfo:DeviceDetectorService,public notification :NotificationService,private score:ScoreboardService) { }
 

@@ -20,7 +20,7 @@
               </mat-form-field>
               <mat-form-field class="select-page-size">
                  <mat-label>Page Size</mat-label>
-                 <select matNativeControl (change)="onPageSizeChanged()" id="page-size">
+                 <select matNativeControl (change)="onPageSizeChanged($event)" id="page-size">
                     <option value="10">10</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
