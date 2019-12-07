@@ -160,12 +160,10 @@
             </tr>
          </tbody>
       </table>
-      <table id="soccerScoreBoard" *ngIf="sprtId==='1' && showScore" class="game-team soccer"  style="display: table;">
+      <table id="soccerScoreBoard" *ngIf="sprtId==='1'" class="game-team soccer"  style="display: table;">
          <tbody>
             <tr>
-               <th>
-                  <!-- <a [ngClass]="isMultiAdded(getMarketData)?'pin-off':'pin-on'" title="{{isMultiAdded(getMarketData)?'Add to Multi Markets':'Remove from Multi Markets'}}" (click)="isMultiAdded(getMarketData)?addMultiMarket(getMarketData):removeMultiMarket(getMarketData)"></a> -->
-               </th>
+               
                <td class="team-scores team-last_box" *ngIf="fullScore!=undefined">
                   <h4 id="scoresHome" class="in-play">{{fullScore.score.home.score}}</h4>
                   <h4 id="scoresAway" class="in-play">{{fullScore.score.away.score}}</h4>
@@ -288,7 +286,7 @@
                      <li class="" *ngIf="market.newPnl" [ngClass]="getPnlClass(market,markets.newPnl)"> » </li>
                      <li class="" *ngIf="market.newPnl"  [ngClass]="getPnlClass(market,markets.newPnl)">{{getPnlValue(runner,markets.newPnl)}}</li>
                      <li id="withoutBetMktExp_{{mktId}}_{{market.runnerName | removeSpace}}" style="display: list-item;"></li>
-                     <li id="withBetMktExp_{{mktId}}_{{market.runnerName | removeSpace}}" style="display: list-item;"></li>
+                     <li id="withBetMktExp_{{mktId}}_{{market.runnerName | removeSpace}}" style="display: list-item;"><span></span></li>
                </ul>
             </dt>
             <dd class="suspend" [ngStyle]="{'display':(market.Status=='CLOSED')?'flex':'none'}">
@@ -740,8 +738,8 @@
         <div class="side-head">
    
           <h3 class="">Book Position</h3>
-   
-          <a class="close" (click)="closeOverlayInfo()">Close</a>
+          
+          <a class="close" (click)="closeOverlayInfo()"><i class="fa fa-times"></i></a>
    
         </div>
    

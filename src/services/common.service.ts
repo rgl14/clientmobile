@@ -83,7 +83,7 @@ export class CommonService {
   }
 
   getfancybook(matchId,fancyId) : Observable <any>{
-    return this.httpclient.get(this.apiurl+"/Bets/GetFancyBook?mtid="+matchId+"&fid="+fancyId)
+    return this.httpclient.get(this.apiurl+"/Bets/Fancybook?mtid="+matchId+"&fid="+fancyId)
   }
 
   getBMexposurebook(marketId,bookId) : Observable <any>{

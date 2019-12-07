@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { DataFormatService } from './data-format.service';
 import { PlaceBetsService } from './place-bets.service';
 import { CommonService } from 'src/services/common.service';
+import { SharedataService } from './sharedata.service';
 // import * as $ from 'jquery';
 
 // import * as signalR from "signalr";
@@ -16,7 +17,7 @@ export class SignalrService {
   private clientProxy;
   private clientHubConn;
 
-  constructor(private commonservice:CommonService, private DFService: DataFormatService, private PBService: PlaceBetsService) { }
+  constructor(private commonservice:CommonService, private DFService: DataFormatService, private PBService: PlaceBetsService,private sharedata:SharedataService) { }
 
   connectClient(clientHubAddress) {
 
@@ -61,13 +62,13 @@ export class SignalrService {
         this.DFService.shareNews(data.news);
         this.DFService.shareDateTime(data.curTime.replace(/ /g, "T"));
         this.DFService.shareNavigationData(this.DFService.NavigationFormat(data.sportsData));
-        this.PBService.shareFancyExposure(data._fancyBook);
+        this.sharedata.shareFancyExposure(data._fancyBook);
         var AllBetsData = {
           _userAvgmatchedBets: data._userAvgmatchedBets,
           _userMatchedBets: data._userMatchedBets,
           _userUnMatchedBets: data._userUnMatchedBets
         };
-        this.PBService.shareAllMatchUnmatchBetsData(AllBetsData);
+        this.sharedata.shareAllMatchUnmatchBetsData(AllBetsData);
       })
     }
   }

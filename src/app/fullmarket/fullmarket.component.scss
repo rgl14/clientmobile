@@ -183,6 +183,17 @@ a {
     background-size: contain;
 }
 
+//soccer score board
+.game-team.soccer .team-scores {
+    width: 6.66667vw;
+}
+.game-team h4, .game-team .tc-wrap h5, .tc-wrap .game-team h5 {
+    margin-bottom: .8vw;
+}
+
+.game-team.soccer .team-scores,.game-team.soccer .team-scores h4{
+    text-align: center;
+}
 
 //Design for market Navigation
 .market-type {
@@ -363,7 +374,7 @@ dd {
     font-weight: 600;
 }
 .lose, .to-lose {
-    color: #D0021B;
+    color: #e45822;
     font-weight: 600;
 }
 .bets-selections .suspend {
@@ -913,7 +924,129 @@ input:focus, .input-num .typeing {
 .to-win:before {
     background-image: url(/assets/img/icon-to_win.svg);
 }
-
+.to-win:before, .to-lose:before {
+    content: '';
+    width: 2.66667vw;
+    height: 2.66667vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: -.53333vw 1.06667vw 0 0;
+    vertical-align: middle;
+}
 .to-lose:before {
     background-image: url(/assets/img/icon-to_lose.svg);
+}
+.full-pop, .rules-pop, .login-pop {
+    width: 100vw;
+    background-color: #fff;
+    border-radius: 1.6vw;
+    height: 95%;
+    overflow: auto;
+    overflow-y: hidden;
+}
+
+.side-wrap {
+    position: relative;
+    /* height: 100%; */
+    background: #eee;
+    box-shadow: 0.53333vw 0 1.6vw 0 rgba(0, 0, 0, 0.5);
+    /* border-radius: 0 1.6vw 1.6vw 0; */
+    flex-direction: column;
+    display: flex;
+}
+.side-head {
+    background: #00b489;
+    display: flex;
+}
+.side-head h3 {
+    color: #ffeb3b;
+}
+
+.side-head h3 {
+    flex: 1;
+    background: transparent;
+    font-size: 4vw;
+    color: #1E1E1E;
+    line-height: 2.6;
+    padding: 0 1.86667vw;
+    align-items: center;
+    display: flex;
+}
+.close {
+    border-color: #444;
+}
+
+.side-head .close {
+    padding: 0 3.46667vw;
+    border-left: 1px solid #BE7809;
+}
+.close {
+    justify-content: center;
+    align-items: center;
+}
+.close:before {
+    // background-image: url(../images/icon-close-yellow.svg);
+    display: block;
+}
+
+.close:before {
+    content: '';
+    width: 2.4vw;
+    height: 2.4vw;
+    // background: url(data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="9" height…4.5 5.412.912 9 0 8.088 3.588 4.5 0 .912.912 0 4.5 3.588 8.088 0z"/></svg>);
+    // background-size: contain;
+}
+.side-content {
+    flex: 1;
+    border-radius: 0 0 1.6vw 0;
+}
+
+.side-content, .news-wrap .announce-wrap {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.path-wrap {
+    background-color: #1E1E1E;
+    color: #fff;
+    font-weight: 700;
+    line-height: 10.66667vw;
+    display: flex;
+}
+.path-wrap ul {
+    display: inline;
+    flex: 1;
+    padding-left: 1.86667vw;
+    padding-right: 1.06667vw;
+}
+.path-wrap li{
+    position: relative;
+}
+.path-wrap li:last-child {
+    margin-right: 0;
+    padding-right: 0;
+}
+.path-wrap ul li{
+    list-style: none
+}
+.table {
+    width: 100%;
+    border-bottom: 1px solid #7E97A7;
+}
+table {
+    border-collapse: collapse;
+}
+.table-fancy .col-back {
+    background-color: #CDE8FD;
+    border-color: #fff;
+}
+.table-fancy .col-lay {
+    background-color: #FAE5EB;
+    border-color: #fff;
+}
+
+.table td, .table .announce-wrap table th, .announce-wrap table .table th {
+    padding: 2.13333vw 1.86667vw;
+    border: .26667vw solid #E0E6E6;
+    border-width: 0 0 .26667vw .26667vw;
 }

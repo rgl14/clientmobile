@@ -9,6 +9,7 @@ import _ from "lodash";
 import { DeviceDetectorService } from "ngx-device-detector";
 import { NotificationService } from '../shared/notification.service';
 import { ScoreboardService } from '../scoreboard.service';
+import { SharedataService } from '../sharedata.service';
 
 @Component({
   selector: 'app-fullmarket',
@@ -73,7 +74,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   baseUrl: any;
   fancyName:any;
 
-  constructor(private route:ActivatedRoute,private common :CommonService,private dataformat:DataFormatService,private marketodds:MarketsService,private fancymarket :FancyService,private renderer:Renderer,private deviceInfo:DeviceDetectorService,public notification :NotificationService,private score:ScoreboardService) { }
+  constructor(private route:ActivatedRoute,private common :CommonService,private sharedata:SharedataService,private dataformat:DataFormatService,private marketodds:MarketsService,private fancymarket :FancyService,private renderer:Renderer,private deviceInfo:DeviceDetectorService,public notification :NotificationService,private score:ScoreboardService) { }
 
   ngOnInit() {
     this.sprtId=this.route.snapshot.paramMap.get('SportbfId');
@@ -82,6 +83,8 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     this.mktId=this.route.snapshot.paramMap.get('marketId');
     this.mtBfId=this.route.snapshot.paramMap.get('mtBfId');
     this.mktBfId=this.route.snapshot.paramMap.get('bfId');
+    this.fancyExposure = null;
+    this.getallfancyexposure();
     this.allMKTdata();
     this.confirmPlaceMarketData = null;
     if (this.sprtId === '4') {
@@ -314,6 +317,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     this.fancyoddsignalr=this.fancymarket.fancySource.subscribe(fancy=>{
         if (fancy != null) {
           // console.log(fancy);
+          this.eventData.unsubscribe();
           this.curTime = fancy.curTime;
           this.bookMakingData = fancy.bookRates;
           _.forEach(this.bookMakingData, (item, index) => {
@@ -401,10 +405,19 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       }
     })
   }
-  getFancyBook(fancyId) {
-    this.common.getfancybook(this.matchId, fancyId).subscribe(data => {
+  getallfancyexposure(){
+    this.sharedata.fancyExposureSource.subscribe(data=>{
+      if (data != null) {
+        this.fancyExposure = data;
+      }
+    })
+  }
+  
+  getFancyBook(matchid,fancyid,fname) {
+    this.common.getfancybook(matchid, fancyid).subscribe(data => {
         $("#fancyBetBookLeftSide #sideWrap").addClass("fade-in");
         this.fancyBookData = data.data;
+        this.fancyName=fname;
       });
   }
   ngOnDestroy() {
@@ -438,7 +451,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     //   // this.oneClickPlaceMOBet(oneClickMOData);
     //   return false;
     // } else {
-      console.log(event,backLay,odds,runnerName,sportId,mtbfId,matchId,marketId,bfId)
+      // console.log(event,backLay,odds,runnerName,sportId,mtbfId,matchId,marketId,bfId)
       this.placeMarketData = {
         backlay: backLay,
         marketId: marketId,

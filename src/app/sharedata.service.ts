@@ -17,6 +17,15 @@ export class SharedataService {
   HomesignalrDataSource:Observable<any>;
   private ClientSignalr:BehaviorSubject<any>;
 
+  fancyExposureSource: Observable<any>;
+  private currentFancyExposure: BehaviorSubject<any>;
+
+  allMatchUnmatchBetsSource: Observable<any>;
+  private currentAllMatchUnmatchBets: BehaviorSubject<any>
+
+  matchedBetsSource: Observable<any>;
+  private currentMatchedBets: BehaviorSubject<any>
+
   constructor() { 
     this.Funds = <BehaviorSubject<any>>new BehaviorSubject(null);
     this.fundSource = this.Funds.asObservable();
@@ -29,6 +38,15 @@ export class SharedataService {
 
     this.ClientSignalr=<BehaviorSubject<any>> new BehaviorSubject(null);
     this.HomesignalrDataSource=this.ClientSignalr.asObservable();
+
+    this.currentFancyExposure = <BehaviorSubject<any>>new BehaviorSubject(null);
+    this.fancyExposureSource = this.currentFancyExposure.asObservable();
+
+    this.currentAllMatchUnmatchBets = <BehaviorSubject<any>>new BehaviorSubject(null);
+    this.allMatchUnmatchBetsSource = this.currentAllMatchUnmatchBets.asObservable();
+
+    this.currentMatchedBets = <BehaviorSubject<any>>new BehaviorSubject(null);
+    this.matchedBetsSource = this.currentMatchedBets.asObservable();
   }
 
   sharefundsdata(data: any) {
@@ -42,6 +60,15 @@ export class SharedataService {
   }
   sharehomesignalrData(data:any){
     this.ClientSignalr.next(data);
+  }
+  shareFancyExposure(data: any) {
+    this.currentFancyExposure.next(data);
+  }
+  shareAllMatchUnmatchBetsData(data: any) {
+    this.currentAllMatchUnmatchBets.next(data);
+  }
+  shareMatchedBetsData(data: any) {
+    this.currentMatchedBets.next(data);
   }
 
 }
