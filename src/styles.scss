@@ -121,6 +121,12 @@ button:focus {
     display: inline-flex;
 }
 
+.logo {
+    img {
+        width: 70%;
+    }
+}
+
 //mat list css for listing elements
 .mat-list-base {
     padding-top: 0px !important;
