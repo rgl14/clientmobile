@@ -328,7 +328,8 @@ dd {
     width: 18.66667vw;
 }
 .bets-selections dd, .bets-selections-head dd, .trade dd, .trade-2 dd {
-    border-right: 1px solid #36393b;
+    // border-right: 1px solid #36393b;
+    margin: 4px 2px;
 }
 
 .bets-selections span, .bets-selections-head span, .trade span, .trade-2 span {
@@ -336,7 +337,7 @@ dd {
     font-size: 2.93333vw;
 }
 .bets-selections span,.bets-selections-head span{
-    display: block;
+    display: none;
 }
 .bets-selections a span{
     overflow: hidden;
@@ -394,11 +395,16 @@ dd {
     width: 100%;
     height: 100%;
     font-weight: 700;
-    color: #1E1E1E;
-    padding: 1.6vw;
+    color: #2789CE;
+    padding: 2.6vw;
     flex-direction: column;
     justify-content: center;
     // text-shadow: 0 0 black;
+    border: 1px solid #c4c4c4;
+    // background-color: #fff;
+    user-select: none;
+    border-radius: 4px;
+    background: linear-gradient(180deg,#fff,#fff 70%,#f8f8f8 80%,#e6e6e6);
 }
 .bets-selections a{
     text-align: center;
@@ -410,9 +416,11 @@ dd {
     background-color: #FAA9BA;
 }
 .lay-1.select {
-    background-color: #f4496d;
+    background: #f50 !important;
     color: #fff !important;
     box-shadow: inset 0 2px 5px rgba(0,0,0,.5);
+    cursor: pointer;
+    border-color:#f50 !important;
 }
 .back-1 {
     background-color: #72BBEF;
@@ -424,9 +432,11 @@ dd {
     // background-color: #72BBEF;
 }
 .back-1.select {
-    background-color: #1a8ee1;
+    background: #f50 !important;
     color: #fff !important;
     box-shadow: inset 0 2px 5px rgba(0,0,0,.5);
+    cursor: pointer;
+    border-color:#f50 !important;
 }
 
 
