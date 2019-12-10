@@ -26,7 +26,7 @@
         </mat-sidenav>
         <mat-sidenav-content>
                     <mat-toolbar class="bg-header">
-                        <mat-toolbar-row [class.mat-elevation-z8]="true" >
+                        <mat-toolbar-row class="mat-elevation-z3" style="z-index: 10;">
                             <!-- <span class="logo"><h1>ORBITX</h1></span> -->
                             <div class="logo">
                                 <h1>
@@ -46,7 +46,7 @@
                             </button>
                         </mat-toolbar-row>
                     </mat-toolbar>
-                    <div >
+                    <div class="mat-elevation-z3" style="z-index: 9; background: #3bb489;">
                         <marquee id="ticker" width="100%"  style="color: white;vertical-align: middle;"> Welcome to orbitx.com </marquee>
                     </div>
                     <router-outlet style="margin-top:10px"></router-outlet>
