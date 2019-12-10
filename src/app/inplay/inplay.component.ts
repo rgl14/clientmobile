@@ -15,6 +15,11 @@ export class InplayComponent implements OnInit,OnDestroy {
   inplayData: any=[];
   upcomingEvents: any=[];
   inplaydatanavigation: Subscription;
+
+  // swipe
+  selectedIndex = 0;
+  tabs = 3; 
+
   constructor(private sharedata:SharedataService,private dataformat:DataFormatService) { }
 
   ngOnInit() {
@@ -32,6 +37,8 @@ export class InplayComponent implements OnInit,OnDestroy {
     })
   }
   
+  onSwipe($event) {}
+  tabChange($event) {}
   identify(index,item){
     //do what ever logic you need to come up with the unique identifier of your item in loop, I will just return the object id.
     return item.marketId;

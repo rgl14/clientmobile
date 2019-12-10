@@ -1,10 +1,14 @@
 <div class="content-wrapper ion-page">
-    <mat-tab-group>
-      <mat-tab>
+    <mat-tab-group
+    (selectedTabChange)="tabChange($event)"
+    [(selectedIndex)]="selectedIndex"
+    [(tabs)]="tabs"
+    swipeTab>
+      <mat-tab (swipe)="onSwipe($event)">
         <ng-template mat-tab-label class="mat-tab-label-active">LIVE</ng-template>
         <div class="home-page ion-content event-page content content-md" padding="">
           <div class="fixed-content   "></div>
-          <div class="scroll-content ">
+          <div class="scroll-content " (swipe)="onSwipe($event)">
             <section>
               <div class="in-play page-title"> <i class="fa fa-play-circle"></i>
                 <span class="label">In Play</span>
@@ -401,11 +405,11 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab>
+      <mat-tab (swipe)="onSwipe($event)">
         <ng-template mat-tab-label>UPCOMING</ng-template>
         <div class="home-page ion-content event-page content content-md" padding="">
           <div class="fixed-content   "></div>
-          <div class="scroll-content ">
+          <div class="scroll-content " (swipe)="onSwipe($event)">
             <section>
               <div class="in-play page-title">
                 <!-- <i class="fa fa-play-circle"></i>
@@ -499,11 +503,11 @@
           </div>
         </div>
       </mat-tab>
-      <mat-tab>
+      <mat-tab (swipe)="onSwipe($event)">
         <ng-template mat-tab-label>RECENT</ng-template>
         <div class="home-page ion-content event-page content content-md" padding="">
           <div class="fixed-content   "></div>
-          <div class="scroll-content ">
+          <div class="scroll-content " (swipe)="onSwipe($event)">
             <section>
               <div class="in-play page-title">
               </div>
@@ -590,3 +594,5 @@
       </mat-tab>
     </mat-tab-group>
   </div>
+
+<app-search></app-search>

@@ -1,0 +1,45 @@
+<div class="searchButtonWrapper">
+    <button mat-fab color="primary" (click)="openSearchWrap()">
+        <mat-icon aria-hidden="true">search</mat-icon>
+    </button>
+</div>
+<div id="searchWrap" class="overlay light" style="display: none;" (keydown.escape)="searchWrapHide()">
+    <form #searchForm id="searchForm" class=" mat-elevation-z4" (reset)="searchResultHide()">
+        <button id="searchBack" class="search-back" (click)="searchWrapHide()">
+            <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+        <input id="searchInput" #search class="search-input" data-role="none" type="text" name="searchTerm"
+            autocapitalize="off" autocomplete="off" autocorrect="off" placeholder="Search Events"
+            [formControl]="searchField" />
+        <button id="searchClear" class="search-clear" type="reset" (click)="search.focus()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <button id="searchBtn" class="search-collapse">
+            <mat-icon>search</mat-icon>
+        </button>
+    </form>
+    <div id="searchResult" class="suggestion-wrap">
+        <li mat-list-item id="noMatching" class="no-matching" *ngIf="noMatching">
+            <mat-icon>info</mat-icon>
+            No matching events found
+        </li>
+        <mat-nav-list *ngIf="!noMatching">
+            <a mat-list-item (click)="searchWrapHide()"
+                *ngFor="let market of searchResult; let i = index; trackBy: trackByFn" [routerLink]="[
+            '/fullmarket',
+            market.sportId,
+            market.mtBfId,
+            market.matchId,
+            market.marketId,
+            market.bfId,
+            market.tourId
+          ]">
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+                    <span>{{ market.matchDate.split(" ")[1] }}</span>
+                    <span>{{ market.matchName }}</span>
+                </div>
+                <mat-divider></mat-divider>
+            </a>
+        </mat-nav-list>
+    </div>
+</div>

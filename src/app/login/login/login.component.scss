@@ -54,7 +54,7 @@ body {
 }
 ::placeholder {
     color: #fff;
-    opacity: .4;
+    opacity: .9;
 }
 .form-input {
     width: 100%;
@@ -62,7 +62,7 @@ body {
     padding: 5px;
     border-radius: 5px;
     height: 46px;
-    background: rgba(255, 255, 255,.10);
+    background: rgba(255, 255, 255, 0.4);
     color: #fff;
     outline: none;
     padding-left: 12px;
@@ -71,7 +71,7 @@ body {
     &:focus {
         background: #dadada;
         color: #1e1e1e;
-        box-shadow: 0 0 10px -5px rgba(0,0,0, .41);
+        box-shadow: 0px 6px 4px -3px rgba(0, 0, 0, 0.21);
 
         &::placeholder {
             color: #1e1e1e;
@@ -120,6 +120,8 @@ body {
     user-select: none;
 }
 .btn {
+    height: 45px;
+    width: 90px;
     &.raised {
         box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.23), 0 3px 3px -3px rgba(0, 0, 0, 0.16);
     }

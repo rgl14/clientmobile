@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule,componentrouting } from './app-routing.module';
@@ -30,9 +30,24 @@ import { ReplacePipe } from './main/replacepipe';
 import { RemoveSpacePipe } from './Directives/removespace';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { ScoreboardService } from './scoreboard.service';
+import { SearchComponent } from './search/search.component';
+import { SwipeTabDirective } from './directive/swipe-tab.directive';
+import * as Hammer from "hammerjs";
 
+export class HammerConf extends HammerGestureConfig {
+  overrides = <any>{
+    swipe: { direction: Hammer.DIRECTION_ALL },
+    pinch: { enable: false },
+    rotate: { enable: false }
+  };
 
-
+  buildHammer(element: HTMLElement) {
+    const mc = new Hammer(element, {
+      touchAction: "pan-y"
+    });
+    return mc;
+  }
+}
 
 
 @NgModule({
@@ -44,7 +59,9 @@ import { ScoreboardService } from './scoreboard.service';
     CustomcellrendrerComponent,
     SortByDatePipe,
     ReplacePipe,
-    RemoveSpacePipe
+    RemoveSpacePipe,
+    SearchComponent,
+    SwipeTabDirective
   ],
   imports: [
     BrowserModule,
@@ -66,7 +83,12 @@ import { ScoreboardService } from './scoreboard.service';
       provide:HTTP_INTERCEPTORS,
       useClass:AuthinterceptorService,
       multi:true
-    }],
+    },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerConf
+    }
+  ],
   entryComponents:[CustomcellrendrerComponent],
   bootstrap: [AppComponent]
 })
