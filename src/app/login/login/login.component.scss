@@ -22,41 +22,6 @@ body {
          url(https://fonts.gstatic.com/s/materialicons/v21/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
 }
   
-// pattern mixin
-@mixin pattern($bg-primary,$bg-secondary) {
-    background:
-      repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 1em,
-      rgba($bg-secondary,0.4) 0,
-      rgba($bg-secondary,0.1) 2em,
-      transparent 0,
-      transparent 1em,
-      rgba($bg-secondary,0.3) 0,
-      rgba($bg-secondary,0.2) 4em,
-      transparent 0,
-      transparent 1em,
-      rgba($bg-primary,0.6) 0,
-      rgba($bg-primary,0.2) 2em
-    ),
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 1em,
-      rgba($bg-secondary,0.4) 0,
-      rgba($bg-secondary,0.1) 2em,
-      transparent 0,
-      transparent 1em,
-      rgba($bg-secondary,0.3) 0,
-      rgba($bg-secondary,0.2) 4em,
-      transparent 0,
-      transparent 1em,
-      rgba($bg-primary,0.4) 0,
-      rgba($bg-primary,0.1) 2em
-    ), #FFF;
-    background-blend-mode: multiply;
-  }
 .material-icons {
     font-family: 'Material Icons';
 }
@@ -76,46 +41,72 @@ body {
     left: 0;
     height: 100vh;
     width: 100vw;
-    // background: linear-gradient(to bottom, #020023 0%, #03a9f4 0%);
-    background: #126b5f;
-
-    // @include pattern(#0a4949, #7FD7F5);
+    background: #009475;
 }
 
 #loginRoot {
     min-height: 470px;
-    min-width: 310px;
+    min-width: 350px;
     border-radius: 10px;
-    background: linear-gradient(-45deg, #0c0018ed, #002fd5);
-    // background: #b10c00;
-    background: #006e6e;
     color: #fff;
     position: relative;
     overflow: hidden;
-    box-shadow: 0px 6px 15px 5px rgba(0, 0, 0, 0.31), 0 6px 20px -5px rgba(0, 0, 0, 0.31);
 }
+::placeholder {
+    color: #fff;
+    opacity: .4;
+}
+.form-input {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    height: 46px;
+    background: rgba(255, 255, 255,.10);
+    color: #fff;
+    outline: none;
+    padding-left: 12px;
+    transition: background 400ms ease;
 
+    &:focus {
+        background: #dadada;
+        color: #1e1e1e;
+        box-shadow: 0 0 10px -5px rgba(0,0,0, .41);
+
+        &::placeholder {
+            color: #1e1e1e;
+        }
+    }
+}
 #formRoot {
-    width: 70%;
+    width: 80%;
     z-index: 10;
 }
 .logo {
+    position: relative;
     font-family: 'Staatliches', cursive;
     height: 100px;
     h1 {
         font-size: 60px;
-        color: yellow;
-        text-shadow: 6px 8px 6px rgba(0, 0, 0, 0.41);
+        color: #003348;
+        text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.41);
         text-transform: uppercase;
-    }
+        // background: -webkit-linear-gradient(180deg, #009fdc, #eee);
+        // -webkit-background-clip: text;
+        // -webkit-text-fill-color: transparent;
 
+        &:after {
+            content: "Exchange";
+            position: absolute;
+            right: -8px;
+            top: 60px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #eee;
+            text-transform: none;
+        }
+    }
 }
-span.subtitle {
-    font-size: 12px;
-    font-style: oblique;
-    vertical-align: text-bottom;
-    margin-left: -50px;
-} 
 .custom-control-label {
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -126,32 +117,3 @@ span.subtitle {
         box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.23), 0 3px 3px -3px rgba(0, 0, 0, 0.16);
     }
 }
-.wave {
-    border-radius: 53% 46%;
-    height: 1150px;
-    width: 1220px;
-    position: absolute;
-    zoom: 2;
-    top: 96%;
-    box-shadow: 0px 0px 8px -3px rgba(0, 0, 0, 0.41);
-}
-
-.wave-1 {
-    background: rgba(159, 165, 240, 0.75);
-    animation: wave 25s infinite linear;
-}
-
-.wave-2 {
-    background: rgba(139, 146, 195, 0.76);
-    animation: wave 23s infinite linear;
-}
-
-.wave-3 {
-    background: rgba(166, 183, 255, 0.75);
-    animation: wave 19s infinite linear;
-}
-  @keyframes wave {
-    from { transform: rotate(0deg);}
-    from { transform: rotate(360deg);}
-  }
-    
