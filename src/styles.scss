@@ -15,6 +15,7 @@ html,body { margin: 0;height: 100%; font-family: Roboto, "Helvetica Neue", sans-
 }
 //Content Holder Div css
 .content-wrapper{
+    height: 90%;
     margin-top: 2px;
     padding:0px 0px 60px 0px;
 }
@@ -86,6 +87,9 @@ button:focus {
 .mat-tab-label-active{
     color: #fff;
     opacity: 1.5 !important;
+}
+.mat-tab-group {
+    height: 100%;
 }
 .mat-tab-group.mat-primary .mat-ink-bar{
     background:#fff;
@@ -358,4 +362,79 @@ button:focus {
         background-color: #F6E6EA;
         color: #1E1E1E
     }
+}
+
+.searchButtonWrapper {
+    position: absolute;
+    bottom: 70px;
+    right: 18px;
+
+    z-index: 1000;
+}
+
+.overlay {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    &.dark {
+        background: rgba(0, 0, 0, 0.61);
+    }
+    
+    &.light {
+        background: rgba(255, 255, 255, 1);
+    }
+}
+
+#searchForm {
+    position: relative;
+    display: flex;
+    height: 9vh;
+    z-index: 1;
+
+    button, input {
+        outline: none;
+        background: #fff;
+        border: none;
+        height: 98%;
+    }
+
+    button {
+        position: absolute;
+        top: 0;
+        z-index: 1;
+    }
+    .mat-icon, & > button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.search-back {
+    width: 40px;
+    padding-left: 10px;
+    left: 0;
+}
+.search-clear {
+    right: 40px;
+}
+.search-collapse {
+    width: 40px;
+    right: 0;
+}
+.search-input {
+    position: relative;
+    width: 100%;
+    padding-left: 48px;
+}
+
+.no-matching {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
 }
