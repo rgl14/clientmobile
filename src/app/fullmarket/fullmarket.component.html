@@ -299,22 +299,22 @@
                <p>Non Runner</p>
             </dd>
             <dd class="mode-land">
-               <a id="runner-{{index}}-back3" class="back-3" (click)="homeStatus!='OPEN' || market.back3==null || market.back3==''?'':openMarketBetslip($event,'Back',market.back3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back3}}<span class="">{{market.backSize3}}</span></a>
+               <a id="runner-{{index}}-back3" class="back-3" (click)="homeStatus!='OPEN' || market.back3==null || market.back3==''?'':openMarketBetslip($event,'Back',market.back3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back3}}<span *ngIf='(market.back3 == null || market.back3 == "")'><img src="assets\img\unavailable.svg" /></span><span class="">{{market.backSize3}}</span></a>
             </dd>
             <dd class="mode-land">
-               <a id="runner-{{index}}-back2" class="back-2" (click)="homeStatus!='OPEN' || market.back2==null || market.back2==''?'':openMarketBetslip($event,'Back',market.back2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back2}}<span class="">{{market.backSize2}}</span></a>
+               <a id="runner-{{index}}-back2" class="back-2" (click)="homeStatus!='OPEN' || market.back2==null || market.back2==''?'':openMarketBetslip($event,'Back',market.back2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back2}}<span *ngIf='(market.back2 == null || market.back2 == "")'><img src="assets\img\unavailable.svg" /></span><span class="">{{market.backSize2}}</span></a>
             </dd>
             <dd>
-               <a id="runner-{{index}}-back1" class="back-1" (click)="homeStatus!='OPEN' || market.back1==null || market.back1==''?'':openMarketBetslip($event,'Back',market.back1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back1}}<span class="">{{market.backSize1}}</span></a>
+               <a id="runner-{{index}}-back1" class="back-1" (click)="homeStatus!='OPEN' || market.back1==null || market.back1==''?'':openMarketBetslip($event,'Back',market.back1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back1}}<span *ngIf='(market.back1 == null || market.back1 == "")'><img src="assets\img\unavailable.svg" /></span><span class="">{{market.backSize1}}</span></a>
             </dd>
             <dd>
-               <a id="runner-{{index}}-lay1" class="lay-1" (click)="homeStatus!='OPEN' || market.lay1==null || market.lay1==''?'':openMarketBetslip($event,'Lay',market.lay1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay1}}<span class=""> {{market.laySize1}}</span></a>
+               <a id="runner-{{index}}-lay1" class="lay-1" (click)="homeStatus!='OPEN' || market.lay1==null || market.lay1==''?'':openMarketBetslip($event,'Lay',market.lay1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay1}}<span *ngIf='(market.lay1 == null || market.lay1 == "")'><img src="assets\img\unavailable.svg" /></span><span class=""> {{market.laySize1}}</span></a>
             </dd>
             <dd class="mode-land">
-               <a id="runner-{{index}}-lay2" class="lay-2" (click)="homeStatus!='OPEN' || market.lay2==null || market.lay2==''?'':openMarketBetslip($event,'Lay',market.lay2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay2}}<span class=""> {{market.laySize2}}</span></a>
+               <a id="runner-{{index}}-lay2" class="lay-2" (click)="homeStatus!='OPEN' || market.lay2==null || market.lay2==''?'':openMarketBetslip($event,'Lay',market.lay2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay2}}<span *ngIf='(market.lay2 == null || market.lay2 == "")'><img src="assets\img\unavailable.svg" /></span><span class=""> {{market.laySize2}}</span></a>
             </dd>
             <dd class="mode-land">
-               <a id="runner-{{index}}-lay3" class="lay-3" (click)="homeStatus!='OPEN' || market.lay3==null || market.lay3==''?'':openMarketBetslip($event,'Lay',market.lay3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay3}}<span class=""> {{market.laySize3}}</span></a>
+               <a id="runner-{{index}}-lay3" class="lay-3" (click)="homeStatus!='OPEN' || market.lay3==null || market.lay3==''?'':openMarketBetslip($event,'Lay',market.lay3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay3}}<span *ngIf='(market.lay3 == null || market.lay3 == "")'><img src="assets\img\unavailable.svg" /></span><span class=""> {{market.laySize3}}</span></a>
             </dd>
          </dl>
          <div id="betBoard_{{markets.mktId}}_{{market.runnerName| replace : ' ' : '_'}}" *ngIf="market.runnerName==placeMarketData.runnerName && homeStatus=='OPEN'" class="bet_slip-wrap" >
@@ -500,10 +500,10 @@
          <dd  class="mode-land">
          </dd>
          <dd >
-            <a class="back-1" (click)="runner.backSize=='-' || runner.backSize==''?'':openBookBetSlip($event,'Back',runner.backPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{runner.backPrice}}<span>{{runner.backSize}}</span></a>
+            <a class="back-1" (click)="runner.backSize=='-' || runner.backSize==''?'':openBookBetSlip($event,'Back',runner.backPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{runner.backPrice}}<span *ngIf='(runner.backPrice == null || runner.backPrice == "")'><img src="assets\img\unavailable.svg" /></span><span>{{runner.backSize}}</span></a>
          </dd>
          <dd >
-            <a class="lay-1" (click)="runner.layPrice=='-' || runner.layPrice==''?'':openBookBetSlip($event,'Lay',runner.layPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{runner.layPrice}}<span> {{runner.laySize}}</span></a>
+            <a class="lay-1" (click)="runner.layPrice=='-' || runner.layPrice==''?'':openBookBetSlip($event,'Lay',runner.layPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{runner.layPrice}}<span *ngIf='(runner.layPrice == null || runner.layPrice == "")'><img src="assets\img\unavailable.svg" /></span><span> {{runner.laySize}}</span></a>
          </dd>
          <dd  class="mode-land">
          </dd>
@@ -596,12 +596,16 @@
                <dd>
                   <a class="lay-1 "
                   (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.noScore}}<span
-                        class="">{{fancy.noRate}}</span></a>
+                        class="">{{fancy.noRate}}</span>
+                        <span *ngIf='(fancy.noRate == null || fancy.noRate == "")'><img src="assets\img\unavailable.svg" /></span>
+                     </a>
                </dd>
                <dd>
                   <a class="back-1 "
                      (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.yesScore}}<span
-                        class="">{{fancy.yesRate}}</span></a>
+                        class="">{{fancy.yesRate}}</span>
+                        <span *ngIf='(fancy.yesRate == null || fancy.yesRate == "")'><img src="assets\img\unavailable.svg" /></span>
+                     </a>
                </dd>
                <dd id="suspend" class="suspend-fancy"  [ngStyle]="{'display': (fancy.ballStatus!='') ? 'flex' : 'none' }">
                   <p id="info">{{fancy.ballStatus}}</p>
