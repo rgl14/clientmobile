@@ -1,21 +1,23 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, map, switchMap, toArray } from 'rxjs/operators';
-import { from } from 'rxjs';
+import { from, Subscription } from 'rxjs';
+import { DataFormatService } from '../data-format.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit ,OnDestroy {
   @ViewChild("search", { static: false }) search: ElementRef;
   searchField;
-  searchResult: [] = [];
+  searchResult: any= [];
   noMatching: boolean;
   allMatches: any = [];
+  searchdata: Subscription;
 
-  constructor() { }
+  constructor(private dataformat:DataFormatService) { }
 
   ngOnInit() {
 
@@ -32,6 +34,11 @@ export class SearchComponent implements OnInit {
         this.searchResultShow();
         console.log("search result", typeof result, this.searchResult);
       });
+      this.searchdata=this.dataformat.navigationSource.subscribe(data=>{
+        if(data!=null){
+          this.searchResult=this.dataformat.searchMatchWise(data);
+        }
+      })
   }
 
   private searchEntries(term) {
@@ -75,6 +82,10 @@ export class SearchComponent implements OnInit {
 
   trackByFn(index) {
     return index;
+  }
+
+  ngOnDestroy(){
+    this.searchdata.unsubscribe();
   }
 
 }

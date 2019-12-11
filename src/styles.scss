@@ -15,7 +15,7 @@ html,body { margin: 0;height: 100%; font-family: Roboto, "Helvetica Neue", sans-
 }
 //Content Holder Div css
 .content-wrapper{
-    height: 90%;
+    height: auto;
     margin-top: 2px;
     padding:0px 0px 60px 0px;
 }
@@ -364,17 +364,18 @@ button:focus {
     }
 }
 
+//search box overlay css
 .searchButtonWrapper {
-    position: absolute;
+    position: fixed;
     bottom: 70px;
     right: 18px;
-
     z-index: 1000;
 }
 
 .overlay {
     position: absolute;
-    height: 100vh;
+    // height: 100vh;
+    height: auto;
     width: 100vw;
     top: 0;
     left: 0;

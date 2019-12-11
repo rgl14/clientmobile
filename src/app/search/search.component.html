@@ -19,7 +19,7 @@
         </button>
     </form>
     <div id="searchResult" class="suggestion-wrap">
-        <li mat-list-item id="noMatching" class="no-matching" *ngIf="noMatching">
+        <li mat-list-item id="noMatching" class="no-matching" *ngIf="noMatching" style="color: black;">
             <mat-icon>info</mat-icon>
             No matching events found
         </li>
@@ -27,14 +27,9 @@
             <a mat-list-item (click)="searchWrapHide()"
                 *ngFor="let market of searchResult; let i = index; trackBy: trackByFn" [routerLink]="[
             '/fullmarket',
-            market.sportId,
-            market.mtBfId,
-            market.matchId,
-            market.marketId,
-            market.bfId,
-            market.tourId
+            market.sportId,market.tourId,market.matchId,market.marketId,market.mtBfId,market.bfId
           ]">
-                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" style="color: black;">
                     <span>{{ market.matchDate.split(" ")[1] }}</span>
                     <span>{{ market.matchName }}</span>
                 </div>

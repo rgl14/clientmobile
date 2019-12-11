@@ -24,6 +24,9 @@ export class EditstakeComponent implements OnInit {
   constructor(private commonservice:CommonService,public notification :NotificationService) { }
 
   ngOnInit() {
+    this.getbetstakesetting()
+  }
+  getbetstakesetting(){
     this.commonservice.getsetting().subscribe(resp=>{
       this.stake=resp.betStake;
       this.stake1=resp.betStake.stake1
@@ -43,7 +46,6 @@ export class EditstakeComponent implements OnInit {
       }
     })
   }
-
   editStake(){
     this.isedit=false;
   }
@@ -62,6 +64,7 @@ export class EditstakeComponent implements OnInit {
     this.commonservice.SaveBetStakeSetting(stakedaata).subscribe(resp=>{
       if(resp.status){
         this.notification.success(resp.result);
+        this.getbetstakesetting();
       }else{
         this.notification.error(resp.result);
       }

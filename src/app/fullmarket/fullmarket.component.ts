@@ -73,10 +73,12 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   showtv: boolean;
   baseUrl: any;
   fancyName:any;
+  TvWidth: number;
 
   constructor(private route:ActivatedRoute,private common :CommonService,private sharedata:SharedataService,private dataformat:DataFormatService,private marketodds:MarketsService,private fancymarket :FancyService,private renderer:Renderer,private deviceInfo:DeviceDetectorService,public notification :NotificationService,private score:ScoreboardService) { }
 
   ngOnInit() {
+    this.TvWidth = window.innerWidth;
     this.sprtId=this.route.snapshot.paramMap.get('SportbfId');
     this.tourId=this.route.snapshot.paramMap.get('TourbfId');
     this.matchId=this.route.snapshot.paramMap.get('matchId');

@@ -246,7 +246,7 @@
          </div> -->
          <!-- <div id="streamContainer" class="tv-box"> -->
                <!-- <div id="liveTvContent" class="tv"> -->
-                  <iframe id="iframeTv" style="width: 100%;height: 98%;"></iframe>
+                  <iframe id="iframeTv" [ngStyle]="{ 'width': TvWidth + 'px' }" style="height: 98%;"></iframe>
                <!-- </div> -->
          <!-- </div> -->
       </div>
@@ -398,7 +398,7 @@
       
                   <dt>
       
-                     <span class="{{confirmPlaceMarketData.backlay}} back">{{confirmPlaceMarketData.backlay}}</span>
+                     <span class="{{confirmPlaceMarketData.backlay | lowercase}}">{{confirmPlaceMarketData.backlay}}</span>
       
                      <h4 id="runnerName" style="color: black;">{{confirmPlaceMarketData.runnerName}}</h4>
       
@@ -590,8 +590,10 @@
                                         {{fancy.oldPnl}}
                                       </span>
                   </ul>
-                  <a id="fancyBetBookBtn_{{fancy.id}}" class="btn-book" (click)="getFancyBook(matchId,fancy.id,fancy.name)"
-                     style="display: none;">Book</a>
+                  <!-- <a id="fancyBetBookBtn_{{fancy.id}}" class="btn-book" (click)="getFancyBook(matchId,fancy.id,fancy.name)"
+                     style="display: none;">Book</a> -->
+                     <button id="fancyBetBookBtn_{{fancy.id}}"  mat-flat-button   (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book
+                     </button>
                </dt>
                <dd>
                   <a class="lay-1 "
@@ -608,7 +610,8 @@
                      </a>
                </dd>
                <dd id="suspend" class="suspend-fancy"  [ngStyle]="{'display': (fancy.ballStatus!='') ? 'flex' : 'none' }">
-                  <p id="info">{{fancy.ballStatus}}</p>
+                  <!-- <p id="info">{{fancy.ballStatus}}</p> -->
+                  <p>Ball Running</p>
                </dd>
                <dd class="mode-land">
                   <a (click)="openCloseFancyInfo(fancy)" class="btn-fancy_info"></a>
@@ -693,7 +696,7 @@
    
                <dt>
    
-                  <span class="{{confirmFancyData.backlay}}">{{confirmFancyData.backlay}}</span>
+                  <span class="{{confirmFancyData.yesno | lowercase}}" style="color: black">{{confirmFancyData.yesno}}</span>
    
                   <h4 id="runnerName" style="color: black;font-size:15px">{{confirmFancyData.runnerName}}</h4>
    
