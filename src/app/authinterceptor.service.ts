@@ -30,8 +30,8 @@ export class AuthinterceptorService implements HttpInterceptor {
         console.log(errorMessage);
         if(error.status==401){
           this.cookie.delete('charlie');
-          this.router.navigateByUrl("");
           window.location.reload();
+          this.router.navigateByUrl("");
         }
         return throwError(errorMessage);
       })
