@@ -8,31 +8,21 @@
             </li>
          </ul>
       </h4>
-      <table id="cricketScoreBoard" *ngIf="sprtId=='4' && showScore" class="game-team"  data-eventid="29119662" style="display: table;">
+      <!-- <table id="cricketScoreBoard" *ngIf="sprtId=='4' && showScore" class="game-team"  data-eventid="29119662" style="display: table;">
          <tbody>
             <tr>
                <th>
-                  <!-- <a [ngClass]="isMultiAdded(getMarketData)?'pin-off':'pin-on'" title="{{isMultiAdded(getMarketData)?'Add to Multi Markets':'Remove from Multi Markets'}}" data-ng-click="isMultiAdded(getMarketData)?addMultiMarket(getMarketData):removeMultiMarket(getMarketData)"></a> -->
-                  <!-- <h4 *ngIf="fullScore==undefined">{{getMarketData.matchName}}</h4> -->
                   <h4  *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[0]}}</h4>
                   <h4  *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[1]}}</h4>
-                  <!-- <ul  class="scores-time in-play">
-                     <li id="description"></li>
-                     
-                     <li >Day 2</li>
-                     
-                     </ul> -->
                   <h4  *ngIf="fullScore!=undefined">{{fullScore.score.home.name}}</h4>
                   <h4  *ngIf="fullScore!=undefined">{{fullScore.score.away.name}}</h4>
                   <ul  class="scores-time in-play">
-                     <li *ngIf="getMarketData.isInplay=='true' && fullScore.stateOfBall!=undefined && fullScore.matchStatus!='Finished'" style="display: flex;">
+                     <li *ngIf=" fullScore.stateOfBall!=undefined && fullScore.matchStatus!='Finished'" style="display: flex;">
                         <span class="ui-bowler-name">{{fullScore.stateOfBall.bowlerName}}</span>&nbsp;to&nbsp;<span class="ui-batsman-name">{{fullScore.stateOfBall.batsmanName}}</span>&nbsp;-&nbsp;
                         <span class="ui-event-message" style="font-weight: bold;color: white;">{{scoreRun()}}</span>
-                        
-                        <!-- <span class="ui-event-message" ng-if="fullScore.matchStatus=='Finished'" style="font-weight: bold;">Match Over</span> -->
                      </li>
                      <li *ngIf="fullScore==undefined">{{getMarketData.matchDate}}</li>
-                     <li  *ngIf="getMarketData.isInplay=='true' && fullScore!=undefined && fullScore.matchType=='TEST'">Day {{fullScore.currentDay}}</li>
+                     <li  *ngIf="fullScore!=undefined && fullScore.matchType=='TEST'">Day {{fullScore.currentDay}}</li>
                   </ul>
                </th>
                <td id="inningsBox1" *ngIf="fullScore.currentSet>=1" class="team-scores" >
@@ -77,10 +67,77 @@
                   </h4>
                   <span>Innings 2</span>
                </td>
-               <!-- <td class="team-refresh"><a  class="refresh" data-ng-click="getAllMarket();"></a></td> -->
             </tr>
          </tbody>
-      </table>
+      </table> -->
+      <ng-container *ngIf="showScore">
+            <div class="circket_wrapper" *ngIf="sprtId=='4'">
+                  <header>
+                      <div class="main_score_wrap">
+                          <div class="header_left">
+                              <div class="header_team_block">
+                                  <div class="team_block_left">
+                                     <span class="ball_img" *ngIf="fullScore.score.home.highlight=='true'"><img alt="" src="https://bw.sixlogics.com/cricket/assets/images/green_bat.png"></span>
+                                     <span class="ball_img" *ngIf="fullScore.score.home.highlight=='false'"><img alt="" src="https://bw.sixlogics.com/cricket/assets/images/red_ball.png?v=1.0"></span>
+                              </div>
+                                  <div class="team_block_right">
+                                       <h3 *ngIf="fullScore==undefined"><span class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
+                                       <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.home.name}}</span></h3>
+                                       <span class="score" *ngIf="fullScore.currentSet>=1">{{fullScore.score.home.inning1.runs}}{{fullScore.score.home.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.home.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.home.inning1.wickets!='ALL_OUT'">({{fullScore.score.home.inning1.overs}})</span></span>
+                                       <span class="score" *ngIf="fullScore.currentSet>=2"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null">{{fullScore.score.home.inning2.runs}}/{{fullScore.score.home.inning2.wickets}} <span class="over" *ngIf="fullScore.score.home.inning2.wickets!='ALL_OUT' && fullScore.score.home.inning2!=null">({{fullScore.score.home.inning2.overs}})</span></span>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="header_center"><span>BALL 73.6 - Lasith Embuldeniya to Abid Ali - 0 Run</span></div>
+                          <div class="header_right">
+                              <div class="header_team_block">
+                                  <div class="team_block_left">
+                                       <h3 *ngIf="fullScore==undefined"><span class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
+                                       <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.away.name}}</span></h3>
+                                       <span class="score" *ngIf="fullScore.currentSet>=1">{{fullScore.score.away.inning1.runs}}{{fullScore.score.away.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.away.inning1.wickets!='ALL_OUT'">({{fullScore.score.away.inning1.overs}})</span></span>
+                                       <span class="score" *ngIf="fullScore.currentSet>=2"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null">{{fullScore.score.away.inning2.runs}}/{{fullScore.score.away.inning2.wickets}} <span class="over" *ngIf="fullScore.score.away.inning2.wickets!='ALL_OUT' && fullScore.score.away.inning2!=null">({{fullScore.score.away.inning2.overs}})</span></span>
+                                  </div>
+                                  <div class="team_block_right">
+                                       <span class="ball_img" *ngIf="fullScore.score.away.highlight=='true'"><img alt="" src="https://bw.sixlogics.com/cricket/assets/images/green_bat.png"></span>
+                                       <span class="ball_img" *ngIf="fullScore.score.away.highlight=='false'"><img alt="" src="https://bw.sixlogics.com/cricket/assets/images/red_ball.png?v=1.0"></span>
+                                    </div>
+                              </div>
+                          </div>
+                      </div>
+                  </header>
+                  <div class="live_footer_content">
+                      <div class="live_footer_top">
+                          <div class="live_footer_left">
+                              <ul class="recent_over_list">
+                                  <li class="no-class"> <span>1</span> </li>
+                                  <li class="no-class"> <span>0</span> </li>
+                                  <li class="no-class"> <span>1</span> </li>
+                                  <li class="no-class"> <span>1</span> </li>
+                                  <li class="wicket"> <span>W</span> </li>
+                                  <li class="no-class"> <span>0</span> </li>
+                              </ul>
+                          </div>
+                          <div class="live_footer_right">
+                              <ul class="footer_status_list">
+                                  <li><span class="footer_status_left">Balls Remaining:</span><span class="footer_status_right">0</span></li>
+                                  <li><span class="footer_status_left">Runs required:</span><span class="footer_status_right">23</span></li>
+                              </ul>
+                          </div>
+                      </div>
+                      <!-- <div class="live_footer_bot">
+                          <div class="last_recent_overs">
+                              <h4>Last 3 Overs:</h4>
+                              <ul>
+                                  <li><span class="no-class"> 2 </span><span class="no-class"> 1 </span><span class="no-class"> 1 </span><span class="no-class"> 1 </span><span class="no-class"> 1 </span><span class="no-class"> 1 </span></li>
+                                  <li><span class="no-class"> 1 </span><span class="no-class"> 1 </span><span class="no-class"> 2 </span><span class="no-class"> 2 </span><span class="no-class"> 1<sub>lb</sub> </span><span class="no-class"> 1<sub>lb</sub> </span></li>
+                                  <li><span class="wicket"> W </span><span class="no-class"> 1 </span><span class="wicket"> W </span><span class="no-class"> 1 </span><span class="no-class"> 0 </span><span class="no-class"> 1 </span></li>
+                              </ul>
+                          </div>
+                      </div> -->
+                  </div>
+            </div>
+      </ng-container>
+      
       <table id="tennisScoreBoard" *ngIf="sprtId==='2' && showScore" class="game-team" [ngClass]="fullScore==undefined?'':'tennis'"  style="display: table;">
          <tbody>
             <tr>
@@ -163,7 +220,6 @@
       <table id="soccerScoreBoard" *ngIf="sprtId==='1'" class="game-team soccer"  style="display: table;">
          <tbody>
             <tr>
-               
                <td class="team-scores team-last_box" *ngIf="fullScore!=undefined">
                   <h4 id="scoresHome" class="in-play">{{fullScore.score.home.score}}</h4>
                   <h4 id="scoresAway" class="in-play">{{fullScore.score.away.score}}</h4>
@@ -174,53 +230,6 @@
                   <h4  *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[1]}}</h4>
                   <h4  *ngIf="fullScore!=undefined">{{fullScore.score.home.name}}</h4>
                   <h4  *ngIf="fullScore!=undefined">{{fullScore.score.away.name}}</h4>
-               </td>
-               <!-- <td class="team-refresh"><a  class="refresh" (click)="getAllMarket();"></a></td> -->
-            </tr>
-            <tr *ngIf="fullScore!=undefined">
-               <td class="soccer-map" colspan="4">
-                  <div class="bg-progress_bar">
-                     <div id="progressPercent" class="progress_bar" style="width: 100%;"></div>
-                     <!-- <img id="soccerEvent_home_Goal_41" class="ball-soccer team-a" style="left: 46%; display: block;" src="/images/mobile/transparent.gif">
-                        <img id="soccerEvent_home_YellowCard_32" class="card-yellow team-a" style="left: 36%; display: block;" src="/images/mobile/transparent.gif">
-                        
-                        <img id="soccerEvent_home_Goal_28" class="ball-soccer team-a" style="left: 31%; display: block;" src="/images/mobile/transparent.gif"> -->
-                     <img id="soccerEvent_{{score.team}}_{{score.type}}_{{score.elapsedRegularTime}}" *ngFor="let score of fullScore.updateDetails;trackBy:identify" style="left: {{score.elapsedRegularTime+getCardTeam(score.elapsedRegularTime)}}%; display: block;" [ngClass]="getCardTeam(score.type,score.team)" src="images/transparent.gif" alt="teamimg">
-                     <!-- <img id="soccerEventTemplate" class="" style="left: 0%; display: none;" src="images/transparent.gif">
-                        <span id="sumTemplate" class="sum-status" style="left: 0%; display: none;"></span> -->
-                  </div>
-                  <!-- <div class="bg-progress_bar">
-                     <div id="progressPercent" class="progress_bar" style="width: 82%;"></div>
-                     
-                     <img id="soccerEvent_away_YellowCard_69" class="card-yellow team-b" style="left: 77%; display: block;" src="/images/mobile/transparent.gif">
-                     
-                     <img id="soccerEvent_home_YellowCard_67" class="card-yellow team-a" style="left: 74%; display: block;" src="/images/mobile/transparent.gif">
-                     
-                     <img id="soccerEvent_home_Goal_65" class="ball-soccer team-a" style="left: 72%; display: block;" src="/images/mobile/transparent.gif">
-                     
-                     <img id="soccerEvent_away_Goal_45" class="ball-soccer team-b" style="left: 50%; display: block;" src="/images/mobile/transparent.gif">
-                     
-                     
-                     
-                     <img id="soccerEvent_away_YellowCard_38" class="card-yellow team-b" style="left: 42%; display: block;" src="/images/mobile/transparent.gif"><img id="soccerEvent_away_Goal_36" class="ball-soccer team-b" style="left: 40%; display: block;" src="/images/mobile/transparent.gif">
-                     
-                     
-                     
-                     <img id="soccerEventTemplate" class="" style="left: 0%; display: none;" src="/images/mobile/transparent.gif">
-                     
-                     <span id="sumTemplate" class="sum-status" style="left: 0%; display: none;"></span>
-                     
-                     </div> -->
-                  <!--  <div class="bg-progress_bar">
-                     <div id="progressPercent" class="progress_bar" style="width: 100%;"></div><img id="soccerEvent_away_YellowCard_90" class="card-yellow team-b" style="right: 0%; display: block;" src="/images/mobile/transparent.gif"><img id="soccerEvent_home_YellowCard_82" class="card-yellow team-a" style="left: 91%; display: block;" src="/images/mobile/transparent.gif"><img id="soccerEvent_home_Goal_68" class="ball-soccer team-a" style="left: 76%; display: block;" src="/images/mobile/transparent.gif"><img id="soccerEvent_away_Goal_58" class="ball-soccer team-b" style="left: 64%; display: block;" src="/images/mobile/transparent.gif"><img id="soccerEvent_home_YellowCard_32" class="card-yellow team-a" style="left: 36%; display: block;" src="/images/mobile/transparent.gif"><img id="soccerEvent_home_Goal_28" class="ball-soccer team-a" style="left: 31%; display: block;" src="/images/mobile/transparent.gif">
-                     
-                     
-                     
-                     <img id="soccerEventTemplate" class="" style="left: 0%; display: none;" src="/images/mobile/transparent.gif">
-                     
-                     <span id="sumTemplate" class="sum-status" style="left: 0%; display: none;"></span>
-                     
-                     </div> -->
                </td>
             </tr>
          </tbody>
@@ -241,14 +250,7 @@
    </div> -->
    <div id="streamingBox" class="tv-fix" style="display: none;">
       <div class="tv-wrap">
-         <!-- <div class="tv-head">
-            <a id="closeStreamingBox" class="close" (click)="closeTv()"></a>
-         </div> -->
-         <!-- <div id="streamContainer" class="tv-box"> -->
-               <!-- <div id="liveTvContent" class="tv"> -->
-                  <iframe id="iframeTv" [ngStyle]="{ 'width': TvWidth + 'px' }" style="height: 98%;"></iframe>
-               <!-- </div> -->
-         <!-- </div> -->
+         <iframe id="iframeTv" [ngStyle]="{ 'width': TvWidth + 'px' }" style="height: 98%;"></iframe>
       </div>
    </div>
    <div id="marketBetsWrap" class="bets-wrap " *ngFor="let markets of homeMarkets;trackBy:identify">
@@ -262,7 +264,7 @@
       <a class="bet-limit" style="display: none;"></a>
       <dl class="bets-selections-head">
          <dt>
-            <a class="a-depth" (click)="openMarketDepth(getMarketData)" id="marketDepthBtn"><img height="20px"
+            <a class="a-depth"  id="marketDepthBtn"><img height="20px"
                   width="20px" src="assets/img/kchart.ico">Markets Depth</a>
             <p>
                <!-- <span>Matched</span>
@@ -568,16 +570,16 @@
       </div>
    </ng-container>
    </div>
-   <div id="fancyBetTable_29119662" class="">
+   <div id="fancyBetTable" class="">
       <div id="fancyBetWrap" class="bets-wrap multi fancy" *ngIf="sprtId==='4' && homeHasFancy===1">
          <dl id="marketHead" class="bets-selections-head">
             <dt id="fancyBetNoBet" style="display: none;"></dt>
-            <dt>Fancy Bet</dt>
+            <dt>Fancy Bet <a mat-flat-button *ngIf="homeFancyData[0].ballStatus!=''" class="fancy-status">Ball Running</a></dt>
             <dd>No</dd>
             <dd>Yes</dd>
             <dd class="mode-land"></dd>
          </dl>
-         <div class="fancy-bet " *ngFor="let fancy of homeFancyData;trackBy:trackByfancyId">
+         <div class="fancy-bet" *ngFor="let fancy of homeFancyData;trackBy:trackByfancyId">
             <h4>
                <span id="marketName" class="">{{fancy.name}}</span>
             </h4>
@@ -585,26 +587,20 @@
                <dt class="line_market-selection">
                   <ul>
                      <li id="afterFancyExpo_{{fancy.id}}" style="display: -webkit-inline-box;"><span></span></li>
-                             <span [ngClass]="{'to-lose': fancy.oldPnl < 0, 'to-win': fancy.oldPnl >= 0}"
-                                        class="">
-                                        {{fancy.oldPnl}}
-                                      </span>
+                     <span [ngClass]="{'to-lose': fancy.oldPnl < 0, 'to-win': fancy.oldPnl >= 0}" class="">{{fancy.oldPnl}}</span>
                   </ul>
-                  <!-- <a id="fancyBetBookBtn_{{fancy.id}}" class="btn-book" (click)="getFancyBook(matchId,fancy.id,fancy.name)"
-                     style="display: none;">Book</a> -->
-                     <button id="fancyBetBookBtn_{{fancy.id}}"  mat-flat-button   (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book
-                     </button>
+                  <button id="fancyBetBookBtn_{{fancy.id}}"  mat-flat-button   (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book</button>
                </dt>
                <dd>
                   <a class="lay-1 "
-                  (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.noScore}}<span
+                  (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.noScore}}<sub style="font-size: 8px;">({{fancy.noRate}})</sub><span
                         class="">{{fancy.noRate}}</span>
                         <span *ngIf='(fancy.noRate == null || fancy.noRate == "")'><img src="assets\img\unavailable.svg" /></span>
                      </a>
                </dd>
                <dd>
                   <a class="back-1 "
-                     (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.yesScore}}<span
+                     (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.yesScore}}<sub style="font-size: 8px;">({{fancy.yesRate}})</sub><span
                         class="">{{fancy.yesRate}}</span>
                         <span *ngIf='(fancy.yesRate == null || fancy.yesRate == "")'><img src="assets\img\unavailable.svg" /></span>
                      </a>

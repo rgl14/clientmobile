@@ -11,7 +11,9 @@
           <div [ngStyle]="{ 'width': innerWidth + 'px' }">
             <mat-toolbar class="bg-header">
               <mat-toolbar-row >
-                  <span></span>
+                  <div class="logo">
+                      <img src="assets/img/orbit-1.png" alt="OrbitX">
+                  </div>
                   <span class="spacer"></span>
                   <mat-icon class="icon" (click)="sidenav.toggle()">cancel</mat-icon>
               </mat-toolbar-row>
@@ -28,20 +30,26 @@
                     <mat-toolbar class="bg-header">
                         <mat-toolbar-row class="mat-elevation-z3" style="z-index: 10;">
                             <!-- <span class="logo"><h1>ORBITX</h1></span> -->
+                            
                             <div class="logo">
                               <img src="assets/img/orbit-1.png" alt="OrbitX">
                             </div>
                             <span class="spacer"></span>
                             <!-- <mat-icon class="icon" (click)="sidenav.toggle()">settings</mat-icon> -->
-                            <button class="icon user-button" (click)="sidenav.toggle()" mat-button>
+                            <!-- <button class="icon user-button" (click)="sidenav.toggle()" mat-button>
                               <div class="user-button-div">
-                                <i class="fa fa-user user-button-icon"></i>
+                                <span>Username</span>
                                 <span class="balance ng-binding" *ngIf="availBal">{{availBal | number : '1.2-2'}}</span>
                               </div>
-                            </button>
+                            </button> -->
+                            <div class="simpleAccountBalance" data-tap-recogniser="true" data-widget="AccountSumaryWidget">
+                              <div class="accountUsername">{{userdata?.uName}}</div>
+                              <div class="accountBalance">INR {{availBal | number : '1.2-2'}}</div>
+                            </div>
+                            <mat-icon class="user-icon" aria-hidden="false" aria-label="Example user verified icon" (click)="sidenav.toggle()">verified_user</mat-icon>
                         </mat-toolbar-row>
                     </mat-toolbar>
-                    <div class="mat-elevation-z3" style="z-index: 9; background: #3bb489;">
+                    <div class="mat-elevation-z3" style="z-index: 9; background: #404040;">
                         <marquee id="ticker" width="100%"  style="color: white;vertical-align: middle;"> Welcome to orbitx.com </marquee>
                     </div>
                     <router-outlet style="margin-top:10px"></router-outlet>

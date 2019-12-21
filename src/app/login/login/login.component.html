@@ -18,11 +18,12 @@
                             <p> {{ getPasswordErrors() }} </p>
                         </div> -->
                     </div>
-                    <div class="custom-control custom-checkbox">
+                    
+                    <button type="submit" class="btn btn-width" [ngClass]="loginform.valid? 'raised': ''" [disabled]="!loginform.valid">Login</button>
+                    <!-- <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
                         <label class="custom-control-label" for="customCheck">Remember me!</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary" [ngClass]="loginform.valid? 'raised': ''" [disabled]="!loginform.valid">Login</button>
+                    </div> -->
                 </form>
 
             </div>

@@ -6,6 +6,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    background-image: url("/assets/img/background.jpg");
 }
 
 * {
@@ -41,7 +42,7 @@ body {
     left: 0;
     height: 100vh;
     width: 100vw;
-    background: #009475;
+    background: #404040;
 }
 
 #loginRoot {
@@ -60,9 +61,10 @@ body {
     width: 100%;
     border: none;
     padding: 5px;
-    border-radius: 5px;
+    // border-radius: 5px;
+    border-radius: 25px;
     height: 46px;
-    background: rgba(255, 255, 255, 0.4);
+    background:rgba(255, 255, 255, 0.15);
     color: #fff;
     outline: none;
     padding-left: 12px;
@@ -77,6 +79,13 @@ body {
             color: #1e1e1e;
         }
     }
+}
+.btn-width{
+    background: #fc636b;
+    width: 100% !important;
+    border-radius: 25px;
+    font-weight: bolder;
+    color: white;
 }
 #formRoot {
     width: 80%;

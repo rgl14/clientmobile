@@ -31,6 +31,7 @@ export class ScoreboardService {
         var hubConState = myHubConnection.state;
         this.scorehubconn = myHubConnection;
         console.log("Match Score Connection Established= " + hubConState);
+        this.MatchScoreProxy.invoke("SubscribeMatch", matchBfId);
       })
       .fail(myHubConnection => {
         var hubConState = myHubConnection.state;

@@ -92,6 +92,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     if (this.sprtId === '4') {
       let MatchScoreHubAddress = "http://178.238.236.221:13681";
       this.score.MatchScoreSignalr(MatchScoreHubAddress, this.mtBfId);
+      console.log(this.mtBfId,this.sprtId)
     } else if (this.sprtId === '2') {
       let MatchScoreHubAddress = "http://178.238.236.221:13683";
       this.score.MatchScoreSignalr(MatchScoreHubAddress, this.mtBfId);
@@ -381,7 +382,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       // console.log(item.id)
     })
     this.scoreData=this.score.scoreSource.subscribe(data=>{
-      console.log(data);
+      // console.log(data);
       if (data != null) {
         this.fullScore = data[0];
         console.log(this.fullScore);
