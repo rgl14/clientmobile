@@ -10,7 +10,7 @@ export class CustomcellrendrerComponent implements OnInit {
   constructor() { }
 
   agInit(params:any){
-    console.log(params)
+    // console.log(params)
     this.data=params.data;
   }
 

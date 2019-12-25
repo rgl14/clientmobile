@@ -28,7 +28,7 @@
               <div class="distinct ion-list market-list list list-md" *ngIf="inplayData.length!=0">
                 <!-- <ion-item class="market-list-item item item-block item-md" data-ng-repeat="inplay in inplayData track by $index"> -->
                 <div *ngFor="let inplay of inplayData | sortByDate:'matchDate';trackBy:identify">
-                  <div  class="market-list-item item ion-item item-block item-md" *ngIf="inplay.SportbfId==='4'">
+                  <div  class="market-list-item item ion-item item-block item-md" *ngIf="inplay.SportbfId===4">
                     <div class="item-inner">
                       <div class="input-wrapper">
                         <div class="label ion-label label-md">
@@ -43,14 +43,14 @@
                               </div>
                             </div>
                           </a>
-                          <div class="list-body">
+                          <!-- <div class="list-body">
                             <div>
                               <div class="market list-item" id="selection-1.143169575-2954265">
                                 <div class="runner-details">
                                   <div class="title"> <span>{{inplay.runner1Name}}</span>
                                   </div>
                                   <div class="pnl">
-                                    <!-- <span></span> --> <span id="matchodd0_"></span>
+                                    <span id="matchodd0_"></span>
                                   </div>
                                 </div>
                                 <div class="odds-container">
@@ -240,7 +240,7 @@
                                     <div class="back" id="inplay_3_back3">
                                       <div class="price">{{inplay.runner3Back}}</div>
                                       <div class="market-volume">{{inplay.runner3BackSize}}</div>
-                                      <!-- <div data-ng-if="inplay.runner3BackSize>=500000">500,000+</div> --></div>
+                                      <div data-ng-if="inplay.runner3BackSize>=500000">500,000+</div></div>
                                   </div>
                                   <div type="lay" class="not-selected bet-button" selected-odds>
                                     <div class="lay" id="inplay_4_lay3">
@@ -350,7 +350,7 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
@@ -358,7 +358,7 @@
                   </div>
                 </div>
                 <div *ngFor="let inplay of inplayData | sortByDate:'matchDate';trackBy:identify">
-                    <div *ngIf="inplay.SportbfId==='1'"  class="market-list-item item ion-item item-block item-md">
+                    <div *ngIf="inplay.SportbfId===1"  class="market-list-item item ion-item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
@@ -378,7 +378,7 @@
                     </div>
                 </div>
                 <div *ngFor="let inplay of inplayData | sortByDate:'matchDate';trackBy:identify">
-                    <div *ngIf="inplay.SportbfId==='2'" class="market-list-item item ion-item item-block item-md">
+                    <div *ngIf="inplay.SportbfId===2" class="market-list-item item ion-item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
@@ -430,7 +430,7 @@
               </a>
               <div class="distinct ion-list market-list list list-md" *ngIf="upcomingEvents.length!=0">
                 <div *ngFor="let upcoming of upcomingEvents | sortByDate:'matchDate';trackBy:identify">
-                    <div *ngIf="upcoming.SportbfId==='4'" class="market-list-item ion-item item item-block item-md">
+                    <div *ngIf="upcoming.SportbfId===4" class="market-list-item ion-item item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
@@ -452,7 +452,7 @@
                     </div>
                 </div>
                 <div *ngFor="let upcoming of upcomingEvents | sortByDate:'matchDate';trackBy:identify">
-                    <div *ngIf="upcoming.SportbfId==='1'" class="market-list-item ion-item item item-block item-md">
+                    <div *ngIf="upcoming.SportbfId===1" class="market-list-item ion-item item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
@@ -474,7 +474,7 @@
                     </div>
                 </div>
                 <div  *ngFor="let upcoming of upcomingEvents | sortByDate:'matchDate';trackBy:identify">
-                    <div *ngIf="upcoming.SportbfId==='2'" class="market-list-item ion-item item item-block item-md">
+                    <div *ngIf="upcoming.SportbfId===2" class="market-list-item ion-item item item-block item-md">
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
@@ -521,8 +521,9 @@
                         <p class="noMatchFoundtitle">Loading...</p>
         
                     </div> -->
-              <a > <span class="open-bets-link">Open Bets (0)</span>
-              </a>
+              <!-- <a > <span class="open-bets-link">Open Bets (0)</span>
+              </a> -->
+              <div *ngFor="let pnldata of pnlData ">
               <div class="distinct ion-list market-list list list-md">
                 <div class="market-list-item ion-item item item-block item-md">
                   <div class="item-inner">
@@ -530,55 +531,16 @@
                       <div class="label ion-label label-md">
                         <a class="">
                           <div class="popular-event">
-                            <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i>
-                              <span class="label ">Mager v Musetti</span>
-                              <p class="date-info"> <span class="">12-11-2019 23:00:00</span>
+                            <div class="event-details"> <i>
+                              <img *ngIf="pnldata.market.split(' > ')[0]=='Tennis'" height="20px" width="20px" src="assets/img/tennis_ball.ico">
+                              <img *ngIf="pnldata.market.split(' > ')[0]=='Soccer'" height="20px" width="20px" src="assets/img/soccer_ball.ico">
+                              <img *ngIf="pnldata.market.split(' > ')[0]=='Cricket'" height="20px" width="20px" src="assets/img/cricket.png"></i>
+                              <span class="label ">{{pnldata.market.split(' > ')[1]}}</span>
+                              <p class="date-info"> <span class="">{{pnldata.settleDate}}</span>
                               </p>
                             </div>
-                            <div class="in-play-icon">
-                              <!-- <i class="fa fa-play-circle"></i> -->
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="button-effect"></div>
-                </div>
-                <div class="market-list-item ion-item item item-block item-md">
-                  <div class="item-inner">
-                    <div class="input-wrapper">
-                      <div class="label ion-label label-md">
-                        <a class="">
-                          <div class="popular-event">
-                            <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i>
-                              <span class="label ">Mager v Musetti</span>
-                              <p class="date-info"> <span class="">12-11-2019 23:00:00</span>
-                              </p>
-                            </div>
-                            <div class="in-play-icon">
-                              <!-- <i class="fa fa-play-circle"></i> -->
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="button-effect"></div>
-                </div>
-                <div class="market-list-item ion-item item item-block item-md">
-                  <div class="item-inner">
-                    <div class="input-wrapper">
-                      <div class="label ion-label label-md">
-                        <a class="">
-                          <div class="popular-event">
-                            <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i>
-                              <span class="label ">Mager v Musetti</span>
-                              <p class="date-info"> <span class="">12-11-2019 23:00:00</span>
-                              </p>
-                            </div>
-                            <div class="in-play-icon">
-                              <!-- <i class="fa fa-play-circle"></i> -->
+                            <div style="font-weight:bolder;" [ngClass]="(pnldata.pnl >= 0)?'text-success':'text-danger'">
+                              {{pnldata.pnl|number:'1.2-2'}}
                             </div>
                           </div>
                         </a>
@@ -588,6 +550,7 @@
                   <div class="button-effect"></div>
                 </div>
               </div>
+            </div>
             </section>
           </div>
         </div>

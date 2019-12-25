@@ -33,6 +33,7 @@ import { ScoreboardService } from './scoreboard.service';
 import { SearchComponent } from './search/search.component';
 import { SwipeTabDirective } from './directive/swipe-tab.directive';
 import * as Hammer from "hammerjs";
+import { PnlbetsComponent } from './pnlbets/pnlbets.component';
 
 export class HammerConf extends HammerGestureConfig {
   overrides = <any>{
@@ -61,7 +62,8 @@ export class HammerConf extends HammerGestureConfig {
     ReplacePipe,
     RemoveSpacePipe,
     SearchComponent,
-    SwipeTabDirective
+    SwipeTabDirective,
+    PnlbetsComponent
   ],
   imports: [
     BrowserModule,

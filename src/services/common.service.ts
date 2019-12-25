@@ -13,7 +13,7 @@ export class CommonService {
   }
 
   constructor(private httpclient:HttpClient,private cookie:CookieService) { }
-  public apiurl:string="http://www.thegodexch.com/Client/GodExchClient.svc"
+  public apiurl:string="http://173.249.43.228/GoLuckyClient/Client.svc"
   // public apilink:string="http://139.180.146.253/DtsGlobalMaintenance/api/postFile"
   public authtoken=this.cookie.get('charlie');
 
@@ -46,7 +46,7 @@ export class CommonService {
   }
   
   funds() : Observable<any>{
-    return this.httpclient.get(this.apiurl+"/Data/Fund")
+    return this.httpclient.get(this.apiurl+"/Data/FundExpo")
   }
 
   getsetting() : Observable<any>{
@@ -87,18 +87,18 @@ export class CommonService {
   }
 
   getBMexposurebook(marketId,bookId) : Observable <any>{
-    return this.httpclient.get(this.apiurl+'Bets/BMExposureBook?mktid='+marketId+'&bid='+bookId)
+    return this.httpclient.get(this.apiurl+'/Bets/BMExposureBook?mktid='+marketId+'&bid='+bookId)
   }
 
   PlaceMOBet(data): Observable<any> {
-    return this.httpclient.post(`${this.apiurl}/Bets/PlaceMOBet3`, data);
+    return this.httpclient.post(`${this.apiurl}/Bets/PlaceMOBet`, data);
   }
 
   PlaceFancyBet(data): Observable<any> {
-    return this.httpclient.post(`${this.apiurl}/Bets/PlaceFancyBet2`, data);
+    return this.httpclient.post(`${this.apiurl}/Bets/PlaceFancyBet`, data);
   }
   PlaceBMBet(data): Observable<any> {
-    return this.httpclient.post(`${this.apiurl}/Bets/PlaceBMBet2`, data);
+    return this.httpclient.post(`${this.apiurl}/Bets/PlaceBookBet`, data);
   }
 
   termsnconditions() : Observable<any> {

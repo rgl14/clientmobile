@@ -3,6 +3,7 @@ import { GridOptions } from 'ag-grid-community';
 import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
 import { CustomcellrendrerComponent } from '../customcellrendrer/customcellrendrer.component';
 import { CommonService } from 'src/services/common.service';
+import { FnParam } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-profitloss',
@@ -36,8 +37,13 @@ export class ProfitlossComponent implements OnInit {
       {headerName: 'Market', field: 'market', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'},cellRendererFramework:CustomcellrendrerComponent},
       {headerName: 'Start Date', field: 'startDate', sortable: true, width: 150},
       {headerName: 'Settle Date', field: 'settleDate', sortable: true, width: 150},
-      {headerName: 'Profit/loss', field: 'pnl', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+      {headerName: 'Profit/loss', field: 'pnl', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
     ];
+
+    function balanceFormatter(params){
+      var twodecimalvalue=params.value.toFixed(2);
+      return twodecimalvalue;
+    }
 
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
@@ -66,7 +72,7 @@ export class ProfitlossComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridApi.showLoadingOverlay();
-    var days = 1;
+        var days = 1;
         var date = new Date();
         var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
         this.date = last

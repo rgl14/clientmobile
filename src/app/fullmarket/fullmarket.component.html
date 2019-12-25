@@ -88,13 +88,13 @@
                                   </div>
                               </div>
                           </div>
-                          <div class="header_center"><span>BALL 73.6 - Lasith Embuldeniya to Abid Ali - 0 Run</span></div>
+                          <div class="header_center"><span>BALL {{fullScore.stateOfBall.overNumber}}.{{fullScore.stateOfBall.overBallNumber}} - {{fullScore.stateOfBall.bowlerName}} to {{fullScore.stateOfBall.batsmanName}} - {{fullScore.stateOfBall.batsmanRuns}} Run</span></div>
                           <div class="header_right">
                               <div class="header_team_block">
                                   <div class="team_block_left">
                                        <h3 *ngIf="fullScore==undefined"><span class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
                                        <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.away.name}}</span></h3>
-                                       <span class="score" *ngIf="fullScore.currentSet>=1">{{fullScore.score.away.inning1.runs}}{{fullScore.score.away.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.away.inning1.wickets!='ALL_OUT'">({{fullScore.score.away.inning1.overs}})</span></span>
+                                       <span class="score" *ngIf="fullScore.currentSet>=1 && fullScore.score.away.inning1!=null">{{fullScore.score.away.inning1.runs}}{{fullScore.score.away.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.away.inning1.wickets!='ALL_OUT'">({{fullScore.score.away.inning1.overs}})</span></span>
                                        <span class="score" *ngIf="fullScore.currentSet>=2"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null">{{fullScore.score.away.inning2.runs}}/{{fullScore.score.away.inning2.wickets}} <span class="over" *ngIf="fullScore.score.away.inning2.wickets!='ALL_OUT' && fullScore.score.away.inning2!=null">({{fullScore.score.away.inning2.overs}})</span></span>
                                   </div>
                                   <div class="team_block_right">
@@ -108,20 +108,21 @@
                   <div class="live_footer_content">
                       <div class="live_footer_top">
                           <div class="live_footer_left">
-                              <ul class="recent_over_list">
-                                  <li class="no-class"> <span>1</span> </li>
-                                  <li class="no-class"> <span>0</span> </li>
-                                  <li class="no-class"> <span>1</span> </li>
-                                  <li class="no-class"> <span>1</span> </li>
-                                  <li class="wicket"> <span>W</span> </li>
-                                  <li class="no-class"> <span>0</span> </li>
-                              </ul>
+                           <h4>Overs: {{fullScore.stateOfBall.overNumber}}.{{fullScore.stateOfBall.overBallNumber}} <span>(Ovs)</span></h4> 
                           </div>
                           <div class="live_footer_right">
-                              <ul class="footer_status_list">
+                              <!-- <ul class="footer_status_list">
                                   <li><span class="footer_status_left">Balls Remaining:</span><span class="footer_status_right">0</span></li>
                                   <li><span class="footer_status_left">Runs required:</span><span class="footer_status_right">23</span></li>
-                              </ul>
+                              </ul> -->
+                              <!-- <ul class="recent_over_list">
+                                 <li class="no-class"> <span>1</span> </li>
+                                 <li class="no-class"> <span>0</span> </li>
+                                 <li class="no-class"> <span>1</span> </li>
+                                 <li class="no-class"> <span>1</span> </li>
+                                 <li class="wicket"> <span>W</span> </li>
+                                 <li class="no-class"> <span>0</span> </li>
+                             </ul> -->
                           </div>
                       </div>
                       <!-- <div class="live_footer_bot">
@@ -402,7 +403,7 @@
       
                      <span class="{{confirmPlaceMarketData.backlay | lowercase}}">{{confirmPlaceMarketData.backlay}}</span>
       
-                     <h4 id="runnerName" style="color: black;">{{confirmPlaceMarketData.runnerName}}</h4>
+                     <h4 id="runnerName" style="color: black;font-size:15px;">{{confirmPlaceMarketData.runnerName}}</h4>
       
                   </dt>
       
@@ -453,15 +454,15 @@
          <a class="close">Close</a>
          <dl>
             <dt>Min / Max</dt>
-            <dd id="minMax"> {{fancy.minStake}} / {{fancy.maxStake}}</dd>
+            <dd id="minMax"> {{bokRate.minStake}} / {{bokRate.maxStake}}</dd>
          </dl>
-         <a id="close-fancy_info__{{fancy.id}}" (click)="openCloseFancyInfo()" class="close">Close</a>
+         <a id="close-fancy_info__{{bokRate.id}}" (click)="openCloseFancyInfo()" class="close">Close</a>
       </div>
       <a  class="bet-limit" style="display: none;"></a>
       <dl  class="bets-selections-head">
          <dt style="font-size: 3.93333vw;">
             <p>
-               <strong>{{bokRate.name}} </strong>
+               <strong>Book Maker </strong>
             </p>
          </dt>
          <dd class="mode-land"></dd>
@@ -473,7 +474,7 @@
          <dd class="mode-land"></dd>
          <dd class="mode-land"></dd>
       </dl>
-      <ng-container *ngFor="let runner of bokRate.runnerData;trackBy: trackByFn">
+      <ng-container *ngFor="let runner of bokRate.runnerData;trackBy: identify">
       <dl id="selection_{{runner.id}}_{{runner.name}}"  class="bets-selections">
          <dt>
             <h4 >{{runner.name}}</h4>
@@ -485,7 +486,7 @@
                <li id="withBetBMExp_{{bokRate.id}}_{{runner.name | | removeSpace}}"></li> -->
             </ul>
          </dt>
-         <dd  class="suspend" *ngIf="runner.ballStatus!=''">
+         <dd  class="suspend" [ngStyle]="{'display':(runner.ballStatus!='')?'flex':'none'}" >
             <p>{{runner.ballStatus}}
             </p>
          </dd>
@@ -502,17 +503,17 @@
          <dd  class="mode-land">
          </dd>
          <dd >
-            <a class="back-1" (click)="runner.backSize=='-' || runner.backSize==''?'':openBookBetSlip($event,'Back',runner.backPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{runner.backPrice | number:'1.2-2'}}<span *ngIf='(runner.backPrice == null || runner.backPrice == "")'><img src="assets\img\unavailable.svg" /></span><span>{{runner.backSize}}</span></a>
+            <a class="back-1" (click)="runner.backSize=='-' || runner.backSize==''?'':openBookBetSlip($event,'Back',runner.backPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.backPrice=='-')? '0':runner.backPrice | number:'1.2-2'}}<span *ngIf='(runner.backPrice == null || runner.backPrice == "")'><img src="assets\img\unavailable.svg" /></span><span>{{runner.backSize}}</span></a>
          </dd>
          <dd >
-            <a class="lay-1" (click)="runner.layPrice=='-' || runner.layPrice==''?'':openBookBetSlip($event,'Lay',runner.layPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{runner.layPrice | number:'1.2-2'}}<span *ngIf='(runner.layPrice == null || runner.layPrice == "")'><img src="assets\img\unavailable.svg" /></span><span> {{runner.laySize}}</span></a>
+            <a class="lay-1" (click)="runner.layPrice=='-' || runner.layPrice==''?'':openBookBetSlip($event,'Lay',runner.layPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.layPrice=='-')?'0':runner.layPrice | number:'1.2-2'}}<span *ngIf='(runner.layPrice == null || runner.layPrice == "")'><img src="assets\img\unavailable.svg" /></span><span> {{runner.laySize}}</span></a>
          </dd>
          <dd  class="mode-land">
          </dd>
          <dd  class="mode-land">
          </dd>
       </dl>
-      <div id="betBoard_{{runner.id}}_{{runner.name}}" *ngIf="runner.id==placeBookData.runnerId && runner.ballStatus==''" class="bet_slip-wrap {{placeMarketData.backlay | lowercase}}" style="display: block;">
+      <div id="betBoard_{{runner.id}}_{{runner.name}}" *ngIf="runner.id==placeBookData.runnerId && runner.ballStatus==''" class="bet_slip-wrap" style="display: block;">
          <div  class="message-wrap" style="display: none;">
             <div class="message">
                <h4 >The Minimun stake is $25.00</h4>
@@ -525,7 +526,7 @@
          <ul class="btn-list">
             <li>
                <div  class="input-num disable">
-                  <span class="typed">{{placeBookData.odds}}</span>
+                  <span class="typed {{placeMarketData.backlay | lowercase}}">{{placeBookData.odds}}</span>
                </div>
             </li>
             <li>
@@ -537,12 +538,12 @@
             </li>
          </ul>
          <div class="coin-list" fxLayout="row" fxLayoutAlign="space-between center">
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake1,placeMarketData)"> {{settingsData.betStake.stake1}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake2,placeMarketData)"> {{settingsData.betStake.stake2}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake3,placeMarketData)"> {{settingsData.betStake.stake3}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake4,placeMarketData)"> {{settingsData.betStake.stake4}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake5,placeMarketData)"> {{settingsData.betStake.stake5}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake6,placeMarketData)"> {{settingsData.betStake.stake6}}</a>
+            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake1,placeBookData)"> {{settingsData.betStake.stake1}}</a>
+            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake2,placeBookData)"> {{settingsData.betStake.stake2}}</a>
+            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake3,placeBookData)"> {{settingsData.betStake.stake3}}</a>
+            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake4,placeBookData)"> {{settingsData.betStake.stake4}}</a>
+            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake5,placeBookData)"> {{settingsData.betStake.stake5}}</a>
+            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake6,placeBookData)"> {{settingsData.betStake.stake6}}</a>
          </div>
          <div  class="keyboard-wrap">
             <ul  class="btn-tel">
@@ -562,15 +563,15 @@
             <a (click)="buttonDelete(placeBookData)" class="btn-delete"></a>
          </div>
          <div class="btn-list" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
-            <button fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()">Cancel
-            </button>
-            <button fxFlex="1 1 auto" mat-flat-button color="primary" (click)="placeBookData.stake==''?'':placeBMBet(placeBookData)" [ngClass]="placeBookData.stake==''?'disable':''">Place Bet
-            </button>
+            <a fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()">Cancel
+            </a>
+            <a fxFlex="1 1 auto" mat-flat-button color="primary" class="{{placeMarketData.backlay | lowercase}} btn" (click)="placeBookData.stake==''?'':placeBMBet(placeBookData)" [ngClass]="placeBookData.stake==''?'disable':''">Place Bet
+            </a>
          </div>
       </div>
    </ng-container>
    </div>
-   <div id="fancyBetTable" class="">
+   <div id="fancyBetTable" class="" *ngIf="homeFancyData?.length!=0">
       <div id="fancyBetWrap" class="bets-wrap multi fancy" *ngIf="sprtId==='4' && homeHasFancy===1">
          <dl id="marketHead" class="bets-selections-head">
             <dt id="fancyBetNoBet" style="display: none;"></dt>
@@ -589,7 +590,7 @@
                      <li id="afterFancyExpo_{{fancy.id}}" style="display: -webkit-inline-box;"><span></span></li>
                      <span [ngClass]="{'to-lose': fancy.oldPnl < 0, 'to-win': fancy.oldPnl >= 0}" class="">{{fancy.oldPnl}}</span>
                   </ul>
-                  <button id="fancyBetBookBtn_{{fancy.id}}"  mat-flat-button   (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book</button>
+                  <button id="fancyBetBookBtn_{{fancy.id}}"  mat-flat-button color="warn"   (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book</button>
                </dt>
                <dd>
                   <a class="lay-1 "
@@ -614,13 +615,13 @@
                   <div id="fancy_popup_{{fancy.id}}" class="fancy_info-popup">
                      <dl>
                         <dt>Min / Max</dt>
-                        <dd id="minMax" class=""> {{fancy.minStake}} /  {{fancy.maxStake}}</dd>
+                        <dd id="minMax" class="{{placeMarketData.backlay | lowercase}}"> {{fancy.minStake}} /  {{fancy.maxStake}}</dd>
                      </dl>
                      <a id="close-fancy_info__{{fancy.id}}" (click)="openCloseFancyInfo()" class="close">Close</a>
                   </div>
                </dd>
             </dl>
-            <div id="betBoard_{{fancy.id}}" *ngIf="fancy.id==placeFancyData.fancyId && fancy.ballStatus==''" class="bet_slip-wrap {{placeFancyData.yesno=='Yes'?'back':'lay'}}">
+            <div id="betBoard_{{fancy.id}}" *ngIf="fancy.id==placeFancyData.fancyId && fancy.ballStatus==''" class="bet_slip-wrap ">
                <div  class="message-wrap" style="display: none;">
                   <div class="message">
                      <h4 >The Minimun stake is $25.00</h4>
@@ -634,7 +635,7 @@
                   <li>
                      <div  class="input-num disable">
                         <!-- <a class="icon-minus"></a> -->
-                        <span class="typed">{{placeFancyData.score}} / {{placeFancyData.rate}}</span>
+                        <span class="typed {{placeFancyData.yesno | lowercase}}">{{placeFancyData.score}} / {{placeFancyData.rate}}</span>
                         <!-- <a class="icon-plus"></a> -->
                      </div>
                   </li>
@@ -672,10 +673,10 @@
                   <a (click)="buttonDelete(placeFancyData)" class="btn-delete"></a>
                </div>
                <div class="btn-list" class="m-1" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
-                   <button fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()" class="btn">Cancel
-                   </button>
-                   <button fxFlex="1 1 auto" mat-flat-button color="primary" class="{{placeFancyData.yesno | lowercase}}" (click)="placeFancyData.stake==''?'':confirmFancyPop(placeFancyData)" [ngClass]="placeFancyData.stake==''?'disable':''">Place Bet
-                   </button>
+                   <a fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()" class="btn">Cancel
+                   </a>
+                   <a fxFlex="1 1 auto" mat-flat-button color="primary" class="{{placeFancyData.yesno | lowercase}} btn-send" (click)="placeFancyData.stake==''?'':confirmFancyPop(placeFancyData)" [ngClass]="placeFancyData.stake==''?'disable':''">Place Bet
+                   </a>
                 </div>
             </div>
          </div>
@@ -742,8 +743,8 @@
    
           <h3 class="">Book Position</h3>
           
-          <a class="close" (click)="closeOverlayInfo()"><i class="fa fa-times"></i></a>
-   
+          <!-- <a class="close btn-delete" ></a> -->
+          <a class="btn" mat-flat-button color="warn" (click)="closeOverlayInfo()" style="width: 45px;"><i class="fa fa-times"></i></a>
         </div>
    
         <div  class="side-content">

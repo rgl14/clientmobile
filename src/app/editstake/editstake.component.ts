@@ -26,6 +26,14 @@ export class EditstakeComponent implements OnInit {
   ngOnInit() {
     this.getbetstakesetting()
   }
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
+  }
   getbetstakesetting(){
     this.commonservice.getsetting().subscribe(resp=>{
       this.stake=resp.betStake;
@@ -40,9 +48,13 @@ export class EditstakeComponent implements OnInit {
       this.defaultstake=resp.defaultStake
       this.isOddsHighlights=resp.isOddsHighlights
       if(this.isOddsHighlights==0){
-        this.isChecked=false
+        this.isChecked=false;
+        var btntoggle="0"
+        localStorage.setItem("Highlightodds",btntoggle)
       }else{
+        var btntoggle="1"
         this.isChecked=true
+        localStorage.setItem("Highlightodds",btntoggle)
       }
     })
   }
@@ -83,6 +95,7 @@ export class EditstakeComponent implements OnInit {
     let settingdata={"btntoggle":btntoggle,"defaultstake":this.defaultstake}
     this.commonservice.savesetting(settingdata).subscribe(resp=>{
       if(resp.status){
+        localStorage.setItem("Highlightodds",btntoggle)
         this.notification.success(resp.result);
       }else{
         this.notification.error(resp.result);

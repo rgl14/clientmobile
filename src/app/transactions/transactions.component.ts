@@ -38,9 +38,14 @@ export class TransactionsComponent implements OnInit {
       {headerName: 'Type', field: 'type', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
       {headerName: 'Credit', field: 'cr', sortable: true, width: 100,cellClass: function(params) { return  'profit'}},
       {headerName: 'Debit', field: 'dr', sortable: true, width: 100,cellClass: function(params) {  return  'loss'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+      {headerName: 'Balance', field: 'balance', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
     ]; 
 
+    function balanceFormatter(params){
+      var stringbalance=parseInt(params.value);
+      var twodecimalvalue=stringbalance.toFixed(2);
+      return twodecimalvalue;
+    }
 
     this.gridOptions.paginationPageSize=10;
     this.defaultColDef = {

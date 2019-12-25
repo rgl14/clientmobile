@@ -39,12 +39,12 @@ export class AccountstatementComponent implements OnInit {
       {headerName: 'Type', field: 'type', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
       {headerName: 'Credit', field: 'cr', sortable: true, width: 100,cellClass: function(params) { return  'profit'}},
       {headerName: 'Debit', field: 'dr', sortable: true, width: 100,cellClass: function(params) {  return  'loss'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, width: 100,valueFormatter: currencyFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+      {headerName: 'Balance', field: 'balance', sortable: true, width: 100,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
     ]; 
-    function currencyFormatter(params){
-      // var value=parseInt(params.value.balance).toFixed(2);
-      // console.log(value)
-      return params.value.balance
+    function balanceFormatter(params){
+      var stringbalance=parseInt(params.value);
+      var twodecimalvalue=stringbalance.toFixed(2);
+      return twodecimalvalue;
     }
 
     this.gridOptions.paginationPageSize=10;

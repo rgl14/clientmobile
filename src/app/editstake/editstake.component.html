@@ -6,7 +6,7 @@
         <div id="coinList" class="side-content">
             <h3>Stake</h3>
             <dl class="setting-block">
-            <dt>Default stake<input type="number" id="userCoin" [(ngModel)]="defaultstake" data-role="none" class="ng-pristine ng-untouched ng-valid ng-empty"></dt>
+            <dt>Default stake<input type="number" id="userCoin" [(ngModel)]="defaultstake" (keypress)="numberOnly($event)" data-role="none" class="ng-pristine ng-untouched ng-valid ng-empty"></dt>
             </dl>
             <dl id="stakeSet" class="setting-block stake-setting" [ngStyle]="{'display':(isedit)?'flex':'none'}" >
             <dt>Quick Stakes</dt>
@@ -23,14 +23,14 @@
             </dl>
             <dl id="editCustomizeStakeList" class="setting-block stake-setting"  [ngStyle]="{'display':(!isedit)?'flex':'none'}">
             <dt>Quick Stakes</dt>
-            <dd><input id="stakeEdit_1" [(ngModel)]="stake1" type="number"></dd>
-            <dd><input id="stakeEdit_2" [(ngModel)]="stake2" type="number"></dd>
-            <dd><input id="stakeEdit_3" [(ngModel)]="stake3" type="number"></dd>
-            <dd><input id="stakeEdit_4" [(ngModel)]="stake4" type="number"></dd>
-            <dd><input id="stakeEdit_5" [(ngModel)]="stake5" type="number"></dd>
-            <dd><input id="stakeEdit_6" [(ngModel)]="stake6" type="number"></dd>
-            <dd><input id="stakeEdit_7" [(ngModel)]="stake7" type="number"></dd>
-            <dd><input id="stakeEdit_8" [(ngModel)]="stake8" type="number"></dd>
+            <dd><input id="stakeEdit_1" [(ngModel)]="stake1" (keypress)="numberOnly($event)" type="number"></dd>
+            <dd><input id="stakeEdit_2" [(ngModel)]="stake2" (keypress)="numberOnly($event)" type="number"></dd>
+            <dd><input id="stakeEdit_3" [(ngModel)]="stake3" (keypress)="numberOnly($event)" type="number"></dd>
+            <dd><input id="stakeEdit_4" [(ngModel)]="stake4" (keypress)="numberOnly($event)" type="number"></dd>
+            <dd><input id="stakeEdit_5" [(ngModel)]="stake5" (keypress)="numberOnly($event)" type="number"></dd>
+            <dd><input id="stakeEdit_6" [(ngModel)]="stake6" (keypress)="numberOnly($event)" type="number"></dd>
+            <dd><input id="stakeEdit_7" [(ngModel)]="stake7" (keypress)="numberOnly($event)" type="number"></dd>
+            <dd><input id="stakeEdit_8" [(ngModel)]="stake8" (keypress)="numberOnly($event)" type="number"></dd>
             <dd class="col-stake_edit"><a id="ok" class="btn-send" (click)="saveStake()">Save Stakes</a></dd>
             <!-- <button mat-raised-button class="submit" (click)="saveStake()" type="submit">Save Stake</button> -->
             </dl>
