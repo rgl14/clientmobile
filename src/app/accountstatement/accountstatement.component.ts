@@ -85,8 +85,12 @@ export class AccountstatementComponent implements OnInit {
           "fromdate":this.fromdate,
           "todate":this.todate
         }
-    this.commonservice.accountstatement(accountstatdates).subscribe(resp =>{
+    // this.commonservice.accountstatement(accountstatdates).subscribe(resp =>{
+    //   this.rowData=resp.data;
+    // })
+    this.commonservice.GetCoinHistory().subscribe(resp =>{
       this.rowData=resp.data;
+      console.log(resp.data)
     })
   }
 

@@ -121,6 +121,18 @@ export class CommonService {
     return this.httpclient.get(this.apiurl+"/Reports/GetCurrentBets")
   }
 
+  GetCoinHistory() : Observable <any>{
+    return this.httpclient.get(this.apiurl+"/Reports/GetCoinHistory")
+  }
+
+  GetBetHistory(accountstatdates,type) : Observable <any>{
+    return this.httpclient.get(this.apiurl+"/Reports/GetBetHistory?from="+accountstatdates.fromdate+"&to="+accountstatdates.fromdate+"&f="+type)
+  }
+
+  GetLedger() : Observable <any>{
+    return this.httpclient.get(this.apiurl+"/Reports/GetLedger")
+  }
+
   marketprofitloss(dates) : Observable <any>{
     return this.httpclient.get(this.apiurl+"/Reports/GetProfitLoss?from="+dates.fromdate+"&to="+dates.todate)
   }

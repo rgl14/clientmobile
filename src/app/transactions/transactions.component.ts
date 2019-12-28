@@ -97,9 +97,12 @@ export class TransactionsComponent implements OnInit {
        "fromdate":this.selectfromdate,
        "todate":this.selecttodate
      }
-     this.commonservice.transactionstatement(accountstatdates).subscribe(resp =>{
-       this.rowData=resp.data;
-     })
+    //  this.commonservice.transactionstatement(accountstatdates).subscribe(resp =>{
+    //    this.rowData=resp.data;
+    //  })
+     this.commonservice.GetCoinHistory().subscribe(resp =>{
+      this.rowData=resp.data;
+    })
    }
    convertfrom(str) {
      var date = new Date(str);
