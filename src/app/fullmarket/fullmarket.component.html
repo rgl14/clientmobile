@@ -590,7 +590,7 @@
                      <li id="afterFancyExpo_{{fancy.id}}" style="display: -webkit-inline-box;"><span></span></li>
                      <span [ngClass]="{'to-lose': fancy.oldPnl < 0, 'to-win': fancy.oldPnl >= 0}" class="">{{fancy.oldPnl}}</span>
                   </ul>
-                  <button id="fancyBetBookBtn_{{fancy.id}}"  mat-flat-button color="warn"   (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;">Book</button>
+                  <button id="fancyBetBookBtn_{{fancy.id}}"  mat-flat-button color="warn"   (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;background-color: #404040;">Book</button>
                </dt>
                <dd>
                   <a class="lay-1 "

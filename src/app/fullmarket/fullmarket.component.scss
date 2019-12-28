@@ -389,8 +389,10 @@ dd {
 }
 .suspend-full, .bets-selections .suspend {
     background-color: rgba(255, 255, 255, 0.73);
-    border: 1px solid #D0021B;
-    color: #D0021B;
+    // border: 1px solid #D0021B;
+    // color: #D0021B;
+    border: 1px solid #404040;
+    color: #404040;
     justify-content: center;
     align-items: center;
 }
@@ -398,7 +400,8 @@ dd {
     width: 100%;
     height: 100%;
     font-weight: 700;
-    color: #2789CE;
+    // color: #2789CE;
+    color:#404040;
     padding: 2.6vw;
     flex-direction: column;
     justify-content: center;
