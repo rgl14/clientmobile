@@ -61,6 +61,11 @@ export class InplayComponent implements OnInit,OnDestroy {
     })
   }
   
+  appcharge(mtid){
+    this.commonservice.AppCharges(mtid).subscribe(resp=>{
+
+    })
+  }
   onSwipe($event) {}
   tabChange($event) {}
   identify(index,item){

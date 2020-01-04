@@ -32,7 +32,7 @@
                     <div class="item-inner">
                       <div class="input-wrapper">
                         <div class="label ion-label label-md">
-                          <a [routerLink]="['/fullmarket',inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId]">
+                          <a (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId)" [routerLink]="['/fullmarket',inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId]">
                             <div class="popular-event">
                               <div class="event-details">
                                 <i class="apl-icon-sport-cricket"><img height="20px" width="20px" src="assets/img/cricket.png"></i>
@@ -362,7 +362,7 @@
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" [routerLink]="['/fullmarket',inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId]">
+                              <a class="" (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId)" [routerLink]="['/fullmarket',inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId]">
                                 <div class="popular-event">
                                   <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i>
                                     <span class="label ">{{inplay.matchName}}</span>
@@ -382,7 +382,7 @@
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" [routerLink]="['/fullmarket',inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId]">
+                              <a class="" (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId)" [routerLink]="['/fullmarket',inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId]">
                                 <div class="popular-event">
                                   <div class="event-details"> <i><i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i></i> 
                                     <span class="label ">{{inplay.matchName}}</span>
@@ -434,7 +434,7 @@
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" [routerLink]="['/fullmarket',upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId]">
+                              <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId)" [routerLink]="['/fullmarket',upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId]">
                                 <div class="popular-event">
                                   <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/cricket.png"></i>
                                     <span class="label ">{{upcoming.matchName}}</span>
@@ -456,7 +456,7 @@
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" [routerLink]="['/fullmarket',upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId]">
+                              <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId)" [routerLink]="['/fullmarket',upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId]">
                                 <div class="popular-event">
                                   <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i>
                                     <span class="label ">{{upcoming.matchName}}</span>

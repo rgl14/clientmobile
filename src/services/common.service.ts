@@ -100,6 +100,9 @@ export class CommonService {
   PlaceBMBet(data): Observable<any> {
     return this.httpclient.post(`${this.apiurl}/Bets/PlaceBookBet`, data);
   }
+  AppCharges(MATCHID): Observable<any> {
+    return this.httpclient.post(`${this.apiurl}/Data/AppCharges?matchid=${MATCHID}`, {});
+  }
 
   termsnconditions() : Observable<any> {
     return this.httpclient.get(this.apiurl+"/TermsNConditions")
