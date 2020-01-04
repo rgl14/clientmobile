@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit {
   state: any;
   userdesc: any;
   balance: any;
+  exposure: any;
 
   constructor(private sharedata:SharedataService) { }
 
@@ -22,7 +23,8 @@ export class HomeComponent implements OnInit {
     })
     this.sharedata.fundSource.subscribe(resp=>{
       if(resp!=null){
-        this.balance=resp.data.availBal
+        this.balance=resp.data.availBal;
+        this.exposure=resp.data.exposure;
       }
     })
   }

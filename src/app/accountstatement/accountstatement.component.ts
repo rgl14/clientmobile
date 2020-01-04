@@ -33,18 +33,56 @@ export class AccountstatementComponent implements OnInit {
 
     this.gridOptions = <GridOptions>{};
     this.headerHeight = 35;
+    // this.gridOptions.columnDefs = [
+    //   {headerName: 'Date', field: 'date', width: 150,lockPosition:true,suppressNavigable:true},
+    //   {headerName: 'Description', field: 'description', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
+    //   {headerName: 'Type', field: 'type', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
+    //   {headerName: 'Credit', field: 'cr', sortable: true, width: 100,cellClass: function(params) { return  'profit'}},
+    //   {headerName: 'Debit', field: 'dr', sortable: true, width: 100,cellClass: function(params) {  return  'loss'}},
+    //   {headerName: 'Balance', field: 'balance', sortable: true, width: 100,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+    // ]; 
     this.gridOptions.columnDefs = [
-      {headerName: 'Date', field: 'date', width: 150,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Description', field: 'description', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Type', field: 'type', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
-      {headerName: 'Credit', field: 'cr', sortable: true, width: 100,cellClass: function(params) { return  'profit'}},
-      {headerName: 'Debit', field: 'dr', sortable: true, width: 100,cellClass: function(params) {  return  'loss'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, width: 100,valueFormatter: balanceFormatter,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
-    ]; 
+      {
+        headerName: "Date Time",
+        field: "dateTime",
+        width: 200
+      },
+      {
+        headerName: "Collection Name",
+        field: "collectionName",
+        width: 300
+      },
+      
+      {
+        headerName: "Credit",
+        field: "credit",
+        sortable: true,
+        width: 100,
+        valueFormatter: balanceFormatter,
+        cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}
+      },
+      { headerName: "Debit", field: "debit", sortable: true, width: 150,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')} },
+      {
+        headerName: "Balance",
+        field: "balance",
+        sortable: true,
+        width: 100,
+        valueFormatter: balanceFormatter,
+        cellStyle: {'font-weight':'bolder'},
+        cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}
+      },
+      { headerName: "Note", field: "note", sortable: true, width: 300 },
+      
+    ];
     function balanceFormatter(params){
-      var stringbalance=parseInt(params.value);
-      var twodecimalvalue=stringbalance.toFixed(2);
-      return twodecimalvalue;
+      if(params.value==null){
+       return "--";
+      }else{
+        var stringbalance=parseInt(params.value);
+        var twodecimalvalue=stringbalance.toFixed(2);
+        return twodecimalvalue;
+      }
+      
     }
 
     this.gridOptions.paginationPageSize=10;
@@ -88,7 +126,7 @@ export class AccountstatementComponent implements OnInit {
     // this.commonservice.accountstatement(accountstatdates).subscribe(resp =>{
     //   this.rowData=resp.data;
     // })
-    this.commonservice.GetCoinHistory().subscribe(resp =>{
+    this.commonservice.GetLedger().subscribe(resp =>{
       this.rowData=resp.data;
       console.log(resp.data)
     })
@@ -102,7 +140,7 @@ export class AccountstatementComponent implements OnInit {
       "fromdate":this.selectfromdate,
       "todate":this.selecttodate
     }
-    this.commonservice.accountstatement(accountstatdates).subscribe(resp =>{
+    this.commonservice.GetLedger().subscribe(resp =>{
       this.rowData=resp.data;
     })
   }

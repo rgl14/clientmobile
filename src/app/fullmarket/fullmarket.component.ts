@@ -219,9 +219,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
         });
         this.isoddhigh = localStorage.getItem("isOddHigh");
         if (marketIndex > -1) {
-          this.selectionid = runner.marketid
-            .replace(/[^a-z0-9\s]/gi, "")
-            .replace(/[_\s]/g, "_");
+          this.selectionid = runner.marketid.replace(/[^a-z0-9\s]/gi, "").replace(/[_\s]/g, "_");
           let MktRunnerData = this.homeMarkets[marketIndex].runnerData;
           this.noSpaceMarketid = runner.marketid.replace(/[^a-z0-9\s]/gi, "").replace(/[_\s]/g, "_");
           var txt = runner.runner.replace(/[^a-z0-9\s]/gi, "").replace(/[_\s]/g, "_");

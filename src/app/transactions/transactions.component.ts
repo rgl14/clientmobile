@@ -32,13 +32,55 @@ export class TransactionsComponent implements OnInit {
     
     this.gridOptions = <GridOptions>{};
     this.headerHeight = 35;
+    // this.gridOptions.columnDefs = [
+    //   {headerName: 'Date', field: 'date', width: 150,lockPosition:true,suppressNavigable:true},
+    //   {headerName: 'Description', field: 'description', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
+    //   {headerName: 'Type', field: 'type', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
+    //   {headerName: 'Credit', field: 'cr', sortable: true, width: 100,cellClass: function(params) { return  'profit'}},
+    //   {headerName: 'Debit', field: 'dr', sortable: true, width: 100,cellClass: function(params) {  return  'loss'}},
+    //   {headerName: 'Balance', field: 'balance', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+    // ];
     this.gridOptions.columnDefs = [
-      {headerName: 'Date', field: 'date', width: 150,lockPosition:true,suppressNavigable:true},
-      {headerName: 'Description', field: 'description', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
-      {headerName: 'Type', field: 'type', sortable: true, width: 150,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
-      {headerName: 'Credit', field: 'cr', sortable: true, width: 100,cellClass: function(params) { return  'profit'}},
-      {headerName: 'Debit', field: 'dr', sortable: true, width: 100,cellClass: function(params) {  return  'loss'}},
-      {headerName: 'Balance', field: 'balance', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+      {
+        headerName: "Log Id",
+        field: "logId",
+        width: 100
+      },
+      {
+        headerName: "Created At",
+        field: "createdAt",
+        width: 250
+      },
+      {
+        headerName: "Coins",
+        field: "coins",
+        sortable: true,
+        width: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}
+      },
+      {
+        headerName: "Fix Limit",
+        field: "fixLimit",
+        sortable: true,
+        width: 100,valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}
+      },
+      {
+        headerName: "Match Comm",
+        field: "matchComm",
+        sortable: true,
+        width: 150
+      },
+      {
+        headerName: "Session Comm",
+        field: "sessionComm",
+        sortable: true,
+        width: 150
+      },
+      {
+        headerName: "Description",
+        field: "description",
+        sortable: true,
+        width: 300
+      }
     ]; 
 
     function balanceFormatter(params){
@@ -84,7 +126,7 @@ export class TransactionsComponent implements OnInit {
           "fromdate":this.fromdate,
           "todate":this.todate
         }
-    this.commonservice.transactionstatement(accountstatdates).subscribe(resp =>{
+    this.commonservice.GetCoinHistory().subscribe(resp =>{
       this.rowData=resp.data;
     })
   }

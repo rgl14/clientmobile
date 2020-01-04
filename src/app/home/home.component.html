@@ -89,8 +89,8 @@
                       <a>
                           <h3>3<span>\</span></h3>
                           <div>
-                              <h4>Receive 100% Match Deposit Bonus</h4>
-                              <p>up to ₹2500 to enjoy on Sports</p>
+                              <h4>Exposure</h4>
+                              <p [ngClass]="(exposure >= 0)?'text-success':'text-danger'">{{exposure | number : '1.2-2'}}</p>
                           </div>
                       </a>
                   </div>
