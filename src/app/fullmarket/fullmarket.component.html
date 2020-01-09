@@ -83,7 +83,7 @@
                                   <div class="team_block_right">
                                        <h3 *ngIf="fullScore==undefined"><span class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
                                        <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.home.name}}</span></h3>
-                                       <span class="score" *ngIf="fullScore.currentSet>=1">{{fullScore.score.home.inning1.runs}}{{fullScore.score.home.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.home.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.home.inning1.wickets!='ALL_OUT'">({{fullScore.score.home.inning1.overs}})</span></span>
+                                       <span class="score" *ngIf="fullScore.currentSet>=1 && fullScore.score.home.inning1!=null">{{fullScore.score.home.inning1.runs}}{{fullScore.score.home.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.home.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.home.inning1.wickets!='ALL_OUT' && fullScore.score.home.inning1!=null">({{fullScore.score.home.inning1.overs}})</span></span>
                                        <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null">{{fullScore.score.home.inning2.runs}}/{{fullScore.score.home.inning2.wickets}} <span class="over" *ngIf="fullScore.score.home.inning2.wickets!='ALL_OUT' && fullScore.score.home.inning2!=null">({{fullScore.score.home.inning2.overs}})</span></span>
                                   </div>
                               </div>
@@ -94,7 +94,7 @@
                                   <div class="team_block_left">
                                        <h3 *ngIf="fullScore==undefined"><span class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
                                        <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.away.name}}</span></h3>
-                                       <span class="score" *ngIf="fullScore.currentSet>=1 && fullScore.score.away.inning1!=null">{{fullScore.score.away.inning1.runs}}{{fullScore.score.away.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.away.inning1.wickets!='ALL_OUT'">({{fullScore.score.away.inning1.overs}})</span></span>
+                                       <span class="score" *ngIf="fullScore.currentSet>=1 && fullScore.score.away.inning1!=null">{{fullScore.score.away.inning1.runs}}{{fullScore.score.away.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.away.inning1.wickets!='ALL_OUT'  && fullScore.score.away.inning1!=null">({{fullScore.score.away.inning1.overs}})</span></span>
                                        <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null">{{fullScore.score.away.inning2.runs}}/{{fullScore.score.away.inning2.wickets}} <span class="over" *ngIf="fullScore.score.away.inning2.wickets!='ALL_OUT' && fullScore.score.away.inning2!=null">({{fullScore.score.away.inning2.overs}})</span></span>
                                   </div>
                                   <div class="team_block_right">

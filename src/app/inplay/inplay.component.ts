@@ -3,6 +3,8 @@ import { SharedataService } from '../sharedata.service';
 import { DataFormatService } from '../data-format.service';
 import { Subscription } from 'rxjs';
 import { CommonService } from 'src/services/common.service';
+import { Router } from '@angular/router';
+import { NotificationService } from '../shared/notification.service';
 
 
 @Component({
@@ -26,7 +28,12 @@ export class InplayComponent implements OnInit,OnDestroy {
   todate: string;
   pnlData: any=[];
 
-  constructor(private commonservice:CommonService,private sharedata:SharedataService,private dataformat:DataFormatService) { }
+  constructor(
+    private commonservice:CommonService,
+    private sharedata:SharedataService,
+    private dataformat:DataFormatService,
+    public notification :NotificationService,
+    private router: Router) { }
 
   ngOnInit() {
     this.sharedata.userdatasource.subscribe(resp=>{
@@ -61,9 +68,14 @@ export class InplayComponent implements OnInit,OnDestroy {
     })
   }
   
-  appcharge(mtid){
-    this.commonservice.AppCharges(mtid).subscribe(resp=>{
-
+  appcharge(SportbfId,TourbfId,matchId,marketId,mtBfId,bfId){
+    this.commonservice.AppCharges(matchId).subscribe(resp=>{
+      console.log(resp);
+      if(resp.status=="Success"){
+        this.router.navigateByUrl('/fullmarket/'+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId)
+      }else{
+        this.notification.error(resp.result);
+      }
     })
   }
   onSwipe($event) {}
