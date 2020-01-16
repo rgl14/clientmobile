@@ -63,6 +63,92 @@ p {
 .game-team h4, .game-wrap h4{
     font-size: 14px;
 }
+//Css For TV Header
+
+.ipe-LiveAlertsControlContainer {
+    width: 100%;
+    background-color: #474747;
+}
+.ipe-LiveAlertsControlContainer>#LiveMatchAlertHeader {
+    display: block!important;
+}
+
+.ip-LiveAlertsHeader {
+    display: block; 
+    position: relative;
+    background-color: #474747;
+}
+.ip-LiveAlertsHeaderButtons, .ip-LiveAlertsHeaderButtons_Btn {
+    display: flex;
+}
+.ip-LiveAlertsHeaderButtons {
+    background-color: #474747;
+    align-items: stretch;
+    height: 49px;
+    flex-direction: row;
+}
+.ip-LiveAlertsHeaderButtons_Left {
+    display: -ms-flexbox;
+    display: flex;
+    flex: 1 1 100%;
+    overflow-x: hidden;
+}
+.ipe-EventViewMarketTabs {
+    padding: 0 8px 0 3px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 49px;
+    flex: 1 1 100%;
+    white-space: nowrap;
+    font-size: 0;
+    position: relative;
+    background-color: #474747;
+}
+
+.ipe-EventViewTabLink {
+    display: inline-block;
+    padding: 0 8px;
+    width: auto;
+    line-height: 48px;
+    height: 49px;
+    border: 0;
+    background-color: transparent;
+    background-image: none;
+    outline: 0;
+    box-shadow: none;
+    color: #f0f0f0;
+    vertical-align: middle;
+    font-size: 15px;
+    text-align: center;
+}
+.ipe-EventViewMarketTabs_Slider.ipe-EventViewMarketTabs_Slider-Animate {
+    transition: transform .2s,-webkit-transform .2s;
+}
+
+.ipe-EventViewMarketTabs_Slider {
+    position: absolute;
+    bottom: 12px;
+    height: 2px;
+    background-color: #4acfa5;
+}
+.ip-LiveAlertsHeaderButtons_NoMediaToggleBorder .ip-LiveAlertsHeaderButtons_Right {
+    border-left: 0;
+}
+.ip-LiveAlertsHeaderButtons_Right {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    padding: 0 8px;
+    border-left: 1px solid #545454;
+}
+.ipe-MediaToggle {
+    display: flex;
+    align-items: center;
+    width: 30px;
+    height: 50px;
+    box-sizing: content-box;
+}
+
 table {
     border-collapse: collapse !important;
 }
@@ -247,11 +333,17 @@ a {
     position: relative;
     // background-color: #fff;
     // border-bottom: 1px solid #7E97A7;
-    margin-bottom: 2.66667vw;
+    // margin-bottom: 2.66667vw;
 }
 
 .fancy{
-    border-top: 1.06667vw solid #a5dd00;
+    border-top: 6px solid #474747;
+}
+.fancy-slash{
+    color: #00a826;
+    font-weight: 600;
+    font-size: 30px;
+    padding: 0px 5px 0px 0px;
 }
 .bets-selections-head {
     height: 9.33333vw;
@@ -1080,6 +1172,9 @@ table {
 .circket_wrapper {
     max-width: 100%;
     color: #fff;
+    font-size: 13px;
+}
+.circket_wrapper h4{
     font-size: 13px;
 }
 

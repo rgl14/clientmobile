@@ -1,13 +1,24 @@
 <div class="content-wrapper">
-   <div class="game-wrap ">
-      <h4 id="gameInfo" class="game-info ">
-         <mat-icon (click)="openTv()" aria-hidden="true">live_tv</mat-icon>
-         <ul id="infoIcon" class="info-icon">
-            <li id="inPlayIcon" class="" *ngIf="homeInPlay==1">
-               <img class="info-inplay" src="assets/img/play.ico" alt="inplay">In-Play
-            </li>
-         </ul>
-      </h4>
+   <div class="">
+      <div class="ipe-LiveAlertsControlContainer">
+         <div id="LiveMatchAlertHeader" class="ip-LiveAlertsHeader InPlayNotificationsHeader ">
+             <div class="ip-LiveAlertsHeaderButtons InPlayMyBetsButtonContainer ip-LiveAlertsHeaderButtons_NoMediaToggleBorder ">
+                 <div class="ip-LiveAlertsHeaderButtons_Left ">
+                     <div class="ipe-EventViewMarketTabs ">
+                         <div class="ipe-EventViewTabLink ipe-EventViewTabLink-selected "  *ngIf="homeInPlay==1">Inplay</div>
+                         <!-- <div class="ipe-EventViewTabLink ">Set</div> -->
+                         <span *ngIf="homeInPlay==1" class="ipe-EventViewMarketTabs_Slider ipe-EventViewMarketTabs_Slider-Animate " style="left: 10px; width: 35px; transform-origin: left center;"></span>
+                     </div>
+                 <div class="ip-LiveAlertsHeaderButtons_Right ">
+                     <div class="ipe-MediaToggle ">
+                         <div class="ipe-MediaToggle_Video "><mat-icon style="color: #fff;" (click)="openTv()" aria-hidden="true">live_tv</mat-icon>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div id="PlaceHolderLiveMatchAlertsMenu" class="ip-LiveAlertsMenu "></div>
+     </div>
       <!-- <table id="cricketScoreBoard" *ngIf="sprtId=='4' && showScore" class="game-team"  data-eventid="29119662" style="display: table;">
          <tbody>
             <tr>
@@ -265,8 +276,10 @@
       <a class="bet-limit" style="display: none;"></a>
       <dl class="bets-selections-head">
          <dt>
-            <a class="a-depth"  id="marketDepthBtn"><img height="20px"
-                  width="20px" src="assets/img/kchart.ico">Markets Depth</a>
+               <div style="color: #00a826;
+                        font-weight: 600;
+                        font-size: 20px;
+                        padding: 0px 5px 0px 0px;">\</div> 
             <p>
                <!-- <span>Matched</span>
                <strong id="totalMatched" class=""> 20,949,171</strong> -->
@@ -582,10 +595,123 @@
             <dd class="mode-land"></dd>
          </dl>
          <div class="fancy-bet" *ngFor="let fancy of homeFancyData;trackBy:trackByfancyId">
-            <h4>
+            <mat-accordion>
+               <mat-expansion-panel (opened)="panelOpenState = true"
+                                    (closed)="panelOpenState = false">
+                 <mat-expansion-panel-header>
+                   <mat-panel-title>
+                      <div style="display: flex;">
+                        <div>
+                            <span _ngcontent-oho-c22="" class="fancy-slash">\</span>
+                        </div>
+                        <div style="padding: 10px 0px;">{{fancy.name}}</div>
+                      </div>
+                   </mat-panel-title>
+                   <mat-panel-description>
+                     
+                   </mat-panel-description>
+                 </mat-expansion-panel-header>
+                 <dl id="fancyBetMarket_{{fancy.id}}" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
+                  <dt class="line_market-selection">
+                     <ul>
+                        <li id="afterFancyExpo_{{fancy.id}}" style="display: -webkit-inline-box;"><span></span></li>
+                        <span [ngClass]="{'to-lose': fancy.oldPnl < 0, 'to-win': fancy.oldPnl >= 0}" class="">{{fancy.oldPnl}}</span>
+                     </ul>
+                     <button id="fancyBetBookBtn_{{fancy.id}}"  mat-flat-button color="warn"   (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;background-color: #404040;">Book</button>
+                  </dt>
+                  <dd>
+                     <a class="lay-1 "
+                     (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.noScore}}<sub style="font-size: 8px;">({{fancy.noRate}})</sub><span
+                           class="">{{fancy.noRate}}</span>
+                           <span *ngIf='(fancy.noRate == null || fancy.noRate == "")'><img src="assets\img\unavailable.svg" /></span>
+                        </a>
+                  </dd>
+                  <dd>
+                     <a class="back-1 "
+                        (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.yesScore}}<sub style="font-size: 8px;">({{fancy.yesRate}})</sub><span
+                           class="">{{fancy.yesRate}}</span>
+                           <span *ngIf='(fancy.yesRate == null || fancy.yesRate == "")'><img src="assets\img\unavailable.svg" /></span>
+                        </a>
+                  </dd>
+                  <dd id="suspend" class="suspend-fancy"  [ngStyle]="{'display': (fancy.ballStatus!='') ? 'flex' : 'none' }">
+                     <!-- <p id="info">{{fancy.ballStatus}}</p> -->
+                     <p>Ball Running</p>
+                  </dd>
+                  <dd class="mode-land">
+                     <a (click)="openCloseFancyInfo(fancy)" class="btn-fancy_info"></a>
+                     <div id="fancy_popup_{{fancy.id}}" class="fancy_info-popup">
+                        <dl>
+                           <dt>Min / Max</dt>
+                           <dd id="minMax" class="{{placeMarketData.backlay | lowercase}}"> {{fancy.minStake}} /  {{fancy.maxStake}}</dd>
+                        </dl>
+                        <a id="close-fancy_info__{{fancy.id}}" (click)="openCloseFancyInfo()" class="close">Close</a>
+                     </div>
+                  </dd>
+               </dl>
+               <div id="betBoard_{{fancy.id}}" *ngIf="fancy.id==placeFancyData.fancyId && fancy.ballStatus==''" class="bet_slip-wrap ">
+                  <div  class="message-wrap" style="display: none;">
+                     <div class="message">
+                        <h4 >The Minimun stake is $25.00</h4>
+                        <p >
+                           Your stake has been updated accordingly.
+                        </p>
+                     </div>
+                     <a  class="close" href="#">Close</a>
+                  </div>
+                  <ul class="btn-list">
+                     <li>
+                        <div  class="input-num disable">
+                           
+                           <span class="typed {{placeFancyData.yesno | lowercase}}">{{placeFancyData.score}} / {{placeFancyData.rate}}</span>
+                           
+                        </div>
+                     </li>
+                     <li>
+                        <div  class="input-num input-stake">
+                           <a (click)="stakeDown(placeFancyData)" class="icon-minus"></a>
+                           <span  [ngClass]="stakeTyping?'typeing':'typed'" (click)="typingSign('stake',placeFancyData)">{{placeFancyData.stake}}</span>
+                           <a (click)="stakeUp(placeFancyData)" class="icon-plus"></a>
+                        </div>
+                     </li>
+                  </ul>
+                  <div class="coin-list" fxLayout="row" fxLayoutAlign="space-between center">
+                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake1,placeFancyData)"> {{settingsData.betStake.stake1}}</a>
+                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake2,placeFancyData)"> {{settingsData.betStake.stake2}}</a>
+                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake3,placeFancyData)"> {{settingsData.betStake.stake3}}</a>
+                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake4,placeFancyData)"> {{settingsData.betStake.stake4}}</a>
+                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake5,placeFancyData)"> {{settingsData.betStake.stake5}}</a>
+                     <a fxFlex="1 1 auto"  (click)="stakeChange(settingsData.betStake.stake6,placeFancyData)"> {{settingsData.betStake.stake6}}</a>
+                  </div>
+                  <div  class="keyboard-wrap">
+                     <ul  class="btn-tel">
+                        <li><a (click)="buttonInput('1',placeFancyData)">1</a></li>
+                        <li><a (click)="buttonInput('2',placeFancyData)">2</a></li>
+                        <li><a (click)="buttonInput('3',placeFancyData)">3</a></li>
+                        <li><a (click)="buttonInput('4',placeFancyData)">4</a></li>
+                        <li><a (click)="buttonInput('5',placeFancyData)">5</a></li>
+                        <li><a (click)="buttonInput('6',placeFancyData)">6</a></li>
+                        <li><a (click)="buttonInput('7',placeFancyData)">7</a></li>
+                        <li><a (click)="buttonInput('8',placeFancyData)">8</a></li>
+                        <li><a (click)="buttonInput('9',placeFancyData)">9</a></li>
+                        <li><a (click)="buttonInput('0',placeFancyData)">0</a></li>
+                        <li><a (click)="buttonInput('00',placeFancyData)">00</a></li>
+                        <li><a (click)="buttonInput('.',placeFancyData)">.</a></li>
+                     </ul>
+                     <a (click)="buttonDelete(placeFancyData)" class="btn-delete"></a>
+                  </div>
+                  <div class="btn-list" class="m-1" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+                      <a fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()" class="btn">Cancel
+                      </a>
+                      <a fxFlex="1 1 auto" mat-flat-button color="primary" class="{{placeFancyData.yesno | lowercase}} btn-send" (click)="placeFancyData.stake==''?'':confirmFancyPop(placeFancyData)" [ngClass]="placeFancyData.stake==''?'disable':''">Place Bet
+                      </a>
+                   </div>
+               </div>
+               </mat-expansion-panel>
+             </mat-accordion>
+            <!-- <h4>
                <span id="marketName" class="">{{fancy.name}}</span>
-            </h4>
-            <dl id="fancyBetMarket_{{fancy.id}}" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
+            </h4> -->
+            <!-- <dl id="fancyBetMarket_{{fancy.id}}" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
                <dt class="line_market-selection">
                   <ul>
                      <li id="afterFancyExpo_{{fancy.id}}" style="display: -webkit-inline-box;"><span></span></li>
@@ -608,7 +734,7 @@
                      </a>
                </dd>
                <dd id="suspend" class="suspend-fancy"  [ngStyle]="{'display': (fancy.ballStatus!='') ? 'flex' : 'none' }">
-                  <!-- <p id="info">{{fancy.ballStatus}}</p> -->
+                  
                   <p>Ball Running</p>
                </dd>
                <dd class="mode-land">
@@ -621,8 +747,8 @@
                      <a id="close-fancy_info__{{fancy.id}}" (click)="openCloseFancyInfo()" class="close">Close</a>
                   </div>
                </dd>
-            </dl>
-            <div id="betBoard_{{fancy.id}}" *ngIf="fancy.id==placeFancyData.fancyId && fancy.ballStatus==''" class="bet_slip-wrap ">
+            </dl> -->
+            <!-- <div id="betBoard_{{fancy.id}}" *ngIf="fancy.id==placeFancyData.fancyId && fancy.ballStatus==''" class="bet_slip-wrap ">
                <div  class="message-wrap" style="display: none;">
                   <div class="message">
                      <h4 >The Minimun stake is $25.00</h4>
@@ -635,9 +761,9 @@
                <ul class="btn-list">
                   <li>
                      <div  class="input-num disable">
-                        <!-- <a class="icon-minus"></a> -->
+                        
                         <span class="typed {{placeFancyData.yesno | lowercase}}">{{placeFancyData.score}} / {{placeFancyData.rate}}</span>
-                        <!-- <a class="icon-plus"></a> -->
+                        
                      </div>
                   </li>
                   <li>
@@ -679,7 +805,7 @@
                    <a fxFlex="1 1 auto" mat-flat-button color="primary" class="{{placeFancyData.yesno | lowercase}} btn-send" (click)="placeFancyData.stake==''?'':confirmFancyPop(placeFancyData)" [ngClass]="placeFancyData.stake==''?'disable':''">Place Bet
                    </a>
                 </div>
-            </div>
+            </div> -->
          </div>
       </div>
    </div>
