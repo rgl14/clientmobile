@@ -69,14 +69,15 @@ export class InplayComponent implements OnInit,OnDestroy {
   }
   
   appcharge(SportbfId,TourbfId,matchId,marketId,mtBfId,bfId){
-    this.commonservice.AppCharges(matchId).subscribe(resp=>{
-      console.log(resp);
-      if(resp.status=="Success"){
-        this.router.navigateByUrl('/fullmarket/'+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId)
-      }else{
-        this.notification.error(resp.result);
-      }
-    })
+    this.router.navigateByUrl('/fullmarket/'+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId);
+    // this.commonservice.AppCharges(matchId).subscribe(resp=>{
+    //   console.log(resp);
+    //   if(resp.status=="Success"){
+    //     this.router.navigateByUrl('/fullmarket/'+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId);
+    //   }else{
+    //     this.notification.error(resp.result);
+    //   }
+    // })
   }
   onSwipe($event) {}
   tabChange($event) {}

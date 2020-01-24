@@ -82,7 +82,7 @@
          </tbody>
       </table> -->
       <ng-container *ngIf="showScore">
-            <div class="circket_wrapper" *ngIf="sprtId=='4'">
+            <div class="circket_wrapper" *ngIf="sprtId=='4' && fullScore.stateOfBall!=null">
                   <header>
                       <div class="main_score_wrap">
                           <div class="header_left">
@@ -99,7 +99,7 @@
                                   </div>
                               </div>
                           </div>
-                          <div class="header_center"><span>BALL {{fullScore.stateOfBall.overNumber}}.{{fullScore.stateOfBall.overBallNumber}} - {{fullScore.stateOfBall.bowlerName}} to {{fullScore.stateOfBall.batsmanName}} - {{fullScore.stateOfBall.batsmanRuns}} Run</span></div>
+                          <div class="header_center" *ngIf="fullScore.stateOfBall!=null"><span>{{fullScore.stateOfBall.bowlerName}} to {{fullScore.stateOfBall.batsmanName}} - {{fullScore.stateOfBall.batsmanRuns}} Run</span></div>
                           <div class="header_right">
                               <div class="header_team_block">
                                   <div class="team_block_left">
@@ -119,7 +119,7 @@
                   <div class="live_footer_content">
                       <div class="live_footer_top">
                           <div class="live_footer_left">
-                           <h4>Overs: {{fullScore.stateOfBall.overNumber}}.{{fullScore.stateOfBall.overBallNumber}} <span>(Ovs)</span></h4> 
+                           <h4 *ngIf="fullScore.stateOfBall!=null">Overs: {{fullScore.stateOfBall.overNumber}}.{{fullScore.stateOfBall.overBallNumber}} <span>(Ovs)</span></h4> 
                           </div>
                           <div class="live_footer_right">
                               <!-- <ul class="footer_status_list">
@@ -149,7 +149,6 @@
                   </div>
             </div>
       </ng-container>
-      
       <table id="tennisScoreBoard" *ngIf="sprtId==='2' && showScore" class="game-team" [ngClass]="fullScore==undefined?'':'tennis'"  style="display: table;">
          <tbody>
             <tr>

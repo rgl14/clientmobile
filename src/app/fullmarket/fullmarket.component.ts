@@ -324,7 +324,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
               item["oldPnl"]=this.bmexposure
             })
           }
-          console.log(this.bookMakingData);
+          // console.log(this.bookMakingData);
           _.forEach(this.homeFancyData, (item, index) => {
             // this.bookrunnerData = item.runnerData;
             if (this.fancyExposure != null && this.fancyExposure != undefined) {
