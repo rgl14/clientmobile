@@ -5,14 +5,14 @@
     [(tabs)]="tabs"
     swipeTab>
       <mat-tab (swipe)="onSwipe($event)">
-        <ng-template mat-tab-label class="mat-tab-label-active">LIVE</ng-template>
+        <ng-template mat-tab-label class="mat-tab-label-active">In-Play</ng-template>
         <div class="home-page ion-content event-page content content-md" padding="">
           <div class="fixed-content   "></div>
           <div class="scroll-content " (swipe)="onSwipe($event)">
             <section>
-              <div class="in-play page-title"> <i class="fa fa-play-circle"></i>
+              <!-- <div class="in-play page-title"> <i class="fa fa-play-circle"></i>
                 <span class="label">In Play</span>
-              </div>
+              </div> -->
               <!-- <div class="in-play page-title item-block inplayPageTitle" >
         
                         <p class="noMatchFoundtitle">No In play Matches.</p>
@@ -23,8 +23,8 @@
                         <p class="noMatchFoundtitle">Loading...</p>
         
                     </div> -->
-              <a > <span class="open-bets-link" >Open Bets (0)</span>
-              </a>
+              <!-- <a > <span class="open-bets-link" >Open Bets (0)</span>
+              </a> -->
               <div class="distinct ion-list market-list list list-md" *ngIf="inplayData.length!=0">
                 <!-- <ion-item class="market-list-item item item-block item-md" data-ng-repeat="inplay in inplayData track by $index"> -->
                 <div *ngFor="let inplay of inplayData | sortByDate:'matchDate';trackBy:identify">
@@ -35,12 +35,16 @@
                           <a (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId)" >
                             <div class="popular-event">
                               <div class="event-details">
-                                <i class="apl-icon-sport-cricket"><img height="20px" width="20px" src="assets/img/cricket.png"></i>
+                                <div>
+                                  <span class="label-slash-cricket">\</span>
+                                </div>
+                                
+                                <!-- <i class="apl-icon-sport-cricket"><img height="20px" width="20px" src="assets/img/cricket.png"></i> -->
                                 <!-- <i class="apl-icon-sport-kabaddi" data-ng-if="inplay.sportName=='Kabaddi'"><img src="images/kabaddi_black.png"></i> --> 
                                 <span class="label">{{inplay.matchName}}</span>
                               </div>
-                              <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
-                              </div>
+                              <!-- <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
+                              </div> -->
                             </div>
                           </a>
                           <!-- <div class="list-body">
@@ -364,11 +368,15 @@
                             <div class="label ion-label label-md">
                               <a class="" (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId)" >
                                 <div class="popular-event">
-                                  <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i>
+                                  <div class="event-details"> 
+                                    <!-- <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i> -->
+                                    <div>
+                                      <span class="label-slash-soccer">\</span>
+                                    </div>
                                     <span class="label ">{{inplay.matchName}}</span>
                                   </div>
-                                  <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
-                                  </div>
+                                  <!-- <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
+                                  </div> -->
                                 </div>
                               </a>
                             </div>
@@ -384,11 +392,15 @@
                             <div class="label ion-label label-md">
                               <a class="" (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId)" >
                                 <div class="popular-event">
-                                  <div class="event-details"> <i><i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i></i> 
+                                  <div class="event-details"> 
+                                    <!-- <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i> -->
+                                    <div>
+                                      <span class="label-slash-tennis">\</span>
+                                    </div>
                                     <span class="label ">{{inplay.matchName}}</span>
                                   </div>
-                                  <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
-                                  </div>
+                                  <!-- <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
+                                  </div> -->
                                 </div>
                               </a>
                             </div>
@@ -436,13 +448,18 @@
                             <div class="label ion-label label-md">
                               <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId)" >
                                 <div class="popular-event">
-                                  <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/cricket.png"></i>
-                                    <span class="label ">{{upcoming.matchName}}</span>
-                                    <p class="date-info"> <span class="">{{upcoming.matchDate}}</span>
-                                    </p>
+                                  <div class="event-details"> 
+                                    <!-- <i><img height="20px" width="20px" src="assets/img/cricket.png"></i> -->
+                                    <div>
+                                      <span class="label-slash-cricket">\</span>
+                                    </div>
+                                    <div style="margin:5px">
+                                      <span class="">{{upcoming.matchName}}</span>
+                                      <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p>
+                                    </div>
                                   </div>
-                                  <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
-                                  </div>
+                                  <!-- <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
+                                  </div> -->
                                 </div>
                               </a>
                             </div>
@@ -458,13 +475,20 @@
                             <div class="label ion-label label-md">
                               <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId)">
                                 <div class="popular-event">
-                                  <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i>
-                                    <span class="label ">{{upcoming.matchName}}</span>
-                                    <p class="date-info"> <span class="">{{upcoming.matchDate}}</span>
-                                    </p>
+                                  <div class="event-details"> 
+                                    <!-- <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i> -->
+                                    <div>
+                                      <span class="label-slash-soccer">\</span>
+                                    </div>
+                                    <div style="margin:5px">
+                                      <span class="">{{upcoming.matchName}}</span>
+                                      <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p>
+                                    </div>
+                                    <!-- <span class="label ">{{upcoming.matchName}}</span>
+                                    <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p> -->
                                   </div>
-                                  <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
-                                  </div>
+                                  <!-- <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
+                                  </div> -->
                                 </div>
                               </a>
                             </div>
@@ -480,13 +504,20 @@
                             <div class="label ion-label label-md">
                               <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId)">
                                 <div class="popular-event">
-                                  <div class="event-details"> <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i>
-                                    <span class="label ">{{upcoming.matchName}}</span>
-                                    <p class="date-info"> <span class="">{{upcoming.matchDate}}</span>
-                                    </p>
+                                  <div class="event-details"> 
+                                    <!-- <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i> -->
+                                    <div>
+                                      <span class="label-slash-tennis">\</span>
+                                    </div>
+                                    <div style="margin:5px">
+                                      <span class="">{{upcoming.matchName}}</span>
+                                      <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p>
+                                    </div>
+                                    <!-- <span class="label ">{{upcoming.matchName}}</span> -->
+                                    <!-- <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p> -->
                                   </div>
-                                  <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
-                                  </div>
+                                  <!-- <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
+                                  </div> -->
                                 </div>
                               </a>
                             </div>

@@ -7,7 +7,7 @@
     // contain: layout size style;
 }
 .scroll-content{
-    padding: 16px;
+    padding: 13px;
 }
 
 
@@ -106,12 +106,12 @@ a {
     overflow: inherit;
     // font-size: 1.4rem;
     line-height: normal;
-    // color: #666;
-    color: #CCCC46;
+    color: #00a826;
+    // color: #CCCC46;
     font-size: 12px;
 }
 .date-info{
-    margin: 0px 0px 0px 25px;
+    margin: 0px 0px 0px 0px;
 }
 
 .item-md, .item-wp {
@@ -214,7 +214,7 @@ a {
     /* display: -webkit-box; */
     display: flex;
     align-items: center;
-    margin-bottom: 6px;
+    // margin-bottom: 6px;
 }
 .home-page .popular-event .event-details {
     display: block;
@@ -224,12 +224,35 @@ a {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: inline-flex;
+
 }
 .home-page .popular-event .event-details>i {
     // position: absolute;
     // margin: 0 5px 3px 0;
     vertical-align: middle;
     margin: 0 5px 0px 0;
+}
+.event-details .label{
+    margin-top:10px;
+}
+.label-slash-cricket{
+    color: #00a826;
+    font-weight: 600;
+    font-size: 35px;
+    padding: 0px 10px 0px 0px;
+}
+.label-slash-soccer{
+    color: #fff;
+    font-weight: 600;
+    font-size: 35px;
+    padding: 0px 10px 0px 0px;
+}
+.label-slash-tennis{
+    color: yellowgreen;
+    font-weight: 600;
+    font-size: 35px;
+    padding: 0px 10px 0px 0px;
 }
 
 .apl-icon-sport-cricket, .menu-slide .menu-lvl-1 .apl-icon-sport-cricket {

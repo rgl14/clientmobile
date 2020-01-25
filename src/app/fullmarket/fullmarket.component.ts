@@ -75,6 +75,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   fancyName:any;
   TvWidth: number;
   bmexposure: any;
+  fancypanelsetting: any;
 
   constructor(private route:ActivatedRoute,private common :CommonService,private sharedata:SharedataService,private dataformat:DataFormatService,private marketodds:MarketsService,private fancymarket :FancyService,private renderer:Renderer,private deviceInfo:DeviceDetectorService,public notification :NotificationService,private score:ScoreboardService) { }
 
@@ -86,6 +87,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     this.mktId=this.route.snapshot.paramMap.get('marketId');
     this.mtBfId=this.route.snapshot.paramMap.get('mtBfId');
     this.mktBfId=this.route.snapshot.paramMap.get('bfId');
+    
     this.fancyExposure = null;
     this.getallfancyexposure();
     this.allMKTdata();
@@ -130,11 +132,17 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           this.homeSettings=this.subscribedEventdata.settings;
           this.homeStatus=this.subscribedEventdata.status;
           this.tvConfig=this.subscribedEventdata.tvConfig;
+          this.fancypanelsetting=localStorage.getItem("FancyPanelSetting");
+          console.log(this.fancypanelsetting);
           if(eventdatacount==1 && this.homeDataMode===1){
             this.hubaddress();
           }
         }
       })
+  }
+
+  setStep(){
+    
   }
 
   hubaddress(){

@@ -21,10 +21,14 @@ export class EditstakeComponent implements OnInit {
   isChecked:boolean;
   isOddsHighlights: any;
   stake: any;
+  isfancyChecked: any;
+  fancypanelsetting: boolean=false;
+  fancyCheckedLS: string;
   constructor(private commonservice:CommonService,public notification :NotificationService) { }
 
   ngOnInit() {
-    this.getbetstakesetting()
+    this.getbetstakesetting();
+    
   }
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -56,6 +60,13 @@ export class EditstakeComponent implements OnInit {
         this.isChecked=true
         localStorage.setItem("Highlightodds",btntoggle)
       }
+      this.fancyCheckedLS=localStorage.getItem("FancyPanelSetting");
+      if(this.fancyCheckedLS=="true"){
+        this.isfancyChecked=true;
+      }else{
+        this.isfancyChecked=false;
+      }
+      console.log(this.isfancyChecked)
     })
   }
   editStake(){
@@ -85,6 +96,9 @@ export class EditstakeComponent implements OnInit {
   onChange(event){
     console.log(this.isChecked)
   }
+  onFancyChange(event){
+    localStorage.setItem("FancyPanelSetting",this.isfancyChecked);
+  }
   saveSetting(){
     let btntoggle:string;
     if(this.isChecked){
@@ -95,7 +109,7 @@ export class EditstakeComponent implements OnInit {
     let settingdata={"btntoggle":btntoggle,"defaultstake":this.defaultstake}
     this.commonservice.savesetting(settingdata).subscribe(resp=>{
       if(resp.status){
-        localStorage.setItem("Highlightodds",btntoggle)
+        localStorage.setItem("Highlightodds",btntoggle);
         this.notification.success(resp.result);
       }else{
         this.notification.error(resp.result);

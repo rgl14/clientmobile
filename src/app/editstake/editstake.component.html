@@ -2,7 +2,7 @@
     <div class="contentHeading borderGreen _1zgNi">
         <span class="_2NnB6">Edit Stake</span>
     </div>
-    <div class="inner-content">
+    <div style="padding:5px 0px">
         <div id="coinList" class="side-content">
             <h3>Stake</h3>
             <dl class="setting-block">
@@ -38,11 +38,21 @@
             <dl class="setting-block toggle-btn">
             <dt style="flex: 1;">Highlight when odds change</dt>
             <!-- <dd><a class="switch_on"  (click)="toggleSwitch()" id="enableSparkCheck"><input type="hidden" id="sparkValue" value="1" autocomplete="off"><span></span></a></dd> -->
-            <dd><mat-slide-toggle (change)="onChange($event)"
+            <dd>
+                <mat-slide-toggle (change)="onChange($event)"
                 [(ngModel)]="isChecked" color="warn"
-                [checked]=false></mat-slide-toggle></dd>
-
+                [checked]=false></mat-slide-toggle>
+            </dd>
             </dl>
+            <dl class="setting-block toggle-btn">
+                <dt style="flex: 1;">Fancy Panel Setting</dt>
+                <!-- <dd><a class="switch_on"  (click)="toggleSwitch()" id="enableSparkCheck"><input type="hidden" id="sparkValue" value="1" autocomplete="off"><span></span></a></dd> -->
+                <dd>
+                    <mat-slide-toggle (change)="onFancyChange($event)"
+                    [(ngModel)]="isfancyChecked" color="warn"
+                    [checked]=false></mat-slide-toggle>
+                </dd>
+                </dl>
             <div class="button-bottom">
                 <button mat-raised-button color="warn" [routerLink]="'/account'"  type="submit">Cancel</button>
                 <button mat-raised-button class="submit" (click)="saveSetting()" type="submit">Save</button>
