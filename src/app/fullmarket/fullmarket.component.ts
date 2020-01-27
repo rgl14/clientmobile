@@ -157,7 +157,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
         this.fancymarket.connectFancy(this.fancyHubAddress,this.matchId);
         this.FancysignalrData();
       }
-      if(this.bookMakingData.length!=0){
+      if(this.bookMakingData!=null){
         _.forEach(this.bookMakingData,(item,index)=>{
           this.common.getBMexposurebook(this.mktId,item.id).subscribe(data=>{
             if(data!=null){
@@ -221,6 +221,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   MarketsignalrData(){
     this.Marketoddssignalr=this.marketodds.marketSource.subscribe(runner=>{
       if (runner != null) {
+        console.log(runner);
         this.eventData.unsubscribe();
         let marketIndex = _.findIndex(this.homeMarkets, function(o) {
           return o.bfId == runner.marketid;

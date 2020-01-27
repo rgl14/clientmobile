@@ -192,7 +192,16 @@ a {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    text-align: left;
+    // text-align: left;
+    color: #fff;
+}
+.game-team .team-other {
+    display: none;
+    color: #7E97A7;
+}
+.game-team span {
+    font-size: 2.13333vw;
+    color: #7E97A7;
 }
 .game-team h4:last-of-type, .game-team .tc-wrap h5:last-of-type, .tc-wrap .game-team h5:last-of-type{
     margin-right: 0;
@@ -222,6 +231,9 @@ a {
 .scores-time li {
     margin-right: 1.33333vw;
 }
+.scores-time li{
+    display: inline-block;
+}
 .game-team .in-play span {
     color: #8EEA29;
 }
@@ -246,6 +258,12 @@ a {
     width: 18.66667vw;
     background-color: rgba(0,0,0,.45);
 }
+.game-team.tennis .team-scores {
+    width: 6.66667vw;
+}
+.game-team.tennis .team-scores{
+    text-align: center;
+}
 .game-team td, .game-team .announce-wrap table th, .announce-wrap table .game-team th {
     border-left: 1px solid rgba(255,255,255,.15);
 }
@@ -259,6 +277,7 @@ a {
 .game-team .team-refresh {
     width: 6.66667vw;
 }
+
 
 .game-team td, .game-team .announce-wrap table th, .announce-wrap table .game-team th {
     border-left: 1px solid rgba(255,255,255,.15);
@@ -437,6 +456,12 @@ dd {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.not-allowed{
+    display: flex;
+    justify-content: center;
+    color: #8f8888;
+    cursor: not-allowed;
+}
 .bets-selections dt {
     padding: 1.33333vw 1.86667vw;
 }
@@ -511,7 +536,8 @@ dd {
     background-color: #FAA9BA;
 }
 .lay,.no{
-    background-color: whitesmoke;
+    background-color: #414141;
+    color: #fff;
 }
 .lay-1.select {
     background: #414141 !important;
@@ -524,7 +550,8 @@ dd {
     background-color: #72BBEF;
 }
 .back,.yes {
-    background-color: whitesmoke;
+    background-color: #414141;
+    color: #fff;
 }
 .typed{
     // background-color: #72BBEF;
@@ -969,7 +996,7 @@ input:focus, .input-num .typeing {
 }
 .pop-wrap h3 {
     // background: linear-gradient(-140deg, #03a9f4 0%, #0277bd 100%);
-        background: #00b489;
+        background: #414141;
     color: #fff;
 }
 
@@ -1072,7 +1099,7 @@ input:focus, .input-num .typeing {
     display: flex;
 }
 .side-head {
-    background: #00b489;
+    background: #414141;
     display: flex;
 }
 .side-head h3 {
@@ -1083,7 +1110,7 @@ input:focus, .input-num .typeing {
     flex: 1;
     background: transparent;
     font-size: 4vw;
-    color: #1E1E1E;
+    color: #fff;
     line-height: 2.6;
     padding: 0 1.86667vw;
     align-items: center;

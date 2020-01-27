@@ -95,7 +95,7 @@
                                        <h3 *ngIf="fullScore==undefined"><span class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
                                        <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.home.name}}</span></h3>
                                        <span class="score" *ngIf="fullScore.currentSet>=1 && fullScore.score.home.inning1!=null">{{fullScore.score.home.inning1.runs}}{{fullScore.score.home.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.home.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.home.inning1.wickets!='ALL_OUT' && fullScore.score.home.inning1!=null">({{fullScore.score.home.inning1.overs}})</span></span>
-                                       <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null">{{fullScore.score.home.inning2.runs}}/{{fullScore.score.home.inning2.wickets}} <span class="over" *ngIf="fullScore.score.home.inning2.wickets!='ALL_OUT' && fullScore.score.home.inning2!=null">({{fullScore.score.home.inning2.overs}})</span></span>
+                                       <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null">{{fullScore.score.home.inning2.runs}}{{fullScore.score.home.inning2.wickets!='ALL_OUT'?'/'+fullScore.score.home.inning2.wickets:'/10'}}  <span class="over" *ngIf="fullScore.score.home.inning2.wickets!='ALL_OUT' && fullScore.score.home.inning2!=null">({{fullScore.score.home.inning2.overs}})</span></span>
                                   </div>
                               </div>
                           </div>
@@ -106,7 +106,7 @@
                                        <h3 *ngIf="fullScore==undefined"><span class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
                                        <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.away.name}}</span></h3>
                                        <span class="score" *ngIf="fullScore.currentSet>=1 && fullScore.score.away.inning1!=null">{{fullScore.score.away.inning1.runs}}{{fullScore.score.away.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.away.inning1.wickets!='ALL_OUT'  && fullScore.score.away.inning1!=null">({{fullScore.score.away.inning1.overs}})</span></span>
-                                       <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null">{{fullScore.score.away.inning2.runs}}/{{fullScore.score.away.inning2.wickets}} <span class="over" *ngIf="fullScore.score.away.inning2.wickets!='ALL_OUT' && fullScore.score.away.inning2!=null">({{fullScore.score.away.inning2.overs}})</span></span>
+                                       <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null">{{fullScore.score.away.inning2.runs}}{{fullScore.score.away.inning2.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning2.wickets:'/10'}} <span class="over" *ngIf="fullScore.score.away.inning2.wickets!='ALL_OUT' && fullScore.score.away.inning2!=null">({{fullScore.score.away.inning2.overs}})</span></span>
                                   </div>
                                   <div class="team_block_right">
                                        <span class="ball_img" *ngIf="fullScore.score.away.highlight=='true'"><img alt="" src="https://bw.sixlogics.com/cricket/assets/images/green_bat.png"></span>
@@ -314,22 +314,22 @@
                <p>Non Runner</p>
             </dd>
             <dd class="mode-land">
-               <a id="runner-{{index}}-back3" class="back-3" (click)="homeStatus!='OPEN' || market.back3==null || market.back3==''?'':openMarketBetslip($event,'Back',market.back3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back3 | number:'1.2-2'}}<span *ngIf='(market.back3 == null || market.back3 == "")'><img src="assets\img\unavailable.svg" /></span><span class="">{{market.backSize3}}</span></a>
+               <a id="runner-{{index}}-back3" class="back-3" (click)="homeStatus!='OPEN' || market.back3==null || market.back3==''?'':openMarketBetslip($event,'Back',market.back3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back3 | number:'1.2-2'}}<span *ngIf='(market.back3 == null || market.back3 == "")'><mat-icon>not_interested</mat-icon></span><span class="">{{market.backSize3}}</span></a>
             </dd>
             <dd class="mode-land">
-               <a id="runner-{{index}}-back2" class="back-2" (click)="homeStatus!='OPEN' || market.back2==null || market.back2==''?'':openMarketBetslip($event,'Back',market.back2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back2 | number:'1.2-2'}}<span *ngIf='(market.back2 == null || market.back2 == "")'><img src="assets\img\unavailable.svg" /></span><span class="">{{market.backSize2}}</span></a>
+               <a id="runner-{{index}}-back2" class="back-2" (click)="homeStatus!='OPEN' || market.back2==null || market.back2==''?'':openMarketBetslip($event,'Back',market.back2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back2 | number:'1.2-2'}}<span *ngIf='(market.back2 == null || market.back2 == "")'><mat-icon>not_interested</mat-icon></span><span class="">{{market.backSize2}}</span></a>
             </dd>
             <dd>
-               <a id="runner-{{index}}-back1" class="back-1" (click)="homeStatus!='OPEN' || market.back1==null || market.back1==''?'':openMarketBetslip($event,'Back',market.back1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back1 | number:'1.2-2'}}<span *ngIf='(market.back1 == null || market.back1 == "")'><img src="assets\img\unavailable.svg" /></span><span class="">{{market.backSize1}}</span></a>
+               <a id="runner-{{index}}-back1" class="back-1" (click)="homeStatus!='OPEN' || market.back1==null || market.back1==''?'':openMarketBetslip($event,'Back',market.back1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back1 | number:'1.2-2'}}<div class="not-allowed"  *ngIf='(market.back1 == null || market.back1 == "")'><mat-icon>not_interested</mat-icon></div><span class="">{{market.backSize1}}</span></a>
             </dd>
             <dd>
-               <a id="runner-{{index}}-lay1" class="lay-1" (click)="homeStatus!='OPEN' || market.lay1==null || market.lay1==''?'':openMarketBetslip($event,'Lay',market.lay1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay1 | number:'1.2-2'}}<span *ngIf='(market.lay1 == null || market.lay1 == "")'><img src="assets\img\unavailable.svg" /></span><span class=""> {{market.laySize1}}</span></a>
+               <a id="runner-{{index}}-lay1" class="lay-1" (click)="homeStatus!='OPEN' || market.lay1==null || market.lay1==''?'':openMarketBetslip($event,'Lay',market.lay1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay1 | number:'1.2-2'}}<div class="not-allowed" *ngIf='(market.lay1 == null || market.lay1 == "")'><mat-icon>not_interested</mat-icon></div><span class=""> {{market.laySize1}}</span></a>
             </dd>
             <dd class="mode-land">
-               <a id="runner-{{index}}-lay2" class="lay-2" (click)="homeStatus!='OPEN' || market.lay2==null || market.lay2==''?'':openMarketBetslip($event,'Lay',market.lay2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay2 | number:'1.2-2'}}<span *ngIf='(market.lay2 == null || market.lay2 == "")'><img src="assets\img\unavailable.svg" /></span><span class=""> {{market.laySize2}}</span></a>
+               <a id="runner-{{index}}-lay2" class="lay-2" (click)="homeStatus!='OPEN' || market.lay2==null || market.lay2==''?'':openMarketBetslip($event,'Lay',market.lay2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay2 | number:'1.2-2'}}<span *ngIf='(market.lay2 == null || market.lay2 == "")'><mat-icon>not_interested</mat-icon></span><span class=""> {{market.laySize2}}</span></a>
             </dd>
             <dd class="mode-land">
-               <a id="runner-{{index}}-lay3" class="lay-3" (click)="homeStatus!='OPEN' || market.lay3==null || market.lay3==''?'':openMarketBetslip($event,'Lay',market.lay3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay3 | number:'1.2-2'}}<span *ngIf='(market.lay3 == null || market.lay3 == "")'><img src="assets\img\unavailable.svg" /></span><span class=""> {{market.laySize3}}</span></a>
+               <a id="runner-{{index}}-lay3" class="lay-3" (click)="homeStatus!='OPEN' || market.lay3==null || market.lay3==''?'':openMarketBetslip($event,'Lay',market.lay3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay3 | number:'1.2-2'}}<span *ngIf='(market.lay3 == null || market.lay3 == "")'><mat-icon>not_interested</mat-icon></span><span class=""> {{market.laySize3}}</span></a>
             </dd>
          </dl>
          <div id="betBoard_{{markets.mktId}}_{{market.runnerName| replace : ' ' : '_'}}" *ngIf="market.runnerName==placeMarketData.runnerName && homeStatus=='OPEN'" class="bet_slip-wrap" >
@@ -449,7 +449,7 @@
       
                <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" style="padding: 0px 2vw 1.5vw;">
                   <a id="back" fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetPop()">Back</a>
-                  <a id="confirm" fxFlex="1 1 auto" mat-flat-button color="accent" (click)="placeMOBet(confirmPlaceMarketData)">Confirm</a>
+                  <a id="confirm" fxFlex="1 1 auto" mat-flat-button color="accent" class="back" (click)="placeMOBet(confirmPlaceMarketData)">Confirm</a>
                </div>
       
             </div>
@@ -602,7 +602,7 @@
                         <div>
                             <span _ngcontent-oho-c22="" class="fancy-slash">\</span>
                         </div>
-                        <div style="padding: 10px 0px;">{{fancy.name}}</div>
+                        <div style="padding: 10px 0px;text-transform: uppercase;">{{fancy.name}}</div>
                       </div>
                    </mat-panel-title>
                    <mat-panel-description>
@@ -660,7 +660,7 @@
                      <li>
                         <div  class="input-num disable">
                            
-                           <span class="typed {{placeFancyData.yesno | lowercase}}">{{placeFancyData.score}} / {{placeFancyData.rate}}</span>
+                           <span class="typed">{{placeFancyData.score}} / {{placeFancyData.rate}}</span>
                            
                         </div>
                      </li>
@@ -818,7 +818,7 @@
    
                <dt>
    
-                  <span class="{{confirmFancyData.yesno | lowercase}}" style="color: black">{{confirmFancyData.yesno}}</span>
+                  <span class="{{confirmFancyData.yesno | lowercase}}">{{confirmFancyData.yesno}}</span>
    
                   <h4 id="runnerName" style="color: black;font-size:15px">{{confirmFancyData.runnerName}}</h4>
    
@@ -853,7 +853,7 @@
    
             <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" style="padding: 0px 2vw 1.5vw;">
                <a id="back" fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetPop()">Back</a>
-               <a id="confirm" fxFlex="1 1 auto" mat-flat-button color="warn"  (click)="placeFancyBet(confirmFancyData)">Confirm</a>
+               <a id="confirm" fxFlex="1 1 auto" mat-flat-button color="warn" class="back"  (click)="placeFancyBet(confirmFancyData)">Confirm</a>
             </div>
    
          </div>

@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonService } from 'src/services/common.service';
 import { NotificationService } from '../shared/notification.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { SharedataService } from '../sharedata.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit,OnDestroy {
   fundsdata: any;
   availBal: number;
   cash: number;
@@ -18,18 +19,26 @@ export class AccountComponent implements OnInit {
   exposure: number;
   state: any;
   uname: any;
+  fundsdatasrc: Subscription;
+  userdescsrc: Subscription;
   constructor(private commonservice:CommonService,public notification :NotificationService,private cookie:CookieService,private router: Router,private sharedata:SharedataService) { }
 
   ngOnInit() {
-    this.commonservice.funds().subscribe(data=>{
-      this.fundsdata=data.data;
-      this.availBal=data.data.availBal;
-      this.cash= data.data.cash;
-      this.credit= data.data.credit;
-      this.exposure= data.data.exposure;
-      this.sharedata.userdescriptionSource.subscribe(resp=>{
+    this.fundsdatasrc=this.sharedata.fundSource.subscribe(resp=>{
+      if(resp!=null){
+        // console.log(resp)
+        this.fundsdata=resp.data;
+        this.availBal=resp.data.availBal;
+        this.cash= resp.data.cash;
+        this.credit= resp.data.credit;
+        this.exposure= resp.data.exposure;
+      }
+    })
+    this.userdescsrc=this.sharedata.userdescriptionSource.subscribe(resp=>{
+      if(resp!=null){
+        // console.log(resp);
         this.uname=resp.data.uName;
-      })
+      }
     })
   }
 
@@ -40,6 +49,10 @@ export class AccountComponent implements OnInit {
       window.location.reload();
       // this.router.navigateByUrl("");
     })
+  }
+  ngOnDestroy(){
+    this.fundsdatasrc.unsubscribe();
+    this.userdescsrc.unsubscribe();
   }
 
 }

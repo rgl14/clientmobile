@@ -52,9 +52,15 @@
                             <!-- <mat-icon class="user-icon" aria-hidden="false" aria-label="Example user verified icon" (click)="sidenav.toggle()">verified_user</mat-icon> -->
                         </mat-toolbar-row>
                     </mat-toolbar>
-                    <div class="mat-elevation-z3" style="z-index: 9; background: #404040;">
-                        <marquee id="ticker" width="100%"  style="color: white;vertical-align: middle;"> Welcome to orbitx.com </marquee>
+                    <div class="mat-elevation-z3" style="width: 100%;display: inline-flex;z-index: 9; background: #404040;color:#fff;">
+                        <!-- <span style="display: flex;">News</span> -->
+                        <mat-icon>mic_none</mat-icon> 
+                        <marquee id="ticker" style="color: white;vertical-align: middle;"> Welcome to orbitx.com </marquee>
                     </div>
+                    <!-- <div class="marquee-box">
+                      <h4>News</h4>
+                      <div class="marquee"><div style="width: 100000px; transform: translateX(303px); animation: 16s linear 0s infinite normal none running marqueeAnimation-58384;" class="js-marquee-wrapper"><div class="js-marquee" style="margin-right: 0px; float: left;"> Welcome to orbitx.com</div></div></div>
+                    </div> -->
                     <router-outlet style="margin-top:10px"></router-outlet>
                     <app-footer></app-footer>
         </mat-sidenav-content>
