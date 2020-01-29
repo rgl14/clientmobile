@@ -36,7 +36,7 @@ export class ChangepasswordComponent implements OnInit {
       this.commonservice.changepassword(this.changepasswordform.value).subscribe(resp=>{
         if(resp.status){
           this.notification.success(resp.result);
-          this.changepasswordform.reset();
+          // this.changepasswordform.reset();
         }else{
           this.notification.error(resp.result);
         }

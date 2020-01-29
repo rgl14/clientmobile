@@ -27,6 +27,7 @@ export class TransactionsComponent implements OnInit {
   todate: string;
   selectfromdate: string;
   selecttodate: string;
+  innerHeight: number;
 
   constructor(private commonservice:CommonService) { 
     
@@ -161,6 +162,7 @@ export class TransactionsComponent implements OnInit {
     // }
 
   ngOnInit() {
+    this.innerHeight=window.innerHeight;
   }
 
 }

@@ -44,7 +44,11 @@ export class LoginComponent implements OnInit {
           this.cookie.set( 'charlie', data.response.AuthToken );
           // this.notification.success(data.description.result);
           this.isloggedin.emit(true);
-          this.router.navigateByUrl("/home");
+          if(data.isChangePwd==1){ 
+            this.router.navigateByUrl("/changepassword");
+          }else{
+            this.router.navigateByUrl("/home");
+          }
         }else{
           this.notification.error(data.description.result);
         }

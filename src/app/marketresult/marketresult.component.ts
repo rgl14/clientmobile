@@ -22,6 +22,7 @@ export class MarketresultComponent implements OnInit {
   defaultColDef: { sortable: boolean; resizable: boolean; };
   overlayLoadingTemplate: string;
   overlayNoRowsTemplate: string;
+  innerHeight: number;
 
   constructor(private commonservice:CommonService) { 
     this.gridOptions = <GridOptions>{};
@@ -70,6 +71,7 @@ export class MarketresultComponent implements OnInit {
     // }
 
   ngOnInit() {
+    this.innerHeight=window.innerHeight;
   }
 
 }

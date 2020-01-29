@@ -5,7 +5,7 @@
     [(tabs)]="tabs"
     swipeTab>
       <mat-tab (swipe)="onSwipe($event)">
-        <ng-template mat-tab-label class="mat-tab-label-active">In-Play</ng-template>
+        <ng-template mat-tab-label class="mat-tab-label-active">IN-PLAY</ng-template>
         <div class="home-page ion-content event-page content content-md" padding="">
           <div class="fixed-content   "></div>
           <div class="scroll-content " (swipe)="onSwipe($event)">
@@ -438,8 +438,8 @@
                         <p class="noMatchFoundtitle">Loading...</p>
         
                     </div> -->
-              <a > <span class="open-bets-link">Open Bets (0)</span>
-              </a>
+              <!-- <a > <span class="open-bets-link">Open Bets (0)</span>
+              </a> -->
               <div class="distinct ion-list market-list list list-md" *ngIf="upcomingEvents.length!=0">
                 <div *ngFor="let upcoming of upcomingEvents | sortByDate:'matchDate';trackBy:identify">
                     <div *ngIf="upcoming.SportbfId===4" class="market-list-item ion-item item item-block item-md">
@@ -562,13 +562,22 @@
                       <div class="label ion-label label-md">
                         <a class="">
                           <div class="popular-event">
-                            <div class="event-details"> <i>
-                              <img *ngIf="pnldata.market.split(' > ')[0]=='Tennis'" height="20px" width="20px" src="assets/img/tennis_ball.ico">
-                              <img *ngIf="pnldata.market.split(' > ')[0]=='Soccer'" height="20px" width="20px" src="assets/img/soccer_ball.ico">
-                              <img *ngIf="pnldata.market.split(' > ')[0]=='Cricket'" height="20px" width="20px" src="assets/img/cricket.png"></i>
-                              <span class="label ">{{pnldata.market.split(' > ')[1]}}</span>
+                            <div class="event-details"> 
+                              <!-- <i>
+                                <img *ngIf="pnldata.market.split(' > ')[0]=='Tennis'" height="20px" width="20px" src="assets/img/tennis_ball.ico">
+                                <img *ngIf="pnldata.market.split(' > ')[0]=='Soccer'" height="20px" width="20px" src="assets/img/soccer_ball.ico">
+                                <img *ngIf="pnldata.market.split(' > ')[0]=='Cricket'" height="20px" width="20px" src="assets/img/cricket.png">
+                              </i> -->
+                              <!-- <span class="label ">{{pnldata.market.split(' > ')[1]}}</span>
                               <p class="date-info"> <span class="">{{pnldata.settleDate}}</span>
-                              </p>
+                              </p> -->
+                              <div>
+                                <span class="label-slash-tennis">\</span>
+                              </div>
+                              <div style="margin:5px">
+                                <span class="">{{pnldata.market.split(' > ')[1]}}</span>
+                                <p class="date-info"> <span class="">{{pnldata.settleDate}}</span></p>
+                              </div>
                             </div>
                             <div style="font-weight:bolder;" [ngClass]="(pnldata.pnl >= 0)?'text-success':'text-danger'">
                               {{pnldata.pnl|number:'1.2-2'}}

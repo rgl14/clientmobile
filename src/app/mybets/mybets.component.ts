@@ -26,6 +26,7 @@ export class MybetsComponent implements OnInit {
   todate: string;
   selectfromdate: string;
   selecttodate: string;
+  innerHeight: number;
 
   constructor(private commonservice:CommonService) { 
     
@@ -39,16 +40,24 @@ export class MybetsComponent implements OnInit {
       {headerName: 'Bet Placed', field: 'placedDate', sortable: true, width: 150},
       {headerName: 'Odds', field: 'avgOdds', sortable: true, width: 75},
       {headerName: 'Stake', field: 'matchedStake', sortable: true, width: 75},
-      {headerName: 'Profit/loss', field: 'pnl', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}},
+      {headerName: 'Profit/loss', field: 'pnl', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
     ]; 
 
     function balanceFormatter(params){
       console.log(params);
-      var stringstake=parseInt(params.data.matchedStake);
-      var stringavgOdds=parseInt(params.data.avgOdds);
-      
-      var twodecimalvalue=stringstake.toFixed(2);
-      return twodecimalvalue;
+      var rowvalue=params.data;
+      var stringstake=parseFloat(rowvalue.matchedStake);
+      if(rowvalue.type=="Back" || rowvalue.type=="Lay"){
+        var stringavgOdds=parseFloat(rowvalue.odds)-1;
+        var pnlvalue=stringavgOdds*stringstake;
+      }else{
+        var splitodds=rowvalue.odds.split('@')
+        var stringavgOdds=parseInt(splitodds[1])/100;
+        var pnlvalue=stringavgOdds*stringstake;
+      }
+      // console.log(stringstake,stringavgOdds)
+      var twodecimalvalue=pnlvalue.toFixed(2);
+      return twodecimalvalue.toString();
     }
 
     this.gridOptions.paginationPageSize=10;
@@ -92,6 +101,7 @@ export class MybetsComponent implements OnInit {
     // }
 
   ngOnInit() {
+    this.innerHeight=window.innerHeight;
   }
 
 }

@@ -28,6 +28,7 @@ export class AccountstatementComponent implements OnInit {
   todate: string;
   selectfromdate: any;
   selecttodate: any;
+  innerHeight: number;
 
   constructor(private commonservice:CommonService) { 
 
@@ -163,7 +164,7 @@ export class AccountstatementComponent implements OnInit {
     // }
 
   ngOnInit() {
-    
+    this.innerHeight=window.innerHeight;
   }
 
 }

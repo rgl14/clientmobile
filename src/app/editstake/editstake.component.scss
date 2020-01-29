@@ -4,6 +4,7 @@ h3 {
     color: #fff;
     font-size: 3.73333vw;
     line-height: 2.2;
+    padding-left: 5px;
 }
 .setting-block {
     font-size: 4vw;
@@ -37,6 +38,7 @@ h3 {
     border: 1px solid #aaa;
     border-radius: 1.6vw;
     font-size: 4vw;
+    height: 46px;
     font-weight: 700;
     line-height: 2.6;
     color: #1E1E1E;
@@ -92,7 +94,7 @@ input:focus, .input-num .typeing {
 .btn-send, .Duoexch .login {
     background-image: linear-gradient(-180deg,#464646 15%,#121212 100%);
     border-color: #000;
-    color: #FFB80C;
+    color: #fff!important;
 }
 .side-wrap .btn-list {
     flex: 0 0 12.8vw;

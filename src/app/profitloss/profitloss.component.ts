@@ -29,6 +29,7 @@ export class ProfitlossComponent implements OnInit {
   fromdate: string;
   selectfromdate: string;
   selecttodate: string;
+  innerHeight: number;
 
   constructor(private commonservice:CommonService) { 
     this.gridOptions = <GridOptions>{};
@@ -113,6 +114,7 @@ export class ProfitlossComponent implements OnInit {
     // }
 
   ngOnInit() {
+    this.innerHeight=window.innerHeight;
   }
 
 }
