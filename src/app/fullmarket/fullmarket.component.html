@@ -391,8 +391,7 @@
             </div>
             <ul class="btn-list">
                <li>
-                  <a (click)="cancelBetslip()" class="btn btn-cancel">Cancel
-                  </a>
+                  <a mat-stroked-button (click)="cancelBetslip()" class="btn btn-cancel">Cancel</a>
                </li>
                <li>
                   <a mat-flat-button color="accent" (click)="placeMarketData.stake=='' || placeMarketData.odds==''?'':confirmBetPop(placeMarketData)"

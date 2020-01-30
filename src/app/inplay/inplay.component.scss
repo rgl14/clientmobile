@@ -8,7 +8,7 @@
         padding: 8px;
         box-shadow: inset -5px 0 -3px #333333;
         
-        h3 {
+        h4 {
             margin: 0;
             padding: 0;
             color: #fff;
@@ -17,6 +17,82 @@
             white-space: nowrap;
         }
     }
+}
+.bets {
+    padding: 8px;
+}
+.label {
+    font-weight: 700;
+}
+.left-block, .right-block {
+    display: inline-flex;
+    flex: 1 1 50%;
+}
+.right-block, .type-container, .odds-container, .stake-container {
+    display: inline-flex;
+    flex-direction: column;
+}
+.bets-body {
+    font-size: 13px;
+}
+.bet {
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 4px;
+    &:not(:last-child) {
+        border-bottom: 1px solid #dfdfdf;
+        margin-bottom: 8px;
+    }
+}
+
+.selection-block {
+    display: flex;
+    margin-bottom: 12px;
+    .left-block, .right-block {
+        flex-direction: column;
+    }
+    .right-block {
+        flex: 1 1 40%;
+        align-items: flex-end;
+    }
+}
+
+.bet-summary-block {
+    display: flex;
+    & > div:not(:last-child) {
+        flex: 1 1 auto;
+        margin-right: 8px;
+    }
+}
+
+.bets-summary-container {
+    display: flex;
+    flex-direction: column;
+    background: #eeeeee;
+    padding: 8px;
+    box-shadow: 0 -3px 2px -1px #e1e1e1, 0 3px 2px -1px #e1e1e1;
+
+    .value {
+        display: inline-flex;
+        justify-content: flex-end;
+    }
+}
+
+.back-total-container, .lay-subtotal-container, .market-total-container, .commission-container, .net-market-total {
+    display: flex;
+    & > span {
+        flex: 1 1 50%;
+    }
+}
+
+.net-market-total {
+    font-weight: 14px;
+    font-weight: 700;
+    margin-top: 8px;
+    padding: 4px 0;
+    border-top: 1px solid #555555;
+    border-bottom: 1px solid #555555;
 }
 
 .recent-container {

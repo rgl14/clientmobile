@@ -3,7 +3,14 @@
     background-image: linear-gradient(-180deg,#E93522 0%,#BE2414 100%);
     transition: background-image 300ms ease-out;
 }
-
+// .btn, .btn-send, .form-select {
+//     border-radius: 1.6vw;
+//     font-size: 4vw;
+//     font-weight: 700;
+//     line-height: 2.6;
+//     color: #fff;
+//     padding: 0;
+// }
 .btn-send {
     background-image: linear-gradient(-180deg, #00a826 0%, #00c32c 100%);
     color: #fff;
@@ -764,16 +771,7 @@ input:focus, .input-num .typeing {
     margin-right: 1.86667vw;
     overflow: hidden;
 }
-.btn, .btn-send, .form-select {
-    // background-image: linear-gradient(-180deg,#FFFFFF 0%,#EEEEEE 89%);
-    // border: 1px solid #aaa;
-    border-radius: 1.6vw;
-    font-size: 4vw;
-    font-weight: 700;
-    line-height: 2.6;
-    color: #fff;
-    padding: 0;
-}
+
 //fancy container css
 .fancy_bet-head {
     border-bottom-color: #087989;
