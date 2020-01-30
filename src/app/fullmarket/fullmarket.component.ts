@@ -614,9 +614,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
 	                $('#withoutBetMktExp_' + mktid + '_' + runnerName).removeClass('win');
 	                $('#withoutBetMktExp_' + mktid + '_' + runnerName).removeClass('lose');
 	                if (item.Value >= 0) {
-	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text(item.Value).addClass('win');
+	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
 	                } else if (item.Value <= 0) {
-	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text('('+item.Value+')').addClass('lose');
+	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
                   }
       })
     })
@@ -796,6 +796,16 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       placeData.stake = stake + buttonStake;
     }
 
+    placeData.profit = this.calcAllProfit(placeData);
+    this.calcExposure(placeData, null);
+  }
+  typingSign(type, placeData) {
+    if(type=='stake'){
+      placeData.stake="";
+    }
+    if(type=='odds'){
+      placeData.odds="";
+    }
     placeData.profit = this.calcAllProfit(placeData);
     this.calcExposure(placeData, null);
   }
