@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { CommonService } from 'src/services/common.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../shared/notification.service';
+import { GridOptions } from 'ag-grid-community';
 
 
 @Component({
@@ -15,6 +16,20 @@ import { NotificationService } from '../shared/notification.service';
 
 
 export class InplayComponent implements OnInit,OnDestroy {
+  
+  gridOptions: GridOptions;
+  columnDefs:any
+  paginationPageSize:any;
+  paginationSetPageSize;
+  paginationNumberFormatter:any;
+  rowData=[];
+  headerHeight: number;
+  gridApi: any;
+  gridColumnApi: any;
+  defaultColDef: { sortable: boolean; resizable: boolean; };
+  overlayNoRowsTemplate: string;
+  overlayLoadingTemplate: string;
+  
   datahighlightwise: any;
   inplayData: any=[];
   upcomingEvents: any=[];
@@ -28,12 +43,59 @@ export class InplayComponent implements OnInit,OnDestroy {
   todate: string;
   pnlData: any=[];
 
+  betsTable: any;
+
+  showRecentList: boolean = true;
   constructor(
     private commonservice:CommonService,
     private sharedata:SharedataService,
     private dataformat:DataFormatService,
     public notification :NotificationService,
-    private router: Router) { }
+    private router: Router) { 
+      this.betsTable = {};
+      this.gridOptions = {
+      columnDefs: [
+        {
+          headerName: "Market",
+          field: "market",
+          width: 100
+        },
+        {
+          headerName: "Settle Date",
+          field: "settleDate",
+          width: 100
+        },
+        
+        {
+          headerName: "Start Date",
+          field: "startDate",
+          sortable: true,
+          width: 100,
+        },
+        {
+          headerName: "Profit/Loss",
+          field: "pnl",
+          sortable: true,
+          valueFormatter: balanceFormatter,
+          cellStyle: {'font-weight':'bolder'},
+          cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}
+        }
+      ]
+    };
+      function balanceFormatter(params){
+        if(params.value==null){
+         return "--";
+        }else{
+          var stringbalance=parseInt(params.value);
+          var twodecimalvalue=stringbalance.toFixed(2);
+          return twodecimalvalue;
+        }
+      }
+      this.defaultColDef = {
+        sortable: true,
+        resizable: true
+      };
+    }
 
   ngOnInit() {
     this.sharedata.userdatasource.subscribe(resp=>{
@@ -67,7 +129,10 @@ export class InplayComponent implements OnInit,OnDestroy {
       console.log(this.pnlData)
     })
   }
-  
+  onGridReady(params:any) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
   appcharge(SportbfId,TourbfId,matchId,marketId,mtBfId,bfId){
     this.router.navigateByUrl('/fullmarket/'+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId);
     // this.commonservice.AppCharges(matchId).subscribe(resp=>{
@@ -89,6 +154,13 @@ export class InplayComponent implements OnInit,OnDestroy {
     //do what ever logic you need to come up with the unique identifier of your item in loop, I will just return the object id.
     return index;
    }
+
+  showBetsTable(pnlData) {
+    this.showRecentList = !this.showRecentList;
+    console.log(pnlData);
+    this.betsTable.matchName = pnlData.market.split('>')[1];
+    this.rowData = [pnlData];
+  }
 ngOnDestroy(){
   this.inplaydatanavigation.unsubscribe();
 }

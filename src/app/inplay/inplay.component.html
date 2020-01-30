@@ -3,7 +3,8 @@
     (selectedTabChange)="tabChange($event)"
     [(selectedIndex)]="selectedIndex"
     [(tabs)]="tabs"
-    swipeTab>
+    swipeTab
+    *ngIf="showRecentList">
       <mat-tab (swipe)="onSwipe($event)">
         <ng-template mat-tab-label class="mat-tab-label-active">In-Play</ng-template>
         <div class="home-page ion-content event-page content content-md" padding="">
@@ -536,7 +537,7 @@
       </mat-tab>
       <mat-tab (swipe)="onSwipe($event)">
         <ng-template mat-tab-label>RECENT</ng-template>
-        <div class="home-page ion-content event-page content content-md" padding="">
+        <div class="home-page ion-content event-page content content-md" padding="" *ngIf="showRecentList">
           <div class="fixed-content   "></div>
           <div class="scroll-content " (swipe)="onSwipe($event)">
             <section>
@@ -554,7 +555,7 @@
                     </div> -->
               <!-- <a > <span class="open-bets-link">Open Bets (0)</span>
               </a> -->
-              <div *ngFor="let pnldata of pnlData ">
+              <div class="recent-container" (click)="showBetsTable(pnldata)" *ngFor="let pnldata of pnlData ">
               <div class="distinct ion-list market-list list list-md">
                 <div class="market-list-item ion-item item item-block item-md">
                   <div class="item-inner">
@@ -587,6 +588,33 @@
         </div>
       </mat-tab>
     </mat-tab-group>
+
+
+    <ng-container *ngIf="!showRecentList">
+      <div class="bets-container">
+        <button mat-icon-button (click)="showRecentList = true" class="btn-back">
+          <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+        <div class="bets-header">
+          <h3>{{ betsTable.matchName }}</h3>
+        </div>
+        <div class="bet-body">
+          <ag-grid-angular 
+              style="width: 100%; height: 400px;" 
+              class="ag-theme-balham"     
+              [gridOptions]="gridOptions"
+              [rowData]="rowData" 
+              [headerHeight]="headerHeight"
+              [defaultColDef]="defaultColDef"
+              [animateRows]="true"
+              [overlayLoadingTemplate]="overlayLoadingTemplate"
+              [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+              (gridReady)="onGridReady($event)"
+              >
+              </ag-grid-angular>
+        </div>
+      </div>
+    </ng-container>
   </div>
 
 <app-search></app-search>

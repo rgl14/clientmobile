@@ -1,3 +1,24 @@
+
+.btn{
+    background-image: linear-gradient(-180deg,#E93522 0%,#BE2414 100%);
+    transition: background-image 300ms ease-out;
+}
+
+.btn-send {
+    background-image: linear-gradient(-180deg, #00a826 0%, #00c32c 100%);
+    color: #fff;
+}
+.btn-send.disable, .disable.login {
+    filter: brightness(.89);
+    box-shadow: none;
+}
+.btn-list {
+    color: #fff;
+}
+.btn-cancel {
+    background-image: linear-gradient(-180deg, #333333 0%, #555555 100%);
+    color: #fff;
+}
 //design for score board like sky
 .game-wrap {
     // background-color: #172832;
@@ -753,15 +774,6 @@ input:focus, .input-num .typeing {
     color: #fff;
     padding: 0;
 }
-.btn{
-    background-image: linear-gradient(-180deg,#E93522 0%,#BE2414 100%);
-}
-.btn-send.disable, .disable.login {
-    background-image: linear-gradient(-180deg,#B4B4B4 0%,#A1A1A1 100%);
-    border-color: #aaa;
-    color: #E6DFCD;
-}
-
 //fancy container css
 .fancy_bet-head {
     border-bottom-color: #087989;
