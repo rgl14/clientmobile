@@ -133,7 +133,6 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           this.homeStatus=this.subscribedEventdata.status;
           this.tvConfig=this.subscribedEventdata.tvConfig;
           this.fancypanelsetting=localStorage.getItem("FancyPanelSetting");
-          console.log(this.fancypanelsetting);
           if(eventdatacount==1 && this.homeDataMode===1){
             this.hubaddress();
           }
@@ -170,22 +169,22 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       }
       this.scorecardresponse(this.matchId,this.homeFancyData)
     })
-    _.forEach(this.homeMarkets, (item, index) => {
-      // console.log(item)
-      this.common.getexposurebook(item.id).subscribe(resp=>{
+    _.forEach(this.homeMarkets, (item1, index) => {
+      console.log(item1)
+      this.common.getexposurebook(item1.id).subscribe(resp=>{
         _.forEach(resp.data, (item, index) => {
           var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
-                    $('#withoutBetMktExp_' + this.mktId + '_' + runnerName).removeClass('win');
-                    $('#withoutBetMktExp_' + this.mktId + '_' + runnerName).removeClass('lose');
+                    $('#withoutBetMktExp_' + item1.id + '_' + runnerName).removeClass('win');
+                    $('#withoutBetMktExp_' + item1.id + '_' + runnerName).removeClass('lose');
                     if (item.Value >= 0) {
-                        $('#withoutBetMktExp_'+ this.mktId+'_'+runnerName).text(item.Value).addClass('win');
+                        $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
                     } else if (item.Value <= 0) {
-                        $('#withoutBetMktExp_'+ this.mktId+'_'+runnerName).text('('+item.Value+')').addClass('lose');
+                        $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
                     }
                    
         })
         // Mktdata["oldPnl"] = resp.data;
-        localStorage.setItem('MktExpo_' + item.mktId, JSON.stringify(resp.data));
+        localStorage.setItem('MktExpo_' + item1.mktId, JSON.stringify(resp.data));
       })
     })
     this.common.getsetting().subscribe(resp=>{
@@ -221,7 +220,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   MarketsignalrData(){
     this.Marketoddssignalr=this.marketodds.marketSource.subscribe(runner=>{
       if (runner != null) {
-        console.log(runner);
+        // console.log(runner);
         this.eventData.unsubscribe();
         let marketIndex = _.findIndex(this.homeMarkets, function(o) {
           return o.bfId == runner.marketid;
@@ -468,7 +467,8 @@ export class FullmarketComponent implements OnInit,OnDestroy {
         matchId: matchId,
         odds: odds,
         runnerName: runnerName,
-        stake: this.settingsData.defaultStake,
+        // stake: this.settingsData.defaultStake,
+        stake: '',
         profit: 0,
         bfId: bfId,
         matchBfId: mtbfId,
@@ -496,7 +496,8 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       runnerId: runnerId,
       runnerName: runnerName,
       profit:0,
-      stake: this.settingsData.defaultStake,
+      // stake: this.settingsData.defaultStake,
+      stake: '',
       mktname: bookName
     };
     this.placeBookData["source"] = "Mobile";
@@ -520,7 +521,8 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       rate: rate,
       runnerName: fancyName,
       score: score,
-      stake: this.settingsData.defaultStake,
+      // stake: this.settingsData.defaultStake,
+      stake: '',
       yesno: yesNo
     };
     this.placeFancyData["source"] = "Mobile";
@@ -818,10 +820,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
 
   calcAllProfit(placeData) {
     var pnl;
-    if (
-      (placeData.backlay == "Back" || placeData.backlay == "Lay") &&
-      placeData.bookId == undefined
-    ) {
+    if ((placeData.backlay == "Back" || placeData.backlay == "Lay") && placeData.bookId == undefined) {
       if (placeData.stake != "" && placeData.odds != "") {
         return (pnl = ((parseFloat(placeData.odds) - 1) * parseFloat(placeData.stake)).toFixed(2));
       } else {
@@ -829,9 +828,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       }
     }
     if (
-      (placeData.backlay == "Back" || placeData.backlay == "Lay") &&
-      placeData.bookId != undefined
-    ) {
+      (placeData.backlay == "Back" || placeData.backlay == "Lay") && placeData.bookId != undefined) {
       if (placeData.bookType == 1) {
         if (placeData.stake != "" && placeData.odds != "") {
           return (pnl = ((parseFloat(placeData.odds) * parseFloat(placeData.stake)) /100).toFixed(2));
@@ -848,7 +845,6 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     } else if (placeData.yesno == "Yes" || placeData.yesno == "No") {
       if (placeData.stake != "" &&placeData.rate != "" &&placeData.yesno == "Yes") {
         return (pnl = ((parseFloat(placeData.rate) * parseFloat(placeData.stake)) /100).toFixed(2));
-        // return pnl=placeData.stake;
       } else if (placeData.stake != "" &&placeData.rate != "" &&placeData.yesno == "No") {
         return (pnl = ((parseFloat(placeData.rate) * parseFloat(placeData.stake)) / 100).toFixed(2));
       } else {
@@ -860,9 +856,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   calcExposure(placeData, remove) {
     
     if ((placeData.backlay == "Back" || placeData.backlay == "Lay") &&placeData.bookId == undefined) {
-      this.mktExpoBook = JSON.parse(
-        localStorage.getItem("MktExpo_" + placeData.marketId)
-      );
+      this.mktExpoBook = JSON.parse(localStorage.getItem("MktExpo_" + placeData.marketId));
       if (this.mktExpoBook == null) {
         return false;
       }

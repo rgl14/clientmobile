@@ -29,7 +29,8 @@
                  </select>
               </mat-form-field>
               <ag-grid-angular 
-              style="width: 100%; height: 400px;" 
+              [ngStyle]="{ 'height': innerHeight-282 + 'px' }"
+              style="width: 100%;" 
               class="ag-theme-balham"     
               [gridOptions]="gridOptions"
               [headerHeight]="headerHeight"

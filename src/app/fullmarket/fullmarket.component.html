@@ -6,7 +6,7 @@
                  <div class="ip-LiveAlertsHeaderButtons_Left ">
                      <div class="ipe-EventViewMarketTabs ">
                          <div class="ipe-EventViewTabLink ipe-EventViewTabLink-selected "  *ngIf="homeInPlay==1">Inplay</div>
-                         <!-- <div class="ipe-EventViewTabLink ">Set</div> -->
+                         <div class="ipe-EventViewTabLink" *ngIf="subscribedEventdata">{{MatchName}}</div>
                          <span *ngIf="homeInPlay==1" class="ipe-EventViewMarketTabs_Slider ipe-EventViewMarketTabs_Slider-Animate " style="left: 10px; width: 35px; transform-origin: left center;"></span>
                      </div>
                  <div class="ip-LiveAlertsHeaderButtons_Right ">
@@ -297,11 +297,11 @@
             <dt>
                <h4 class="">{{market.runnerName}}</h4>
                <ul>
-                     <li class="win" [ngClass]="getPnlClass(market,markets.oldPnl)">{{getPnlValue(runner,markets.oldPnl)}}</li>
+                     <!-- <li class="win" [ngClass]="getPnlClass(market,markets.oldPnl)">{{getPnlValue(runner,markets.oldPnl)}}</li>
                      <li class="" *ngIf="market.newPnl" [ngClass]="getPnlClass(market,markets.newPnl)"> » </li>
-                     <li class="" *ngIf="market.newPnl"  [ngClass]="getPnlClass(market,markets.newPnl)">{{getPnlValue(runner,markets.newPnl)}}</li>
-                     <li id="withoutBetMktExp_{{mktId}}_{{market.runnerName | removeSpace}}" style="display: list-item;"></li>
-                     <li id="withBetMktExp_{{mktId}}_{{market.runnerName | removeSpace}}" style="display: list-item;"><span></span></li>
+                     <li class="" *ngIf="market.newPnl"  [ngClass]="getPnlClass(market,markets.newPnl)">{{getPnlValue(runner,markets.newPnl)}}</li> -->
+                     <li id="withoutBetMktExp_{{markets.id}}_{{market.runnerName | removeSpace}}" style="display: list-item;"></li>
+                     <li id="withBetMktExp_{{markets.id}}_{{market.runnerName | removeSpace}}" style="display: list-item;"><span></span></li>
                </ul>
             </dt>
             <dd class="suspend" [ngStyle]="{'display':(market.Status=='CLOSED')?'flex':'none'}">

@@ -31,7 +31,7 @@ html,body { margin: 0;height: 100%; font-family: Roboto, "Helvetica Neue", sans-
     color:red;
 }
 .submit{
-    background-color: #00b489;
+    background-color: #414141;
     color: #fff;
     font-weight: 600;
 }
@@ -70,7 +70,7 @@ button:focus {
     background-color: rgba(78, 240, 214, 0.56) !important;
 }
 .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-    background-color: #00b489 !important;
+    background-color: #00a826 !important;
 }
 //tab css material
 @media (max-width: 599px){
@@ -117,7 +117,7 @@ button:focus {
 
 //accordion css material
 .mat-expansion-panel-body {
-    padding: 0 12px 8px !important;
+    padding: 0 3px 8px !important;
 }
 
 //Page content header Css
