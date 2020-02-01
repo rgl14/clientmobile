@@ -120,6 +120,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           this.AllMarketData=data;
           this.subscribedEventdata=this.AllMarketData[this.sprtId].tournaments[this.tourId].matches[this.matchId];
           this.bookMakingData=this.subscribedEventdata.bookRates;
+          console.log(this.bookMakingData);
           this.homeCommentary=this.subscribedEventdata.commentary;
           this.homeDataMode=this.subscribedEventdata.dataMode;
           this.homeDisplayApplication=this.subscribedEventdata.displayApplication;
@@ -133,7 +134,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           this.homeStatus=this.subscribedEventdata.status;
           this.tvConfig=this.subscribedEventdata.tvConfig;
           this.fancypanelsetting=localStorage.getItem("FancyPanelSetting");
-          if(eventdatacount==1 && this.homeDataMode===1){
+          if(eventdatacount==1){
             this.hubaddress();
           }
         }

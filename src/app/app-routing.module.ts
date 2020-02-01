@@ -23,6 +23,7 @@ import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   {path:'',component:MainComponent},
+  // { path: '**', redirectTo: 'home', pathMatch: 'full' },
   {path:'home',component:HomeComponent},
   {path:'fullmarket/:SportbfId/:TourbfId/:matchId/:marketId/:mtBfId/:bfId',component:FullmarketComponent},
   {path:'sports',component:SportsComponent},
@@ -31,6 +32,7 @@ const routes: Routes = [
   {path:'mybets',component:MybetsComponent},
   {path:'marketresult',component:MarketresultComponent},
   {path:'changepassword',component:ChangepasswordComponent},
+  {path:'changepassword/:id',component:ChangepasswordComponent},
   {path:'rules',component:RulesComponent},
   {path:'reports',component:ReportsComponent},
   {path:'activity',component:ActivityComponent},

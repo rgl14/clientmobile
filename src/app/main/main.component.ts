@@ -5,6 +5,7 @@ import { CommonService } from 'src/services/common.service';
 import { SharedataService } from '../sharedata.service';
 import { SignalrService } from '../signalr.service';
 import { interval } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -21,11 +22,14 @@ export class MainComponent implements OnInit {
   exposure: any;
   userdata: any;
   Over:any;
+  uservalidate: string;
   
-  constructor(private cookie:CookieService,private commonservice:CommonService,private sharedata:SharedataService,private signalrconnect:SignalrService) { }
+  constructor(private cookie:CookieService,private commonservice:CommonService,private sharedata:SharedataService,private signalrconnect:SignalrService,private route:ActivatedRoute,private router: Router,) { }
 
   ngOnInit() {
     const secondsCounter = interval(5000);
+    this.uservalidate=this.router.url;
+    console.log(this.uservalidate)
     this.innerWidth = window.innerWidth;
     this.commonservice.userdescription().subscribe(data =>{
       this.userdata=data.data;
