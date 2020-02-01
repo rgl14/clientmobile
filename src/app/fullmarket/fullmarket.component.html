@@ -577,7 +577,7 @@
          <div class="btn-list" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
             <a fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()" class="btn-cancel">Cancel
             </a>
-            <a fxFlex="1 1 auto" mat-flat-button color="primary" class="{{placeMarketData.backlay | lowercase}} btn" (click)="placeBookData.stake==''?'':placeBMBet(placeBookData)" [ngClass]="placeBookData.stake==''?'disable':''">Place Bet
+            <a fxFlex="1 1 auto" mat-flat-button color="primary" class="{{placeMarketData.backlay | lowercase}} btn btn-send" (click)="placeBookData.stake==''?'':placeBMBet(placeBookData)" [ngClass]="placeBookData.stake==''?'disable':''">Place Bet
             </a>
          </div>
       </div>
