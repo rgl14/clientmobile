@@ -515,10 +515,10 @@
          <dd  class="mode-land">
          </dd>
          <dd >
-            <a class="back-1" (click)="runner.backSize=='-' || runner.backSize==''?'':openBookBetSlip($event,'Back',runner.backPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.backPrice=='-')? '0':runner.backPrice | number:'1.2-2'}}<span *ngIf='(runner.backPrice == null || runner.backPrice == "")'><img src="assets\img\unavailable.svg" /></span><span>{{runner.backSize}}</span></a>
+            <a class="back-1" (click)="runner.backSize=='-' || runner.backSize==''?'':openBookBetSlip($event,'Back',runner.backPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.backPrice == "-")?'':runner.backPrice}}<div class="not-allowed" *ngIf='(runner.backPrice == null || runner.backPrice == "-")'><mat-icon>lock</mat-icon></div></a>
          </dd>
          <dd >
-            <a class="lay-1" (click)="runner.layPrice=='-' || runner.layPrice==''?'':openBookBetSlip($event,'Lay',runner.layPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.layPrice=='-')?'0':runner.layPrice | number:'1.2-2'}}<span *ngIf='(runner.layPrice == null || runner.layPrice == "")'><img src="assets\img\unavailable.svg" /></span><span> {{runner.laySize}}</span></a>
+            <a class="lay-1" (click)="runner.layPrice=='-' || runner.layPrice==''?'':openBookBetSlip($event,'Lay',runner.layPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.layPrice == "-")?'':runner.layPrice}}<div class="not-allowed" *ngIf='(runner.layPrice == null || runner.layPrice == "-")'><mat-icon>lock</mat-icon></div></a>
          </dd>
          <dd  class="mode-land">
          </dd>
