@@ -210,8 +210,19 @@ a {
     // color: #CCCC46;
     font-size: 12px;
 }
+.event-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
 .date-info{
     margin: 0px 0px 0px 0px;
+    display: inline-flex;
+    align-items: center;
+
+    & > div {
+        margin-right: 4px;
+    }
 }
 
 .item-md, .item-wp {
@@ -334,7 +345,10 @@ a {
     margin: 0 5px 0px 0;
 }
 .event-details .label{
-    margin-top:10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 4px;
 }
 .label-slash-cricket{
     color: #00a826;

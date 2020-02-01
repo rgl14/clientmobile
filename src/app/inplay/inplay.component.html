@@ -42,7 +42,20 @@
                                 
                                 <!-- <i class="apl-icon-sport-cricket"><img height="20px" width="20px" src="assets/img/cricket.png"></i> -->
                                 <!-- <i class="apl-icon-sport-kabaddi" data-ng-if="inplay.sportName=='Kabaddi'"><img src="images/kabaddi_black.png"></i> --> 
-                                <span class="label">{{inplay.matchName}}</span>
+                                <div class="event-container">
+                                  <span class="label">{{inplay.matchName}}</span>
+                                  <div class="date-info"> 
+                                    <div class="status">
+                                      <div class="live-icon shine">Live</div>
+                                    </div>
+                                    <div class="status" *ngIf="inplay.hasFancy === 1">
+                                      <div class="fancy-icon shine">Fancy</div>
+                                    </div>
+                                    <div class="status">
+                                      <div class="BM-icon shine">book maker</div>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
                               <!-- <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
                               </div> -->
@@ -374,7 +387,14 @@
                                     <div>
                                       <span class="label-slash-soccer">\</span>
                                     </div>
-                                    <span class="label ">{{inplay.matchName}}</span>
+                                    <div class="event-container">
+                                      <span class="label">{{inplay.matchName}}</span>
+                                      <div class="date-info"> 
+                                        <div class="status">
+                                          <div class="live-icon shine">Live</div>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                   <!-- <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
                                   </div> -->
@@ -398,7 +418,14 @@
                                     <div>
                                       <span class="label-slash-tennis">\</span>
                                     </div>
-                                    <span class="label ">{{inplay.matchName}}</span>
+                                    <div class="event-container">
+                                      <span class="label">{{inplay.matchName}}</span>
+                                      <div class="date-info"> 
+                                        <div class="status">
+                                          <div class="live-icon shine">Live</div>
+                                        </div>
+                                      </div>
+                                    </div>
                                   </div>
                                   <!-- <div class="in-play-icon"> <i class="fa fa-play-circle"></i>
                                   </div> -->
@@ -454,9 +481,19 @@
                                     <div>
                                       <span class="label-slash-cricket">\</span>
                                     </div>
-                                    <div style="margin:5px">
-                                      <span class="">{{upcoming.matchName}}</span>
-                                      <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p>
+                                    <div class="event-container">
+                                      <span class="label">{{upcoming.matchName}}</span>
+                                      <div class="date-info"> 
+                                        <div class="status">
+                                          <div class="match-date">{{upcoming.matchDate}}</div>
+                                        </div>
+                                        <div class="status" *ngIf="upcoming.hasFancy === 1">
+                                          <div class="fancy-icon shine">Fancy</div>
+                                        </div>
+                                        <div class="status">
+                                          <div class="BM-icon shine">book maker</div>
+                                        </div>
+                                      </div>
                                     </div>
                                   </div>
                                   <!-- <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
@@ -481,9 +518,13 @@
                                     <div>
                                       <span class="label-slash-soccer">\</span>
                                     </div>
-                                    <div style="margin:5px">
-                                      <span class="">{{upcoming.matchName}}</span>
-                                      <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p>
+                                    <div class="event-container">
+                                      <span class="label">{{upcoming.matchName}}</span>
+                                      <div class="date-info"> 
+                                        <div class="status">
+                                          <div class="match-date">{{upcoming.matchDate}}</div>
+                                        </div>
+                                      </div>
                                     </div>
                                     <!-- <span class="label ">{{upcoming.matchName}}</span>
                                     <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p> -->
@@ -510,9 +551,13 @@
                                     <div>
                                       <span class="label-slash-tennis">\</span>
                                     </div>
-                                    <div style="margin:5px">
-                                      <span class="">{{upcoming.matchName}}</span>
-                                      <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p>
+                                    <div class="event-container">
+                                      <span class="label">{{upcoming.matchName}}</span>
+                                      <div class="date-info"> 
+                                        <div class="status">
+                                          <div class="match-date">{{upcoming.matchDate}}</div>
+                                        </div>
+                                      </div>
                                     </div>
                                     <!-- <span class="label ">{{upcoming.matchName}}</span> -->
                                     <!-- <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p> -->
@@ -575,9 +620,13 @@
                               <div>
                                 <span class="label-slash-tennis">\</span>
                               </div>
-                              <div style="margin:5px">
-                                <span class="">{{pnldata.market.split(' > ')[1]}}</span>
-                                <p class="date-info"> <span class="">{{pnldata.settleDate}}</span></p>
+                              <div class="event-container">
+                                <span class="label">{{pnldata.market.split(' > ')[1]}}</span>
+                                <div class="date-info"> 
+                                  <div class="status">
+                                    <div class="match-date">{{pnldata.settleDate}}</div>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                             <div style="font-weight:bolder;" [ngClass]="(pnldata.pnl >= 0)?'text-success':'text-danger'">
