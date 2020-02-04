@@ -950,10 +950,12 @@ export class FullmarketComponent implements OnInit,OnDestroy {
         _.forEach(this.BMExpoBook, (item, index) => {
           var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, "").replace(/[_\s]/g,"_");
 
-          // if (item.Value > 0) {
-          $("#withBetBMExp_" + placeData.bookId + "_" + runnerName).text("").removeClass("to-win");
+          // $('#withBetBMExp_' + placeData.bookId + '_' + runnerName).removeClass('to-win');
+          // $('#withBetBMExp_' + placeData.bookId + '_' + runnerName).removeClass('to-lose');
+          // if (item.Value >= 0) {
+            $("#withBetBMExp_" + placeData.bookId + "_" + runnerName).text("").addClass("to-win");
           // } else {
-          $("#withBetBMExp_" + placeData.bookId + "_" + runnerName).text("").removeClass("to-lose");
+            $("#withBetBMExp_" + placeData.bookId + "_" + runnerName).text("").addClass("to-lose");
           // }
         });
       } else {
@@ -992,7 +994,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
 
         _.forEach(this.BMExpoBook, (item, index) => {
           var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, "").replace( /[_\s]/g,"_");
-          if (item.Value > 0) {
+          $('#withBetBMExp_' + placeData.bookId + '_' + runnerName).removeClass('to-win');
+          $('#withBetBMExp_' + placeData.bookId + '_' + runnerName).removeClass('to-lose');
+          if (item.Value >= 0) {
             $("#withBetBMExp_" + placeData.bookId + "_" + runnerName).text(item.Value).addClass("to-win");
           } else {
             $("#withBetBMExp_" + placeData.bookId + "_" + runnerName).text("(" + item.Value + ")").addClass("to-lose");
