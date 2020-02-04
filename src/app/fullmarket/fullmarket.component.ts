@@ -158,12 +158,22 @@ export class FullmarketComponent implements OnInit,OnDestroy {
         this.FancysignalrData();
       }
       if(this.bookMakingData!=null){
-        _.forEach(this.bookMakingData,(item,index)=>{
-          this.common.getBMexposurebook(this.mktId,item.id).subscribe(data=>{
+        _.forEach(this.bookMakingData,(item1,index)=>{
+          this.common.getBMexposurebook(this.mktId,item1.id).subscribe(data=>{
             if(data!=null){
               // console.log(data.data);
               this.bmexposure=data.data;
-              localStorage.setItem("BMExpo_" + item.id,JSON.stringify(data.data))
+              _.forEach(this.bmexposure, (item, index) => {
+                var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
+                          $('#withoutBetBMExp_' + item1.id + '_' + runnerName).removeClass('win');
+                          $('#withoutBetBMExp_' + item1.id + '_' + runnerName).removeClass('lose');
+                          if (item.Value >= 0) {
+                              $('#withoutBetBMExp_'+ item1.id+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
+                          } else if (item.Value <= 0) {
+                              $('#withoutBetBMExp_'+ item1.id+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
+                          }
+              })
+              localStorage.setItem("BMExpo_" + item1.id,JSON.stringify(data.data))
             }
           })
         })
@@ -349,17 +359,12 @@ export class FullmarketComponent implements OnInit,OnDestroy {
             _.forEach(this.fancyExposure, (item, index) => {
               _.forEach(this.homeFancyData, fancy => {
                 if (index == fancy.name) {
-                  var fancyName = index
-                    .replace(/[^a-z0-9\s]/gi, "")
-                    .replace(/[_\s]/g, "_");
+                  var fancyName = index.replace(/[^a-z0-9\s]/gi, "").replace(/[_\s]/g, "_");
                   if (item == 0) {
                     item = 0;
-                    $("#fancyBetBookBtn_" + fancy.id + "").css(
-                      "display",
-                      "block"
-                    );
+                    $("#fancyBetBookBtn_" + fancy.id + "").css("display","block");
                   } else {
-                    if (item > 0) {
+                    if (item >= 0) {
                       $("#fexp_" + fancy.id + fancyName).text("" + item.toFixed(2) + "").css("color", "green");
                       $("#fancyBetBookBtn_" + fancy.id).css("display", "block");
                     } else {
@@ -398,11 +403,21 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       }
     })
   }
-  getbmexposure(bookid){
+  getbmexposure(bookid,name){
     this.common.getBMexposurebook(this.mktId,bookid).subscribe(data=>{
       if(data!=null){
         console.log(data);
         this.bmexposure=data.data;
+        _.forEach(this.bmexposure, (item, index) => {
+          var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
+                    $('#withoutBetBMExp_' + bookid + '_' + runnerName).removeClass('win');
+                    $('#withoutBetBMExp_' + bookid + '_' + runnerName).removeClass('lose');
+                    if (item.Value >= 0) {
+                        $('#withoutBetBMExp_'+ bookid+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
+                    } else if (item.Value <= 0) {
+                        $('#withoutBetBMExp_'+ bookid+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
+                    }
+        })
         localStorage.setItem("BMExpo_" + bookid,JSON.stringify(data.data))
       }
     })
@@ -580,7 +595,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     this.common.PlaceBMBet(BookData).subscribe(data => {
       if (data.status == "Success") {
         this.notification.success(data.result);
-        this.getbmexposure(BookData.bookId);
+        this.getbmexposure(BookData.bookId,BookData.runnerName);
         this.cancelBetslip();
         $("#loading").css("display", "none");
       } else {

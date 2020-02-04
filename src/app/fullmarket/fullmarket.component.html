@@ -490,12 +490,9 @@
       <dl id="selection_{{runner.id}}_{{runner.name}}"  class="bets-selections">
          <dt>
             <h4 >{{runner.name}}</h4>
-            <ul >
-                  <li class="win" [ngClass]="getPnlClass(runner,bokRate.oldPnl)">{{getPnlValue(runner,bokRate.oldPnl)}}</li>
-                  <li class="" *ngIf="bokRate.newPnl" [ngClass]="getPnlClass(runner,bokRate.newPnl)"> » </li>
-                  <li class="" *ngIf="bokRate.newPnl"  [ngClass]="getPnlClass(runner,bokRate.newPnl)">{{getPnlValue(runner,bokRate.newPnl)}}</li>
-               <!-- <li id="withoutBetBMExp_{{bokRate.id}}_{{runner.name | | removeSpace}}"></li>
-               <li id="withBetBMExp_{{bokRate.id}}_{{runner.name | | removeSpace}}"></li> -->
+            <ul>
+               <li id="withoutBetBMExp_{{bokRate.id}}_{{runner.name | removeSpace}}"></li>
+               <li id="withBetBMExp_{{bokRate.id}}_{{runner.name | removeSpace}}"></li>
             </ul>
          </dt>
          <dd  class="suspend" [ngStyle]="{'display':(runner.ballStatus!='')?'flex':'none'}" >
