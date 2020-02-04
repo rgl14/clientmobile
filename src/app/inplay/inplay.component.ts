@@ -156,11 +156,21 @@ export class InplayComponent implements OnInit,OnDestroy {
    }
 
   showBetsTable(pnlData) {
+    this.betsTable = pnlData;
     this.showRecentList = !this.showRecentList;
     console.log(pnlData);
     this.betsTable.matchName = pnlData.market.split('>')[1];
     this.rowData = [pnlData];
   }
+  
+  getStatus(pnl) {
+    return parseInt(pnl) >= 0? 'Profit': 'Loss';
+  }
+
+  trackById(index, item) {
+    return item.id;
+  }
+  
 ngOnDestroy(){
   this.inplaydatanavigation.unsubscribe();
 }

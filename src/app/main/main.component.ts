@@ -6,6 +6,7 @@ import { SharedataService } from '../sharedata.service';
 import { SignalrService } from '../signalr.service';
 import { interval } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IS_CHANGE_PASS } from '../auth/changepass.guard';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -22,14 +23,12 @@ export class MainComponent implements OnInit {
   exposure: any;
   userdata: any;
   Over:any;
-  uservalidate: string;
+  isChangePwd: boolean;
   
   constructor(private cookie:CookieService,private commonservice:CommonService,private sharedata:SharedataService,private signalrconnect:SignalrService,private route:ActivatedRoute,private router: Router,) { }
 
   ngOnInit() {
     const secondsCounter = interval(5000);
-    this.uservalidate=this.router.url;
-    console.log(this.uservalidate)
     this.innerWidth = window.innerWidth;
     this.commonservice.userdescription().subscribe(data =>{
       this.userdata=data.data;
@@ -52,6 +51,7 @@ export class MainComponent implements OnInit {
       }
     })
     secondsCounter.subscribe(n =>this.Intervalfundapi());
+    this.isChangePwd = parseInt(localStorage.getItem(IS_CHANGE_PASS)) === 1;
   }
   Intervalfundapi(){
     this.commonservice.funds().subscribe(data=>{

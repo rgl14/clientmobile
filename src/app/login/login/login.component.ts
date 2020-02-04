@@ -5,6 +5,7 @@ import { CommonService } from 'src/services/common.service';
 import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { IS_CHANGE_PASS } from 'src/app/auth/changepass.guard';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -44,8 +45,9 @@ export class LoginComponent implements OnInit {
           this.cookie.set( 'charlie', data.response.AuthToken );
           // this.notification.success(data.description.result);
           this.isloggedin.emit(true);
+          localStorage.setItem(IS_CHANGE_PASS, data.isChangePwd);
           if(data.isChangePwd==1){
-            this.router.navigateByUrl("/changepassword/1");
+            this.router.navigateByUrl("/changepassword");
           }else{
             this.router.navigateByUrl("/home");
           }
