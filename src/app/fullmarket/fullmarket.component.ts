@@ -47,7 +47,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   isoddhigh: string;
   noSpaceMarketid: string;
   curTime: any;
-  bookMakingData: any;
+  bookMakingData=[];
   fancyExposure: any;
   highlightOdds: boolean=true;
   stakeTyping: boolean=true;
@@ -119,8 +119,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           // console.log(this.homeMarkets)
           this.AllMarketData=data;
           this.subscribedEventdata=this.AllMarketData[this.sprtId].tournaments[this.tourId].matches[this.matchId];
-          this.bookMakingData=this.subscribedEventdata.bookRates;
-          console.log(this.bookMakingData);
+          // this.bookMakingData=this.subscribedEventdata.bookRates;
           this.homeCommentary=this.subscribedEventdata.commentary;
           this.homeDataMode=this.subscribedEventdata.dataMode;
           this.homeDisplayApplication=this.subscribedEventdata.displayApplication;
@@ -181,7 +180,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       this.scorecardresponse(this.matchId,this.homeFancyData)
     })
     _.forEach(this.homeMarkets, (item1, index) => {
-      console.log(item1)
+      // console.log(item1)
       this.common.getexposurebook(item1.id).subscribe(resp=>{
         _.forEach(resp.data, (item, index) => {
           var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
@@ -335,7 +334,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           // console.log(fancy);
           this.eventData.unsubscribe();
           this.curTime = fancy.curTime;
-          this.bookMakingData = fancy.bookRates;
+          // this.bookMakingData = fancy.bookRates;
           // this.bookrunnerData = this.bookMakingData.runnerData;
           this.homeFancyData = fancy.data;
           if(this.bookMakingData.length!=0){

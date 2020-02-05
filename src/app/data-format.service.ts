@@ -117,6 +117,7 @@ inplaylistwise = function(sportdata, inplaytype) {
       // var highlightdata = []
       _.forEach(item.tournaments, function(item1, index1) {
           _.forEach(item1.matches, function(item2, index2) {
+            // console.log(item2)
               _.forEach(item2.markets, function(item3, index3) {
                   if (item3.name == "Match Odds") {
                       item3.runnerData['bfId'] = item3.bfId;
@@ -134,6 +135,7 @@ inplaylistwise = function(sportdata, inplaytype) {
                       item3.runnerData['Tourname'] = item1.name;
                       item3.runnerData['SportbfId'] = item.bfId;
                       item3.runnerData['hasFancy'] = item2.hasFancy;
+                      item3.runnerData['hasbookmaker'] = item2.bookRates? (item2.bookRates.length >= 1? 1: 0): 0;
                       // _.forEach($scope.multimarket, function(item4) {
                       //     if (item3.id == item4) {
                       //         item3.runnerData['isMulti'] = 1;
@@ -158,6 +160,7 @@ inplaylistwise = function(sportdata, inplaytype) {
       // data["inplayData"] = highlightdata;
       // data["id"] = 0;
       // inplaydata.push(data);
+      // console.log(inplaydata);
   })
   return inplaydata
 }

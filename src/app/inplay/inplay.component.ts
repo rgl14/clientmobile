@@ -126,15 +126,27 @@ export class InplayComponent implements OnInit,OnDestroy {
         }
     this.commonservice.marketprofitloss(pnldates).subscribe(resp =>{
       this.pnlData=resp.data;
-      console.log(this.pnlData)
+      // console.log(this.pnlData)
     })
   }
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
   }
-  appcharge(SportbfId,TourbfId,matchId,marketId,mtBfId,bfId){
-    this.router.navigateByUrl('/fullmarket/'+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId);
+  appcharge(SportbfId,TourbfId,matchId,marketId,mtBfId,bfId,hasbookmaker){
+    if(hasbookmaker==0){
+      this.router.navigateByUrl('/fullmarket/'+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId);
+    }else{
+      var gamexurl="http://gamex.duoexchange.com/#/fullmarket/"+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId;
+      var access_token=this.commonservice.getToken();
+      var urlparams={
+        token:access_token
+      }
+      var finalurl = [gamexurl, $.param(urlparams)].join('?');
+      // console.log(finalurl);
+      window.open(finalurl,"_blank");
+
+    }
     // this.commonservice.AppCharges(matchId).subscribe(resp=>{
     //   console.log(resp);
     //   if(resp.status=="Success"){
