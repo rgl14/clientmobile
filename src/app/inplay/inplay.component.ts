@@ -113,40 +113,25 @@ export class InplayComponent implements OnInit,OnDestroy {
         this.upcomingEvents=this.dataformat.inplaylistwise(resp,1);
         // console.log(this.inplayData)
     })
-
-        var days = 7;
-        var date = new Date();
-        var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
-        this.date = last
-        this.fromdate = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + (this.date.getDate()) + " 00:00:00";
-        this.todate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " 23:59:00";
-        let pnldates={
-          "fromdate":this.fromdate,
-          "todate":this.todate
-        }
-    this.commonservice.marketprofitloss(pnldates).subscribe(resp =>{
-      this.pnlData=resp.data;
-      // console.log(this.pnlData)
-    })
+    this.recentpnldata();
   }
   onGridReady(params:any) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
   }
   appcharge(SportbfId,TourbfId,matchId,marketId,mtBfId,bfId,hasbookmaker){
-    if(hasbookmaker==0){
+    // if(hasbookmaker==0){
       this.router.navigateByUrl('/fullmarket/'+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId);
-    }else{
-      var gamexurl="http://gamex.duoexchange.com/#/fullmarket/"+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId;
-      var access_token=this.commonservice.getToken();
-      var urlparams={
-        token:access_token
-      }
-      var finalurl = [gamexurl, $.param(urlparams)].join('?');
-      // console.log(finalurl);
-      window.open(finalurl,"_blank");
-
-    }
+    // }else{
+    //   var gamexurl="http://gamex.duoexchange.com/#/fullmarket/"+SportbfId+'/'+TourbfId+'/'+matchId+'/'+marketId+'/'+mtBfId+'/'+bfId;
+    //   var access_token=this.commonservice.getToken();
+    //   var urlparams={
+    //     token:access_token
+    //   }
+    //   var finalurl = [gamexurl, $.param(urlparams)].join('?');
+    //   // console.log(finalurl);
+    //   window.open(finalurl,"_blank");
+    // }
     // this.commonservice.AppCharges(matchId).subscribe(resp=>{
     //   console.log(resp);
     //   if(resp.status=="Success"){
@@ -166,6 +151,23 @@ export class InplayComponent implements OnInit,OnDestroy {
     //do what ever logic you need to come up with the unique identifier of your item in loop, I will just return the object id.
     return index;
    }
+
+  recentpnldata(){
+    var days = 7;
+        var date = new Date();
+        var last = new Date(date.getTime() - (days * 24 * 60 * 60 * 1000));
+        this.date = last
+        this.fromdate = this.date.getFullYear() + "-" + (this.date.getMonth() + 1) + "-" + (this.date.getDate()) + " 00:00:00";
+        this.todate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " 23:59:00";
+        let pnldates={
+          "fromdate":this.fromdate,
+          "todate":this.todate
+        }
+    this.commonservice.marketprofitloss(pnldates).subscribe(resp =>{
+      this.pnlData=resp.data;
+      // console.log(this.pnlData)
+    })
+  }
 
   showBetsTable(pnlData) {
     this.betsTable = pnlData;

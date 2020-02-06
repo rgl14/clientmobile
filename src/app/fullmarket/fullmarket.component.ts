@@ -76,8 +76,20 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   TvWidth: number;
   bmexposure: any;
   fancypanelsetting: any;
+  matchbets: any;
+  allmatchbetsource: Subscription;
 
-  constructor(private route:ActivatedRoute,private common :CommonService,private sharedata:SharedataService,private dataformat:DataFormatService,private marketodds:MarketsService,private fancymarket :FancyService,private renderer:Renderer,private deviceInfo:DeviceDetectorService,public notification :NotificationService,private score:ScoreboardService) { }
+  constructor(
+    private route:ActivatedRoute,
+    private common :CommonService,
+    private sharedata:SharedataService,
+    private dataformat:DataFormatService,
+    private marketodds:MarketsService,
+    private fancymarket :FancyService,
+    private renderer:Renderer,
+    private deviceInfo:DeviceDetectorService,
+    public notification :NotificationService,
+    private score:ScoreboardService) { }
 
   ngOnInit() {
     this.TvWidth = window.innerWidth;
@@ -116,7 +128,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       this.eventData=this.dataformat.navigationSource.subscribe(data=>{
         if(data!=null){
           eventdatacount++;
-          // console.log(this.homeMarkets)
+          // console.log(this.homeMarkets);
           this.AllMarketData=data;
           this.subscribedEventdata=this.AllMarketData[this.sprtId].tournaments[this.tourId].matches[this.matchId];
           // this.bookMakingData=this.subscribedEventdata.bookRates;
@@ -136,6 +148,13 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           if(eventdatacount==1){
             this.hubaddress();
           }
+        }
+      })
+      this.allmatchbetsource=this.sharedata.allMatchUnmatchBetsSource.subscribe(resp=>{
+        if(resp!=null){
+          // console.log(resp._userMatchedBets[this.matchId])
+          // this.matchbets=this.dataformat.matchUnmatchBetsFormat(resp,this.matchId);
+          // console.log(this.matchbets)
         }
       })
   }
@@ -445,6 +464,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   }
   ngOnDestroy() {
     this.eventData.unsubscribe();
+    this.allmatchbetsource.unsubscribe();
     this.marketodds.UnsuscribeMarkets(this.homeMarkets);
     this.fancymarket.UnsuscribeFancy(this.matchId);
     this.score.unSubscribeMatchScore(this.mtBfId);
@@ -475,7 +495,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     //   // this.oneClickPlaceMOBet(oneClickMOData);
     //   return false;
     // } else {
-      // console.log(event,backLay,odds,runnerName,sportId,mtbfId,matchId,marketId,bfId)
+      console.log(event,backLay,odds,runnerName,sportId,mtbfId,matchId,marketId,bfId)
       this.placeMarketData = {
         backlay: backLay,
         marketId: marketId,

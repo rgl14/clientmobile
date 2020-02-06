@@ -117,43 +117,48 @@ inplaylistwise = function(sportdata, inplaytype) {
       // var highlightdata = []
       _.forEach(item.tournaments, function(item1, index1) {
           _.forEach(item1.matches, function(item2, index2) {
-            // console.log(item2)
+            if(item2.bookRates==null){
+              item2.bookRates=[];
+            }
+            // console.log(item2.bookRates.length);
+            if(item2.bookRates.length==0){
               _.forEach(item2.markets, function(item3, index3) {
-                  if (item3.name == "Match Odds") {
-                      item3.runnerData['bfId'] = item3.bfId;
-                      item3.runnerData['inPlay'] = item2.inPlay;
-                      item3.runnerData['isBettingAllow'] = item3.isBettingAllow;
-                      item3.runnerData['isMulti'] = item3.isMulti;
-                      item3.runnerData['marketId'] = item3.id;
-                      item3.runnerData['matchDate'] = item2.startDate;
-                      item3.runnerData['matchId'] = item2.id;
-                      item3.runnerData['matchName'] = item2.name;
-                      item3.runnerData['sportName'] = item.name;
-                      item3.runnerData['status'] = item2.status;
-                      item3.runnerData['mtBfId'] = item2.bfId;
-                      item3.runnerData['TourbfId'] = item1.bfId;
-                      item3.runnerData['Tourname'] = item1.name;
-                      item3.runnerData['SportbfId'] = item.bfId;
-                      item3.runnerData['hasFancy'] = item2.hasFancy;
-                      item3.runnerData['hasbookmaker'] = item2.bookRates? (item2.bookRates.length >= 1? 1: 0): 0;
-                      // _.forEach($scope.multimarket, function(item4) {
-                      //     if (item3.id == item4) {
-                      //         item3.runnerData['isMulti'] = 1;
-                      //     }
-                      // })
-                      if (item2.inPlay == 1 && inplaytype == 0) {
-                        inplaydata.push(item3.runnerData);
-                      }
-                      if (item2.inPlay == 0 && inplaytype == 1) {
-                        inplaydata.push(item3.runnerData);
-                      }  
-                      // else if (item2.inPlay != 1 && inplaytype == 1 && $rootScope.getDateTime(item2.startDate, $rootScope.curTime, 1) == 0 && inplaytype == 1) {
-                      //     highlightdata.push(item3.runnerData);
-                      // } else if (item2.inPlay != 1 && inplaytype == 2 && $rootScope.getDateTime(item2.startDate, $rootScope.curTime, 1) == 1 && inplaytype == 2) {
-                      //     highlightdata.push(item3.runnerData);
-                      // }
-                  }
-              })
+                if (item3.name == "Match Odds") {
+                    item3.runnerData['bfId'] = item3.bfId;
+                    item3.runnerData['inPlay'] = item2.inPlay;
+                    item3.runnerData['isBettingAllow'] = item3.isBettingAllow;
+                    item3.runnerData['isMulti'] = item3.isMulti;
+                    item3.runnerData['marketId'] = item3.id;
+                    item3.runnerData['matchDate'] = item2.startDate;
+                    item3.runnerData['matchId'] = item2.id;
+                    item3.runnerData['matchName'] = item2.name;
+                    item3.runnerData['sportName'] = item.name;
+                    item3.runnerData['status'] = item2.status;
+                    item3.runnerData['mtBfId'] = item2.bfId;
+                    item3.runnerData['TourbfId'] = item1.bfId;
+                    item3.runnerData['Tourname'] = item1.name;
+                    item3.runnerData['SportbfId'] = item.bfId;
+                    item3.runnerData['hasFancy'] = item2.hasFancy;
+                    item3.runnerData['hasbookmaker'] = item2.bookRates? (item2.bookRates.length >= 1? 1: 0): 0;
+                    // _.forEach($scope.multimarket, function(item4) {
+                    //     if (item3.id == item4) {
+                    //         item3.runnerData['isMulti'] = 1;
+                    //     }
+                    // })
+                    if (item2.inPlay == 1 && inplaytype == 0) {
+                      inplaydata.push(item3.runnerData);
+                    }
+                    if (item2.inPlay == 0 && inplaytype == 1) {
+                      inplaydata.push(item3.runnerData);
+                    }  
+                    // else if (item2.inPlay != 1 && inplaytype == 1 && $rootScope.getDateTime(item2.startDate, $rootScope.curTime, 1) == 0 && inplaytype == 1) {
+                    //     highlightdata.push(item3.runnerData);
+                    // } else if (item2.inPlay != 1 && inplaytype == 2 && $rootScope.getDateTime(item2.startDate, $rootScope.curTime, 1) == 1 && inplaytype == 2) {
+                    //     highlightdata.push(item3.runnerData);
+                    // }
+                }
+            })
+            }
           })
       })
       // data["name"] = item.name;
