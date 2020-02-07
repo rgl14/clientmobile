@@ -76,7 +76,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   TvWidth: number;
   bmexposure: any;
   fancypanelsetting: any;
-  matchbets: any;
+  matchbets=[];
   allmatchbetsource: Subscription;
 
   constructor(
@@ -119,6 +119,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   identify(index,item){
     return item.mktId;
   }
+  betsindex(index,item){
+    return index;
+  }
   trackByfancyId(index, fancy) {
     return fancy.id;
   }
@@ -154,7 +157,8 @@ export class FullmarketComponent implements OnInit,OnDestroy {
         if(resp!=null){
           // console.log(resp._userMatchedBets[this.matchId])
           // this.matchbets=this.dataformat.matchUnmatchBetsFormat(resp,this.matchId);
-          // console.log(this.matchbets)
+          this.matchbets=resp._userMatchedBets[this.matchId];
+          console.log(this.matchbets);
         }
       })
   }
@@ -495,7 +499,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     //   // this.oneClickPlaceMOBet(oneClickMOData);
     //   return false;
     // } else {
-      console.log(event,backLay,odds,runnerName,sportId,mtbfId,matchId,marketId,bfId)
+      // console.log(event,backLay,odds,runnerName,sportId,mtbfId,matchId,marketId,bfId)
       this.placeMarketData = {
         backlay: backLay,
         marketId: marketId,

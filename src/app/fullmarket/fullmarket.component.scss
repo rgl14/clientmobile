@@ -1555,3 +1555,16 @@ table {
     /* padding-left: 10px; */
     /* padding-right: 13px; */
 }
+
+//bets design
+.bets-li{
+    padding: 5px;
+}
+.matched-back{
+    text-decoration:underline !important;
+    color:#72bbef !important;
+}
+.matched-lay{
+    text-decoration:underline !important;
+    color:#faa9ba !important;
+}
