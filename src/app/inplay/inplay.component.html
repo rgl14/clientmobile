@@ -439,7 +439,7 @@
                 </div>
               </div>
               <div class="distinct ion-list market-list list list-md" *ngIf="inplayData.length==0">
-                <h5>No Inplay Events...</h5>
+                <h5>No Inplay Matches...</h5>
               </div>
             </section>
           </div>
@@ -574,7 +574,7 @@
                 </div>
               </div>
               <div class="distinct ion-list market-list list list-md" *ngIf="upcomingEvents.length==0">
-                <h5>No Upcoming Events...</h5>
+                <h5>No Upcoming Matches...</h5>
               </div>
             </section>
           </div>
@@ -600,7 +600,7 @@
                     </div> -->
               <!-- <a > <span class="open-bets-link">Open Bets (0)</span>
               </a> -->
-              <div class="recent-container" *ngFor="let pnldata of pnlData ">
+              <div class="recent-container" (click)="showBetsTable(pnldata)" *ngFor="let pnldata of pnlData ">
               <div class="distinct ion-list market-list list list-md">
                 <div class="market-list-item ion-item item item-block item-md">
                   <div class="item-inner">
@@ -642,7 +642,7 @@
               </div>
             </div>
             <div class="distinct ion-list market-list list list-md" *ngIf="pnlData.length==0">
-              <h5>No Recent Events...</h5>
+              <h5>No Recent Matches...</h5>
             </div>
             </section>
           </div>
