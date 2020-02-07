@@ -158,13 +158,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           // console.log(resp._userMatchedBets[this.matchId])
           // this.matchbets=this.dataformat.matchUnmatchBetsFormat(resp,this.matchId);
           this.matchbets=resp._userMatchedBets[this.matchId];
-          console.log(this.matchbets);
+          // console.log(this.matchbets);
         }
       })
-  }
-
-  setStep(){
-    
   }
 
   hubaddress(){
