@@ -134,6 +134,7 @@ inplaylistwise = function(sportdata, inplaytype) {
                       item3.runnerData['Tourname'] = item1.name;
                       item3.runnerData['SportbfId'] = item.bfId;
                       item3.runnerData['hasFancy'] = item2.hasFancy;
+                      item3.runnerData['hasbookmaker'] = item2.bookRates? (item2.bookRates.length? 1: 0): 0;
                       // _.forEach($scope.multimarket, function(item4) {
                       //     if (item3.id == item4) {
                       //         item3.runnerData['isMulti'] = 1;

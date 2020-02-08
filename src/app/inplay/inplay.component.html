@@ -51,7 +51,7 @@
                                     <div class="status" *ngIf="inplay.hasFancy === 1">
                                       <div class="fancy-icon shine">Fancy</div>
                                     </div>
-                                    <div class="status">
+                                    <div class="status" *ngIf="inplay.hasbookmaker === 1">
                                       <div class="BM-icon shine">book maker</div>
                                     </div>
                                   </div>
@@ -490,7 +490,7 @@
                                         <div class="status" *ngIf="upcoming.hasFancy === 1">
                                           <div class="fancy-icon shine">Fancy</div>
                                         </div>
-                                        <div class="status">
+                                        <div class="status" *ngIf="upcoming.hasbookmaker === 1">
                                           <div class="BM-icon shine">book maker</div>
                                         </div>
                                       </div>
