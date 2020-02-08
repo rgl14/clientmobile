@@ -350,7 +350,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   FancysignalrData(){
     this.fancyoddsignalr=this.fancymarket.fancySource.subscribe(fancy=>{
         if (fancy != null) {
-          console.log(fancy);
+          // console.log(fancy);
           this.eventData.unsubscribe();
           this.curTime = fancy.curTime;
           // this.bookMakingData = fancy.bookRates;

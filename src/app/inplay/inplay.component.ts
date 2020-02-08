@@ -111,7 +111,7 @@ export class InplayComponent implements OnInit,OnDestroy {
     this.inplaydatanavigation=this.dataformat.navigationSource.subscribe(resp=>{
         this.inplayData=this.dataformat.inplaylistwise(resp,0);
         this.upcomingEvents=this.dataformat.inplaylistwise(resp,1);
-        console.log(this.inplayData, this.upcomingEvents)
+        // console.log(this.inplayData, this.upcomingEvents)
     })
     this.recentpnldata();
   }
