@@ -2,24 +2,28 @@
    <div class="">
       <div class="ipe-LiveAlertsControlContainer">
          <div id="LiveMatchAlertHeader" class="ip-LiveAlertsHeader InPlayNotificationsHeader ">
-             <div class="ip-LiveAlertsHeaderButtons InPlayMyBetsButtonContainer ip-LiveAlertsHeaderButtons_NoMediaToggleBorder ">
-                 <div class="ip-LiveAlertsHeaderButtons_Left ">
-                     <div class="ipe-EventViewMarketTabs ">
-                         <div class="ipe-EventViewTabLink ipe-EventViewTabLink-selected "  *ngIf="homeInPlay==1">Inplay</div>
-                         <div class="ipe-EventViewTabLink" *ngIf="subscribedEventdata">{{MatchName}}</div>
-                         <span *ngIf="homeInPlay==1" class="ipe-EventViewMarketTabs_Slider ipe-EventViewMarketTabs_Slider-Animate " style="left: 10px; width: 35px; transform-origin: left center;"></span>
-                     </div>
-                 <div class="ip-LiveAlertsHeaderButtons_Right ">
+            <div
+               class="ip-LiveAlertsHeaderButtons InPlayMyBetsButtonContainer ip-LiveAlertsHeaderButtons_NoMediaToggleBorder ">
+               <div class="ip-LiveAlertsHeaderButtons_Left ">
+                  <div class="ipe-EventViewMarketTabs ">
+                     <div class="ipe-EventViewTabLink ipe-EventViewTabLink-selected " *ngIf="homeInPlay==1">Inplay</div>
+                     <div class="ipe-EventViewTabLink" *ngIf="subscribedEventdata">{{MatchName}}</div>
+                     <span *ngIf="homeInPlay==1"
+                        class="ipe-EventViewMarketTabs_Slider ipe-EventViewMarketTabs_Slider-Animate "
+                        style="left: 10px; width: 35px; transform-origin: left center;"></span>
+                  </div>
+                  <div class="ip-LiveAlertsHeaderButtons_Right ">
                      <div class="ipe-MediaToggle ">
-                         <div class="ipe-MediaToggle_Video "><mat-icon style="color: #fff;" (click)="openTv()" aria-hidden="true">live_tv</mat-icon>
-                         </div>
+                        <div class="ipe-MediaToggle_Video ">
+                           <mat-icon style="color: #fff;" (click)="openTv()" aria-hidden="true">live_tv</mat-icon>
+                        </div>
                      </div>
-                 </div>
-             </div>
+                  </div>
+               </div>
+            </div>
+            <div id="PlaceHolderLiveMatchAlertsMenu" class="ip-LiveAlertsMenu "></div>
          </div>
-         <div id="PlaceHolderLiveMatchAlertsMenu" class="ip-LiveAlertsMenu "></div>
-     </div>
-      <!-- <table id="cricketScoreBoard" *ngIf="sprtId=='4' && showScore" class="game-team"  data-eventid="29119662" style="display: table;">
+         <!-- <table id="cricketScoreBoard" *ngIf="sprtId=='4' && showScore" class="game-team"  data-eventid="29119662" style="display: table;">
          <tbody>
             <tr>
                <th>
@@ -81,52 +85,78 @@
             </tr>
          </tbody>
       </table> -->
-      <ng-container *ngIf="showScore">
+         <ng-container *ngIf="showScore">
             <div class="circket_wrapper" *ngIf="sprtId=='4' && fullScore.stateOfBall!=null">
-                  <header>
-                      <div class="main_score_wrap">
-                          <div class="header_left">
-                              <div class="header_team_block">
-                                  <div class="team_block_left">
-                                     <span class="ball_img" *ngIf="fullScore.score.home.highlight=='true'"><img alt="" src="https://bw.sixlogics.com/cricket/assets/images/green_bat.png"></span>
-                                     <span class="ball_img" *ngIf="fullScore.score.home.highlight=='false'"><img alt="" src="https://bw.sixlogics.com/cricket/assets/images/red_ball.png?v=1.0"></span>
-                              </div>
-                                  <div class="team_block_right">
-                                       <h3 *ngIf="fullScore==undefined"><span class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
-                                       <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.home.name}}</span></h3>
-                                       <span class="score" *ngIf="fullScore.currentSet>=1 && fullScore.score.home.inning1!=null">{{fullScore.score.home.inning1.runs}}{{fullScore.score.home.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.home.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.home.inning1.wickets!='ALL_OUT' && fullScore.score.home.inning1!=null">({{fullScore.score.home.inning1.overs}})</span></span>
-                                       <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null">{{fullScore.score.home.inning2.runs}}{{fullScore.score.home.inning2.wickets!='ALL_OUT'?'/'+fullScore.score.home.inning2.wickets:'/10'}}  <span class="over" *ngIf="fullScore.score.home.inning2.wickets!='ALL_OUT' && fullScore.score.home.inning2!=null">({{fullScore.score.home.inning2.overs}})</span></span>
-                                  </div>
-                              </div>
-                          </div>
-                          <div class="header_center" *ngIf="fullScore.stateOfBall!=null"><span>{{fullScore.stateOfBall.bowlerName}} to {{fullScore.stateOfBall.batsmanName}} - {{fullScore.stateOfBall.batsmanRuns}} Run</span></div>
-                          <div class="header_right">
-                              <div class="header_team_block">
-                                  <div class="team_block_left">
-                                       <h3 *ngIf="fullScore==undefined"><span class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
-                                       <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.away.name}}</span></h3>
-                                       <span class="score" *ngIf="fullScore.currentSet>=1 && fullScore.score.away.inning1!=null">{{fullScore.score.away.inning1.runs}}{{fullScore.score.away.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning1.wickets:''}} <span class="over" *ngIf="fullScore.score.away.inning1.wickets!='ALL_OUT'  && fullScore.score.away.inning1!=null">({{fullScore.score.away.inning1.overs}})</span></span>
-                                       <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null"> &amp; </span><span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null">{{fullScore.score.away.inning2.runs}}{{fullScore.score.away.inning2.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning2.wickets:'/10'}} <span class="over" *ngIf="fullScore.score.away.inning2.wickets!='ALL_OUT' && fullScore.score.away.inning2!=null">({{fullScore.score.away.inning2.overs}})</span></span>
-                                  </div>
-                                  <div class="team_block_right">
-                                       <span class="ball_img" *ngIf="fullScore.score.away.highlight=='true'"><img alt="" src="https://bw.sixlogics.com/cricket/assets/images/green_bat.png"></span>
-                                       <span class="ball_img" *ngIf="fullScore.score.away.highlight=='false'"><img alt="" src="https://bw.sixlogics.com/cricket/assets/images/red_ball.png?v=1.0"></span>
-                                    </div>
-                              </div>
-                          </div>
-                      </div>
-                  </header>
-                  <div class="live_footer_content">
-                      <div class="live_footer_top">
-                          <div class="live_footer_left">
-                           <h4 *ngIf="fullScore.stateOfBall!=null">Overs: {{fullScore.stateOfBall.overNumber}}.{{fullScore.stateOfBall.overBallNumber}} <span>(Ovs)</span></h4> 
-                          </div>
-                          <div class="live_footer_right">
-                              <!-- <ul class="footer_status_list">
+               <header>
+                  <div class="main_score_wrap">
+                     <div class="header_left">
+                        <div class="header_team_block">
+                           <div class="team_block_left">
+                              <span class="ball_img" *ngIf="fullScore.score.home.highlight=='true'"><img alt=""
+                                    src="https://bw.sixlogics.com/cricket/assets/images/green_bat.png"></span>
+                              <span class="ball_img" *ngIf="fullScore.score.home.highlight=='false'"><img alt=""
+                                    src="https://bw.sixlogics.com/cricket/assets/images/red_ball.png?v=1.0"></span>
+                           </div>
+                           <div class="team_block_right">
+                              <h3 *ngIf="fullScore==undefined"><span
+                                    class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
+                              <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.home.name}}</span>
+                              </h3>
+                              <span class="score"
+                                 *ngIf="fullScore.currentSet>=1 && fullScore.score.home.inning1!=null">{{fullScore.score.home.inning1.runs}}{{fullScore.score.home.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.home.inning1.wickets:''}}
+                                 <span class="over"
+                                    *ngIf="fullScore.score.home.inning1.wickets!='ALL_OUT' && fullScore.score.home.inning1!=null">({{fullScore.score.home.inning1.overs}})</span></span>
+                              <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null">
+                                 &amp; </span><span class="score"
+                                 *ngIf="fullScore.currentSet>=2 && fullScore.score.home.inning2!=null">{{fullScore.score.home.inning2.runs}}{{fullScore.score.home.inning2.wickets!='ALL_OUT'?'/'+fullScore.score.home.inning2.wickets:'/10'}}
+                                 <span class="over"
+                                    *ngIf="fullScore.score.home.inning2.wickets!='ALL_OUT' && fullScore.score.home.inning2!=null">({{fullScore.score.home.inning2.overs}})</span></span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="header_center" *ngIf="fullScore.stateOfBall!=null">
+                        <span>{{fullScore.stateOfBall.bowlerName}} to {{fullScore.stateOfBall.batsmanName}} -
+                           {{fullScore.stateOfBall.batsmanRuns}} Run</span></div>
+                     <div class="header_right">
+                        <div class="header_team_block">
+                           <div class="team_block_left">
+                              <h3 *ngIf="fullScore==undefined"><span
+                                    class="mobile">{{MatchName?.split(' v ')[0]}}</span></h3>
+                              <h3 *ngIf="fullScore!=undefined"><span class="mobile">{{fullScore.score.away.name}}</span>
+                              </h3>
+                              <span class="score"
+                                 *ngIf="fullScore.currentSet>=1 && fullScore.score.away.inning1!=null">{{fullScore.score.away.inning1.runs}}{{fullScore.score.away.inning1.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning1.wickets:''}}
+                                 <span class="over"
+                                    *ngIf="fullScore.score.away.inning1.wickets!='ALL_OUT'  && fullScore.score.away.inning1!=null">({{fullScore.score.away.inning1.overs}})</span></span>
+                              <span class="score" *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null">
+                                 &amp; </span><span class="score"
+                                 *ngIf="fullScore.currentSet>=2 && fullScore.score.away.inning2!=null">{{fullScore.score.away.inning2.runs}}{{fullScore.score.away.inning2.wickets!='ALL_OUT'?'/'+fullScore.score.away.inning2.wickets:'/10'}}
+                                 <span class="over"
+                                    *ngIf="fullScore.score.away.inning2.wickets!='ALL_OUT' && fullScore.score.away.inning2!=null">({{fullScore.score.away.inning2.overs}})</span></span>
+                           </div>
+                           <div class="team_block_right">
+                              <span class="ball_img" *ngIf="fullScore.score.away.highlight=='true'"><img alt=""
+                                    src="https://bw.sixlogics.com/cricket/assets/images/green_bat.png"></span>
+                              <span class="ball_img" *ngIf="fullScore.score.away.highlight=='false'"><img alt=""
+                                    src="https://bw.sixlogics.com/cricket/assets/images/red_ball.png?v=1.0"></span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </header>
+               <div class="live_footer_content">
+                  <div class="live_footer_top">
+                     <div class="live_footer_left">
+                        <h4 *ngIf="fullScore.stateOfBall!=null">Overs:
+                           {{fullScore.stateOfBall.overNumber}}.{{fullScore.stateOfBall.overBallNumber}}
+                           <span>(Ovs)</span></h4>
+                     </div>
+                     <div class="live_footer_right">
+                        <!-- <ul class="footer_status_list">
                                   <li><span class="footer_status_left">Balls Remaining:</span><span class="footer_status_right">0</span></li>
                                   <li><span class="footer_status_left">Runs required:</span><span class="footer_status_right">23</span></li>
                               </ul> -->
-                              <!-- <ul class="recent_over_list">
+                        <!-- <ul class="recent_over_list">
                                  <li class="no-class"> <span>1</span> </li>
                                  <li class="no-class"> <span>0</span> </li>
                                  <li class="no-class"> <span>1</span> </li>
@@ -134,9 +164,9 @@
                                  <li class="wicket"> <span>W</span> </li>
                                  <li class="no-class"> <span>0</span> </li>
                              </ul> -->
-                          </div>
-                      </div>
-                      <!-- <div class="live_footer_bot">
+                     </div>
+                  </div>
+                  <!-- <div class="live_footer_bot">
                           <div class="last_recent_overs">
                               <h4>Last 3 Overs:</h4>
                               <ul>
@@ -146,107 +176,109 @@
                               </ul>
                           </div>
                       </div> -->
-                  </div>
+               </div>
             </div>
-      </ng-container>
-      <table id="tennisScoreBoard" *ngIf="sprtId==='2' && showScore" class="game-team" [ngClass]="fullScore==undefined?'':'tennis'"  style="display: table;">
-         <tbody>
-            <tr>
-               <th>
-                  <!-- <a [ngClass]="isMultiAdded(getMarketData)?'pin-off':'pin-on'" title="{{isMultiAdded(getMarketData)?'Add to Multi Markets':'Remove from Multi Markets'}}" (click)="isMultiAdded(getMarketData)?addMultiMarket(getMarketData):removeMultiMarket(getMarketData)"></a> -->
-                  <h4  *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[0]}}</h4>
-                  <h4  *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[1]}}</h4>
-                  <h4  *ngIf="fullScore!=undefined">{{fullScore.score.home.name}}</h4>
-                  <h4  *ngIf="fullScore!=undefined">{{fullScore.score.away.name}}</h4>
-                  <ul  *ngIf="fullScore!=undefined" class="scores-time in-play">
-                     <li id="currentSet">Set {{fullScore.currentSet}}</li>
-                     <li id="fullTimeElapsed">{{fullScore.fullTimeElapsed.hour}}h {{fullScore.fullTimeElapsed.min}}m {{fullScore.fullTimeElapsed.sec}}s</li>
-                     <li id="court">HARD court</li>
-                  </ul>
-               </th>
-               <td  *ngIf="fullScore.currentSet==1" class="team-scores">
-                  <h4  class="in-play">{{fullScore.score.home.games}}</h4>
-                  <h4  class="in-play">{{fullScore.score.away.games}}</h4>
-                  <span>1</span>
-               </td>
-               <td  *ngIf="fullScore.currentSet>1" class="team-scores">
-                  <h4 >{{fullScore.score.home.gameSequence[0]}}</h4>
-                  <h4 >{{fullScore.score.away.gameSequence[0]}}</h4>
-                  <span>1</span>
-               </td>
-               <td  *ngIf="fullScore.currentSet==2" class="team-scores">
-                  <h4  class="in-play">{{fullScore.score.home.games}}</h4>
-                  <h4  class="in-play">{{fullScore.score.away.games}}</h4>
-                  <span>2</span>
-               </td>
-               <td  *ngIf="fullScore.currentSet>2" class="team-scores">
-                  <h4 >{{fullScore.score.home.gameSequence[1]}}</h4>
-                  <h4 >{{fullScore.score.away.gameSequence[1]}}</h4>
-                  <span>2</span>
-               </td>
-               <td  *ngIf="fullScore.currentSet==3" class="team-scores team-last_box">
-                  <h4  class="in-play">{{fullScore.score.home.games}}</h4>
-                  <h4  class="in-play">{{fullScore.score.away.games}}</h4>
-                  <span>3</span>
-               </td>
-               <td  *ngIf="fullScore.currentSet==1" class="team-scores">
-                  <h4 >-</h4>
-                  <h4 >-</h4>
-                  <span>2</span>
-               </td>
-               <td  *ngIf="fullScore.currentSet==1 || fullScore.currentSet==2" class="team-scores team-last_box">
-                  <h4 >-</h4>
-                  <h4 >-</h4>
-                  <span>3</span>
-               </td>
-               <td id="points" *ngIf="fullScore!=undefined" class="team-scores team-last_box">
-                  <h4 id="pointsHome" class="in-play">{{fullScore.score.home.score}}</h4>
-                  <h4 id="pointsAway" class="in-play">{{fullScore.score.away.score}}</h4>
-                  <span>Points</span>
-               </td>
-               <td id="aces" class="team-scores team-other">
-                  <h4 id="acesHome">{{fullScore.score.home.aces}}</h4>
-                  <h4 id="acesAway">{{fullScore.score.away.aces}}</h4>
-                  <span>Aces</span>
-               </td>
-               <td id="faults" class="team-scores team-other">
-                  <h4 id="faultsHome">{{fullScore.score.home.doubleFaults}}</h4>
-                  <h4 id="faultsAway">{{fullScore.score.away.doubleFaults}}</h4>
-                  <span>Faults</span>
-               </td>
-               <td id="breaks" class="team-scores team-other team-last_box">
-                  <h4 id="breaksHome">{{fullScore.score.home.serviceBreaks}}</h4>
-                  <h4 id="breaksAway">{{fullScore.score.away.serviceBreaks}}</h4>
-                  <span>Breaks</span>
-               </td>
-               <!-- <td class="team-refresh"><a  class="refresh" (click)="getAllMarket();"></a></td> -->
-               <td id="setBoxTemplate" class="team-scores" style="display: none;">
-                  <h4 >-</h4>
-                  <h4 >-</h4>
-                  <span id="setIndex"></span>
-               </td>
-            </tr>
-         </tbody>
-      </table>
-      <table id="soccerScoreBoard" *ngIf="sprtId==='1'" class="game-team soccer"  style="display: table;">
-         <tbody>
-            <tr>
-               <td class="team-scores team-last_box" *ngIf="fullScore!=undefined">
-                  <h4 id="scoresHome" class="in-play">{{fullScore.score.home.score}}</h4>
-                  <h4 id="scoresAway" class="in-play">{{fullScore.score.away.score}}</h4>
-                  <span id="timeElapsed">{{fullScore.elapsedRegularTime}}'</span>
-               </td>
-               <td>
-                  <h4  *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[0]}}</h4>
-                  <h4  *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[1]}}</h4>
-                  <h4  *ngIf="fullScore!=undefined">{{fullScore.score.home.name}}</h4>
-                  <h4  *ngIf="fullScore!=undefined">{{fullScore.score.away.name}}</h4>
-               </td>
-            </tr>
-         </tbody>
-      </table>
-   </div>
-   <!-- <div id="naviMarket" class="market-type ps ps--theme_default">
+         </ng-container>
+         <table id="tennisScoreBoard" *ngIf="sprtId==='2' && showScore" class="game-team"
+            [ngClass]="fullScore==undefined?'':'tennis'" style="display: table;">
+            <tbody>
+               <tr>
+                  <th>
+                     <!-- <a [ngClass]="isMultiAdded(getMarketData)?'pin-off':'pin-on'" title="{{isMultiAdded(getMarketData)?'Add to Multi Markets':'Remove from Multi Markets'}}" (click)="isMultiAdded(getMarketData)?addMultiMarket(getMarketData):removeMultiMarket(getMarketData)"></a> -->
+                     <h4 *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[0]}}</h4>
+                     <h4 *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[1]}}</h4>
+                     <h4 *ngIf="fullScore!=undefined">{{fullScore.score.home.name}}</h4>
+                     <h4 *ngIf="fullScore!=undefined">{{fullScore.score.away.name}}</h4>
+                     <ul *ngIf="fullScore!=undefined" class="scores-time in-play">
+                        <li id="currentSet">Set {{fullScore.currentSet}}</li>
+                        <li id="fullTimeElapsed">{{fullScore.fullTimeElapsed.hour}}h {{fullScore.fullTimeElapsed.min}}m
+                           {{fullScore.fullTimeElapsed.sec}}s</li>
+                        <li id="court">HARD court</li>
+                     </ul>
+                  </th>
+                  <td *ngIf="fullScore.currentSet==1" class="team-scores">
+                     <h4 class="in-play">{{fullScore.score.home.games}}</h4>
+                     <h4 class="in-play">{{fullScore.score.away.games}}</h4>
+                     <span>1</span>
+                  </td>
+                  <td *ngIf="fullScore.currentSet>1" class="team-scores">
+                     <h4>{{fullScore.score.home.gameSequence[0]}}</h4>
+                     <h4>{{fullScore.score.away.gameSequence[0]}}</h4>
+                     <span>1</span>
+                  </td>
+                  <td *ngIf="fullScore.currentSet==2" class="team-scores">
+                     <h4 class="in-play">{{fullScore.score.home.games}}</h4>
+                     <h4 class="in-play">{{fullScore.score.away.games}}</h4>
+                     <span>2</span>
+                  </td>
+                  <td *ngIf="fullScore.currentSet>2" class="team-scores">
+                     <h4>{{fullScore.score.home.gameSequence[1]}}</h4>
+                     <h4>{{fullScore.score.away.gameSequence[1]}}</h4>
+                     <span>2</span>
+                  </td>
+                  <td *ngIf="fullScore.currentSet==3" class="team-scores team-last_box">
+                     <h4 class="in-play">{{fullScore.score.home.games}}</h4>
+                     <h4 class="in-play">{{fullScore.score.away.games}}</h4>
+                     <span>3</span>
+                  </td>
+                  <td *ngIf="fullScore.currentSet==1" class="team-scores">
+                     <h4>-</h4>
+                     <h4>-</h4>
+                     <span>2</span>
+                  </td>
+                  <td *ngIf="fullScore.currentSet==1 || fullScore.currentSet==2" class="team-scores team-last_box">
+                     <h4>-</h4>
+                     <h4>-</h4>
+                     <span>3</span>
+                  </td>
+                  <td id="points" *ngIf="fullScore!=undefined" class="team-scores team-last_box">
+                     <h4 id="pointsHome" class="in-play">{{fullScore.score.home.score}}</h4>
+                     <h4 id="pointsAway" class="in-play">{{fullScore.score.away.score}}</h4>
+                     <span>Points</span>
+                  </td>
+                  <td id="aces" class="team-scores team-other">
+                     <h4 id="acesHome">{{fullScore.score.home.aces}}</h4>
+                     <h4 id="acesAway">{{fullScore.score.away.aces}}</h4>
+                     <span>Aces</span>
+                  </td>
+                  <td id="faults" class="team-scores team-other">
+                     <h4 id="faultsHome">{{fullScore.score.home.doubleFaults}}</h4>
+                     <h4 id="faultsAway">{{fullScore.score.away.doubleFaults}}</h4>
+                     <span>Faults</span>
+                  </td>
+                  <td id="breaks" class="team-scores team-other team-last_box">
+                     <h4 id="breaksHome">{{fullScore.score.home.serviceBreaks}}</h4>
+                     <h4 id="breaksAway">{{fullScore.score.away.serviceBreaks}}</h4>
+                     <span>Breaks</span>
+                  </td>
+                  <!-- <td class="team-refresh"><a  class="refresh" (click)="getAllMarket();"></a></td> -->
+                  <td id="setBoxTemplate" class="team-scores" style="display: none;">
+                     <h4>-</h4>
+                     <h4>-</h4>
+                     <span id="setIndex"></span>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+         <table id="soccerScoreBoard" *ngIf="sprtId==='1'" class="game-team soccer" style="display: table;">
+            <tbody>
+               <tr>
+                  <td class="team-scores team-last_box" *ngIf="fullScore!=undefined">
+                     <h4 id="scoresHome" class="in-play">{{fullScore.score.home.score}}</h4>
+                     <h4 id="scoresAway" class="in-play">{{fullScore.score.away.score}}</h4>
+                     <span id="timeElapsed">{{fullScore.elapsedRegularTime}}'</span>
+                  </td>
+                  <td>
+                     <h4 *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[0]}}</h4>
+                     <h4 *ngIf="fullScore==undefined">{{MatchName?.split(' v ')[1]}}</h4>
+                     <h4 *ngIf="fullScore!=undefined">{{fullScore.score.home.name}}</h4>
+                     <h4 *ngIf="fullScore!=undefined">{{fullScore.score.away.name}}</h4>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+      <!-- <div id="naviMarket" class="market-type ps ps--theme_default">
       <ul id="naviMarketList">
          <li id="naviMarketTemaplate" style="display: none;"><a href="#"></a></li>
          <li id="naviMarket_1_165079280" style="display: list-item;" class="select" *ngFor="let market of homeMarkets">
@@ -259,453 +291,538 @@
          <div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div>
       </div>
    </div> -->
-   <div id="streamingBox" class="tv-fix" style="display: none;">
-      <div class="tv-wrap">
-         <iframe id="iframeTv" [ngStyle]="{ 'width': TvWidth + 'px' }" style="height: 98%;"></iframe>
+      <div id="streamingBox" class="tv-fix" style="display: none;">
+         <div class="tv-wrap">
+            <iframe id="iframeTv" [ngStyle]="{ 'width': TvWidth + 'px' }" style="height: 98%;"></iframe>
+         </div>
       </div>
-   </div>
-   <div id="marketBetsWrap" class="bets-wrap " *ngFor="let markets of homeMarkets;trackBy:identify">
-      <div class="limit_info-popup" style="display: none;">
-         <a class="close" onclick="javascript:$j('#minMaxBox').fadeOut();">Close</a>
-         <dl>
-            <dt>Min / Max</dt>
-            <dd>0 / 0</dd>
-         </dl>
-      </div>
-      <a class="bet-limit" style="display: none;"></a>
-      <dl class="bets-selections-head">
-         <dt>
+      <div id="marketBetsWrap" class="bets-wrap " *ngFor="let markets of homeMarkets;trackBy:identify">
+         <div class="limit_info-popup" style="display: none;">
+            <a class="close" onclick="javascript:$j('#minMaxBox').fadeOut();">Close</a>
+            <dl>
+               <dt>Min / Max</dt>
+               <dd>0 / 0</dd>
+            </dl>
+         </div>
+         <a class="bet-limit" style="display: none;"></a>
+         <dl class="bets-selections-head">
+            <dt>
                <div style="color: #00a826;
                         font-weight: 600;
                         font-size: 20px;
-                        padding: 0px 5px 0px 0px;">\</div> 
-            <p>
-               <!-- <span>Matched</span>
+                        padding: 0px 5px 0px 0px;">\</div>
+               <p>
+                  <!-- <span>Matched</span>
                <strong id="totalMatched" class=""> 20,949,171</strong> -->
-               {{markets.name}}
-            </p>
-         </dt>
-         <dd class="mode-land"></dd>
-         <dd class="mode-land"></dd>
-         <dd>Back</dd>
-         <dd>Lay</dd>
-         <dd class="mode-land"></dd>
-         <dd class="mode-land"></dd>
-      </dl>
-      <ng-container *ngFor="let market of markets.runnerData;trackBy:identify;let index=index">
-         <dl id="selection_{{mktId}}_{{market.runnerName | removeSpace}}" class="bets-selections ">
-            <dt>
-               <h4 class="">{{market.runnerName}}</h4>
-               <ul>
+                  {{markets.name}}
+               </p>
+            </dt>
+            <dd class="mode-land"></dd>
+            <dd class="mode-land"></dd>
+            <dd>Back</dd>
+            <dd>Lay</dd>
+            <dd class="mode-land"></dd>
+            <dd class="mode-land"></dd>
+         </dl>
+         <ng-container *ngFor="let market of markets.runnerData;trackBy:identify;let index=index">
+            <dl id="selection_{{mktId}}_{{market.runnerName | removeSpace}}" class="bets-selections ">
+               <dt>
+                  <h4 class="">{{market.runnerName}}</h4>
+                  <ul>
                      <!-- <li class="win" [ngClass]="getPnlClass(market,markets.oldPnl)">{{getPnlValue(runner,markets.oldPnl)}}</li>
                      <li class="" *ngIf="market.newPnl" [ngClass]="getPnlClass(market,markets.newPnl)"> » </li>
                      <li class="" *ngIf="market.newPnl"  [ngClass]="getPnlClass(market,markets.newPnl)">{{getPnlValue(runner,markets.newPnl)}}</li> -->
-                     <li id="withoutBetMktExp_{{markets.id}}_{{market.runnerName | removeSpace}}" style="display: list-item;"></li>
-                     <li id="withBetMktExp_{{markets.id}}_{{market.runnerName | removeSpace}}" style="display: list-item;"><span></span></li>
-               </ul>
-            </dt>
-            <dd class="suspend" [ngStyle]="{'display':(market.Status=='CLOSED')?'flex':'none'}">
-               <p>Closed</p>
-            </dd>
-            <dd class="suspend" [ngStyle]="{'display':(market.Status=='SUSPENDED')?'flex':'none'}">
-               <p>SUSPENDED</p>
-            </dd>
-            <dd class="suspend" style="display: none;">
-               <p>Non Runner</p>
-            </dd>
-            <dd class="mode-land">
-               <a id="runner-{{index}}-back3" class="back-3" (click)="homeStatus!='OPEN' || market.back3==null || market.back3==''?'':openMarketBetslip($event,'Back',market.back3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back3 | number:'1.2-2'}}<span *ngIf='(market.back3 == null || market.back3 == "")'><mat-icon>not_interested</mat-icon></span><span class="">{{market.backSize3}}</span></a>
-            </dd>
-            <dd class="mode-land">
-               <a id="runner-{{index}}-back2" class="back-2" (click)="homeStatus!='OPEN' || market.back2==null || market.back2==''?'':openMarketBetslip($event,'Back',market.back2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back2 | number:'1.2-2'}}<span *ngIf='(market.back2 == null || market.back2 == "")'><mat-icon>not_interested</mat-icon></span><span class="">{{market.backSize2}}</span></a>
-            </dd>
-            <dd>
-               <a id="runner-{{index}}-back1" class="back-1" (click)="homeStatus!='OPEN' || market.back1==null || market.back1==''?'':openMarketBetslip($event,'Back',market.back1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{(market.back1>100)?market.back1:market.back1 | number:'1.2-2'}}<div class="not-allowed"  *ngIf='(market.back1 == null || market.back1 == "")'><mat-icon>not_interested</mat-icon></div><span class="">{{market.backSize1}}</span></a>
-            </dd>
-            <dd>
-               <a id="runner-{{index}}-lay1" class="lay-1" (click)="homeStatus!='OPEN' || market.lay1==null || market.lay1==''?'':openMarketBetslip($event,'Lay',market.lay1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{(market.lay1>100)?market.lay1:market.lay1 | number:'1.2-2'}}<div class="not-allowed" *ngIf='(market.lay1 == null || market.lay1 == "")'><mat-icon>not_interested</mat-icon></div><span class=""> {{market.laySize1}}</span></a>
-            </dd>
-            <dd class="mode-land">
-               <a id="runner-{{index}}-lay2" class="lay-2" (click)="homeStatus!='OPEN' || market.lay2==null || market.lay2==''?'':openMarketBetslip($event,'Lay',market.lay2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay2 | number:'1.2-2'}}<span *ngIf='(market.lay2 == null || market.lay2 == "")'><mat-icon>not_interested</mat-icon></span><span class=""> {{market.laySize2}}</span></a>
-            </dd>
-            <dd class="mode-land">
-               <a id="runner-{{index}}-lay3" class="lay-3" (click)="homeStatus!='OPEN' || market.lay3==null || market.lay3==''?'':openMarketBetslip($event,'Lay',market.lay3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay3 | number:'1.2-2'}}<span *ngIf='(market.lay3 == null || market.lay3 == "")'><mat-icon>not_interested</mat-icon></span><span class=""> {{market.laySize3}}</span></a>
-            </dd>
-         </dl>
-         <div id="betBoard_{{markets.mktId}}_{{market.runnerName| replace : ' ' : '_'}}" *ngIf="market.runnerName==placeMarketData.runnerName && homeStatus=='OPEN'" class="bet_slip-wrap" >
-            <div class="message-wrap" style="display: none;">
-               <div class="message">
-                  <h4>The Minimun stake is $25.00</h4>
-                  <p>
-                     Your stake has been updated accordingly.
-                  </p>
-               </div>
-               <a class="close" href="#">Close</a>
-            </div>
-            <ul class="btn-list">
-               <li>
-                  <div class="input-num input-odds">
-                     <a (click)="oddsDown(placeMarketData)" class="icon-minus"></a>
-                     <span id="odds" [ngClass]="oddsTyping?'typeing':'typed' " (click)="typingSign('odds',placeMarketData)" class="{{placeMarketData.backlay | lowercase}} typed">{{placeMarketData.odds}}</span>
-                     <a (click)="oddsUp(placeMarketData)" class="icon-plus"></a>
+                     <li id="withoutBetMktExp_{{markets.id}}_{{market.runnerName | removeSpace}}"
+                        style="display: list-item;"></li>
+                     <li id="withBetMktExp_{{markets.id}}_{{market.runnerName | removeSpace}}"
+                        style="display: list-item;"><span></span></li>
+                  </ul>
+               </dt>
+               <dd class="suspend" [ngStyle]="{'display':(market.Status=='CLOSED')?'flex':'none'}">
+                  <p>Closed</p>
+               </dd>
+               <dd class="suspend" [ngStyle]="{'display':(market.Status=='SUSPENDED')?'flex':'none'}">
+                  <p>SUSPENDED</p>
+               </dd>
+               <dd class="suspend" style="display: none;">
+                  <p>Non Runner</p>
+               </dd>
+               <dd class="mode-land">
+                  <a id="runner-{{index}}-back3" class="back-3"
+                     (click)="homeStatus!='OPEN' || market.back3==null || market.back3==''?'':openMarketBetslip($event,'Back',market.back3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back3 | number:'1.2-2'}}<span
+                        *ngIf='(market.back3 == null || market.back3 == "")'>
+                        <mat-icon>not_interested</mat-icon>
+                     </span><span class="">{{market.backSize3}}</span></a>
+               </dd>
+               <dd class="mode-land">
+                  <a id="runner-{{index}}-back2" class="back-2"
+                     (click)="homeStatus!='OPEN' || market.back2==null || market.back2==''?'':openMarketBetslip($event,'Back',market.back2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back2 | number:'1.2-2'}}<span
+                        *ngIf='(market.back2 == null || market.back2 == "")'>
+                        <mat-icon>not_interested</mat-icon>
+                     </span><span class="">{{market.backSize2}}</span></a>
+               </dd>
+               <dd>
+                  <a id="runner-{{index}}-back1" class="back-1"
+                     (click)="homeStatus!='OPEN' || market.back1==null || market.back1==''?'':openMarketBetslip($event,'Back',market.back1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{(market.back1>100)?market.back1:market.back1 | number:'1.2-2'}}
+                     <div class="not-allowed" *ngIf='(market.back1 == null || market.back1 == "")'>
+                        <mat-icon>not_interested</mat-icon>
+                     </div><span class="">{{market.backSize1}}</span></a>
+               </dd>
+               <dd>
+                  <a id="runner-{{index}}-lay1" class="lay-1"
+                     (click)="homeStatus!='OPEN' || market.lay1==null || market.lay1==''?'':openMarketBetslip($event,'Lay',market.lay1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{(market.lay1>100)?market.lay1:market.lay1 | number:'1.2-2'}}
+                     <div class="not-allowed" *ngIf='(market.lay1 == null || market.lay1 == "")'>
+                        <mat-icon>not_interested</mat-icon>
+                     </div><span class=""> {{market.laySize1}}</span></a>
+               </dd>
+               <dd class="mode-land">
+                  <a id="runner-{{index}}-lay2" class="lay-2"
+                     (click)="homeStatus!='OPEN' || market.lay2==null || market.lay2==''?'':openMarketBetslip($event,'Lay',market.lay2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay2 | number:'1.2-2'}}<span
+                        *ngIf='(market.lay2 == null || market.lay2 == "")'>
+                        <mat-icon>not_interested</mat-icon>
+                     </span><span class=""> {{market.laySize2}}</span></a>
+               </dd>
+               <dd class="mode-land">
+                  <a id="runner-{{index}}-lay3" class="lay-3"
+                     (click)="homeStatus!='OPEN' || market.lay3==null || market.lay3==''?'':openMarketBetslip($event,'Lay',market.lay3,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay3 | number:'1.2-2'}}<span
+                        *ngIf='(market.lay3 == null || market.lay3 == "")'>
+                        <mat-icon>not_interested</mat-icon>
+                     </span><span class=""> {{market.laySize3}}</span></a>
+               </dd>
+            </dl>
+            <div id="betBoard_{{markets.mktId}}_{{market.runnerName| replace : ' ' : '_'}}"
+               *ngIf="market.runnerName==placeMarketData.runnerName && homeStatus=='OPEN'" class="bet_slip-wrap">
+               <div class="message-wrap" style="display: none;">
+                  <div class="message">
+                     <h4>The Minimun stake is $25.00</h4>
+                     <p>
+                        Your stake has been updated accordingly.
+                     </p>
                   </div>
-               </li>
-               <li>
-                  <div class="input-num input-stake">
-                     <a (click)="stakeDown(placeMarketData)" class="icon-minus"></a>
-                     <span [ngClass]="stakeTyping?'typeing':'typed'" (click)="typingSign('stake',placeMarketData)" class=" typeing">{{placeMarketData.stake}}</span>
-                     <a (click)="stakeUp(placeMarketData)" class="icon-plus"></a>
-                  </div>
-               </li>
-            </ul>
-            <ul class="coin-list">
-               <li><a data-stake="1000" (click)="stakeChange(settingsData.betStake.stake1,placeMarketData)" class="">
-                  {{settingsData.betStake.stake1}}</a></li>
-               <li><a data-stake="2000" (click)="stakeChange(settingsData.betStake.stake2,placeMarketData)" class="">
-                  {{settingsData.betStake.stake2}}</a></li>
-               <li><a data-stake="3000" (click)="stakeChange(settingsData.betStake.stake3,placeMarketData)" class="">
-                  {{settingsData.betStake.stake3}}</a></li>
-               <li><a data-stake="5000" (click)="stakeChange(settingsData.betStake.stake4,placeMarketData)" class="">
-                  {{settingsData.betStake.stake4}}</a></li>
-               <li><a data-stake="10000" (click)="stakeChange(settingsData.betStake.stake5,placeMarketData)" class="">
-                  {{settingsData.betStake.stake5}}</a></li>
-               <li><a data-stake="20000" (click)="stakeChange(settingsData.betStake.stake6,placeMarketData)" class="">
-                  {{settingsData.betStake.stake6}}</a></li>
-            </ul>
-            <div class="keyboard-wrap">
-               <ul class="btn-tel">
-                  <li><a (click)="buttonInput('1',placeMarketData)">1</a></li>
-                  <li><a (click)="buttonInput('2',placeMarketData)">2</a></li>
-                  <li><a (click)="buttonInput('3',placeMarketData)">3</a></li>
-                  <li><a (click)="buttonInput('4',placeMarketData)">4</a></li>
-                  <li><a (click)="buttonInput('5',placeMarketData)">5</a></li>
-                  <li><a (click)="buttonInput('6',placeMarketData)">6</a></li>
-                  <li><a (click)="buttonInput('7',placeMarketData)">7</a></li>
-                  <li><a (click)="buttonInput('8',placeMarketData)">8</a></li>
-                  <li><a (click)="buttonInput('9',placeMarketData)">9</a></li>
-                  <li><a (click)="buttonInput('0',placeMarketData)">0</a></li>
-                  <li><a (click)="buttonInput('00',placeMarketData)">00</a></li>
-                  <li><a (click)="buttonInput('.',placeMarketData)">.</a></li>
-               </ul>
-               <a (click)="buttonDelete(placeMarketData)" class="btn-delete"></a>
-            </div>
-            <ul class="btn-list">
-               <li>
-                  <a mat-stroked-button (click)="cancelBetslip()" class="btn btn-cancel">Cancel</a>
-               </li>
-               <li>
-                  <a mat-flat-button color="accent" (click)="placeMarketData.stake=='' || placeMarketData.odds==''?'':confirmBetPop(placeMarketData)"
-                     class="btn-send {{placeMarketData.backlay | lowercase}}" [ngClass]="placeMarketData.stake=='' || placeMarketData.odds==''?'disable':''">Place Bet
-                  </a>
-               </li>
-            </ul>
-         </div>
-      </ng-container>
-      <ng-container *ngIf="confirmPlaceMarketData!=null">
-         <div id="confirmBetPop" class="overlay" [ngStyle]="{'display':(confirmPlaceMarketData!=null)?'flex':'none'}">
-      
-            <div class="pop-wrap">
-      
-               <h3>Please Confirm Your Bet</h3>
-      
-               <dl class="info-bet">
-      
-                  <dt>
-      
-                     <span class="{{confirmPlaceMarketData.backlay | lowercase}}">{{confirmPlaceMarketData.backlay}}</span>
-      
-                     <h4 id="runnerName" style="color: black;font-size:15px;">{{confirmPlaceMarketData.runnerName}}</h4>
-      
-                  </dt>
-      
-                  <dd>
-      
-                     <span>Odds</span>
-      
-                     <strong>{{confirmPlaceMarketData.odds? confirmPlaceMarketData.odds: '-' }}</strong>
-      
-                  </dd>
-      
-                  <dd>
-      
-                     <span>Stake</span>
-      
-                     <strong> {{confirmPlaceMarketData.stake}}</strong>
-      
-                  </dd>
-      
-                  <dd>
-      
-                     <span id="plName">{{confirmPlaceMarketData.backlay=='Back'?'Profit':'Liability'}}</span>
-      
-                     <strong class="{{confirmPlaceMarketData.backlay=='Back'?'':'red'}}">
-                        {{confirmPlaceMarketData.profit}}</strong>
-                        
-      
-                  </dd>
-      
-               </dl>
-      
-               <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" style="padding: 0px 2vw 1.5vw;">
-                  <a id="back" fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetPop()">Back</a>
-                  <a id="confirm" fxFlex="1 1 auto" mat-flat-button color="accent" class="back" (click)="placeMOBet(confirmPlaceMarketData)">Confirm</a>
+                  <a class="close" href="#">Close</a>
                </div>
-      
+               <ul class="btn-list">
+                  <li>
+                     <div class="input-num input-odds">
+                        <a (click)="oddsDown(placeMarketData)" class="icon-minus"></a>
+                        <span id="odds" [ngClass]="oddsTyping?'typeing':'typed' "
+                           (click)="typingSign('odds',placeMarketData)"
+                           class="{{placeMarketData.backlay | lowercase}} typed">{{placeMarketData.odds}}</span>
+                        <a (click)="oddsUp(placeMarketData)" class="icon-plus"></a>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="input-num input-stake">
+                        <a (click)="stakeDown(placeMarketData)" class="icon-minus"></a>
+                        <span [ngClass]="stakeTyping?'typeing':'typed'" (click)="typingSign('stake',placeMarketData)"
+                           class=" typeing">{{placeMarketData.stake}}</span>
+                        <a (click)="stakeUp(placeMarketData)" class="icon-plus"></a>
+                     </div>
+                  </li>
+               </ul>
+               <ul class="coin-list">
+                  <li><a data-stake="1000" (click)="stakeChange(settingsData.betStake.stake1,placeMarketData)" class="">
+                        {{settingsData.betStake.stake1}}</a></li>
+                  <li><a data-stake="2000" (click)="stakeChange(settingsData.betStake.stake2,placeMarketData)" class="">
+                        {{settingsData.betStake.stake2}}</a></li>
+                  <li><a data-stake="3000" (click)="stakeChange(settingsData.betStake.stake3,placeMarketData)" class="">
+                        {{settingsData.betStake.stake3}}</a></li>
+                  <li><a data-stake="5000" (click)="stakeChange(settingsData.betStake.stake4,placeMarketData)" class="">
+                        {{settingsData.betStake.stake4}}</a></li>
+                  <li><a data-stake="10000" (click)="stakeChange(settingsData.betStake.stake5,placeMarketData)"
+                        class="">
+                        {{settingsData.betStake.stake5}}</a></li>
+                  <li><a data-stake="20000" (click)="stakeChange(settingsData.betStake.stake6,placeMarketData)"
+                        class="">
+                        {{settingsData.betStake.stake6}}</a></li>
+               </ul>
+               <div class="keyboard-wrap">
+                  <ul class="btn-tel">
+                     <li><a (click)="buttonInput('1',placeMarketData)">1</a></li>
+                     <li><a (click)="buttonInput('2',placeMarketData)">2</a></li>
+                     <li><a (click)="buttonInput('3',placeMarketData)">3</a></li>
+                     <li><a (click)="buttonInput('4',placeMarketData)">4</a></li>
+                     <li><a (click)="buttonInput('5',placeMarketData)">5</a></li>
+                     <li><a (click)="buttonInput('6',placeMarketData)">6</a></li>
+                     <li><a (click)="buttonInput('7',placeMarketData)">7</a></li>
+                     <li><a (click)="buttonInput('8',placeMarketData)">8</a></li>
+                     <li><a (click)="buttonInput('9',placeMarketData)">9</a></li>
+                     <li><a (click)="buttonInput('0',placeMarketData)">0</a></li>
+                     <li><a (click)="buttonInput('00',placeMarketData)">00</a></li>
+                     <li><a (click)="buttonInput('.',placeMarketData)">.</a></li>
+                  </ul>
+                  <a (click)="buttonDelete(placeMarketData)" class="btn-delete"></a>
+               </div>
+               <ul class="btn-list">
+                  <li>
+                     <a mat-stroked-button (click)="cancelBetslip()" class="btn btn-cancel">Cancel</a>
+                  </li>
+                  <li>
+                     <a mat-flat-button color="accent"
+                        (click)="placeMarketData.stake=='' || placeMarketData.odds==''?'':confirmBetPop(placeMarketData)"
+                        class="btn-send {{placeMarketData.backlay | lowercase}}"
+                        [ngClass]="placeMarketData.stake=='' || placeMarketData.odds==''?'disable':''">Place Bet
+                     </a>
+                  </li>
+               </ul>
             </div>
-      
-         </div>
-      </ng-container>
+         </ng-container>
+         <ng-container *ngIf="confirmPlaceMarketData!=null">
+            <div id="confirmBetPop" class="overlay"
+               [ngStyle]="{'display':(confirmPlaceMarketData!=null)?'flex':'none'}">
 
-      <div class="no-data" style="display: none;">
-         <h3>This race has ended</h3>
-         <p></p>
-      </div>
-   </div>
-   <div id="bookRateBetsWrap" class="bets-wrap" *ngFor="let bokRate of bookMakingData;let index=index;trackBy: identify" >
-      <div  class="limit_info-popup" style="display: none;">
-         <a class="close">Close</a>
-         <dl>
-            <dt>Min / Max</dt>
-            <dd id="minMax"> {{bokRate.minStake}} / {{bokRate.maxStake}}</dd>
-         </dl>
-         <a id="close-fancy_info__{{bokRate.id}}" (click)="openCloseFancyInfo()" class="close">Close</a>
-      </div>
-      <a  class="bet-limit" style="display: none;"></a>
-      <dl  class="bets-selections-head">
-         <dt style="font-size: 3.93333vw;">
-            <p>
-               <strong>{{bokRate.name}}</strong>
-            </p>
-         </dt>
-         <dd class="mode-land"></dd>
-         <dd class="mode-land"></dd>
-         <dd>Back
-         </dd>
-         <dd>Lay
-         </dd>
-         <dd class="mode-land"></dd>
-         <dd class="mode-land"></dd>
-      </dl>
-      <ng-container *ngFor="let runner of bokRate.runnerData;trackBy: identify">
-      <dl id="selection_{{runner.id}}_{{runner.name}}"  class="bets-selections">
-         <dt>
-            <h4 >{{runner.name}}</h4>
-            <ul>
-               <li id="withoutBetBMExp_{{bokRate.id}}_{{runner.name | removeSpace}}"></li>
-               <li id="withBetBMExp_{{bokRate.id}}_{{runner.name | removeSpace}}"></li>
-            </ul>
-         </dt>
-         <dd  class="suspend" [ngStyle]="{'display':(runner.ballStatus!='')?'flex':'none'}" >
-            <p>{{runner.ballStatus}}
-            </p>
-         </dd>
-         <dd  class="suspend" style="display: none;">
-            <p>Closed
-            </p>
-         </dd>
-         <dd  class="suspend" style="display: none;">
-            <p>Non Runner
-            </p>
-         </dd>
-         <dd  class="mode-land">
-         </dd>
-         <dd  class="mode-land">
-         </dd>
-         <dd >
-            <a class="back-1" (click)="runner.backSize=='-' || runner.backSize==''?'':openBookBetSlip($event,'Back',runner.backPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.backPrice == "-")?'':runner.backPrice}}<div class="not-allowed" *ngIf='(runner.backPrice == null || runner.backPrice == "-")'><mat-icon>lock</mat-icon></div></a>
-         </dd>
-         <dd >
-            <a class="lay-1" (click)="runner.layPrice=='-' || runner.layPrice==''?'':openBookBetSlip($event,'Lay',runner.layPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.layPrice == "-")?'':runner.layPrice}}<div class="not-allowed" *ngIf='(runner.layPrice == null || runner.layPrice == "-")'><mat-icon>lock</mat-icon></div></a>
-         </dd>
-         <dd  class="mode-land">
-         </dd>
-         <dd  class="mode-land">
-         </dd>
-      </dl>
-      <div id="betBoard_{{runner.id}}_{{runner.name}}" *ngIf="runner.id==placeBookData.runnerId && runner.ballStatus==''" class="bet_slip-wrap" style="display: block;">
-         <div  class="message-wrap" style="display: none;">
-            <div class="message">
-               <h4 >The Minimun stake is $25.00</h4>
-               <p >
-                  Your stake has been updated accordingly.
-               </p>
+               <div class="pop-wrap">
+
+                  <h3>Please Confirm Your Bet</h3>
+
+                  <dl class="info-bet">
+
+                     <dt>
+
+                        <span
+                           class="{{confirmPlaceMarketData.backlay | lowercase}}">{{confirmPlaceMarketData.backlay}}</span>
+
+                        <h4 id="runnerName" style="color: black;font-size:15px;">{{confirmPlaceMarketData.runnerName}}
+                        </h4>
+
+                     </dt>
+
+                     <dd>
+
+                        <span>Odds</span>
+
+                        <strong>{{confirmPlaceMarketData.odds? confirmPlaceMarketData.odds: '-' }}</strong>
+
+                     </dd>
+
+                     <dd>
+
+                        <span>Stake</span>
+
+                        <strong> {{confirmPlaceMarketData.stake}}</strong>
+
+                     </dd>
+
+                     <dd>
+
+                        <span id="plName">{{confirmPlaceMarketData.backlay=='Back'?'Profit':'Liability'}}</span>
+
+                        <strong class="{{confirmPlaceMarketData.backlay=='Back'?'':'red'}}">
+                           {{confirmPlaceMarketData.profit}}</strong>
+
+
+                     </dd>
+
+                  </dl>
+
+                  <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px"
+                     style="padding: 0px 2vw 1.5vw;">
+                     <a id="back" fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetPop()">Back</a>
+                     <a id="confirm" fxFlex="1 1 auto" mat-flat-button color="accent" class="back"
+                        (click)="placeMOBet(confirmPlaceMarketData)">Confirm</a>
+                  </div>
+
+               </div>
+
             </div>
-            <a  class="close" href="#">Close</a>
-         </div>
-         <ul class="btn-list">
-            <li>
-               <div  class="input-num disable">
-                  <span class="typed {{placeMarketData.backlay | lowercase}}">{{placeBookData.odds}}</span>
-               </div>
-            </li>
-            <li>
-               <div  class="input-num input-stake">
-                  <a (click)="stakeDown(placeBookData)" class="icon-minus"></a>
-                  <span  [ngClass]="stakeTyping?'typeing':'typed'" (click)="typingSign('stake',placeBookData)">{{placeBookData.stake}}</span>
-                  <a (click)="stakeUp(placeBookData)" class="icon-plus"></a>
-               </div>
-            </li>
-         </ul>
-         <div class="coin-list" fxLayout="row" fxLayoutAlign="space-between center">
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake1,placeBookData)"> {{settingsData.betStake.stake1}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake2,placeBookData)"> {{settingsData.betStake.stake2}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake3,placeBookData)"> {{settingsData.betStake.stake3}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake4,placeBookData)"> {{settingsData.betStake.stake4}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake5,placeBookData)"> {{settingsData.betStake.stake5}}</a>
-            <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake6,placeBookData)"> {{settingsData.betStake.stake6}}</a>
-         </div>
-         <div  class="keyboard-wrap">
-            <ul  class="btn-tel">
-               <li><a (click)="buttonInput('1',placeBookData)">1</a></li>
-               <li><a (click)="buttonInput('2',placeBookData)">2</a></li>
-               <li><a (click)="buttonInput('3',placeBookData)">3</a></li>
-               <li><a (click)="buttonInput('4',placeBookData)">4</a></li>
-               <li><a (click)="buttonInput('5',placeBookData)">5</a></li>
-               <li><a (click)="buttonInput('6',placeBookData)">6</a></li>
-               <li><a (click)="buttonInput('7',placeBookData)">7</a></li>
-               <li><a (click)="buttonInput('8',placeBookData)">8</a></li>
-               <li><a (click)="buttonInput('9',placeBookData)">9</a></li>
-               <li><a (click)="buttonInput('0',placeBookData)">0</a></li>
-               <li><a (click)="buttonInput('00',placeBookData)">00</a></li>
-               <li><a (click)="buttonInput('.',placeBookData)">.</a></li>
-            </ul>
-            <a (click)="buttonDelete(placeBookData)" class="btn-delete"></a>
-         </div>
-         <div class="btn-list" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
-            <a fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()" class="btn-cancel">Cancel
-            </a>
-            <a fxFlex="1 1 auto" mat-flat-button color="primary" class="{{placeMarketData.backlay | lowercase}} btn btn-send" (click)="placeBookData.stake==''?'':placeBMBet(placeBookData)" [ngClass]="placeBookData.stake==''?'disable':''">Place Bet
-            </a>
+         </ng-container>
+
+         <div class="no-data" style="display: none;">
+            <h3>This race has ended</h3>
+            <p></p>
          </div>
       </div>
-   </ng-container>
-   </div>
-   <div id="fancyBetTable" class="" *ngIf="homeFancyData?.length!=0">
-      <div id="fancyBetWrap" class="bets-wrap multi fancy" *ngIf="sprtId==='4' && homeHasFancy===1">
-         <dl id="marketHead" class="bets-selections-head">
-            <dt id="fancyBetNoBet" style="display: none;"></dt>
-            <dt>Fancy Bet <a mat-flat-button *ngIf="homeFancyData[0].ballStatus!=''" class="fancy-status">Ball Running</a></dt>
-            <dd>No</dd>
-            <dd>Yes</dd>
+      <div id="bookRateBetsWrap" class="bets-wrap"
+         *ngFor="let bokRate of bookMakingData;let index=index;trackBy: identify">
+         <div class="limit_info-popup" style="display: none;">
+            <a class="close">Close</a>
+            <dl>
+               <dt>Min / Max</dt>
+               <dd id="minMax"> {{bokRate.minStake}} / {{bokRate.maxStake}}</dd>
+            </dl>
+            <a id="close-fancy_info__{{bokRate.id}}" (click)="openCloseFancyInfo()" class="close">Close</a>
+         </div>
+         <a class="bet-limit" style="display: none;"></a>
+         <dl class="bets-selections-head">
+            <dt style="font-size: 3.93333vw;">
+               <p>
+                  <strong>{{bokRate.name}}</strong>
+               </p>
+            </dt>
+            <dd class="mode-land"></dd>
+            <dd class="mode-land"></dd>
+            <dd>Back
+            </dd>
+            <dd>Lay
+            </dd>
+            <dd class="mode-land"></dd>
             <dd class="mode-land"></dd>
          </dl>
-         <div class="fancy-bet" *ngFor="let fancy of homeFancyData;trackBy:trackByfancyId">
-            <mat-accordion>
-               <mat-expansion-panel [expanded]="fancypanelsetting === 'true'" (opened)="setStep()">
-                 <mat-expansion-panel-header>
-                   <mat-panel-title>
-                      <div style="display: flex;">
-                        <div>
-                            <span _ngcontent-oho-c22="" class="fancy-slash">\</span>
-                        </div>
-                        <div style="padding: 10px 0px;text-transform: uppercase;">{{fancy.name}}</div>
-                      </div>
-                   </mat-panel-title>
-                   <mat-panel-description>
-                     
-                   </mat-panel-description>
-                 </mat-expansion-panel-header>
-                 <dl id="fancyBetMarket_{{fancy.id}}" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
-                  <dt class="line_market-selection">
-                     <ul>
-                        <li id="afterFancyExpo_{{fancy.id}}" style="display: -webkit-inline-box;"><span></span></li>
-                        <span [ngClass]="{'to-lose': fancy.oldPnl < 0, 'to-win': fancy.oldPnl >= 0}" class="">{{fancy.oldPnl}}</span>
-                     </ul>
-                     <button id="fancyBetBookBtn_{{fancy.id}}"  mat-flat-button color="warn"   (click)="getFancyBook(matchId,fancy.id,fancy.name)" style="display: none;background-color: #404040;">Book</button>
-                  </dt>
-                  <dd>
-                     <a class="lay-1 "
-                     (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.noScore}}<sub style="font-size: 8px;">({{fancy.noRate}})</sub><span
-                           class="">{{fancy.noRate}}</span>
-                           <span *ngIf='(fancy.noRate == null || fancy.noRate == "")'><img src="assets\img\unavailable.svg" /></span>
-                        </a>
-                  </dd>
-                  <dd>
-                     <a class="back-1 "
-                        (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.yesScore}}<sub style="font-size: 8px;">({{fancy.yesRate}})</sub><span
-                           class="">{{fancy.yesRate}}</span>
-                           <span *ngIf='(fancy.yesRate == null || fancy.yesRate == "")'><img src="assets\img\unavailable.svg" /></span>
-                        </a>
-                  </dd>
-                  <dd id="suspend" class="suspend-fancy"  [ngStyle]="{'display': (fancy.ballStatus!='') ? 'flex' : 'none' }">
-                     <!-- <p id="info">{{fancy.ballStatus}}</p> -->
-                     <p>Ball Running</p>
-                  </dd>
-                  <dd class="mode-land">
-                     <a (click)="openCloseFancyInfo(fancy)" class="btn-fancy_info"></a>
-                     <div id="fancy_popup_{{fancy.id}}" class="fancy_info-popup">
-                        <dl>
-                           <dt>Min / Max</dt>
-                           <dd id="minMax" class="{{placeMarketData.backlay | lowercase}}"> {{fancy.minStake}} /  {{fancy.maxStake}}</dd>
-                        </dl>
-                        <a id="close-fancy_info__{{fancy.id}}" (click)="openCloseFancyInfo()" class="close">Close</a>
-                     </div>
-                  </dd>
-               </dl>
-               <div id="betBoard_{{fancy.id}}" *ngIf="fancy.id==placeFancyData.fancyId && fancy.ballStatus==''" class="bet_slip-wrap ">
-                  <div  class="message-wrap" style="display: none;">
-                     <div class="message">
-                        <h4 >The Minimun stake is $25.00</h4>
-                        <p >
-                           Your stake has been updated accordingly.
-                        </p>
-                     </div>
-                     <a  class="close" href="#">Close</a>
-                  </div>
-                  <ul class="btn-list">
-                     <li>
-                        <div  class="input-num disable">
-                           
-                           <span class="typed">{{placeFancyData.score}} / {{placeFancyData.rate}}</span>
-                           
-                        </div>
-                     </li>
-                     <li>
-                        <div  class="input-num input-stake">
-                           <a (click)="stakeDown(placeFancyData)" class="icon-minus"></a>
-                           <span  [ngClass]="stakeTyping?'typeing':'typed'" (click)="typingSign('stake',placeFancyData)">{{placeFancyData.stake}}</span>
-                           <a (click)="stakeUp(placeFancyData)" class="icon-plus"></a>
-                        </div>
-                     </li>
+         <ng-container *ngFor="let runner of bokRate.runnerData;trackBy: identify">
+            <dl id="selection_{{runner.id}}_{{runner.name}}" class="bets-selections">
+               <dt>
+                  <h4>{{runner.name}}</h4>
+                  <ul>
+                     <li id="withoutBetBMExp_{{bokRate.id}}_{{runner.name | removeSpace}}"></li>
+                     <li id="withBetBMExp_{{bokRate.id}}_{{runner.name | removeSpace}}"></li>
                   </ul>
-                  <div class="coin-list" fxLayout="row" fxLayoutAlign="space-between center">
-                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake1,placeFancyData)"> {{settingsData.betStake.stake1}}</a>
-                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake2,placeFancyData)"> {{settingsData.betStake.stake2}}</a>
-                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake3,placeFancyData)"> {{settingsData.betStake.stake3}}</a>
-                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake4,placeFancyData)"> {{settingsData.betStake.stake4}}</a>
-                     <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake5,placeFancyData)"> {{settingsData.betStake.stake5}}</a>
-                     <a fxFlex="1 1 auto"  (click)="stakeChange(settingsData.betStake.stake6,placeFancyData)"> {{settingsData.betStake.stake6}}</a>
+               </dt>
+               <dd class="suspend" [ngStyle]="{'display':(runner.ballStatus!='')?'flex':'none'}">
+                  <p>{{runner.ballStatus}}
+                  </p>
+               </dd>
+               <dd class="suspend" style="display: none;">
+                  <p>Closed
+                  </p>
+               </dd>
+               <dd class="suspend" style="display: none;">
+                  <p>Non Runner
+                  </p>
+               </dd>
+               <dd class="mode-land">
+               </dd>
+               <dd class="mode-land">
+               </dd>
+               <dd>
+                  <a class="back-1"
+                     (click)="runner.backSize=='-' || runner.backSize==''?'':openBookBetSlip($event,'Back',runner.backPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.backPrice == "-")?'':runner.backPrice}}
+                     <div class="not-allowed" *ngIf='(runner.backPrice == null || runner.backPrice == "-")'>
+                        <mat-icon>lock</mat-icon>
+                     </div></a>
+               </dd>
+               <dd>
+                  <a class="lay-1"
+                     (click)="runner.layPrice=='-' || runner.layPrice==''?'':openBookBetSlip($event,'Lay',runner.layPrice,runner.name,runner.id,bokRate.id,bokRate.name,bokRate.type,matchId,marketId)">{{(runner.layPrice == "-")?'':runner.layPrice}}
+                     <div class="not-allowed" *ngIf='(runner.layPrice == null || runner.layPrice == "-")'>
+                        <mat-icon>lock</mat-icon>
+                     </div></a>
+               </dd>
+               <dd class="mode-land">
+               </dd>
+               <dd class="mode-land">
+               </dd>
+            </dl>
+            <div id="betBoard_{{runner.id}}_{{runner.name}}"
+               *ngIf="runner.id==placeBookData.runnerId && runner.ballStatus==''" class="bet_slip-wrap"
+               style="display: block;">
+               <div class="message-wrap" style="display: none;">
+                  <div class="message">
+                     <h4>The Minimun stake is $25.00</h4>
+                     <p>
+                        Your stake has been updated accordingly.
+                     </p>
                   </div>
-                  <div  class="keyboard-wrap">
-                     <ul  class="btn-tel">
-                        <li><a (click)="buttonInput('1',placeFancyData)">1</a></li>
-                        <li><a (click)="buttonInput('2',placeFancyData)">2</a></li>
-                        <li><a (click)="buttonInput('3',placeFancyData)">3</a></li>
-                        <li><a (click)="buttonInput('4',placeFancyData)">4</a></li>
-                        <li><a (click)="buttonInput('5',placeFancyData)">5</a></li>
-                        <li><a (click)="buttonInput('6',placeFancyData)">6</a></li>
-                        <li><a (click)="buttonInput('7',placeFancyData)">7</a></li>
-                        <li><a (click)="buttonInput('8',placeFancyData)">8</a></li>
-                        <li><a (click)="buttonInput('9',placeFancyData)">9</a></li>
-                        <li><a (click)="buttonInput('0',placeFancyData)">0</a></li>
-                        <li><a (click)="buttonInput('00',placeFancyData)">00</a></li>
-                        <li><a (click)="buttonInput('.',placeFancyData)">.</a></li>
-                     </ul>
-                     <a (click)="buttonDelete(placeFancyData)" class="btn-delete"></a>
-                  </div>
-                  <div class="btn-list" class="m-1" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
-                      <a fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()" class="btn btn-cancel">Cancel
-                      </a>
-                      <a fxFlex="1 1 auto" mat-flat-button color="primary" class="{{placeFancyData.yesno | lowercase}} btn-send" (click)="placeFancyData.stake==''?'':confirmFancyPop(placeFancyData)" [ngClass]="placeFancyData.stake==''?'disable':''">Place Bet
-                      </a>
-                   </div>
+                  <a class="close" href="#">Close</a>
                </div>
-               </mat-expansion-panel>
-             </mat-accordion>
-            <!-- <h4>
+               <ul class="btn-list">
+                  <li>
+                     <div class="input-num disable">
+                        <span class="typed {{placeMarketData.backlay | lowercase}}">{{placeBookData.odds}}</span>
+                     </div>
+                  </li>
+                  <li>
+                     <div class="input-num input-stake">
+                        <a (click)="stakeDown(placeBookData)" class="icon-minus"></a>
+                        <span [ngClass]="stakeTyping?'typeing':'typed'"
+                           (click)="typingSign('stake',placeBookData)">{{placeBookData.stake}}</span>
+                        <a (click)="stakeUp(placeBookData)" class="icon-plus"></a>
+                     </div>
+                  </li>
+               </ul>
+               <div class="coin-list" fxLayout="row" fxLayoutAlign="space-between center">
+                  <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake1,placeBookData)">
+                     {{settingsData.betStake.stake1}}</a>
+                  <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake2,placeBookData)">
+                     {{settingsData.betStake.stake2}}</a>
+                  <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake3,placeBookData)">
+                     {{settingsData.betStake.stake3}}</a>
+                  <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake4,placeBookData)">
+                     {{settingsData.betStake.stake4}}</a>
+                  <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake5,placeBookData)">
+                     {{settingsData.betStake.stake5}}</a>
+                  <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake6,placeBookData)">
+                     {{settingsData.betStake.stake6}}</a>
+               </div>
+               <div class="keyboard-wrap">
+                  <ul class="btn-tel">
+                     <li><a (click)="buttonInput('1',placeBookData)">1</a></li>
+                     <li><a (click)="buttonInput('2',placeBookData)">2</a></li>
+                     <li><a (click)="buttonInput('3',placeBookData)">3</a></li>
+                     <li><a (click)="buttonInput('4',placeBookData)">4</a></li>
+                     <li><a (click)="buttonInput('5',placeBookData)">5</a></li>
+                     <li><a (click)="buttonInput('6',placeBookData)">6</a></li>
+                     <li><a (click)="buttonInput('7',placeBookData)">7</a></li>
+                     <li><a (click)="buttonInput('8',placeBookData)">8</a></li>
+                     <li><a (click)="buttonInput('9',placeBookData)">9</a></li>
+                     <li><a (click)="buttonInput('0',placeBookData)">0</a></li>
+                     <li><a (click)="buttonInput('00',placeBookData)">00</a></li>
+                     <li><a (click)="buttonInput('.',placeBookData)">.</a></li>
+                  </ul>
+                  <a (click)="buttonDelete(placeBookData)" class="btn-delete"></a>
+               </div>
+               <div class="btn-list" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px">
+                  <a fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()" class="btn-cancel">Cancel
+                  </a>
+                  <a fxFlex="1 1 auto" mat-flat-button color="primary"
+                     class="{{placeMarketData.backlay | lowercase}} btn btn-send"
+                     (click)="placeBookData.stake==''?'':placeBMBet(placeBookData)"
+                     [ngClass]="placeBookData.stake==''?'disable':''">Place Bet
+                  </a>
+               </div>
+            </div>
+         </ng-container>
+      </div>
+      <div id="fancyBetTable" class="" *ngIf="homeFancyData?.length!=0">
+         <div id="fancyBetWrap" class="bets-wrap multi fancy" *ngIf="sprtId==='4' && homeHasFancy===1">
+            <dl id="marketHead" class="bets-selections-head">
+               <dt id="fancyBetNoBet" style="display: none;"></dt>
+               <dt>Fancy Bet <a mat-flat-button *ngIf="homeFancyData[0].ballStatus!=''" class="fancy-status">Ball
+                     Running</a></dt>
+               <dd>No</dd>
+               <dd>Yes</dd>
+               <dd class="mode-land"></dd>
+            </dl>
+            <div class="fancy-bet" *ngFor="let fancy of homeFancyData;trackBy:trackByfancyId">
+               <mat-accordion>
+                  <mat-expansion-panel [expanded]="fancypanelsetting === 'true'">
+                     <mat-expansion-panel-header>
+                        <mat-panel-title>
+                           <div style="display: flex;">
+                              <div>
+                                 <span _ngcontent-oho-c22="" class="fancy-slash">\</span>
+                              </div>
+                              <div style="padding: 10px 0px;text-transform: uppercase;">{{fancy.name}}</div>
+                           </div>
+                        </mat-panel-title>
+                        <mat-panel-description>
+
+                        </mat-panel-description>
+                     </mat-expansion-panel-header>
+                     <dl id="fancyBetMarket_{{fancy.id}}" class="bets-selections"
+                        style="display: flex;border-top: 1px solid #e4dfdf;">
+                        <dt class="line_market-selection">
+                           <ul>
+                              <li id="afterFancyExpo_{{fancy.id}}" style="display: -webkit-inline-box;"><span></span>
+                              </li>
+                              <span [ngClass]="{'to-lose': fancy.oldPnl < 0, 'to-win': fancy.oldPnl >= 0}"
+                                 class="">{{fancy.oldPnl}}</span>
+                           </ul>
+                           <button id="fancyBetBookBtn_{{fancy.id}}" mat-flat-button color="warn"
+                              (click)="getFancyBook(matchId,fancy.id,fancy.name)"
+                              style="display: none;background-color: #404040;">Book</button>
+                        </dt>
+                        <dd>
+                           <a class="lay-1 "
+                              (click)="fancy.ballStatus!='' || fancy.noScore==''?'':openFancyBetSlip($event,'No',fancy.noScore,fancy.noRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.noScore}}<sub
+                                 style="font-size: 8px;">({{fancy.noRate}})</sub><span class="">{{fancy.noRate}}</span>
+                              <span *ngIf='(fancy.noRate == null || fancy.noRate == "")'><img
+                                    src="assets\img\unavailable.svg" /></span>
+                           </a>
+                        </dd>
+                        <dd>
+                           <a class="back-1 "
+                              (click)="fancy.ballStatus!='' || fancy.yesScore==''?'':openFancyBetSlip($event,'Yes',fancy.yesScore,fancy.yesRate,fancy.name,fancy.id,matchId,mtBfId)">{{fancy.yesScore}}<sub
+                                 style="font-size: 8px;">({{fancy.yesRate}})</sub><span
+                                 class="">{{fancy.yesRate}}</span>
+                              <span *ngIf='(fancy.yesRate == null || fancy.yesRate == "")'><img
+                                    src="assets\img\unavailable.svg" /></span>
+                           </a>
+                        </dd>
+                        <dd id="suspend" class="suspend-fancy"
+                           [ngStyle]="{'display': (fancy.ballStatus!='') ? 'flex' : 'none' }">
+                           <!-- <p id="info">{{fancy.ballStatus}}</p> -->
+                           <p>Ball Running</p>
+                        </dd>
+                        <dd class="mode-land">
+                           <a (click)="openCloseFancyInfo(fancy)" class="btn-fancy_info"></a>
+                           <div id="fancy_popup_{{fancy.id}}" class="fancy_info-popup">
+                              <dl>
+                                 <dt>Min / Max</dt>
+                                 <dd id="minMax" class="{{placeMarketData.backlay | lowercase}}"> {{fancy.minStake}} /
+                                    {{fancy.maxStake}}</dd>
+                              </dl>
+                              <a id="close-fancy_info__{{fancy.id}}" (click)="openCloseFancyInfo()"
+                                 class="close">Close</a>
+                           </div>
+                        </dd>
+                     </dl>
+                     <div id="betBoard_{{fancy.id}}" *ngIf="fancy.id==placeFancyData.fancyId && fancy.ballStatus==''"
+                        class="bet_slip-wrap ">
+                        <div class="message-wrap" style="display: none;">
+                           <div class="message">
+                              <h4>The Minimun stake is $25.00</h4>
+                              <p>
+                                 Your stake has been updated accordingly.
+                              </p>
+                           </div>
+                           <a class="close" href="#">Close</a>
+                        </div>
+                        <ul class="btn-list">
+                           <li>
+                              <div class="input-num disable">
+
+                                 <span class="typed">{{placeFancyData.score}} / {{placeFancyData.rate}}</span>
+
+                              </div>
+                           </li>
+                           <li>
+                              <div class="input-num input-stake">
+                                 <a (click)="stakeDown(placeFancyData)" class="icon-minus"></a>
+                                 <span [ngClass]="stakeTyping?'typeing':'typed'"
+                                    (click)="typingSign('stake',placeFancyData)">{{placeFancyData.stake}}</span>
+                                 <a (click)="stakeUp(placeFancyData)" class="icon-plus"></a>
+                              </div>
+                           </li>
+                        </ul>
+                        <div class="coin-list" fxLayout="row" fxLayoutAlign="space-between center">
+                           <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake1,placeFancyData)">
+                              {{settingsData.betStake.stake1}}</a>
+                           <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake2,placeFancyData)">
+                              {{settingsData.betStake.stake2}}</a>
+                           <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake3,placeFancyData)">
+                              {{settingsData.betStake.stake3}}</a>
+                           <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake4,placeFancyData)">
+                              {{settingsData.betStake.stake4}}</a>
+                           <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake5,placeFancyData)">
+                              {{settingsData.betStake.stake5}}</a>
+                           <a fxFlex="1 1 auto" (click)="stakeChange(settingsData.betStake.stake6,placeFancyData)">
+                              {{settingsData.betStake.stake6}}</a>
+                        </div>
+                        <div class="keyboard-wrap">
+                           <ul class="btn-tel">
+                              <li><a (click)="buttonInput('1',placeFancyData)">1</a></li>
+                              <li><a (click)="buttonInput('2',placeFancyData)">2</a></li>
+                              <li><a (click)="buttonInput('3',placeFancyData)">3</a></li>
+                              <li><a (click)="buttonInput('4',placeFancyData)">4</a></li>
+                              <li><a (click)="buttonInput('5',placeFancyData)">5</a></li>
+                              <li><a (click)="buttonInput('6',placeFancyData)">6</a></li>
+                              <li><a (click)="buttonInput('7',placeFancyData)">7</a></li>
+                              <li><a (click)="buttonInput('8',placeFancyData)">8</a></li>
+                              <li><a (click)="buttonInput('9',placeFancyData)">9</a></li>
+                              <li><a (click)="buttonInput('0',placeFancyData)">0</a></li>
+                              <li><a (click)="buttonInput('00',placeFancyData)">00</a></li>
+                              <li><a (click)="buttonInput('.',placeFancyData)">.</a></li>
+                           </ul>
+                           <a (click)="buttonDelete(placeFancyData)" class="btn-delete"></a>
+                        </div>
+                        <div class="btn-list" class="m-1" fxLayout="row" fxLayoutAlign="space-between center"
+                           fxLayoutGap="8px">
+                           <a fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetslip()"
+                              class="btn btn-cancel">Cancel
+                           </a>
+                           <a fxFlex="1 1 auto" mat-flat-button color="primary"
+                              class="{{placeFancyData.yesno | lowercase}} btn-send"
+                              (click)="placeFancyData.stake==''?'':confirmFancyPop(placeFancyData)"
+                              [ngClass]="placeFancyData.stake==''?'disable':''">Place Bet
+                           </a>
+                        </div>
+                     </div>
+                  </mat-expansion-panel>
+               </mat-accordion>
+               <!-- <h4>
                <span id="marketName" class="">{{fancy.name}}</span>
             </h4> -->
-            <!-- <dl id="fancyBetMarket_{{fancy.id}}" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
+               <!-- <dl id="fancyBetMarket_{{fancy.id}}" class="bets-selections" style="display: flex;border-top: 1px solid #e4dfdf;">
                <dt class="line_market-selection">
                   <ul>
                      <li id="afterFancyExpo_{{fancy.id}}" style="display: -webkit-inline-box;"><span></span></li>
@@ -742,7 +859,7 @@
                   </div>
                </dd>
             </dl> -->
-            <!-- <div id="betBoard_{{fancy.id}}" *ngIf="fancy.id==placeFancyData.fancyId && fancy.ballStatus==''" class="bet_slip-wrap ">
+               <!-- <div id="betBoard_{{fancy.id}}" *ngIf="fancy.id==placeFancyData.fancyId && fancy.ballStatus==''" class="bet_slip-wrap ">
                <div  class="message-wrap" style="display: none;">
                   <div class="message">
                      <h4 >The Minimun stake is $25.00</h4>
@@ -800,157 +917,174 @@
                    </a>
                 </div>
             </div> -->
+            </div>
          </div>
       </div>
-   </div>
-   <div id="matchbetswrap" class="bets-wrap" *ngIf="homeMarkets && matchbets">
-      <mat-accordion>
-         <mat-expansion-panel class="open-bets">
-           <mat-expansion-panel-header>
-             <mat-panel-title>
-               My Bets [ {{matchbets.length}} ]
-             </mat-panel-title>
-             <mat-panel-description>
-             </mat-panel-description>
-           </mat-expansion-panel-header>
-            <div class="open-bets-listing event" *ngFor="let marketbets of matchbets;trackBy:betsindex">
-               <div class="market">
+      <div id="matchbetswrap" class="bets-wrap" *ngIf="homeMarkets && matchbets">
+         <mat-accordion>
+            <mat-expansion-panel class="open-bets">
+               <mat-expansion-panel-header>
+                  <mat-panel-title>
+                     My Bets [ {{matchbets.length}} ]
+                  </mat-panel-title>
+                  <mat-panel-description>
+                  </mat-panel-description>
+               </mat-expansion-panel-header>
+               <div class="open-bets-listing event" *ngFor="let marketbets of matchbets;trackBy:betsindex">
+                  <div class="market">
                      <div class="selection">
                         <ul>
-                              <li class="bets-li back" data-ng-repeat="marketbets in markets.marketBets track by marketbets.id" *ngIf="marketbets.backLay=='BACK' || marketbets.backLay=='YES'">
-                                 <a class="bet-info" [ngClass]="(marketbets.backLay=='BACK' || marketbets.backLay=='YES')?'matched-back': 'matched-lay'" data-ng-if="fType==2">{{marketbets.backLay}} {{marketbets.runnerName}} for {{marketbets.stake | number:'1.2-2'}} @ {{marketbets.odds}} to win 
-                                    <span *ngIf="marketbets.isFancy==0" class=" ">{{(marketbets.odds-1)*marketbets.stake | number:'1.2-2'}}</span>
-                                    <span *ngIf="marketbets.isFancy==1" class=" ">{{(marketbets.odds/100)*marketbets.stake | number:'1.2-2'}}</span>
-                                    .</a>
-                                 <div class="wrapper">
-                                    <div class="bet-details">
-                                          <div>
-                                             <strong class="">{{marketbets.matchName}}</strong>
-                                          </div>
-                                          <div>
-                                             <strong class="">{{marketbets.marketName}}</strong>
-                                          </div>
-                                          <div class="">
-                                             <strong>Placed</strong> : {{marketbets.date}}
-                                          </div>
+                           <li class="bets-li back"
+                              data-ng-repeat="marketbets in markets.marketBets track by marketbets.id"
+                              *ngIf="marketbets.backLay=='BACK' || marketbets.backLay=='YES'">
+                              <a class="bet-info"
+                                 [ngClass]="(marketbets.backLay=='BACK' || marketbets.backLay=='YES')?'matched-back': 'matched-lay'"
+                                 data-ng-if="fType==2">{{marketbets.backLay}} {{marketbets.runnerName}} for
+                                 {{marketbets.stake | number:'1.2-2'}} @ {{marketbets.odds}} to win
+                                 <span *ngIf="marketbets.isFancy==0"
+                                    class=" ">{{(marketbets.odds-1)*marketbets.stake | number:'1.2-2'}}</span>
+                                 <span *ngIf="marketbets.isFancy==1"
+                                    class=" ">{{(marketbets.odds/100)*marketbets.stake | number:'1.2-2'}}</span>
+                                 .</a>
+                              <div class="wrapper">
+                                 <div class="bet-details">
+                                    <div>
+                                       <strong class="">{{marketbets.matchName}}</strong>
+                                    </div>
+                                    <div>
+                                       <strong class="">{{marketbets.marketName}}</strong>
+                                    </div>
+                                    <div class="">
+                                       <strong>Placed</strong> : {{marketbets.date}}
                                     </div>
                                  </div>
-                              </li>
-                              <li class="bets-li back" data-ng-repeat="marketbets in markets.marketBets track by marketbets.id" *ngIf="marketbets.backLay=='LAY' || marketbets.backLay=='NO'">
-                                 <a class="bet-info" [ngClass]="(marketbets.backLay=='BACK' || marketbets.backLay=='YES')?'matched-back': 'matched-lay'" data-ng-if="fType==2">{{marketbets.backLay}} {{marketbets.runnerName}} for {{marketbets.stake | number:'1.2-2'}} @ {{marketbets.odds}} to win 
-                                    <span *ngIf="marketbets.isFancy==0" class=" ">{{(marketbets.odds-1)*marketbets.stake | number:'1.2-2'}}</span>
-                                    <span *ngIf="marketbets.isFancy==1" class=" ">{{(marketbets.odds/100)*marketbets.stake | number:'1.2-2'}}</span>
-                                    .</a>
-                                 <div class="wrapper">
-                                    <div class="bet-details">
-                                          <div>
-                                             <strong class="">{{marketbets.matchName}}</strong>
-                                          </div>
-                                          <div>
-                                             <strong class="">{{marketbets.marketName}}</strong>
-                                          </div>
-                                          <div class="">
-                                             <strong>Placed</strong> : {{marketbets.date}}
-                                          </div>
+                              </div>
+                           </li>
+                           <li class="bets-li back"
+                              data-ng-repeat="marketbets in markets.marketBets track by marketbets.id"
+                              *ngIf="marketbets.backLay=='LAY' || marketbets.backLay=='NO'">
+                              <a class="bet-info"
+                                 [ngClass]="(marketbets.backLay=='BACK' || marketbets.backLay=='YES')?'matched-back': 'matched-lay'"
+                                 data-ng-if="fType==2">{{marketbets.backLay}} {{marketbets.runnerName}} for
+                                 {{marketbets.stake | number:'1.2-2'}} @ {{marketbets.odds}} to win
+                                 <span *ngIf="marketbets.isFancy==0"
+                                    class=" ">{{(marketbets.odds-1)*marketbets.stake | number:'1.2-2'}}</span>
+                                 <span *ngIf="marketbets.isFancy==1"
+                                    class=" ">{{(marketbets.odds/100)*marketbets.stake | number:'1.2-2'}}</span>
+                                 .</a>
+                              <div class="wrapper">
+                                 <div class="bet-details">
+                                    <div>
+                                       <strong class="">{{marketbets.matchName}}</strong>
+                                    </div>
+                                    <div>
+                                       <strong class="">{{marketbets.marketName}}</strong>
+                                    </div>
+                                    <div class="">
+                                       <strong>Placed</strong> : {{marketbets.date}}
                                     </div>
                                  </div>
-                              </li>
+                              </div>
+                           </li>
                         </ul>
                      </div>
+                  </div>
                </div>
-            </div>
-         </mat-expansion-panel>
-       </mat-accordion>
-   </div>
-   <ng-container *ngIf="confirmFancyData!=null">
-      <div id="confirmBetPop" class="overlay" [ngStyle]="{'display':(confirmFancyData!=null)?'flex':'none'}">
-   
-         <div class="pop-wrap">
-   
-            <h3>Please Confirm Your Bet</h3>
-   
-            <dl class="info-bet">
-   
-               <dt>
-   
-                  <span class="{{confirmFancyData.yesno | lowercase}}">{{confirmFancyData.yesno}}</span>
-   
-                  <h4 id="runnerName" style="color: black;font-size:15px">{{confirmFancyData.runnerName}}</h4>
-   
-               </dt>
-   
-               <dd>
-   
-                  <span>Score</span>
-   
-                  <strong>{{confirmFancyData.score? confirmFancyData.score: '-' }}</strong>
-   
-               </dd>
-   
-               <dd>
-   
-                  <span>Stake</span>
-   
-                  <strong> {{confirmFancyData.stake}}</strong>
-   
-               </dd>
-   
-               <dd>
-   
-                  <span id="plName">{{confirmFancyData.backlay=='Back'?'Profit':'Liability'}}</span>
-   
-                  <strong class="{{confirmFancyData.backlay=='Back'?'':'red'}}">
-                     {{confirmFancyData.profit}}</strong>
-   
-               </dd>
-   
-            </dl>
-   
-            <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px" style="padding: 0px 2vw 1.5vw;">
-               <a id="back" fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetPop()">Back</a>
-               <a id="confirm" fxFlex="1 1 auto" mat-flat-button color="warn" class="back"  (click)="placeFancyBet(confirmFancyData)">Confirm</a>
-            </div>
-   
-         </div>
-   
+            </mat-expansion-panel>
+         </mat-accordion>
       </div>
-   </ng-container>
-   <div id="fancyBetBookLeftSide" class="overlay" [ngStyle]="{'display':(fancyBookData!=null)?'flex':'none'}">
+      <ng-container *ngIf="confirmFancyData!=null">
+         <div id="confirmBetPop" class="overlay" [ngStyle]="{'display':(confirmFancyData!=null)?'flex':'none'}">
 
-      <div id="sideWrap" class="side-wrap full-pop">
-   
-        <div class="side-head">
-   
-          <h3 class="">Book Position</h3>
-          
-          <!-- <a class="close btn-delete" ></a> -->
-          <a class="btn" mat-flat-button color="warn" (click)="closeOverlayInfo()" style="width: 45px;"><i class="fa fa-times"></i></a>
-        </div>
-   
-        <div  class="side-content">
-   
-          <div class="path-wrap">
-   
-            <ul>
-   
-              <li id="headerName">{{fancyName}}</li>
-   
-            </ul>
-   
-          </div>
-   
-          <table id="table" class="table table-fancy">
-   
-            <tbody>
-   
-              <tr>
-   
-                <th style="width: 40%">Runs</th>
-   
-                <th style="width: 60%">Amount</th>
-   
-              </tr>
-   <!-- 
+            <div class="pop-wrap">
+
+               <h3>Please Confirm Your Bet</h3>
+
+               <dl class="info-bet">
+
+                  <dt>
+
+                     <span class="{{confirmFancyData.yesno | lowercase}}">{{confirmFancyData.yesno}}</span>
+
+                     <h4 id="runnerName" style="color: black;font-size:15px">{{confirmFancyData.runnerName}}</h4>
+
+                  </dt>
+
+                  <dd>
+
+                     <span>Score</span>
+
+                     <strong>{{confirmFancyData.score? confirmFancyData.score: '-' }}</strong>
+
+                  </dd>
+
+                  <dd>
+
+                     <span>Stake</span>
+
+                     <strong> {{confirmFancyData.stake}}</strong>
+
+                  </dd>
+
+                  <dd>
+
+                     <span id="plName">{{confirmFancyData.backlay=='Back'?'Profit':'Liability'}}</span>
+
+                     <strong class="{{confirmFancyData.backlay=='Back'?'':'red'}}">
+                        {{confirmFancyData.profit}}</strong>
+
+                  </dd>
+
+               </dl>
+
+               <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="8px"
+                  style="padding: 0px 2vw 1.5vw;">
+                  <a id="back" fxFlex="1 1 auto" mat-stroked-button (click)="cancelBetPop()">Back</a>
+                  <a id="confirm" fxFlex="1 1 auto" mat-flat-button color="warn" class="back"
+                     (click)="placeFancyBet(confirmFancyData)">Confirm</a>
+               </div>
+
+            </div>
+
+         </div>
+      </ng-container>
+      <div id="fancyBetBookLeftSide" class="overlay" [ngStyle]="{'display':(fancyBookData!=null)?'flex':'none'}">
+
+         <div id="sideWrap" class="side-wrap full-pop">
+
+            <div class="side-head">
+
+               <h3 class="">Book Position</h3>
+
+               <!-- <a class="close btn-delete" ></a> -->
+               <a class="btn" mat-flat-button color="warn" (click)="closeOverlayInfo()" style="width: 45px;"><i
+                     class="fa fa-times"></i></a>
+            </div>
+
+            <div class="side-content">
+
+               <div class="path-wrap">
+
+                  <ul>
+
+                     <li id="headerName">{{fancyName}}</li>
+
+                  </ul>
+
+               </div>
+
+               <table id="table" class="table table-fancy">
+
+                  <tbody>
+
+                     <tr>
+
+                        <th style="width: 40%">Runs</th>
+
+                        <th style="width: 60%">Amount</th>
+
+                     </tr>
+                     <!-- 
               <tr id="trTemp">
    
                 <td id="runs" class=""><strong></strong></td>
@@ -958,27 +1092,27 @@
                 <td id="exposure" class=""><strong></strong></td>
    
               </tr> -->
-              
-              <ng-container *ngFor="let book of fancyBookData;let $index=index">
-              <tr style="display: table-row;" *ngIf="book.Key>=0">
-   
-                <td [ngClass]="book.Value>0?'col-back':'col-lay'"><strong> &nbsp;{{book.Key}}</strong></td>
-   
-                <td [ngClass]="book.Value>0?'col-back':'col-lay'"><strong [ngClass]="book.Value>0?'':'red'"> {{book.Value}}</strong></td>
-   
-              </tr>
-            </ng-container>
-   
-            </tbody>
-   
-          </table>
-   
-        </div>
-   
+
+                     <ng-container *ngFor="let book of fancyBookData;let $index=index">
+                        <tr style="display: table-row;" *ngIf="book.Key>=0">
+
+                           <td [ngClass]="book.Value>0?'col-back':'col-lay'"><strong> &nbsp;{{book.Key}}</strong></td>
+
+                           <td [ngClass]="book.Value>0?'col-back':'col-lay'"><strong [ngClass]="book.Value>0?'':'red'">
+                                 {{book.Value}}</strong></td>
+
+                        </tr>
+                     </ng-container>
+
+                  </tbody>
+
+               </table>
+
+            </div>
+
+         </div>
+
       </div>
-   
-   </div>
-</div>
-<div class="loading-overlay" style="display: none;" id="loading">
-   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
- </div>
+      <div class="loading-overlay" style="display: none;" id="loading">
+         <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      </div>
