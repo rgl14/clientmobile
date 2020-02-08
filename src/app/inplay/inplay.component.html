@@ -33,7 +33,7 @@
                     <div class="item-inner">
                       <div class="input-wrapper">
                         <div class="label ion-label label-md">
-                          <a (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId)" >
+                          <a (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId,inplay.hasbookmaker)" >
                             <div class="popular-event">
                               <div class="event-details">
                                 <div>
@@ -380,7 +380,7 @@
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId)" >
+                              <a class="" (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId,inplay.hasbookmaker)" >
                                 <div class="popular-event">
                                   <div class="event-details"> 
                                     <!-- <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i> -->
@@ -411,7 +411,7 @@
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId)" >
+                              <a class="" (click)="appcharge(inplay.SportbfId,inplay.TourbfId,inplay.matchId,inplay.marketId,inplay.mtBfId,inplay.bfId,inplay.hasbookmaker)" >
                                 <div class="popular-event">
                                   <div class="event-details"> 
                                     <!-- <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i> -->
@@ -439,7 +439,7 @@
                 </div>
               </div>
               <div class="distinct ion-list market-list list list-md" *ngIf="inplayData.length==0">
-                <h5>No Inplay Events...</h5>
+                <h5>No Inplay Matches...</h5>
               </div>
             </section>
           </div>
@@ -474,7 +474,7 @@
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId)" >
+                              <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId,upcoming.hasbookmaker)" >
                                 <div class="popular-event">
                                   <div class="event-details"> 
                                     <!-- <i><img height="20px" width="20px" src="assets/img/cricket.png"></i> -->
@@ -511,7 +511,7 @@
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId)">
+                              <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId,upcoming.hasbookmaker)">
                                 <div class="popular-event">
                                   <div class="event-details"> 
                                     <!-- <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i> -->
@@ -544,7 +544,7 @@
                         <div class="item-inner">
                           <div class="input-wrapper">
                             <div class="label ion-label label-md">
-                              <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId)">
+                              <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId,upcoming.hasbookmaker)">
                                 <div class="popular-event">
                                   <div class="event-details"> 
                                     <!-- <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i> -->
@@ -574,14 +574,14 @@
                 </div>
               </div>
               <div class="distinct ion-list market-list list list-md" *ngIf="upcomingEvents.length==0">
-                <h5>No Upcoming Events</h5>
+                <h5>No Upcoming Matches...</h5>
               </div>
             </section>
           </div>
         </div>
       </mat-tab>
-      <mat-tab (swipe)="onSwipe($event)">
-        <ng-template mat-tab-label>RECENT</ng-template>
+      <mat-tab (swipe)="onSwipe($event)" (click)="recentpnldata()">
+        <ng-template mat-tab-label >RECENT</ng-template>
         <div class="home-page ion-content event-page content content-md" padding="" *ngIf="showRecentList">
           <div class="fixed-content   "></div>
           <div class="scroll-content " (swipe)="onSwipe($event)">
@@ -640,6 +640,9 @@
                   <div class="button-effect"></div>
                 </div>
               </div>
+            </div>
+            <div class="distinct ion-list market-list list list-md" *ngIf="pnlData.length==0">
+              <h5>No Recent Matches...</h5>
             </div>
             </section>
           </div>

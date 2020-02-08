@@ -47,7 +47,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   isoddhigh: string;
   noSpaceMarketid: string;
   curTime: any;
-  bookMakingData: any;
+  bookMakingData=[];
   fancyExposure: any;
   highlightOdds: boolean=true;
   stakeTyping: boolean=true;
@@ -76,8 +76,20 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   TvWidth: number;
   bmexposure: any;
   fancypanelsetting: any;
+  matchbets=[];
+  allmatchbetsource: Subscription;
 
-  constructor(private route:ActivatedRoute,private common :CommonService,private sharedata:SharedataService,private dataformat:DataFormatService,private marketodds:MarketsService,private fancymarket :FancyService,private renderer:Renderer,private deviceInfo:DeviceDetectorService,public notification :NotificationService,private score:ScoreboardService) { }
+  constructor(
+    private route:ActivatedRoute,
+    private common :CommonService,
+    private sharedata:SharedataService,
+    private dataformat:DataFormatService,
+    private marketodds:MarketsService,
+    private fancymarket :FancyService,
+    private renderer:Renderer,
+    private deviceInfo:DeviceDetectorService,
+    public notification :NotificationService,
+    private score:ScoreboardService) { }
 
   ngOnInit() {
     this.TvWidth = window.innerWidth;
@@ -107,6 +119,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   identify(index,item){
     return item.mktId;
   }
+  betsindex(index,item){
+    return index;
+  }
   trackByfancyId(index, fancy) {
     return fancy.id;
   }
@@ -116,11 +131,10 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       this.eventData=this.dataformat.navigationSource.subscribe(data=>{
         if(data!=null){
           eventdatacount++;
-          // console.log(this.homeMarkets)
+          // console.log(this.homeMarkets);
           this.AllMarketData=data;
           this.subscribedEventdata=this.AllMarketData[this.sprtId].tournaments[this.tourId].matches[this.matchId];
-          this.bookMakingData=this.subscribedEventdata.bookRates;
-          console.log(this.bookMakingData);
+          // this.bookMakingData=this.subscribedEventdata.bookRates;
           this.homeCommentary=this.subscribedEventdata.commentary;
           this.homeDataMode=this.subscribedEventdata.dataMode;
           this.homeDisplayApplication=this.subscribedEventdata.displayApplication;
@@ -139,10 +153,14 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           }
         }
       })
-  }
-
-  setStep(){
-    
+      this.allmatchbetsource=this.sharedata.allMatchUnmatchBetsSource.subscribe(resp=>{
+        if(resp!=null){
+          // console.log(resp._userMatchedBets[this.matchId])
+          // this.matchbets=this.dataformat.matchUnmatchBetsFormat(resp,this.matchId);
+          this.matchbets=resp._userMatchedBets[this.matchId];
+          // console.log(this.matchbets);
+        }
+      })
   }
 
   hubaddress(){
@@ -181,7 +199,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       this.scorecardresponse(this.matchId,this.homeFancyData)
     })
     _.forEach(this.homeMarkets, (item1, index) => {
-      console.log(item1)
+      // console.log(item1)
       this.common.getexposurebook(item1.id).subscribe(resp=>{
         _.forEach(resp.data, (item, index) => {
           var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
@@ -332,10 +350,10 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   FancysignalrData(){
     this.fancyoddsignalr=this.fancymarket.fancySource.subscribe(fancy=>{
         if (fancy != null) {
-          // console.log(fancy);
+          console.log(fancy);
           this.eventData.unsubscribe();
           this.curTime = fancy.curTime;
-          this.bookMakingData = fancy.bookRates;
+          // this.bookMakingData = fancy.bookRates;
           // this.bookrunnerData = this.bookMakingData.runnerData;
           this.homeFancyData = fancy.data;
           if(this.bookMakingData.length!=0){
@@ -446,6 +464,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   }
   ngOnDestroy() {
     this.eventData.unsubscribe();
+    this.allmatchbetsource.unsubscribe();
     this.marketodds.UnsuscribeMarkets(this.homeMarkets);
     this.fancymarket.UnsuscribeFancy(this.matchId);
     this.score.unSubscribeMatchScore(this.mtBfId);

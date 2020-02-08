@@ -320,10 +320,10 @@
                <a id="runner-{{index}}-back2" class="back-2" (click)="homeStatus!='OPEN' || market.back2==null || market.back2==''?'':openMarketBetslip($event,'Back',market.back2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back2 | number:'1.2-2'}}<span *ngIf='(market.back2 == null || market.back2 == "")'><mat-icon>not_interested</mat-icon></span><span class="">{{market.backSize2}}</span></a>
             </dd>
             <dd>
-               <a id="runner-{{index}}-back1" class="back-1" (click)="homeStatus!='OPEN' || market.back1==null || market.back1==''?'':openMarketBetslip($event,'Back',market.back1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.back1 | number:'1.2-2'}}<div class="not-allowed"  *ngIf='(market.back1 == null || market.back1 == "")'><mat-icon>not_interested</mat-icon></div><span class="">{{market.backSize1}}</span></a>
+               <a id="runner-{{index}}-back1" class="back-1" (click)="homeStatus!='OPEN' || market.back1==null || market.back1==''?'':openMarketBetslip($event,'Back',market.back1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{(market.back1>100)?market.back1:market.back1 | number:'1.2-2'}}<div class="not-allowed"  *ngIf='(market.back1 == null || market.back1 == "")'><mat-icon>not_interested</mat-icon></div><span class="">{{market.backSize1}}</span></a>
             </dd>
             <dd>
-               <a id="runner-{{index}}-lay1" class="lay-1" (click)="homeStatus!='OPEN' || market.lay1==null || market.lay1==''?'':openMarketBetslip($event,'Lay',market.lay1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay1 | number:'1.2-2'}}<div class="not-allowed" *ngIf='(market.lay1 == null || market.lay1 == "")'><mat-icon>not_interested</mat-icon></div><span class=""> {{market.laySize1}}</span></a>
+               <a id="runner-{{index}}-lay1" class="lay-1" (click)="homeStatus!='OPEN' || market.lay1==null || market.lay1==''?'':openMarketBetslip($event,'Lay',market.lay1,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{(market.lay1>100)?market.lay1:market.lay1 | number:'1.2-2'}}<div class="not-allowed" *ngIf='(market.lay1 == null || market.lay1 == "")'><mat-icon>not_interested</mat-icon></div><span class=""> {{market.laySize1}}</span></a>
             </dd>
             <dd class="mode-land">
                <a id="runner-{{index}}-lay2" class="lay-2" (click)="homeStatus!='OPEN' || market.lay2==null || market.lay2==''?'':openMarketBetslip($event,'Lay',market.lay2,market.runnerName,sprtId,mtBfId,matchId,markets.id,market.marketid)">{{market.lay2 | number:'1.2-2'}}<span *ngIf='(market.lay2 == null || market.lay2 == "")'><mat-icon>not_interested</mat-icon></span><span class=""> {{market.laySize2}}</span></a>
@@ -802,6 +802,65 @@
             </div> -->
          </div>
       </div>
+   </div>
+   <div id="matchbetswrap" class="bets-wrap" *ngIf="homeMarkets && matchbets">
+      <mat-accordion>
+         <mat-expansion-panel class="open-bets">
+           <mat-expansion-panel-header>
+             <mat-panel-title>
+               My Bets [ {{matchbets.length}} ]
+             </mat-panel-title>
+             <mat-panel-description>
+             </mat-panel-description>
+           </mat-expansion-panel-header>
+            <div class="open-bets-listing event" *ngFor="let marketbets of matchbets;trackBy:betsindex">
+               <div class="market">
+                     <div class="selection">
+                        <ul>
+                              <li class="bets-li back" data-ng-repeat="marketbets in markets.marketBets track by marketbets.id" *ngIf="marketbets.backLay=='BACK' || marketbets.backLay=='YES'">
+                                 <a class="bet-info" [ngClass]="(marketbets.backLay=='BACK' || marketbets.backLay=='YES')?'matched-back': 'matched-lay'" data-ng-if="fType==2">{{marketbets.backLay}} {{marketbets.runnerName}} for {{marketbets.stake | number:'1.2-2'}} @ {{marketbets.odds}} to win 
+                                    <span *ngIf="marketbets.isFancy==0" class=" ">{{(marketbets.odds-1)*marketbets.stake | number:'1.2-2'}}</span>
+                                    <span *ngIf="marketbets.isFancy==1" class=" ">{{(marketbets.odds/100)*marketbets.stake | number:'1.2-2'}}</span>
+                                    .</a>
+                                 <div class="wrapper">
+                                    <div class="bet-details">
+                                          <div>
+                                             <strong class="">{{marketbets.matchName}}</strong>
+                                          </div>
+                                          <div>
+                                             <strong class="">{{marketbets.marketName}}</strong>
+                                          </div>
+                                          <div class="">
+                                             <strong>Placed</strong> : {{marketbets.date}}
+                                          </div>
+                                    </div>
+                                 </div>
+                              </li>
+                              <li class="bets-li back" data-ng-repeat="marketbets in markets.marketBets track by marketbets.id" *ngIf="marketbets.backLay=='LAY' || marketbets.backLay=='NO'">
+                                 <a class="bet-info" [ngClass]="(marketbets.backLay=='BACK' || marketbets.backLay=='YES')?'matched-back': 'matched-lay'" data-ng-if="fType==2">{{marketbets.backLay}} {{marketbets.runnerName}} for {{marketbets.stake | number:'1.2-2'}} @ {{marketbets.odds}} to win 
+                                    <span *ngIf="marketbets.isFancy==0" class=" ">{{(marketbets.odds-1)*marketbets.stake | number:'1.2-2'}}</span>
+                                    <span *ngIf="marketbets.isFancy==1" class=" ">{{(marketbets.odds/100)*marketbets.stake | number:'1.2-2'}}</span>
+                                    .</a>
+                                 <div class="wrapper">
+                                    <div class="bet-details">
+                                          <div>
+                                             <strong class="">{{marketbets.matchName}}</strong>
+                                          </div>
+                                          <div>
+                                             <strong class="">{{marketbets.marketName}}</strong>
+                                          </div>
+                                          <div class="">
+                                             <strong>Placed</strong> : {{marketbets.date}}
+                                          </div>
+                                    </div>
+                                 </div>
+                              </li>
+                        </ul>
+                     </div>
+               </div>
+            </div>
+         </mat-expansion-panel>
+       </mat-accordion>
    </div>
    <ng-container *ngIf="confirmFancyData!=null">
       <div id="confirmBetPop" class="overlay" [ngStyle]="{'display':(confirmFancyData!=null)?'flex':'none'}">

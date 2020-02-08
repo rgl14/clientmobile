@@ -1555,3 +1555,26 @@ table {
     /* padding-left: 10px; */
     /* padding-right: 13px; */
 }
+
+//bets design
+.bets-li{
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    border-radius: 3px;
+}
+.matched-back{
+    text-decoration:underline !important;
+    color:#72bbef !important;
+}
+.matched-lay{
+    text-decoration:underline !important;
+    color:#faa9ba !important;
+}
+
+.open-bets .mat-expansion-panel-header {
+    background: #404040 !important;
+    
+    .mat-expansion-panel-header-title {
+        color: #fff;
+    }
+}
