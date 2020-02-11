@@ -99,6 +99,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     this.mktId=this.route.snapshot.paramMap.get('marketId');
     this.mtBfId=this.route.snapshot.paramMap.get('mtBfId');
     this.mktBfId=this.route.snapshot.paramMap.get('bfId');
+
     
     this.fancyExposure = null;
     this.getallfancyexposure();
@@ -131,7 +132,6 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       this.eventData=this.dataformat.navigationSource.subscribe(data=>{
         if(data!=null){
           eventdatacount++;
-          // console.log(this.homeMarkets);
           this.AllMarketData=data;
           this.subscribedEventdata=this.AllMarketData[this.sprtId].tournaments[this.tourId].matches[this.matchId];
           // this.bookMakingData=this.subscribedEventdata.bookRates;
@@ -142,6 +142,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           this.homeHasFancy=this.subscribedEventdata.hasFancy;
           this.homeInPlay=this.subscribedEventdata.inPlay;
           this.homeMarkets=this.dataformat.marketsWise(this.subscribedEventdata.markets);
+          // console.log(this.homeMarkets);
           this.MatchName=this.subscribedEventdata.name;
           this.homeOddsType=this.subscribedEventdata.oddsType;
           this.homeSettings=this.subscribedEventdata.settings;
@@ -175,6 +176,34 @@ export class FullmarketComponent implements OnInit,OnDestroy {
         this.fancymarket.connectFancy(this.fancyHubAddress,this.matchId);
         this.FancysignalrData();
       }
+      
+      this.scorecardresponse(this.matchId,this.homeFancyData)
+    })
+
+    this.Allexposurebooks();
+    this.common.getsetting().subscribe(resp=>{
+      this.settingsData=resp;
+    })
+  }
+
+  Allexposurebooks(){
+    setTimeout(() => {
+      _.forEach(this.homeMarkets, (item1, index) => {
+        this.common.getexposurebook(item1.id).subscribe(resp=>{
+          _.forEach(resp.data, (item, index) => {
+            var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
+                      $('#withoutBetMktExp_' + item1.id + '_' + runnerName).removeClass('win');
+                      $('#withoutBetMktExp_' + item1.id + '_' + runnerName).removeClass('lose');
+                      if (item.Value >= 0) {
+                          $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
+                      } else if (item.Value <= 0) {
+                          $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
+                      }
+                     
+          })
+          localStorage.setItem('MktExpo_' + item1.mktId, JSON.stringify(resp.data));
+        })
+      })
       if(this.bookMakingData!=null){
         _.forEach(this.bookMakingData,(item1,index)=>{
           this.common.getBMexposurebook(this.mktId,item1.id).subscribe(data=>{
@@ -196,30 +225,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           })
         })
       }
-      this.scorecardresponse(this.matchId,this.homeFancyData)
-    })
-    _.forEach(this.homeMarkets, (item1, index) => {
-      // console.log(item1)
-      this.common.getexposurebook(item1.id).subscribe(resp=>{
-        _.forEach(resp.data, (item, index) => {
-          var runnerName = item.Key.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '_');
-                    $('#withoutBetMktExp_' + item1.id + '_' + runnerName).removeClass('win');
-                    $('#withoutBetMktExp_' + item1.id + '_' + runnerName).removeClass('lose');
-                    if (item.Value >= 0) {
-                        $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
-                    } else if (item.Value <= 0) {
-                        $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
-                    }
-                   
-        })
-        // Mktdata["oldPnl"] = resp.data;
-        localStorage.setItem('MktExpo_' + item1.mktId, JSON.stringify(resp.data));
-      })
-    })
-    this.common.getsetting().subscribe(resp=>{
-      // console.log(resp)
-      this.settingsData=resp;
-    })
+    }, 2000)
   }
 
   openTv() {
@@ -492,10 +498,10 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     //   };
     //   oneClickMOData["profit"] = this.calcAllProfit(oneClickMOData);
     //   this.confirmBetPop(oneClickMOData);
-    //   // this.oneClickPlaceMOBet(oneClickMOData);
+    //   // this.oneClickPlaceMOBet(oneClickMODafta);
     //   return false;
     // } else {
-      // console.log(event,backLay,odds,runnerName,sportId,mtbfId,matchId,marketId,bfId)
+      // console.log(event,backLay,odds,runnerName,sportId,mtbfId,matchId,marketId,bfId,"Placedatabetslip")
       this.placeMarketData = {
         backlay: backLay,
         marketId: marketId,
@@ -513,6 +519,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       this.placeMarketData["source"] = "Mobile";
       this.placeMarketData["info"] ="device:" +this.deviceInfo.device +", os:" +this.deviceInfo.os +", os_version:" +this.deviceInfo.os_version +", browser:" +this.deviceInfo.browser +", browser_version:" +this.deviceInfo.browser_version;
       this.placeMarketData.profit = this.calcAllProfit(this.placeMarketData);
+      // console.log(this.placeMarketData,"Placebetdata")
       this.calcExposure(this.placeMarketData, null);
     // }
   }
@@ -552,6 +559,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       fancyId: fancyId,
       matchId: matchId,
       mktBfId: this.mktBfId,
+      marketId:this.mktId,
       matchBfId: bfId,
       rate: rate,
       runnerName: fancyName,
@@ -592,6 +600,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   //place bet for match Odds
   placeMOBet(MOData) {
     $("#loading").css("display", "flex");
+    // console.log(MOData);
     this.confirmPlaceMarketData = null;
     this.common.PlaceMOBet(MOData).subscribe(data => {
       if (data.status == "Success") {
