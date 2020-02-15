@@ -438,7 +438,7 @@
                       </div>
                 </div>
               </div>
-              <div class="distinct ion-list market-list list list-md" *ngIf="inplayData.length==0">
+              <div class="distinct ion-list market-list list list-md no-data-found" *ngIf="inplayData.length==0">
                 <h5>No Inplay Matches...</h5>
               </div>
             </section>
@@ -573,7 +573,7 @@
                     </div>
                 </div>
               </div>
-              <div class="distinct ion-list market-list list list-md" *ngIf="upcomingEvents.length==0">
+              <div class="distinct ion-list market-list list list-md no-data-found" *ngIf="upcomingEvents.length==0">
                 <h5>No Upcoming Matches...</h5>
               </div>
             </section>
@@ -641,7 +641,7 @@
                 </div>
               </div>
             </div>
-            <div class="distinct ion-list market-list list list-md" *ngIf="pnlData.length==0">
+            <div class="distinct ion-list market-list list list-md no-data-found" *ngIf="pnlData.length==0">
               <h5>No Recent Matches...</h5>
             </div>
             </section>
@@ -676,10 +676,10 @@
                   </div>
                   <div class="right-block">
                     <div class="status-container">
-                      <span class="label status-label">Status: </span><span class="value status-value">{{ getStatus(bet.pnl) }}</span>
+                      <span class="label status-label">Status: </span><span class="value status-value" [ngClass]="bet.pnl >= 0? 'text-success':'text-danger'">{{ getStatus(bet.pnl) }}</span>
                     </div>
                     <div class="profit-loss-container">
-                      <span class="label profit-loss-label">Profit/Loss: </span><span class="value profit-loss-value">{{ bet.pnl }}</span>
+                      <span class="label profit-loss-label">Profit/Loss: </span><span class="value profit-loss-value" [ngClass]="bet.pnl >= 0? 'text-success':'text-danger'">{{ bet.pnl | number:'1.2-2'}}</span>
                     </div>
                   </div>
                 </div>
@@ -691,7 +691,7 @@
                     <span class="label odds-label">Odds</span><span class="value odds-value">{{ bet.odds }}</span>
                   </div>
                   <div class="stake-container">
-                    <span class="label stake-label">Stake</span><span class="value stake-value">{{ bet.stake }}</span>
+                    <span class="label stake-label">Stake</span><span class="value stake-value" [ngClass]="bet.stake >= 0? 'text-success':'text-danger'">{{ bet.stake | number:'1.2-2'}}</span>
                   </div>
                 </div>
               </div>
@@ -700,26 +700,26 @@
             <div class="bets-summary-container">
                 <div class="back-total-container">
                   <span class="back-total-label">Back Total: </span>
-                  <span class="value back-total-value" [ngClass]="betsTable.bets.backTotal > 0? 'text-success':'text-danger'">{{ betsTable.bets.backTotal }}</span>
+                  <span class="value back-total-value" [ngClass]="betsTable.bets.backTotal >= 0? 'text-success':'text-danger'">{{ betsTable.bets.backTotal | number:'1.2-2' }}</span>
                 </div>
                 <div class="lay-subtotal-container">
                   <span class="lay-subtotal-label">Lay Subtotal: </span>
-                  <span class="value lay-subtotal-value" [ngClass]="betsTable.bets.layTotal > 0? 'text-success':'text-danger'">{{ betsTable.bets.layTotal }}</span>
+                  <span class="value lay-subtotal-value" [ngClass]="betsTable.bets.layTotal >= 0? 'text-success':'text-danger'">{{ betsTable.bets.layTotal | number:'1.2-2'}}</span>
                 </div>
                 <div class="market-total-container">
                   <span class="market-total-label">Market Total: </span>
-                  <span class="value market-total-value" [ngClass]="betsTable.bets.mktTotal > 0? 'text-success':'text-danger'">{{ betsTable.bets.mktTotal }}</span>
+                  <span class="value market-total-value" [ngClass]="betsTable.bets.mktTotal >= 0? 'text-success':'text-danger'">{{ betsTable.bets.mktTotal | number:'1.2-2'}}</span>
                 </div>
                 <div class="commission-container">
                   <span class="commission-label">Commission: </span>
-                  <span class="value commission-value" [ngClass]="betsTable.bets.comm > 0? 'text-success':'text-danger'">{{ betsTable.bets.comm }}</span>
+                  <span class="value commission-value" [ngClass]="betsTable.bets.comm >= 0? 'text-success':'text-danger'">{{ betsTable.bets.comm | number:'1.2-2'}}</span>
                 </div>
                 <div class="net-market-total">
                   <span class="label net-market-label">
                     Net Market Total: 
                   </span>
-                  <span class="value net-market-value" [ngClass]="betsTable.bets.netMktTotal > 0? 'text-success':'text-danger'">
-                    {{ betsTable.bets.netMktTotal? betsTable.bets.netMktTotal: 0 }}
+                  <span class="value net-market-value" [ngClass]="betsTable.bets.netMktTotal >= 0? 'text-success':'text-danger'">
+                    {{ betsTable.bets.netMktTotal? betsTable.bets.netMktTotal: 0 | number:'1.2-2'}}
                   </span>
                 </div>
             </div>

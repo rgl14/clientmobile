@@ -195,9 +195,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
                       $('#withoutBetMktExp_' + item1.id + '_' + runnerName).removeClass('win');
                       $('#withoutBetMktExp_' + item1.id + '_' + runnerName).removeClass('lose');
                       if (item.Value >= 0) {
-                          $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
+                          $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text((parseFloat(item.Value).toFixed(2)).toString()).addClass('win');
                       } else if (item.Value <= 0) {
-                          $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
+                          $('#withoutBetMktExp_'+ item1.id+'_'+runnerName).text('('+(parseFloat(item.Value).toFixed(2)).toString()+')').addClass('lose');
                       }
                      
           })
@@ -215,9 +215,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
                           $('#withoutBetBMExp_' + item1.id + '_' + runnerName).removeClass('win');
                           $('#withoutBetBMExp_' + item1.id + '_' + runnerName).removeClass('lose');
                           if (item.Value >= 0) {
-                              $('#withoutBetBMExp_'+ item1.id+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
+                              $('#withoutBetBMExp_'+ item1.id+'_'+runnerName).text((parseFloat(item.Value).toFixed(2)).toString()).addClass('win');
                           } else if (item.Value <= 0) {
-                              $('#withoutBetBMExp_'+ item1.id+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
+                              $('#withoutBetBMExp_'+ item1.id+'_'+runnerName).text('('+(parseFloat(item.Value).toFixed(2)).toString()+')').addClass('lose');
                           }
               })
               localStorage.setItem("BMExpo_" + item1.id,JSON.stringify(data.data))
@@ -437,9 +437,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
                     $('#withoutBetBMExp_' + bookid + '_' + runnerName).removeClass('win');
                     $('#withoutBetBMExp_' + bookid + '_' + runnerName).removeClass('lose');
                     if (item.Value >= 0) {
-                        $('#withoutBetBMExp_'+ bookid+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
+                        $('#withoutBetBMExp_'+ bookid+'_'+runnerName).text((parseFloat(item.Value).toFixed(2)).toString()).addClass('win');
                     } else if (item.Value <= 0) {
-                        $('#withoutBetBMExp_'+ bookid+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
+                        $('#withoutBetBMExp_'+ bookid+'_'+runnerName).text('('+(parseFloat(item.Value).toFixed(2)).toString()+')').addClass('lose');
                     }
         })
         localStorage.setItem("BMExpo_" + bookid,JSON.stringify(data.data))
@@ -658,9 +658,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
 	                $('#withoutBetMktExp_' + mktid + '_' + runnerName).removeClass('win');
 	                $('#withoutBetMktExp_' + mktid + '_' + runnerName).removeClass('lose');
 	                if (item.Value >= 0) {
-	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text((parseInt(item.Value).toFixed(2)).toString()).addClass('win');
+	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text((parseFloat(item.Value).toFixed(2)).toString()).addClass('win');
 	                } else if (item.Value <= 0) {
-	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text('('+(parseInt(item.Value).toFixed(2)).toString()+')').addClass('lose');
+	                    $('#withoutBetMktExp_'+ mktid+'_'+runnerName).text('('+(parseFloat(item.Value).toFixed(2)).toString()+')').addClass('lose');
                   }
       })
     })

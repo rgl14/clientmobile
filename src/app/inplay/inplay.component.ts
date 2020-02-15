@@ -172,7 +172,7 @@ export class InplayComponent implements OnInit,OnDestroy {
   showBetsTable(pnlData) {
     this.betsTable = pnlData;
     this.showRecentList = !this.showRecentList;
-    console.log(pnlData);
+    // console.log(pnlData);
     this.betsTable.matchName = pnlData.market.split('>')[1];
     this.rowData = [pnlData];
   }

@@ -79,7 +79,7 @@ export class AccountstatementComponent implements OnInit {
       if(params.value==null){
        return "--";
       }else{
-        var stringbalance=parseInt(params.value);
+        var stringbalance=parseFloat(params.value);
         var twodecimalvalue=stringbalance.toFixed(2);
         return twodecimalvalue;
       }

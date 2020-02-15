@@ -44,7 +44,7 @@ export class MybetsComponent implements OnInit {
     ]; 
 
     function balanceFormatter(params){
-      console.log(params);
+      // console.log(params);
       var rowvalue=params.data;
       var stringstake=parseFloat(rowvalue.matchedStake);
       if(rowvalue.type=="Back" || rowvalue.type=="Lay"){
@@ -52,7 +52,7 @@ export class MybetsComponent implements OnInit {
         var pnlvalue=stringavgOdds*stringstake;
       }else{
         var splitodds=rowvalue.odds.split('@')
-        var stringavgOdds=parseInt(splitodds[1])/100;
+        var stringavgOdds=parseFloat(splitodds[1])/100;
         var pnlvalue=stringavgOdds*stringstake;
       }
       // console.log(stringstake,stringavgOdds)
