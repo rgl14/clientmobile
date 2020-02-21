@@ -531,9 +531,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     this.placeBookData = {
       backlay: backLay,
       bookId: bookId,
-      bookType: bookType,
+      // bookType: bookType,
       eventId: matchId,
-      marketId: marketId,
+      marketId:this.mktId,
       odds: odds,
       runnerId: runnerId,
       runnerName: runnerName,
