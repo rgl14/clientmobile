@@ -234,11 +234,11 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       if (this.tvConfig != null && this.tvConfig.channelIp != null) {
         $("#streamingBox").fadeIn();
         this.baseUrl =
-          "https://shivexch.com/tv_api/live_tv/index.html?token=3af0f960-daba-47ea-acc2-a04b7ecf44bf";
+          "https://shivexch.com/tv_api/live_tv/index.html?token=3af0f960-daba-47ea-acc2-a04b7ecf44bf&mtid="+this.mtBfId;
       } else {
         $("#streamingBox").fadeIn();
         this.baseUrl =
-          "https://shivexch.com/tv_api/animation/index.html?token=3af0f960-daba-47ea-acc2-a04b7ecf44bf";
+          "https://shivexch.com/tv_api/animation/index.html?token=3af0f960-daba-47ea-acc2-a04b7ecf44bf&mtid="+this.mtBfId;
       }
 
       let blogUrl: any = `${this.baseUrl}&mtid=${this.mtBfId}`;
