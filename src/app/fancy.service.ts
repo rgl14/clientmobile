@@ -70,11 +70,12 @@ export class FancyService {
     if(!this.fancyHubConn){
       return;
     }
+    console.log(this.fancyHubConn.state,"Fancy Unsubscribed "+fancy)
     if (this.fancyHubConn.state == 1) {
       this.fancyHubAddress=null;
-      _.forEach(fancy, (item) => {
-        this.fancyProxy.invoke('UnsubscribeFancy', item);
-      });
+      // _.forEach(fancy, (item) => {
+        this.fancyProxy.invoke('UnsubscribeFancy', fancy);
+      // });
       this.fancyConnection.stop();
       this.fancyHubConn=null;
       this.fancyConnection=null;

@@ -76,6 +76,7 @@ export class ScoreboardService {
     if (!this.scorehubconn) {
       return;
     }
+    console.log(this.scorehubconn.state,"Score Unsubscribed "+matchBfId);
     if (this.scorehubconn.state == 1) {
       this.MatchScoreHubAddress = null;
       this.MatchScoreProxy.invoke("UnSubscribeMatch", matchBfId);

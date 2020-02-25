@@ -66,6 +66,7 @@ export class MarketsService {
     if(!this.marketHubConn){
       return;
     }
+    console.log(this.marketHubConn.state,"Unsubscribed market "+markets);
     if (this.marketHubConn.state == 1) {
       this.marketHubAddress=null;
       _.forEach(markets, (item) => {

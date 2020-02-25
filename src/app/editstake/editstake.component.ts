@@ -22,7 +22,7 @@ export class EditstakeComponent implements OnInit {
   isOddsHighlights: any;
   stake: any;
   isfancyChecked: any;
-  fancypanelsetting: boolean=false;
+  fancypanelsetting: boolean=true;
   fancyCheckedLS: string;
   constructor(private commonservice:CommonService,public notification :NotificationService) { }
 
