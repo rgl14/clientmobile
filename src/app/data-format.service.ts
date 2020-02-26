@@ -121,7 +121,6 @@ inplaylistwise = function(sportdata, inplaytype) {
               item2.bookRates=[];
             }
             // console.log(item2.bookRates.length);
-            if(item2.bookRates.length==0){
               _.forEach(item2.markets, function(item3, index3) {
                 if (item3.name == "Match Odds") {
                     item3.runnerData['bfId'] = item3.bfId;
@@ -158,7 +157,6 @@ inplaylistwise = function(sportdata, inplaytype) {
                     // }
                 }
             })
-            }
           })
       })
       // data["name"] = item.name;
