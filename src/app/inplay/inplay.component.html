@@ -718,8 +718,8 @@
                   <span class="label net-market-label">
                     Net Market Total: 
                   </span>
-                  <span class="value net-market-value" [ngClass]="betsTable.bets.netMktTotal >= 0? 'text-success':'text-danger'">
-                    {{ betsTable.bets.netMktTotal? betsTable.bets.netMktTotal: 0 | number:'1.2-2'}}
+                  <span class="value net-market-value" [ngClass]="totalPNL >= 0? 'text-success':'text-danger'">
+                    {{totalPNL | number:'1.2-2'}}
                   </span>
                 </div>
             </div>

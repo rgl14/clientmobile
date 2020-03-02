@@ -36,12 +36,21 @@ export class MybetsComponent implements OnInit {
       {headerName: 'Bet id', field: 'betId', width: 75,lockPosition:true,suppressNavigable:true},
       {headerName: 'Market', field: 'matchName', sortable: true, width: 200,cellStyle: {'font-weight':'bolder'}},
       {headerName: 'Selection', field: 'selection', sortable: true, width: 150},
-      {headerName: 'Type', field: 'type', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},cellClass: function(params) { return (params.value == 'Back' ? 'back':'lay')}},
+      {headerName: 'Type', field: 'type', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},cellClass:betTypeClass},
       {headerName: 'Bet Placed', field: 'placedDate', sortable: true, width: 150},
       {headerName: 'Odds', field: 'avgOdds', sortable: true, width: 75},
       {headerName: 'Stake', field: 'matchedStake', sortable: true, width: 75},
-      {headerName: 'Profit/loss', field: 'pnl', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},valueFormatter: balanceFormatter,cellClass: function(params) { return (params.value >= 0 ? 'profit':'loss')}},
+      {headerName: 'Profit/loss', field: 'pnl', sortable: true, width: 100,cellStyle: {'font-weight':'bolder'},valueFormatter: balanceFormatter,cellClass: balanceClass},
     ]; 
+
+    function betTypeClass(params){
+      // console.log(params.value)
+      if(params.value == 'Back' || params.value == 'Yes'){
+        return 'Bettype-Back';
+      }else{
+        return 'Bettype-Lay';
+      }
+    }
 
     function balanceFormatter(params){
       // console.log(params);
@@ -55,9 +64,27 @@ export class MybetsComponent implements OnInit {
         var stringavgOdds=parseFloat(splitodds[1])/100;
         var pnlvalue=stringavgOdds*stringstake;
       }
-      // console.log(stringstake,stringavgOdds)
       var twodecimalvalue=pnlvalue.toFixed(2);
       return twodecimalvalue.toString();
+    }
+
+    function balanceClass(params){
+      var rowvalue=params.data;
+      var stringstake=parseFloat(rowvalue.matchedStake);
+      if(rowvalue.type=="Back" || rowvalue.type=="Lay"){
+        var stringavgOdds=parseFloat(rowvalue.odds)-1;
+        var pnlvalue=stringavgOdds*stringstake;
+      }else{
+        var splitodds=rowvalue.odds.split('@')
+        var stringavgOdds=parseFloat(splitodds[1])/100;
+        var pnlvalue=stringavgOdds*stringstake;
+      }
+      var twodecimalvalue=pnlvalue.toFixed(2);
+      if(parseFloat(twodecimalvalue)>=0){
+        return 'profit'
+      }else{
+        return 'loss'
+      }
     }
 
     this.gridOptions.paginationPageSize=10;

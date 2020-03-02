@@ -46,6 +46,7 @@ export class InplayComponent implements OnInit,OnDestroy {
   betsTable: any;
 
   showRecentList: boolean = true;
+  totalPNL: any;
   constructor(
     private commonservice:CommonService,
     private sharedata:SharedataService,
@@ -175,6 +176,7 @@ export class InplayComponent implements OnInit,OnDestroy {
     // console.log(pnlData);
     this.betsTable.matchName = pnlData.market.split('>')[1];
     this.rowData = [pnlData];
+    this.totalPNL=this.betsTable.pnl;
   }
   
   getStatus(pnl) {

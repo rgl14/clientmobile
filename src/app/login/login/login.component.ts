@@ -48,6 +48,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem(IS_CHANGE_PASS, data.isChangePwd);
           if(data.isChangePwd==1){
             this.router.navigateByUrl("/changepassword");
+            this.setDefaultstake();
           }else{
             this.router.navigateByUrl("/home");
           }
@@ -59,6 +60,25 @@ export class LoginComponent implements OnInit {
   }
   tokencheck(){
     var value=this.cookie.get('charlie');
+  }
+  setDefaultstake(){
+      let stakedaata={
+            "stake1":50,
+            "stake2":100,
+            "stake3":500,
+            "stake4":1000,
+            "stake5":2000,
+            "stake6":5000,
+            "stake7":7000,
+            "stake8":10000,
+          }
+      this.commonservice.SaveBetStakeSetting(stakedaata).subscribe(resp=>{
+        if(resp.status){
+          this.notification.success(resp.result);
+        }else{
+          this.notification.error(resp.result);
+        }
+      })
   }
 
 }
