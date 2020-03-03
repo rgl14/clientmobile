@@ -13,7 +13,7 @@ export class CommonService {
   }
 
   constructor(private httpclient:HttpClient,private cookie:CookieService) { }
-  public apiurl:string="http://173.249.43.228/GoLuckyClient/Client.svc"
+  public apiurl:string="http://www.orbitx247.com/Client/Client.svc"
   public authtoken=this.cookie.get('charlie');
 
   uservalidate():boolean{
