@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 import { CommonService } from 'src/services/common.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../shared/notification.service';
-import { GridOptions } from 'ag-grid-community';
 
 
 @Component({
@@ -16,19 +15,6 @@ import { GridOptions } from 'ag-grid-community';
 
 
 export class InplayComponent implements OnInit,OnDestroy {
-  
-  gridOptions: GridOptions;
-  columnDefs:any
-  paginationPageSize:any;
-  paginationSetPageSize;
-  paginationNumberFormatter:any;
-  rowData=[];
-  headerHeight: number;
-  gridApi: any;
-  gridColumnApi: any;
-  defaultColDef: { sortable: boolean; resizable: boolean; };
-  overlayNoRowsTemplate: string;
-  overlayLoadingTemplate: string;
   
   datahighlightwise: any;
   inplayData: any=[];
@@ -54,71 +40,19 @@ export class InplayComponent implements OnInit,OnDestroy {
     public notification :NotificationService,
     private router: Router) { 
       this.betsTable = {};
-      this.gridOptions = {
-      columnDefs: [
-        {
-          headerName: "Market",
-          field: "market",
-          width: 100
-        },
-        {
-          headerName: "Settle Date",
-          field: "settleDate",
-          width: 100
-        },
-        
-        {
-          headerName: "Start Date",
-          field: "startDate",
-          sortable: true,
-          width: 100,
-        },
-        {
-          headerName: "Profit/Loss",
-          field: "pnl",
-          sortable: true,
-          valueFormatter: balanceFormatter,
-          cellStyle: {'font-weight':'bolder'},
-          cellClass: function(params) { return (params.value > 0 ? 'profit':'loss')}
-        }
-      ]
-    };
-      function balanceFormatter(params){
-        if(params.value==null){
-         return "--";
-        }else{
-          var stringbalance=parseInt(params.value);
-          var twodecimalvalue=stringbalance.toFixed(2);
-          return twodecimalvalue;
-        }
-      }
-      this.defaultColDef = {
-        sortable: true,
-        resizable: true
-      };
     }
 
   ngOnInit() {
-    this.sharedata.userdatasource.subscribe(resp=>{
-      if(resp!=null){
-        // console.log(resp)
-        // this.datahighlightwise=this.dataformat.NavigationFormat(resp.sportsData);
-        // this.inplayData=this.dataformat.inplaylistwise(this.datahighlightwise,0)
-        // this.upcomingEvents=this.dataformat.inplaylistwise(this.datahighlightwise,1)
-        // console.log(this.inplayData)
-      }
+    this.commonservice.getuserdata().subscribe(resp=>{
+      var homesignalrfarmat=this.dataformat.homeSignalrFormat(resp.sportsData);
+      this.inplayData=this.dataformat.inplaylistwise(homesignalrfarmat,0);
+      this.upcomingEvents=this.dataformat.inplaylistwise(homesignalrfarmat,1);
     })
-
     this.inplaydatanavigation=this.dataformat.navigationSource.subscribe(resp=>{
         this.inplayData=this.dataformat.inplaylistwise(resp,0);
         this.upcomingEvents=this.dataformat.inplaylistwise(resp,1);
-        // console.log(this.inplayData, this.upcomingEvents)
     })
     this.recentpnldata();
-  }
-  onGridReady(params:any) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
   }
   appcharge(SportbfId,TourbfId,matchId,marketId,mtBfId,bfId,hasbookmaker){
     // if(hasbookmaker==0){
@@ -166,16 +100,13 @@ export class InplayComponent implements OnInit,OnDestroy {
         }
     this.commonservice.marketprofitloss(pnldates).subscribe(resp =>{
       this.pnlData=resp.data;
-      // console.log(this.pnlData)
     })
   }
 
   showBetsTable(pnlData) {
     this.betsTable = pnlData;
     this.showRecentList = !this.showRecentList;
-    // console.log(pnlData);
     this.betsTable.matchName = pnlData.market.split('>')[1];
-    this.rowData = [pnlData];
     this.totalPNL=this.betsTable.pnl;
   }
   
@@ -188,7 +119,9 @@ export class InplayComponent implements OnInit,OnDestroy {
   }
   
 ngOnDestroy(){
-  this.inplaydatanavigation.unsubscribe();
+  if(this.inplaydatanavigation){
+    this.inplaydatanavigation.unsubscribe();
+  }
 }
 
 }

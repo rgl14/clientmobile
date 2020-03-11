@@ -59,6 +59,7 @@ export class SignalrService {
       // publish an event when server pushes a newCounters message for client
       this.clientProxy.on("BroadcastSubscribedData", (data) => {
         // console.log(data);
+        this.DFService.shareDateTime(data.curTime);
         this.DFService.shareNews(data.news);
         this.DFService.shareDateTime(data.curTime.replace(/ /g, "T"));
         this.DFService.shareNavigationData(this.DFService.NavigationFormat(data.sportsData));

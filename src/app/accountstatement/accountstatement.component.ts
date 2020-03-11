@@ -95,7 +95,7 @@ export class AccountstatementComponent implements OnInit {
     this.overlayLoadingTemplate =
     '<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>';
     this.overlayNoRowsTemplate =
-    "<span style=\"padding: 10px; border: 2px solid #444; background: lightgoldenrodyellow;\">No Rows To Display</span>";
+    '<span class="ag-overlay-loading-center">NO DATA</span>';
   
 
     this.gridOptions.paginationNumberFormatter = function(params) {

@@ -563,6 +563,10 @@ dd {
 .lay-1 {
     background-color: #FAA9BA;
 }
+.disable .lay-1 {
+    background-color: #ddd;
+    color: #999;
+}
 .lay,.no{
     background-color: #414141;
     color: #fff;
@@ -576,6 +580,10 @@ dd {
 }
 .back-1 {
     background-color: #72BBEF;
+}
+.disable .back-1 {
+    background-color: #ddd;
+    color: #999;
 }
 .back,.yes {
     background-color: #414141;

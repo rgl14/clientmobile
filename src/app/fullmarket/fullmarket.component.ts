@@ -10,7 +10,8 @@ import { DeviceDetectorService } from "ngx-device-detector";
 import { NotificationService } from '../shared/notification.service';
 import { ScoreboardService } from '../scoreboard.service';
 import { SharedataService } from '../sharedata.service';
-
+import * as io from 'socket.io-client';
+var BSFDATA:any;
 @Component({
   selector: 'app-fullmarket',
   templateUrl: './fullmarket.component.html',
@@ -58,8 +59,6 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   BMExpoBook: any;
   settingsData: any;
   placeMarketData:any={};
-  fulldata:any;
-  AllMarketbetData:any= {};
   confirmPlaceMarketData: any={};
   scoreData: Subscription;
   placeBookData:any= {};
@@ -78,6 +77,12 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   fancypanelsetting: any;
   matchbets=[];
   allmatchbetsource: Subscription;
+  betBeforeInplayMins: any;
+  startDate: any;
+  Currentdatetime: Subscription;
+  socket:any;
+  BSFscore: any;
+  // BSFscore:any;
 
   constructor(
     private route:ActivatedRoute,
@@ -89,7 +94,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     private renderer:Renderer,
     private deviceInfo:DeviceDetectorService,
     public notification :NotificationService,
-    private score:ScoreboardService) { }
+    private score:ScoreboardService) {
+      this.socket = io('http://139.180.146.253:3000');
+     }
 
   ngOnInit() {
     this.TvWidth = window.innerWidth;
@@ -108,6 +115,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     if (this.sprtId === '4') {
       let MatchScoreHubAddress = "http://178.238.236.221:13681";
       this.score.MatchScoreSignalr(MatchScoreHubAddress, this.mtBfId);
+      this.socketConnection(this.mtBfId)
       // console.log(this.mtBfId,this.sprtId)
     } else if (this.sprtId === '2') {
       let MatchScoreHubAddress = "http://178.238.236.221:13683";
@@ -131,6 +139,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     var eventdatacount=0;
       this.eventData=this.dataformat.navigationSource.subscribe(data=>{
         if(data!=null){
+          // console.log(data)
           eventdatacount++;
           this.AllMarketData=data;
           this.subscribedEventdata=this.AllMarketData[this.sprtId].tournaments[this.tourId].matches[this.matchId];
@@ -141,11 +150,16 @@ export class FullmarketComponent implements OnInit,OnDestroy {
           this.homeFancyData=this.subscribedEventdata.fancyData;
           this.homeHasFancy=this.subscribedEventdata.hasFancy;
           this.homeInPlay=this.subscribedEventdata.inPlay;
-          this.homeMarkets=this.dataformat.marketsWise(this.subscribedEventdata.markets);
-          // console.log(this.homeMarkets);
+          this.startDate=this.subscribedEventdata.startDate;
+          
+          if(this.Marketoddssignalr==undefined){
+            this.homeMarkets=this.dataformat.marketsWise(this.subscribedEventdata.markets);
+            // console.log(this.homeMarkets);
+          }
           this.MatchName=this.subscribedEventdata.name;
           this.homeOddsType=this.subscribedEventdata.oddsType;
           this.homeSettings=this.subscribedEventdata.settings;
+          this.betBeforeInplayMins=this.homeSettings.betBeforeInplayMins
           this.homeStatus=this.subscribedEventdata.status;
           this.tvConfig=this.subscribedEventdata.tvConfig;
           this.fancypanelsetting=localStorage.getItem("FancyPanelSetting");
@@ -158,6 +172,11 @@ export class FullmarketComponent implements OnInit,OnDestroy {
         if(resp!=null){
           this.matchbets=resp._userMatchedBets[this.matchId];
           // console.log(this.matchbets);
+        }
+      })
+      this.Currentdatetime=this.dataformat.currentDateTimeSource.subscribe(resp=>{
+        if(resp!=null){
+          this.curTime=resp;
         }
       })
   }
@@ -253,7 +272,9 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     this.Marketoddssignalr=this.marketodds.marketSource.subscribe(runner=>{
       if (runner != null) {
         // console.log(runner);
-        this.eventData.unsubscribe();
+        // this.eventData.unsubscribe();
+      this.matchDateTime();
+      this.setDatabsfScore();
         let marketIndex = _.findIndex(this.homeMarkets, function(o) {
           return o.bfId == runner.marketid;
         });
@@ -333,6 +354,47 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     return pnl;
   }
 
+  matchDateTime(){
+    let curdate=new Date(this.curTime);
+    var modifiedDateValue = this.startDate.split(" "); // Gives Output as 2016,01,06 00:43:06
+    var matchdatesplitted=modifiedDateValue[0].split("-")
+    var matchdate = new Date(matchdatesplitted[2] + "/" + matchdatesplitted[1] + "/" + matchdatesplitted[0]+" "+modifiedDateValue[1]); // Here, passing the format as "yyyy/mm/dd" 
+    let milliseconds=<any>matchdate.getTime()-<any>curdate.getTime();
+    // let seconds = (milliseconds / 1000) ;
+    let minutes = <Number>((milliseconds / (1000*60)) % 60);
+    let hours   = <Number>((milliseconds / (1000*60*60)) % 24);
+    let days = <Number>((milliseconds / (1000*60*60*24)) %7);
+    // console.log("Curr ",curdate);
+    // console.log("Matchdate " +matchdate);
+    // console.log("Hrs " +hours);
+    // console.log("Min " +minutes);
+    // console.log("Day " +days);
+    if(days==0 && hours==0 && minutes<=this.betBeforeInplayMins){
+      // return true;
+      // console.log("Inplay")
+    }else{
+      // return false;
+      // console.log("Upcoming")
+    }
+  }
+  socketConnection(mtbfid){
+    this.socket.emit('market_login_main',mtbfid);
+    this.socket.on('sendSkyScoreData',function(data){
+        // console.log(data)
+        if (parseInt(mtbfid)==data.matchBfId) {
+          BSFDATA=data;
+        }
+        else{
+            this.disconnect();
+        }
+    });
+}
+
+setDatabsfScore(){
+  this.BSFscore=BSFDATA;
+  // console.log(this.BSFscore);
+}
+
   getPnlClass(runner, Pnl) {
     let pnlClass = "";
     if (Pnl) {
@@ -354,8 +416,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     this.fancyoddsignalr=this.fancymarket.fancySource.subscribe(fancy=>{
         if (fancy != null) {
           // console.log(fancy);
-          this.eventData.unsubscribe();
-          this.curTime = fancy.curTime;
+          // this.eventData.unsubscribe();
           // this.bookMakingData = fancy.bookRates;
           // this.bookrunnerData = this.bookMakingData.runnerData;
           this.homeFancyData = fancy.data;
@@ -421,6 +482,24 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       }
     })
   }
+
+ 
+  
+
+//   socketBSFConnection(mtbfid){
+//     this.socket.emit('market_login_main',mtbfid);
+//     this.socket.on('sendBFScoreData',function(data){
+//         // console.log(data.score,"BSF")
+//         if (mtbfid==data.matchBfId) {
+//             this.BSFscore=data.score;
+//             this.betStatus=data.betStatus;
+//             // $scope.betStatus='';
+//         }
+//         else{
+//             this.socket.disconnect();
+//         }
+//     });
+// }
   getbmexposure(bookid,name){
     this.common.getBMexposurebook(this.mktId,bookid).subscribe(data=>{
       if(data!=null){
@@ -463,11 +542,25 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       });
   }
   ngOnDestroy() {
-    this.eventData.unsubscribe();
-    this.allmatchbetsource.unsubscribe();
-    this.fancyoddsignalr.unsubscribe();
-    this.Marketoddssignalr.unsubscribe();
-    this.scoreData.unsubscribe();
+    if(this.Currentdatetime){
+      this.Currentdatetime.unsubscribe();
+    }
+    if(this.eventData){
+      this.eventData.unsubscribe();
+    }
+    if(this.allmatchbetsource){
+      this.allmatchbetsource.unsubscribe();
+    }
+    if(this.fancyoddsignalr){
+      this.fancyoddsignalr.unsubscribe();
+    }
+    if(this.Marketoddssignalr){
+      this.Marketoddssignalr.unsubscribe();
+    }
+    if(this.scoreData){
+      this.scoreData.unsubscribe();
+    }
+    this.socket.disconnect();
     this.marketodds.UnsuscribeMarkets(this.homeMarkets);
     this.fancymarket.UnsuscribeFancy(this.matchId);
     this.score.unSubscribeMatchScore(this.mtBfId);
