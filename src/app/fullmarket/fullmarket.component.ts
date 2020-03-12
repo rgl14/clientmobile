@@ -10,7 +10,7 @@ import { DeviceDetectorService } from "ngx-device-detector";
 import { NotificationService } from '../shared/notification.service';
 import { ScoreboardService } from '../scoreboard.service';
 import { SharedataService } from '../sharedata.service';
-import * as io from 'socket.io-client';
+// import * as io from 'socket.io-client';
 var BSFDATA:any;
 @Component({
   selector: 'app-fullmarket',
@@ -81,8 +81,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
   startDate: any;
   Currentdatetime: Subscription;
   socket:any;
-  BSFscore: any;
-  // BSFscore:any;
+  // BSFscore: any;
 
   constructor(
     private route:ActivatedRoute,
@@ -95,7 +94,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     private deviceInfo:DeviceDetectorService,
     public notification :NotificationService,
     private score:ScoreboardService) {
-      this.socket = io('http://139.180.146.253:3000');
+      // this.socket = io('http://139.180.146.253:3000');
      }
 
   ngOnInit() {
@@ -115,7 +114,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
     if (this.sprtId === '4') {
       let MatchScoreHubAddress = "http://178.238.236.221:13681";
       this.score.MatchScoreSignalr(MatchScoreHubAddress, this.mtBfId);
-      this.socketConnection(this.mtBfId)
+      // this.socketConnection(this.mtBfId)
       // console.log(this.mtBfId,this.sprtId)
     } else if (this.sprtId === '2') {
       let MatchScoreHubAddress = "http://178.238.236.221:13683";
@@ -274,7 +273,7 @@ export class FullmarketComponent implements OnInit,OnDestroy {
         // console.log(runner);
         // this.eventData.unsubscribe();
       this.matchDateTime();
-      this.setDatabsfScore();
+      // this.setDatabsfScore();
         let marketIndex = _.findIndex(this.homeMarkets, function(o) {
           return o.bfId == runner.marketid;
         });
@@ -377,23 +376,23 @@ export class FullmarketComponent implements OnInit,OnDestroy {
       // console.log("Upcoming")
     }
   }
-  socketConnection(mtbfid){
-    this.socket.emit('market_login_main',mtbfid);
-    this.socket.on('sendSkyScoreData',function(data){
-        // console.log(data)
-        if (parseInt(mtbfid)==data.matchBfId) {
-          BSFDATA=data;
-        }
-        else{
-            this.disconnect();
-        }
-    });
-}
+//   socketConnection(mtbfid){
+//     this.socket.emit('market_login_main',mtbfid);
+//     this.socket.on('sendSkyScoreData',function(data){
+//         // console.log(data)
+//         if (parseInt(mtbfid)==data.matchBfId) {
+//           BSFDATA=data;
+//         }
+//         else{
+//             this.disconnect();
+//         }
+//     });
+// }
 
-setDatabsfScore(){
-  this.BSFscore=BSFDATA;
-  // console.log(this.BSFscore);
-}
+// setDatabsfScore(){
+//   this.BSFscore=BSFDATA;
+//   // console.log(this.BSFscore);
+// }
 
   getPnlClass(runner, Pnl) {
     let pnlClass = "";
@@ -484,22 +483,7 @@ setDatabsfScore(){
   }
 
  
-  
 
-//   socketBSFConnection(mtbfid){
-//     this.socket.emit('market_login_main',mtbfid);
-//     this.socket.on('sendBFScoreData',function(data){
-//         // console.log(data.score,"BSF")
-//         if (mtbfid==data.matchBfId) {
-//             this.BSFscore=data.score;
-//             this.betStatus=data.betStatus;
-//             // $scope.betStatus='';
-//         }
-//         else{
-//             this.socket.disconnect();
-//         }
-//     });
-// }
   getbmexposure(bookid,name){
     this.common.getBMexposurebook(this.mktId,bookid).subscribe(data=>{
       if(data!=null){
@@ -560,7 +544,7 @@ setDatabsfScore(){
     if(this.scoreData){
       this.scoreData.unsubscribe();
     }
-    this.socket.disconnect();
+    // this.socket.disconnect();
     this.marketodds.UnsuscribeMarkets(this.homeMarkets);
     this.fancymarket.UnsuscribeFancy(this.matchId);
     this.score.unSubscribeMatchScore(this.mtBfId);

@@ -97,10 +97,9 @@
           </div>
       </div>
   </div>
-  <carousel>
+  <!-- <carousel>
     <slide>
       <div class="text-center  bg-dark text-white">
-        <!-- <h2>First custom content</h2> -->
         <div class="lead">
          <img src="/assets/img/slider/img.jpg" height="200px" width="100%">
         </div>
@@ -108,7 +107,6 @@
     </slide>
     <slide>
       <div class="text-center  bg-dark text-white">
-        <!-- <h2>First custom content</h2> -->
         <div class="lead">
          <img src="/assets/img/slider/img1.png" height="200px" width="100%">
         </div>
@@ -116,7 +114,6 @@
     </slide>
     <slide>
       <div class="text-center  bg-dark text-white">
-        <!-- <h2>First custom content</h2> -->
         <div class="lead">
          <img src="/assets/img/slider/img2.jpg" height="200px" width="100%">
         </div>
@@ -124,7 +121,6 @@
     </slide>
     <slide>
       <div class="text-center  bg-dark text-white">
-        <!-- <h2>First custom content</h2> -->
         <div class="lead">
          <img src="/assets/img/slider/img3.jpg" height="200px" width="100%">
         </div>
@@ -132,7 +128,6 @@
     </slide>
     <slide>
       <div class="text-center  bg-dark text-white">
-        <!-- <h2>Second custom content</h2> -->
         <div class="lead">
           <img src="/assets/img/img1.jpg" height="200px" width="100%">
         </div>
@@ -140,7 +135,6 @@
     </slide>
     <slide>
       <div class="text-center  bg-dark text-white">
-        <!-- <h2>Third custom content</h2> -->
         <div class="lead">
           <img src="/assets/img/img2.jpg" height="200px" width="100%">
         </div>
@@ -148,7 +142,6 @@
     </slide>
     <slide>
       <div class="text-center bg-dark text-white">
-        <!-- <h2>Third custom content</h2> -->
         <div class="lead">
           <img src="/assets/img/img3.png" height="200px" width="100%">
         </div>
@@ -156,13 +149,148 @@
     </slide>
     <slide>
       <div class="text-center bg-dark text-white">
-        <!-- <h2>Third custom content</h2> -->
         <div class="lead">
           <img src="/assets/img/img4.jpg" height="200px" width="100%">
         </div>
       </div>
     </slide>
-  </carousel>
+  </carousel> -->
 
   <!-- <app-search></app-search> -->
+  <div class="Inplay-Events">
+    <h4>Inpaly Events</h4>
+  </div>
+
+  <div class="home-page ion-content event-page content content-md" padding="">
+    <div class="fixed-content   "></div>
+    <div class="scroll-content ">
+      <section>
+        <div class="in-play page-title">
+          <!-- <i class="fa fa-play-circle"></i>
+  
+                  <span class="label">In Play</span> -->
+        </div>
+        <!-- <div class="in-play page-title item-block inplayPageTitle" >
+  
+                  <p class="noMatchFoundtitle">No In play Matches.</p>
+  
+              </div>
+              <div class="in-play page-title item-block inplayPageTitle" >
+  
+                  <p class="noMatchFoundtitle">Loading...</p>
+  
+              </div> -->
+        <!-- <a > <span class="open-bets-link">Open Bets (0)</span>
+        </a> -->
+        <div class="distinct ion-list market-list list list-md" *ngIf="inplayData.length!=0">
+          <div *ngFor="let upcoming of inplayData | sortByDate:'matchDate';trackBy:identify">
+              <div *ngIf="upcoming.SportbfId===4" class="market-list-item ion-item item item-block item-md" style="background: #404040;margin-bottom: 2px;">
+                  <div class="item-inner">
+                    <div class="input-wrapper">
+                      <div class="label ion-label label-md">
+                        <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId,upcoming.hasbookmaker)" >
+                          <div class="popular-event">
+                            <div class="event-details"> 
+                              <!-- <i><img height="20px" width="20px" src="assets/img/cricket.png"></i> -->
+                              <div>
+                                <span class="label-slash-cricket">\</span>
+                              </div>
+                              <div class="event-container">
+                                <span class="label">{{upcoming.matchName}}</span>
+                                <div class="date-info"> 
+                                  <div class="status">
+                                    <div class="live-icon shine">Live</div>
+                                  </div>
+                                  <div class="status" *ngIf="upcoming.hasFancy === 1">
+                                    <div class="fancy-icon shine">Fancy</div>
+                                  </div>
+                                  <!-- <div class="status" *ngIf="upcoming.hasbookmaker === 1">
+                                    <div class="BM-icon shine">book maker</div>
+                                  </div> -->
+                                </div>
+                              </div>
+                            </div>
+                            <!-- <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
+                            </div> -->
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button-effect"></div>
+              </div>
+          </div>
+          <div *ngFor="let upcoming of inplayData | sortByDate:'matchDate';trackBy:identify">
+              <div *ngIf="upcoming.SportbfId===1" class="market-list-item ion-item item item-block item-md" style="background: #404040;margin-bottom: 2px;">
+                  <div class="item-inner">
+                    <div class="input-wrapper">
+                      <div class="label ion-label label-md">
+                        <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId,upcoming.hasbookmaker)">
+                          <div class="popular-event">
+                            <div class="event-details"> 
+                              <!-- <i><img height="20px" width="20px" src="assets/img/soccer_ball.ico"></i> -->
+                              <div>
+                                <span class="label-slash-soccer">\</span>
+                              </div>
+                              <div class="event-container">
+                                <span class="label">{{upcoming.matchName}}</span>
+                                <div class="date-info"> 
+                                  <div class="status">
+                                    <div class="live-icon shine">Live</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- <span class="label ">{{upcoming.matchName}}</span>
+                              <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p> -->
+                            </div>
+                            <!-- <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
+                            </div> -->
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button-effect"></div>
+              </div>
+          </div>
+          <div  *ngFor="let upcoming of inplayData | sortByDate:'matchDate';trackBy:identify">
+              <div *ngIf="upcoming.SportbfId===2" class="market-list-item ion-item item item-block item-md" style="background: #404040;margin-bottom: 2px;">
+                  <div class="item-inner">
+                    <div class="input-wrapper">
+                      <div class="label ion-label label-md">
+                        <a class="" (click)="appcharge(upcoming.SportbfId,upcoming.TourbfId,upcoming.matchId,upcoming.marketId,upcoming.mtBfId,upcoming.bfId,upcoming.hasbookmaker)">
+                          <div class="popular-event">
+                            <div class="event-details"> 
+                              <!-- <i><img height="20px" width="20px" src="assets/img/tennis_ball.ico"></i> -->
+                              <div>
+                                <span class="label-slash-tennis">\</span>
+                              </div>
+                              <div class="event-container">
+                                <span class="label">{{upcoming.matchName}}</span>
+                                <div class="date-info"> 
+                                  <div class="status">
+                                    <div class="live-icon shine">Live</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- <span class="label ">{{upcoming.matchName}}</span> -->
+                              <!-- <p class="date-info"> <span class="">{{upcoming.matchDate}}</span></p> -->
+                            </div>
+                            <!-- <div class="in-upcomming-icon"> <i class="fa fa-clock-o fa-2"></i>
+                            </div> -->
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="button-effect"></div>
+              </div>
+          </div>
+        </div>
+        <div class="distinct ion-list market-list list list-md no-data-found" *ngIf="inplayData.length==0">
+          <h5>No Inplay Matches...</h5>
+        </div>
+      </section>
+    </div>
+  </div>
 </div>
