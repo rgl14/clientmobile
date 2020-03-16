@@ -45,7 +45,7 @@ export class MybetsComponent implements OnInit {
 
     function betTypeClass(params){
       // console.log(params.value)
-      if(params.value == 'Back' || params.value == 'Yes'){
+      if(params.value == 'Back' || params.value == 'Yes' || params.value == 'back'){
         return 'Bettype-Back';
       }else{
         return 'Bettype-Lay';
@@ -59,6 +59,9 @@ export class MybetsComponent implements OnInit {
       if(rowvalue.type=="Back" || rowvalue.type=="Lay"){
         var stringavgOdds=parseFloat(rowvalue.odds)-1;
         var pnlvalue=stringavgOdds*stringstake;
+      }else if(rowvalue.type=="back" || rowvalue.type=="lay"){
+        var stringavgOdds=parseFloat(rowvalue.odds);
+        var pnlvalue=stringavgOdds*stringstake/100;
       }else{
         var splitodds=rowvalue.odds.split('@')
         var stringavgOdds=parseFloat(splitodds[1])/100;
@@ -74,6 +77,9 @@ export class MybetsComponent implements OnInit {
       if(rowvalue.type=="Back" || rowvalue.type=="Lay"){
         var stringavgOdds=parseFloat(rowvalue.odds)-1;
         var pnlvalue=stringavgOdds*stringstake;
+      }else if(rowvalue.type=="back" || rowvalue.type=="lay"){
+        var stringavgOdds=parseFloat(rowvalue.odds);
+        var pnlvalue=stringavgOdds*stringstake/100;
       }else{
         var splitodds=rowvalue.odds.split('@')
         var stringavgOdds=parseFloat(splitodds[1])/100;
